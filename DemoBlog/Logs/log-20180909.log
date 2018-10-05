@@ -1,0 +1,535 @@
+2018-09-09T21:43:24.2018318+03:00  [FTL] Application startup exception (6c57a5ba)
+System.InvalidOperationException: To use UseSpaStaticFiles, you must first register an ISpaStaticFileProvider in the service provider, typically by calling services.AddSpaStaticFiles.
+   at Microsoft.Extensions.DependencyInjection.SpaStaticFilesExtensions.ShouldServeStaticFiles(IApplicationBuilder app, Boolean allowFallbackOnServingWebRootFiles, IFileProvider& fileProviderOrDefault)
+   at Microsoft.Extensions.DependencyInjection.SpaStaticFilesExtensions.UseSpaStaticFilesInternal(IApplicationBuilder app, StaticFileOptions staticFileOptions, Boolean allowFallbackOnServingWebRootFiles)
+   at Microsoft.Extensions.DependencyInjection.SpaStaticFilesExtensions.UseSpaStaticFiles(IApplicationBuilder applicationBuilder, StaticFileOptions options)
+   at Microsoft.Extensions.DependencyInjection.SpaStaticFilesExtensions.UseSpaStaticFiles(IApplicationBuilder applicationBuilder)
+   at DemoBlog.Startup.Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory) in D:\Proj\Visual Studio\DemoBlog\DemoBlog\Startup.cs:line 207
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.AspNetCore.Hosting.ConventionBasedStartup.Configure(IApplicationBuilder app)
+   at Microsoft.AspNetCore.HostFilteringStartupFilter.<>c__DisplayClass0_0.<Configure>b__0(IApplicationBuilder app)
+   at Microsoft.AspNetCore.Hosting.Internal.AutoRequestServicesStartupFilter.<>c__DisplayClass0_0.<Configure>b__0(IApplicationBuilder builder)
+   at Microsoft.AspNetCore.Hosting.Internal.WebHost.BuildApplication()
+   at Microsoft.AspNetCore.Hosting.Internal.WebHost.StartAsync(CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Hosting.WebHostExtensions.RunAsync(IWebHost host, CancellationToken token, String shutdownMessage)
+2018-09-09T21:45:42.3269972+03:00  [INF] Starting @angular/cli on port 62515... (15623fef)
+2018-09-09T21:46:17.1461136+03:00 0HLGMGI39IE34:00000001 [INF] Request starting HTTP/1.1 GET http://localhost:5000/swagger/   (ca22a1cb)
+2018-09-09T21:46:17.2485521+03:00 0HLGMGI39IE34:00000001 [INF] Request finished in 112.6857ms 307  (791a596a)
+2018-09-09T21:46:17.4780019+03:00 0HLGMGI39IE36:00000001 [INF] Request starting HTTP/1.1 GET https://localhost:5001/swagger/   (ca22a1cb)
+2018-09-09T21:46:17.8648316+03:00 0HLGMGI39IE36:00000001 [INF] Request finished in 386.7817ms 301  (791a596a)
+2018-09-09T21:46:17.8754784+03:00 0HLGMGI39IE36:00000002 [INF] Request starting HTTP/1.1 GET https://localhost:5001/swagger/index.html   (ca22a1cb)
+2018-09-09T21:46:17.9292315+03:00 0HLGMGI39IE36:00000002 [INF] Request finished in 53.7976ms 200 text/html (791a596a)
+2018-09-09T21:46:18.0172407+03:00 0HLGMGI39IE36:00000003 [INF] Request starting HTTP/1.1 GET https://localhost:5001/swagger/swagger-ui.css   (ca22a1cb)
+2018-09-09T21:46:18.0417816+03:00 0HLGMGI39IE37:00000001 [INF] Request starting HTTP/1.1 GET https://localhost:5001/swagger/swagger-ui-bundle.js   (ca22a1cb)
+2018-09-09T21:46:18.0447073+03:00 0HLGMGI39IE38:00000001 [INF] Request starting HTTP/1.1 GET https://localhost:5001/swagger/swagger-ui-standalone-preset.js   (ca22a1cb)
+2018-09-09T21:46:18.3959879+03:00 0HLGMGI39IE36:00000003 [INF] Sending file. Request path: '"/swagger-ui.css"'. Physical path: '"N/A"' (27b0a520)
+2018-09-09T21:46:18.4036212+03:00 0HLGMGI39IE36:00000003 [INF] Request finished in 386.8147ms 200 text/css (791a596a)
+2018-09-09T21:46:18.5032893+03:00 0HLGMGI39IE38:00000001 [INF] Sending file. Request path: '"/swagger-ui-standalone-preset.js"'. Physical path: '"N/A"' (27b0a520)
+2018-09-09T21:46:18.5034771+03:00 0HLGMGI39IE38:00000001 [INF] Request finished in 458.8449ms 200 application/javascript (791a596a)
+2018-09-09T21:46:19.7502942+03:00 0HLGMGI39IE37:00000001 [INF] Sending file. Request path: '"/swagger-ui-bundle.js"'. Physical path: '"N/A"' (27b0a520)
+2018-09-09T21:46:19.7504461+03:00 0HLGMGI39IE37:00000001 [INF] Request finished in 1708.7286ms 200 application/javascript (791a596a)
+2018-09-09T21:46:20.3900925+03:00 0HLGMGI39IE37:00000002 [INF] Request starting HTTP/1.1 GET https://localhost:5001/swagger/v1/swagger.json   (ca22a1cb)
+2018-09-09T21:46:20.9030725+03:00 0HLGMGI39IE38:00000002 [INF] Request starting HTTP/1.1 GET https://localhost:5001/swagger/favicon-32x32.png   (ca22a1cb)
+2018-09-09T21:46:20.9141124+03:00 0HLGMGI39IE38:00000002 [INF] Sending file. Request path: '"/favicon-32x32.png"'. Physical path: '"N/A"' (27b0a520)
+2018-09-09T21:46:20.9142967+03:00 0HLGMGI39IE38:00000002 [INF] Request finished in 12.6237ms 200 image/png (791a596a)
+2018-09-09T21:46:20.9274188+03:00 0HLGMGI39IE38:00000003 [INF] Request starting HTTP/1.1 GET https://localhost:5001/swagger/favicon-16x16.png   (ca22a1cb)
+2018-09-09T21:46:20.9281887+03:00 0HLGMGI39IE38:00000003 [INF] Sending file. Request path: '"/favicon-16x16.png"'. Physical path: '"N/A"' (27b0a520)
+2018-09-09T21:46:20.9283482+03:00 0HLGMGI39IE38:00000003 [INF] Request finished in 0.9478ms 200 image/png (791a596a)
+2018-09-09T21:46:21.5414955+03:00 0HLGMGI39IE37:00000002 [INF] Request finished in 1151.4933ms 200 application/json;charset=utf-8 (791a596a)
+2018-09-09T21:53:46.5616577+03:00  [INF] Starting @angular/cli on port 62709... (55d1d3b6)
+2018-09-09T21:57:51.5004846+03:00 0HLGMGOI8F5H8:00000001 [INF] Request starting HTTP/1.1 POST http://localhost:5000/api/account/users application/json 216 (ca22a1cb)
+2018-09-09T21:57:51.5301216+03:00 0HLGMGOI8F5H8:00000001 [INF] Request finished in 42.0844ms 307  (791a596a)
+2018-09-09T21:57:51.5575617+03:00  [INF] Connection id ""0HLGMGOI8F5H8"", Request id ""0HLGMGOI8F5H8:00000001"": the application completed without reading the entire request body. (54ac9468)
+2018-09-09T21:57:51.8529384+03:00 0HLGMGOI8F5H9:00000001 [INF] Request starting HTTP/1.1 POST https://localhost:5001/api/account/users application/json 216 (ca22a1cb)
+2018-09-09T21:57:52.3515021+03:00 0HLGMGOI8F5H9:00000001 [INF] Route matched with "{action = \"Register\", controller = \"Account\"}". Executing action "DemoBlog.Controllers.AccountController.Register (DemoBlog)" (a44c0341)
+2018-09-09T21:57:52.4285266+03:00 0HLGMGOI8F5H9:00000001 [INF] "Bearer" was not authenticated. Failure message: "Authentication failed because the access token was invalid." (48071232)
+2018-09-09T21:57:52.4679540+03:00 0HLGMGOI8F5H9:00000001 [INF] Authorization failed. (b15dd539)
+2018-09-09T21:57:52.4742499+03:00 0HLGMGOI8F5H9:00000001 [INF] Authorization failed for the request at filter '"Microsoft.AspNetCore.Mvc.Authorization.AuthorizeFilter"'. (8b6446cb)
+2018-09-09T21:57:52.4853278+03:00 0HLGMGOI8F5H9:00000001 [INF] Executing ChallengeResult with authentication schemes (["Bearer"]). (f3dca807)
+2018-09-09T21:57:52.5128265+03:00 0HLGMGOI8F5H9:00000001 [INF] AuthenticationScheme: "Bearer" was challenged. (d45f1f38)
+2018-09-09T21:57:52.5284196+03:00 0HLGMGOI8F5H9:00000001 [INF] Executed action "DemoBlog.Controllers.AccountController.Register (DemoBlog)" in 161.2786ms (afa2e885)
+2018-09-09T21:57:52.5422180+03:00 0HLGMGOI8F5H9:00000001 [INF] Request finished in 689.3308ms 401  (791a596a)
+2018-09-09T21:57:52.5461570+03:00  [INF] Connection id ""0HLGMGOI8F5H9"", Request id ""0HLGMGOI8F5H9:00000001"": the application completed without reading the entire request body. (54ac9468)
+2018-09-09T22:00:52.0875194+03:00 0HLGMGOI8F5HB:00000001 [INF] Request starting HTTP/1.1 POST http://localhost:5000/connect/token application/x-www-form-urlencoded 121 (ca22a1cb)
+2018-09-09T22:00:52.0878996+03:00 0HLGMGOI8F5HB:00000001 [INF] Request finished in 0.5804ms 307  (791a596a)
+2018-09-09T22:00:52.0881785+03:00  [INF] Connection id ""0HLGMGOI8F5HB"", Request id ""0HLGMGOI8F5HB:00000001"": the application completed without reading the entire request body. (54ac9468)
+2018-09-09T22:00:52.1199349+03:00 0HLGMGOI8F5HC:00000001 [INF] Request starting HTTP/1.1 POST https://localhost:5001/connect/token application/x-www-form-urlencoded 121 (ca22a1cb)
+2018-09-09T22:00:52.4169012+03:00 0HLGMGOI8F5HC:00000001 [INF] The token request was successfully extracted from the HTTP request: "{
+  \"username\": \"admin\",
+  \"password\": \"[removed for security reasons]\",
+  \"grant_type\": \"password\",
+  \"scope\": \"openid email phone profile offline_access roles\"
+}". (ebc01284)
+2018-09-09T22:00:52.4534683+03:00 0HLGMGOI8F5HC:00000001 [DBG] The token request validation process was partially skipped because the 'client_id' parameter was missing or empty. (fcec36a0)
+2018-09-09T22:00:52.4537934+03:00 0HLGMGOI8F5HC:00000001 [INF] The token request was successfully validated. (d7e51e65)
+2018-09-09T22:00:52.4673779+03:00 0HLGMGOI8F5HC:00000001 [DBG] The default token request handling was skipped from user code. (72afae05)
+2018-09-09T22:00:52.4764184+03:00 0HLGMGOI8F5HC:00000001 [INF] Route matched with "{action = \"Exchange\", controller = \"Authorization\"}". Executing action "DemoBlog.Controllers.AuthorizationController.Exchange (DemoBlog)" (a44c0341)
+2018-09-09T22:00:52.5458173+03:00 0HLGMGOI8F5HC:00000001 [INF] Executing action method "DemoBlog.Controllers.AuthorizationController.Exchange (DemoBlog)" with arguments (["{
+  \"username\": \"admin\",
+  \"password\": \"[removed for security reasons]\",
+  \"grant_type\": \"password\",
+  \"scope\": \"openid email phone profile offline_access roles\"
+}"]) - Validation state: Valid (4e3479ed)
+2018-09-09T22:00:52.5759937+03:00 0HLGMGOI8F5HC:00000001 [INF] Entity Framework Core "2.2.0-preview1-35029" initialized '"ApplicationDbContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "MigrationsAssembly=DemoBlog " (9958f5bb)
+2018-09-09T22:00:53.2018831+03:00 0HLGMGOI8F5HC:00000001 [INF] Executed DbCommand ("6"ms) [Parameters=["@__normalizedEmail_0='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [u].[Id], [u].[AccessFailedCount], [u].[ConcurrencyStamp], [u].[CreatedBy], [u].[CreatedDate], [u].[Email], [u].[EmailConfirmed], [u].[FullName], [u].[IsEnabled], [u].[LockoutEnabled], [u].[LockoutEnd], [u].[NormalizedEmail], [u].[NormalizedUserName], [u].[PasswordHash], [u].[PhoneNumber], [u].[PhoneNumberConfirmed], [u].[SecurityStamp], [u].[TwoFactorEnabled], [u].[UpdatedBy], [u].[UpdatedDate], [u].[UserName]
+FROM [AspNetUsers] AS [u]
+WHERE [u].[NormalizedEmail] = @__normalizedEmail_0" (0723d8ff)
+2018-09-09T22:00:53.3148464+03:00 0HLGMGOI8F5HC:00000001 [INF] Executed DbCommand ("3"ms) [Parameters=["@__normalizedUserName_0='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [u].[Id], [u].[AccessFailedCount], [u].[ConcurrencyStamp], [u].[CreatedBy], [u].[CreatedDate], [u].[Email], [u].[EmailConfirmed], [u].[FullName], [u].[IsEnabled], [u].[LockoutEnabled], [u].[LockoutEnd], [u].[NormalizedEmail], [u].[NormalizedUserName], [u].[PasswordHash], [u].[PhoneNumber], [u].[PhoneNumberConfirmed], [u].[SecurityStamp], [u].[TwoFactorEnabled], [u].[UpdatedBy], [u].[UpdatedDate], [u].[UserName]
+FROM [AspNetUsers] AS [u]
+WHERE [u].[NormalizedUserName] = @__normalizedUserName_0" (0723d8ff)
+2018-09-09T22:00:53.8157002+03:00 0HLGMGOI8F5HC:00000001 [INF] Executed DbCommand ("7"ms) [Parameters=["@__user_Id_0='?' (Size = 450)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [uc].[Id], [uc].[ClaimType], [uc].[ClaimValue], [uc].[UserId]
+FROM [AspNetUserClaims] AS [uc]
+WHERE [uc].[UserId] = @__user_Id_0" (0723d8ff)
+2018-09-09T22:00:53.9391746+03:00 0HLGMGOI8F5HC:00000001 [INF] Executed DbCommand ("26"ms) [Parameters=["@__userId_0='?' (Size = 450)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [role].[Name]
+FROM [AspNetUserRoles] AS [userRole]
+INNER JOIN [AspNetRoles] AS [role] ON [userRole].[RoleId] = [role].[Id]
+WHERE [userRole].[UserId] = @__userId_0" (0723d8ff)
+2018-09-09T22:00:53.9812446+03:00 0HLGMGOI8F5HC:00000001 [INF] Executed DbCommand ("3"ms) [Parameters=["@__normalizedName_0='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [r].[Id], [r].[ConcurrencyStamp], [r].[CreatedBy], [r].[CreatedDate], [r].[Description], [r].[Name], [r].[NormalizedName], [r].[UpdatedBy], [r].[UpdatedDate]
+FROM [AspNetRoles] AS [r]
+WHERE [r].[NormalizedName] = @__normalizedName_0" (0723d8ff)
+2018-09-09T22:00:54.0623475+03:00 0HLGMGOI8F5HC:00000001 [INF] Executed DbCommand ("9"ms) [Parameters=["@__role_Id_0='?' (Size = 450)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [rc].[ClaimType], [rc].[ClaimValue]
+FROM [AspNetRoleClaims] AS [rc]
+WHERE [rc].[RoleId] = @__role_Id_0" (0723d8ff)
+2018-09-09T22:00:54.1341760+03:00 0HLGMGOI8F5HC:00000001 [INF] Executed action method "DemoBlog.Controllers.AuthorizationController.Exchange (DemoBlog)", returned result "Microsoft.AspNetCore.Mvc.SignInResult" in 1582.4905ms. (50a9e262)
+2018-09-09T22:00:54.1476988+03:00 0HLGMGOI8F5HC:00000001 [INF] Executing SignInResult with authentication scheme ("ASOS") and the following principal: "System.Security.Claims.ClaimsPrincipal". (f8bf0a82)
+2018-09-09T22:00:54.6712701+03:00 0HLGMGOI8F5HC:00000001 [INF] Executed DbCommand ("5"ms) [Parameters=["@p0='?' (Size = 450), @p1='?' (Size = 450), @p2='?' (Size = 4000), @p3='?' (Size = 4000), @p4='?' (Size = 4000), @p5='?' (Size = 4000), @p6='?' (Size = 4000), @p7='?' (Size = 4000)"], CommandType='Text', CommandTimeout='30']"
+""SET NOCOUNT ON;
+INSERT INTO [OpenIddictAuthorizations] ([Id], [ApplicationId], [ConcurrencyToken], [Properties], [Scopes], [Status], [Subject], [Type])
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7);" (0723d8ff)
+2018-09-09T22:00:54.7195982+03:00 0HLGMGOI8F5HC:00000001 [INF] An ad hoc authorization was automatically created and associated with an unknown application: "2a7352f1-5d68-4f95-80bd-f1ec10942abc". (b5fe4ad7)
+2018-09-09T22:00:54.7791335+03:00 0HLGMGOI8F5HC:00000001 [DBG] '"AspNet.Identity.SecurityStamp"' was excluded from the access token claims. (ed8f369e)
+2018-09-09T22:00:54.7793277+03:00 0HLGMGOI8F5HC:00000001 [DBG] '"email"' was excluded from the access token claims. (ed8f369e)
+2018-09-09T22:00:54.7793948+03:00 0HLGMGOI8F5HC:00000001 [DBG] '"phone"' was excluded from the access token claims. (ed8f369e)
+2018-09-09T22:00:54.9897300+03:00 0HLGMGOI8F5HC:00000001 [INF] Executed DbCommand ("28"ms) [Parameters=["@p0='?' (Size = 450), @p1='?' (Size = 450), @p2='?' (Size = 450), @p3='?' (Size = 4000), @p4='?' (DbType = DateTimeOffset), @p5='?' (DbType = DateTimeOffset), @p6='?' (Size = 4000), @p7='?' (Size = 4000), @p8='?' (Size = 450), @p9='?' (Size = 4000), @p10='?' (Size = 4000), @p11='?' (Size = 4000)"], CommandType='Text', CommandTimeout='30']"
+""SET NOCOUNT ON;
+INSERT INTO [OpenIddictTokens] ([Id], [ApplicationId], [AuthorizationId], [ConcurrencyToken], [CreationDate], [ExpirationDate], [Payload], [Properties], [ReferenceId], [Status], [Subject], [Type])
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9, @p10, @p11);" (0723d8ff)
+2018-09-09T22:00:55.0204796+03:00 0HLGMGOI8F5HC:00000001 [DBG] '"AspNet.Identity.SecurityStamp"' was excluded from the identity token claims. (7dcd2335)
+2018-09-09T22:00:55.0808810+03:00 0HLGMGOI8F5HC:00000001 [INF] The token response was successfully returned: "{
+  \"token_type\": \"Bearer\",
+  \"access_token\": \"[removed for security reasons]\",
+  \"expires_in\": 3600,
+  \"refresh_token\": \"[removed for security reasons]\",
+  \"id_token\": \"[removed for security reasons]\"
+}". (12d98310)
+2018-09-09T22:00:55.1250147+03:00 0HLGMGOI8F5HC:00000001 [INF] Executed action "DemoBlog.Controllers.AuthorizationController.Exchange (DemoBlog)" in 2647.3519ms (afa2e885)
+2018-09-09T22:00:55.1384379+03:00 0HLGMGOI8F5HC:00000001 [INF] Request finished in 3018.0085ms 200 application/json;charset=UTF-8 (791a596a)
+2018-09-09T22:03:17.7829716+03:00 0HLGMGOI8F5HE:00000001 [INF] Request starting HTTP/1.1 POST http://localhost:5000/connect/token application/x-www-form-urlencoded 121 (ca22a1cb)
+2018-09-09T22:03:17.7832115+03:00 0HLGMGOI8F5HE:00000001 [INF] Request finished in 0.4705ms 307  (791a596a)
+2018-09-09T22:03:17.7833364+03:00  [INF] Connection id ""0HLGMGOI8F5HE"", Request id ""0HLGMGOI8F5HE:00000001"": the application completed without reading the entire request body. (54ac9468)
+2018-09-09T22:03:17.8102089+03:00 0HLGMGOI8F5HF:00000001 [INF] Request starting HTTP/1.1 POST https://localhost:5001/connect/token application/x-www-form-urlencoded 121 (ca22a1cb)
+2018-09-09T22:03:17.8118198+03:00 0HLGMGOI8F5HF:00000001 [INF] The token request was successfully extracted from the HTTP request: "{
+  \"username\": \"admin\",
+  \"password\": \"[removed for security reasons]\",
+  \"grant_type\": \"password\",
+  \"scope\": \"openid email phone profile offline_access roles\"
+}". (ebc01284)
+2018-09-09T22:03:17.8119862+03:00 0HLGMGOI8F5HF:00000001 [DBG] The token request validation process was partially skipped because the 'client_id' parameter was missing or empty. (fcec36a0)
+2018-09-09T22:03:17.8120315+03:00 0HLGMGOI8F5HF:00000001 [INF] The token request was successfully validated. (d7e51e65)
+2018-09-09T22:03:17.8121449+03:00 0HLGMGOI8F5HF:00000001 [DBG] The default token request handling was skipped from user code. (72afae05)
+2018-09-09T22:03:17.8127338+03:00 0HLGMGOI8F5HF:00000001 [INF] Route matched with "{action = \"Exchange\", controller = \"Authorization\"}". Executing action "DemoBlog.Controllers.AuthorizationController.Exchange (DemoBlog)" (a44c0341)
+2018-09-09T22:03:17.8147412+03:00 0HLGMGOI8F5HF:00000001 [INF] Executing action method "DemoBlog.Controllers.AuthorizationController.Exchange (DemoBlog)" with arguments (["{
+  \"username\": \"admin\",
+  \"password\": \"[removed for security reasons]\",
+  \"grant_type\": \"password\",
+  \"scope\": \"openid email phone profile offline_access roles\"
+}"]) - Validation state: Valid (4e3479ed)
+2018-09-09T22:03:17.8169757+03:00 0HLGMGOI8F5HF:00000001 [INF] Entity Framework Core "2.2.0-preview1-35029" initialized '"ApplicationDbContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "MigrationsAssembly=DemoBlog " (9958f5bb)
+2018-09-09T22:03:17.8453312+03:00 0HLGMGOI8F5HF:00000001 [INF] Executed DbCommand ("8"ms) [Parameters=["@__normalizedEmail_0='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [u].[Id], [u].[AccessFailedCount], [u].[ConcurrencyStamp], [u].[CreatedBy], [u].[CreatedDate], [u].[Email], [u].[EmailConfirmed], [u].[FullName], [u].[IsEnabled], [u].[LockoutEnabled], [u].[LockoutEnd], [u].[NormalizedEmail], [u].[NormalizedUserName], [u].[PasswordHash], [u].[PhoneNumber], [u].[PhoneNumberConfirmed], [u].[SecurityStamp], [u].[TwoFactorEnabled], [u].[UpdatedBy], [u].[UpdatedDate], [u].[UserName]
+FROM [AspNetUsers] AS [u]
+WHERE [u].[NormalizedEmail] = @__normalizedEmail_0" (0723d8ff)
+2018-09-09T22:03:17.8517677+03:00 0HLGMGOI8F5HF:00000001 [INF] Executed DbCommand ("5"ms) [Parameters=["@__normalizedUserName_0='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [u].[Id], [u].[AccessFailedCount], [u].[ConcurrencyStamp], [u].[CreatedBy], [u].[CreatedDate], [u].[Email], [u].[EmailConfirmed], [u].[FullName], [u].[IsEnabled], [u].[LockoutEnabled], [u].[LockoutEnd], [u].[NormalizedEmail], [u].[NormalizedUserName], [u].[PasswordHash], [u].[PhoneNumber], [u].[PhoneNumberConfirmed], [u].[SecurityStamp], [u].[TwoFactorEnabled], [u].[UpdatedBy], [u].[UpdatedDate], [u].[UserName]
+FROM [AspNetUsers] AS [u]
+WHERE [u].[NormalizedUserName] = @__normalizedUserName_0" (0723d8ff)
+2018-09-09T22:03:17.8723991+03:00 0HLGMGOI8F5HF:00000001 [INF] Executed DbCommand ("2"ms) [Parameters=["@__user_Id_0='?' (Size = 450)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [uc].[Id], [uc].[ClaimType], [uc].[ClaimValue], [uc].[UserId]
+FROM [AspNetUserClaims] AS [uc]
+WHERE [uc].[UserId] = @__user_Id_0" (0723d8ff)
+2018-09-09T22:03:17.8809427+03:00 0HLGMGOI8F5HF:00000001 [INF] Executed DbCommand ("4"ms) [Parameters=["@__userId_0='?' (Size = 450)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [role].[Name]
+FROM [AspNetUserRoles] AS [userRole]
+INNER JOIN [AspNetRoles] AS [role] ON [userRole].[RoleId] = [role].[Id]
+WHERE [userRole].[UserId] = @__userId_0" (0723d8ff)
+2018-09-09T22:03:17.8848094+03:00 0HLGMGOI8F5HF:00000001 [INF] Executed DbCommand ("3"ms) [Parameters=["@__normalizedName_0='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [r].[Id], [r].[ConcurrencyStamp], [r].[CreatedBy], [r].[CreatedDate], [r].[Description], [r].[Name], [r].[NormalizedName], [r].[UpdatedBy], [r].[UpdatedDate]
+FROM [AspNetRoles] AS [r]
+WHERE [r].[NormalizedName] = @__normalizedName_0" (0723d8ff)
+2018-09-09T22:03:17.8891437+03:00 0HLGMGOI8F5HF:00000001 [INF] Executed DbCommand ("3"ms) [Parameters=["@__role_Id_0='?' (Size = 450)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [rc].[ClaimType], [rc].[ClaimValue]
+FROM [AspNetRoleClaims] AS [rc]
+WHERE [rc].[RoleId] = @__role_Id_0" (0723d8ff)
+2018-09-09T22:03:17.8903572+03:00 0HLGMGOI8F5HF:00000001 [INF] Executed action method "DemoBlog.Controllers.AuthorizationController.Exchange (DemoBlog)", returned result "Microsoft.AspNetCore.Mvc.SignInResult" in 75.3691ms. (50a9e262)
+2018-09-09T22:03:17.8910331+03:00 0HLGMGOI8F5HF:00000001 [INF] Executing SignInResult with authentication scheme ("ASOS") and the following principal: "System.Security.Claims.ClaimsPrincipal". (f8bf0a82)
+2018-09-09T22:03:17.9004538+03:00 0HLGMGOI8F5HF:00000001 [INF] Executed DbCommand ("5"ms) [Parameters=["@p0='?' (Size = 450), @p1='?' (Size = 450), @p2='?' (Size = 4000), @p3='?' (Size = 4000), @p4='?' (Size = 4000), @p5='?' (Size = 4000), @p6='?' (Size = 4000), @p7='?' (Size = 4000)"], CommandType='Text', CommandTimeout='30']"
+""SET NOCOUNT ON;
+INSERT INTO [OpenIddictAuthorizations] ([Id], [ApplicationId], [ConcurrencyToken], [Properties], [Scopes], [Status], [Subject], [Type])
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7);" (0723d8ff)
+2018-09-09T22:03:17.9557691+03:00 0HLGMGOI8F5HF:00000001 [INF] An ad hoc authorization was automatically created and associated with an unknown application: "a85edffd-8d5b-42e1-86c6-54061a4ba79e". (b5fe4ad7)
+2018-09-09T22:03:17.9562734+03:00 0HLGMGOI8F5HF:00000001 [DBG] '"AspNet.Identity.SecurityStamp"' was excluded from the access token claims. (ed8f369e)
+2018-09-09T22:03:17.9563670+03:00 0HLGMGOI8F5HF:00000001 [DBG] '"email"' was excluded from the access token claims. (ed8f369e)
+2018-09-09T22:03:17.9564256+03:00 0HLGMGOI8F5HF:00000001 [DBG] '"phone"' was excluded from the access token claims. (ed8f369e)
+2018-09-09T22:03:17.9656678+03:00 0HLGMGOI8F5HF:00000001 [INF] Executed DbCommand ("5"ms) [Parameters=["@p0='?' (Size = 450), @p1='?' (Size = 450), @p2='?' (Size = 450), @p3='?' (Size = 4000), @p4='?' (DbType = DateTimeOffset), @p5='?' (DbType = DateTimeOffset), @p6='?' (Size = 4000), @p7='?' (Size = 4000), @p8='?' (Size = 450), @p9='?' (Size = 4000), @p10='?' (Size = 4000), @p11='?' (Size = 4000)"], CommandType='Text', CommandTimeout='30']"
+""SET NOCOUNT ON;
+INSERT INTO [OpenIddictTokens] ([Id], [ApplicationId], [AuthorizationId], [ConcurrencyToken], [CreationDate], [ExpirationDate], [Payload], [Properties], [ReferenceId], [Status], [Subject], [Type])
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9, @p10, @p11);" (0723d8ff)
+2018-09-09T22:03:17.9675087+03:00 0HLGMGOI8F5HF:00000001 [DBG] '"AspNet.Identity.SecurityStamp"' was excluded from the identity token claims. (7dcd2335)
+2018-09-09T22:03:17.9684900+03:00 0HLGMGOI8F5HF:00000001 [INF] The token response was successfully returned: "{
+  \"token_type\": \"Bearer\",
+  \"access_token\": \"[removed for security reasons]\",
+  \"expires_in\": 3600,
+  \"refresh_token\": \"[removed for security reasons]\",
+  \"id_token\": \"[removed for security reasons]\"
+}". (12d98310)
+2018-09-09T22:03:17.9694421+03:00 0HLGMGOI8F5HF:00000001 [INF] Executed action "DemoBlog.Controllers.AuthorizationController.Exchange (DemoBlog)" in 156.5645ms (afa2e885)
+2018-09-09T22:03:17.9697077+03:00 0HLGMGOI8F5HF:00000001 [INF] Request finished in 159.761ms 200 application/json;charset=UTF-8 (791a596a)
+2018-09-09T22:03:36.3878960+03:00 0HLGMGOI8F5HG:00000001 [INF] Request starting HTTP/1.1 GET http://localhost:5000/swagger/index.html   (ca22a1cb)
+2018-09-09T22:03:36.3928034+03:00 0HLGMGOI8F5HG:00000001 [INF] Request finished in 4.9856ms 307  (791a596a)
+2018-09-09T22:03:36.4515260+03:00 0HLGMGOI8F5HI:00000001 [INF] Request starting HTTP/1.1 GET https://localhost:5001/swagger/index.html   (ca22a1cb)
+2018-09-09T22:03:36.4860301+03:00 0HLGMGOI8F5HI:00000001 [INF] Request finished in 34.4832ms 200 text/html (791a596a)
+2018-09-09T22:03:37.4804276+03:00 0HLGMGOI8F5HI:00000002 [INF] Request starting HTTP/1.1 GET https://localhost:5001/swagger/v1/swagger.json   (ca22a1cb)
+2018-09-09T22:03:37.7655123+03:00 0HLGMGOI8F5HI:00000002 [INF] Request finished in 285.2578ms 200 application/json;charset=utf-8 (791a596a)
+2018-09-09T22:05:31.4878339+03:00  [INF] Starting @angular/cli on port 62937... (bc37a052)
+2018-09-09T22:06:27.2245185+03:00 0HLGMGTBURKFV:00000001 [INF] Request starting HTTP/1.1 POST http://localhost:5000/connect/token application/x-www-form-urlencoded 121 (ca22a1cb)
+2018-09-09T22:06:27.2541879+03:00 0HLGMGTBURKFV:00000001 [INF] Request finished in 41.4202ms 307  (791a596a)
+2018-09-09T22:06:27.2780141+03:00  [INF] Connection id ""0HLGMGTBURKFV"", Request id ""0HLGMGTBURKFV:00000001"": the application completed without reading the entire request body. (54ac9468)
+2018-09-09T22:06:27.3688117+03:00 0HLGMGTBURKG0:00000001 [INF] Request starting HTTP/1.1 POST https://localhost:5001/connect/token application/x-www-form-urlencoded 121 (ca22a1cb)
+2018-09-09T22:06:27.6308995+03:00 0HLGMGTBURKG0:00000001 [INF] The token request was successfully extracted from the HTTP request: "{
+  \"username\": \"admin\",
+  \"password\": \"[removed for security reasons]\",
+  \"grant_type\": \"password\",
+  \"scope\": \"openid email phone profile offline_access roles\"
+}". (ebc01284)
+2018-09-09T22:06:27.6621379+03:00 0HLGMGTBURKG0:00000001 [DBG] The token request validation process was partially skipped because the 'client_id' parameter was missing or empty. (fcec36a0)
+2018-09-09T22:06:27.6624348+03:00 0HLGMGTBURKG0:00000001 [INF] The token request was successfully validated. (d7e51e65)
+2018-09-09T22:06:27.6753045+03:00 0HLGMGTBURKG0:00000001 [DBG] The default token request handling was skipped from user code. (72afae05)
+2018-09-09T22:06:27.9552652+03:00 0HLGMGTBURKG0:00000001 [INF] Route matched with "{action = \"Exchange\", controller = \"Authorization\"}". Executing action "DemoBlog.Controllers.AuthorizationController.Exchange (DemoBlog)" (a44c0341)
+2018-09-09T22:06:28.0225386+03:00 0HLGMGTBURKG0:00000001 [INF] Executing action method "DemoBlog.Controllers.AuthorizationController.Exchange (DemoBlog)" with arguments (["{
+  \"username\": \"admin\",
+  \"password\": \"[removed for security reasons]\",
+  \"grant_type\": \"password\",
+  \"scope\": \"openid email phone profile offline_access roles\"
+}"]) - Validation state: Valid (4e3479ed)
+2018-09-09T22:06:28.0484158+03:00 0HLGMGTBURKG0:00000001 [INF] Entity Framework Core "2.2.0-preview1-35029" initialized '"ApplicationDbContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "MigrationsAssembly=DemoBlog " (9958f5bb)
+2018-09-09T22:06:28.3100027+03:00 0HLGMGTBURKG0:00000001 [INF] Executed DbCommand ("5"ms) [Parameters=["@__normalizedEmail_0='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [u].[Id], [u].[AccessFailedCount], [u].[ConcurrencyStamp], [u].[CreatedBy], [u].[CreatedDate], [u].[Email], [u].[EmailConfirmed], [u].[FullName], [u].[IsEnabled], [u].[LockoutEnabled], [u].[LockoutEnd], [u].[NormalizedEmail], [u].[NormalizedUserName], [u].[PasswordHash], [u].[PhoneNumber], [u].[PhoneNumberConfirmed], [u].[SecurityStamp], [u].[TwoFactorEnabled], [u].[UpdatedBy], [u].[UpdatedDate], [u].[UserName]
+FROM [AspNetUsers] AS [u]
+WHERE [u].[NormalizedEmail] = @__normalizedEmail_0" (0723d8ff)
+2018-09-09T22:06:28.3718255+03:00 0HLGMGTBURKG0:00000001 [INF] Executed DbCommand ("3"ms) [Parameters=["@__normalizedUserName_0='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [u].[Id], [u].[AccessFailedCount], [u].[ConcurrencyStamp], [u].[CreatedBy], [u].[CreatedDate], [u].[Email], [u].[EmailConfirmed], [u].[FullName], [u].[IsEnabled], [u].[LockoutEnabled], [u].[LockoutEnd], [u].[NormalizedEmail], [u].[NormalizedUserName], [u].[PasswordHash], [u].[PhoneNumber], [u].[PhoneNumberConfirmed], [u].[SecurityStamp], [u].[TwoFactorEnabled], [u].[UpdatedBy], [u].[UpdatedDate], [u].[UserName]
+FROM [AspNetUsers] AS [u]
+WHERE [u].[NormalizedUserName] = @__normalizedUserName_0" (0723d8ff)
+2018-09-09T22:06:28.7337640+03:00 0HLGMGTBURKG0:00000001 [INF] Executed DbCommand ("2"ms) [Parameters=["@__user_Id_0='?' (Size = 450)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [uc].[Id], [uc].[ClaimType], [uc].[ClaimValue], [uc].[UserId]
+FROM [AspNetUserClaims] AS [uc]
+WHERE [uc].[UserId] = @__user_Id_0" (0723d8ff)
+2018-09-09T22:06:28.8230299+03:00 0HLGMGTBURKG0:00000001 [INF] Executed DbCommand ("3"ms) [Parameters=["@__userId_0='?' (Size = 450)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [role].[Name]
+FROM [AspNetUserRoles] AS [userRole]
+INNER JOIN [AspNetRoles] AS [role] ON [userRole].[RoleId] = [role].[Id]
+WHERE [userRole].[UserId] = @__userId_0" (0723d8ff)
+2018-09-09T22:06:28.8526613+03:00 0HLGMGTBURKG0:00000001 [INF] Executed DbCommand ("2"ms) [Parameters=["@__normalizedName_0='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [r].[Id], [r].[ConcurrencyStamp], [r].[CreatedBy], [r].[CreatedDate], [r].[Description], [r].[Name], [r].[NormalizedName], [r].[UpdatedBy], [r].[UpdatedDate]
+FROM [AspNetRoles] AS [r]
+WHERE [r].[NormalizedName] = @__normalizedName_0" (0723d8ff)
+2018-09-09T22:06:28.8918174+03:00 0HLGMGTBURKG0:00000001 [INF] Executed DbCommand ("2"ms) [Parameters=["@__role_Id_0='?' (Size = 450)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [rc].[ClaimType], [rc].[ClaimValue]
+FROM [AspNetRoleClaims] AS [rc]
+WHERE [rc].[RoleId] = @__role_Id_0" (0723d8ff)
+2018-09-09T22:06:28.9178871+03:00 0HLGMGTBURKG0:00000001 [INF] Executed action method "DemoBlog.Controllers.AuthorizationController.Exchange (DemoBlog)", returned result "Microsoft.AspNetCore.Mvc.SignInResult" in 889.787ms. (50a9e262)
+2018-09-09T22:06:28.9313719+03:00 0HLGMGTBURKG0:00000001 [INF] Executing SignInResult with authentication scheme ("ASOS") and the following principal: "System.Security.Claims.ClaimsPrincipal". (f8bf0a82)
+2018-09-09T22:06:29.3000870+03:00 0HLGMGTBURKG0:00000001 [INF] Executed DbCommand ("4"ms) [Parameters=["@p0='?' (Size = 450), @p1='?' (Size = 450), @p2='?' (Size = 4000), @p3='?' (Size = 4000), @p4='?' (Size = 4000), @p5='?' (Size = 4000), @p6='?' (Size = 4000), @p7='?' (Size = 4000)"], CommandType='Text', CommandTimeout='30']"
+""SET NOCOUNT ON;
+INSERT INTO [OpenIddictAuthorizations] ([Id], [ApplicationId], [ConcurrencyToken], [Properties], [Scopes], [Status], [Subject], [Type])
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7);" (0723d8ff)
+2018-09-09T22:06:29.3444354+03:00 0HLGMGTBURKG0:00000001 [INF] An ad hoc authorization was automatically created and associated with an unknown application: "d96e318d-af86-4ad1-b47b-3dbeff20d34f". (b5fe4ad7)
+2018-09-09T22:06:29.3775041+03:00 0HLGMGTBURKG0:00000001 [DBG] '"AspNet.Identity.SecurityStamp"' was excluded from the access token claims. (ed8f369e)
+2018-09-09T22:06:29.3777060+03:00 0HLGMGTBURKG0:00000001 [DBG] '"email"' was excluded from the access token claims. (ed8f369e)
+2018-09-09T22:06:29.3777817+03:00 0HLGMGTBURKG0:00000001 [DBG] '"phone"' was excluded from the access token claims. (ed8f369e)
+2018-09-09T22:06:29.5551942+03:00 0HLGMGTBURKG0:00000001 [INF] Executed DbCommand ("6"ms) [Parameters=["@p0='?' (Size = 450), @p1='?' (Size = 450), @p2='?' (Size = 450), @p3='?' (Size = 4000), @p4='?' (DbType = DateTimeOffset), @p5='?' (DbType = DateTimeOffset), @p6='?' (Size = 4000), @p7='?' (Size = 4000), @p8='?' (Size = 450), @p9='?' (Size = 4000), @p10='?' (Size = 4000), @p11='?' (Size = 4000)"], CommandType='Text', CommandTimeout='30']"
+""SET NOCOUNT ON;
+INSERT INTO [OpenIddictTokens] ([Id], [ApplicationId], [AuthorizationId], [ConcurrencyToken], [CreationDate], [ExpirationDate], [Payload], [Properties], [ReferenceId], [Status], [Subject], [Type])
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9, @p10, @p11);" (0723d8ff)
+2018-09-09T22:06:29.5894699+03:00 0HLGMGTBURKG0:00000001 [DBG] '"AspNet.Identity.SecurityStamp"' was excluded from the identity token claims. (7dcd2335)
+2018-09-09T22:06:29.6190136+03:00 0HLGMGTBURKG0:00000001 [INF] The token response was successfully returned: "{
+  \"token_type\": \"Bearer\",
+  \"access_token\": \"[removed for security reasons]\",
+  \"expires_in\": 3600,
+  \"refresh_token\": \"[removed for security reasons]\",
+  \"id_token\": \"[removed for security reasons]\"
+}". (12d98310)
+2018-09-09T22:06:29.6667878+03:00 0HLGMGTBURKG0:00000001 [INF] Executed action "DemoBlog.Controllers.AuthorizationController.Exchange (DemoBlog)" in 1702.9353ms (afa2e885)
+2018-09-09T22:06:29.6839580+03:00 0HLGMGTBURKG0:00000001 [INF] Request finished in 2314.6933ms 200 application/json;charset=UTF-8 (791a596a)
+2018-09-09T22:09:45.3770041+03:00 0HLGMGTBURKG1:00000001 [INF] Request starting HTTP/1.1 GET http://localhost:5000/swagger/index.html   (ca22a1cb)
+2018-09-09T22:09:45.3775533+03:00 0HLGMGTBURKG1:00000001 [INF] Request finished in 0.8392ms 307  (791a596a)
+2018-09-09T22:09:45.4348743+03:00 0HLGMGTBURKG3:00000001 [INF] Request starting HTTP/1.1 GET https://localhost:5001/swagger/index.html   (ca22a1cb)
+2018-09-09T22:09:45.4915573+03:00 0HLGMGTBURKG3:00000001 [INF] Request finished in 56.6694ms 200 text/html (791a596a)
+2018-09-09T22:09:45.9867957+03:00 0HLGMGTBURKG3:00000002 [INF] Request starting HTTP/1.1 GET https://localhost:5001/swagger/v1/swagger.json   (ca22a1cb)
+2018-09-09T22:09:46.2935602+03:00 0HLGMGTBURKG3:00000002 [INF] Request finished in 306.7934ms 200 application/json;charset=utf-8 (791a596a)
+2018-09-09T22:14:38.4901902+03:00 0HLGMH1UBTH51:00000001 [INF] Request starting HTTP/1.1 POST http://localhost:5000/connect/token application/x-www-form-urlencoded 121 (ca22a1cb)
+2018-09-09T22:14:38.5145978+03:00 0HLGMH1UBTH51:00000001 [WRN] Failed to determine the https port for redirect. (ca76cc21)
+2018-09-09T22:14:38.7997747+03:00 0HLGMH1UBTH51:00000001 [INF] The token request was successfully extracted from the HTTP request: "{
+  \"username\": \"admin\",
+  \"password\": \"[removed for security reasons]\",
+  \"grant_type\": \"password\",
+  \"scope\": \"openid email phone profile offline_access roles\"
+}". (ebc01284)
+2018-09-09T22:14:38.8292273+03:00 0HLGMH1UBTH51:00000001 [DBG] The token request validation process was partially skipped because the 'client_id' parameter was missing or empty. (fcec36a0)
+2018-09-09T22:14:38.8295742+03:00 0HLGMH1UBTH51:00000001 [INF] The token request was successfully validated. (d7e51e65)
+2018-09-09T22:14:38.8430675+03:00 0HLGMH1UBTH51:00000001 [DBG] The default token request handling was skipped from user code. (72afae05)
+2018-09-09T22:14:39.0752630+03:00 0HLGMH1UBTH51:00000001 [INF] Route matched with "{action = \"Exchange\", controller = \"Authorization\"}". Executing action "DemoBlog.Controllers.AuthorizationController.Exchange (DemoBlog)" (a44c0341)
+2018-09-09T22:14:39.1243307+03:00 0HLGMH1UBTH51:00000001 [INF] Executing action method "DemoBlog.Controllers.AuthorizationController.Exchange (DemoBlog)" with arguments (["{
+  \"username\": \"admin\",
+  \"password\": \"[removed for security reasons]\",
+  \"grant_type\": \"password\",
+  \"scope\": \"openid email phone profile offline_access roles\"
+}"]) - Validation state: Valid (4e3479ed)
+2018-09-09T22:14:39.1480688+03:00 0HLGMH1UBTH51:00000001 [INF] Entity Framework Core "2.2.0-preview1-35029" initialized '"ApplicationDbContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "MigrationsAssembly=DemoBlog " (9958f5bb)
+2018-09-09T22:14:39.4014441+03:00 0HLGMH1UBTH51:00000001 [INF] Executed DbCommand ("4"ms) [Parameters=["@__normalizedEmail_0='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [u].[Id], [u].[AccessFailedCount], [u].[ConcurrencyStamp], [u].[CreatedBy], [u].[CreatedDate], [u].[Email], [u].[EmailConfirmed], [u].[FullName], [u].[IsEnabled], [u].[LockoutEnabled], [u].[LockoutEnd], [u].[NormalizedEmail], [u].[NormalizedUserName], [u].[PasswordHash], [u].[PhoneNumber], [u].[PhoneNumberConfirmed], [u].[SecurityStamp], [u].[TwoFactorEnabled], [u].[UpdatedBy], [u].[UpdatedDate], [u].[UserName]
+FROM [AspNetUsers] AS [u]
+WHERE [u].[NormalizedEmail] = @__normalizedEmail_0" (0723d8ff)
+2018-09-09T22:14:39.4768304+03:00 0HLGMH1UBTH51:00000001 [INF] Executed DbCommand ("4"ms) [Parameters=["@__normalizedUserName_0='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [u].[Id], [u].[AccessFailedCount], [u].[ConcurrencyStamp], [u].[CreatedBy], [u].[CreatedDate], [u].[Email], [u].[EmailConfirmed], [u].[FullName], [u].[IsEnabled], [u].[LockoutEnabled], [u].[LockoutEnd], [u].[NormalizedEmail], [u].[NormalizedUserName], [u].[PasswordHash], [u].[PhoneNumber], [u].[PhoneNumberConfirmed], [u].[SecurityStamp], [u].[TwoFactorEnabled], [u].[UpdatedBy], [u].[UpdatedDate], [u].[UserName]
+FROM [AspNetUsers] AS [u]
+WHERE [u].[NormalizedUserName] = @__normalizedUserName_0" (0723d8ff)
+2018-09-09T22:14:39.8977690+03:00 0HLGMH1UBTH51:00000001 [INF] Executed DbCommand ("2"ms) [Parameters=["@__user_Id_0='?' (Size = 450)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [uc].[Id], [uc].[ClaimType], [uc].[ClaimValue], [uc].[UserId]
+FROM [AspNetUserClaims] AS [uc]
+WHERE [uc].[UserId] = @__user_Id_0" (0723d8ff)
+2018-09-09T22:14:39.9971158+03:00 0HLGMH1UBTH51:00000001 [INF] Executed DbCommand ("4"ms) [Parameters=["@__userId_0='?' (Size = 450)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [role].[Name]
+FROM [AspNetUserRoles] AS [userRole]
+INNER JOIN [AspNetRoles] AS [role] ON [userRole].[RoleId] = [role].[Id]
+WHERE [userRole].[UserId] = @__userId_0" (0723d8ff)
+2018-09-09T22:14:40.0293162+03:00 0HLGMH1UBTH51:00000001 [INF] Executed DbCommand ("3"ms) [Parameters=["@__normalizedName_0='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [r].[Id], [r].[ConcurrencyStamp], [r].[CreatedBy], [r].[CreatedDate], [r].[Description], [r].[Name], [r].[NormalizedName], [r].[UpdatedBy], [r].[UpdatedDate]
+FROM [AspNetRoles] AS [r]
+WHERE [r].[NormalizedName] = @__normalizedName_0" (0723d8ff)
+2018-09-09T22:14:40.0707826+03:00 0HLGMH1UBTH51:00000001 [INF] Executed DbCommand ("2"ms) [Parameters=["@__role_Id_0='?' (Size = 450)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [rc].[ClaimType], [rc].[ClaimValue]
+FROM [AspNetRoleClaims] AS [rc]
+WHERE [rc].[RoleId] = @__role_Id_0" (0723d8ff)
+2018-09-09T22:14:40.0985960+03:00 0HLGMH1UBTH51:00000001 [INF] Executed action method "DemoBlog.Controllers.AuthorizationController.Exchange (DemoBlog)", returned result "Microsoft.AspNetCore.Mvc.SignInResult" in 969.6418ms. (50a9e262)
+2018-09-09T22:14:40.1119607+03:00 0HLGMH1UBTH51:00000001 [INF] Executing SignInResult with authentication scheme ("ASOS") and the following principal: "System.Security.Claims.ClaimsPrincipal". (f8bf0a82)
+2018-09-09T22:14:40.4799837+03:00 0HLGMH1UBTH51:00000001 [INF] Executed DbCommand ("4"ms) [Parameters=["@p0='?' (Size = 450), @p1='?' (Size = 450), @p2='?' (Size = 4000), @p3='?' (Size = 4000), @p4='?' (Size = 4000), @p5='?' (Size = 4000), @p6='?' (Size = 4000), @p7='?' (Size = 4000)"], CommandType='Text', CommandTimeout='30']"
+""SET NOCOUNT ON;
+INSERT INTO [OpenIddictAuthorizations] ([Id], [ApplicationId], [ConcurrencyToken], [Properties], [Scopes], [Status], [Subject], [Type])
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7);" (0723d8ff)
+2018-09-09T22:14:40.5231255+03:00 0HLGMH1UBTH51:00000001 [INF] An ad hoc authorization was automatically created and associated with an unknown application: "3ff7d927-4a83-48ac-97e1-054a17fdb14e". (b5fe4ad7)
+2018-09-09T22:14:40.5609993+03:00 0HLGMH1UBTH51:00000001 [DBG] '"AspNet.Identity.SecurityStamp"' was excluded from the access token claims. (ed8f369e)
+2018-09-09T22:14:40.5613642+03:00 0HLGMH1UBTH51:00000001 [DBG] '"email"' was excluded from the access token claims. (ed8f369e)
+2018-09-09T22:14:40.5614232+03:00 0HLGMH1UBTH51:00000001 [DBG] '"phone"' was excluded from the access token claims. (ed8f369e)
+2018-09-09T22:14:40.7408623+03:00 0HLGMH1UBTH51:00000001 [INF] Executed DbCommand ("5"ms) [Parameters=["@p0='?' (Size = 450), @p1='?' (Size = 450), @p2='?' (Size = 450), @p3='?' (Size = 4000), @p4='?' (DbType = DateTimeOffset), @p5='?' (DbType = DateTimeOffset), @p6='?' (Size = 4000), @p7='?' (Size = 4000), @p8='?' (Size = 450), @p9='?' (Size = 4000), @p10='?' (Size = 4000), @p11='?' (Size = 4000)"], CommandType='Text', CommandTimeout='30']"
+""SET NOCOUNT ON;
+INSERT INTO [OpenIddictTokens] ([Id], [ApplicationId], [AuthorizationId], [ConcurrencyToken], [CreationDate], [ExpirationDate], [Payload], [Properties], [ReferenceId], [Status], [Subject], [Type])
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9, @p10, @p11);" (0723d8ff)
+2018-09-09T22:14:40.7742218+03:00 0HLGMH1UBTH51:00000001 [DBG] '"AspNet.Identity.SecurityStamp"' was excluded from the identity token claims. (7dcd2335)
+2018-09-09T22:14:40.8055261+03:00 0HLGMH1UBTH51:00000001 [INF] The token response was successfully returned: "{
+  \"token_type\": \"Bearer\",
+  \"access_token\": \"[removed for security reasons]\",
+  \"expires_in\": 3600,
+  \"refresh_token\": \"[removed for security reasons]\",
+  \"id_token\": \"[removed for security reasons]\"
+}". (12d98310)
+2018-09-09T22:14:40.8519649+03:00 0HLGMH1UBTH51:00000001 [INF] Executed action "DemoBlog.Controllers.AuthorizationController.Exchange (DemoBlog)" in 1770.98ms (afa2e885)
+2018-09-09T22:14:40.8797519+03:00 0HLGMH1UBTH51:00000001 [INF] Request finished in 2401.1874ms 200 application/json;charset=UTF-8 (791a596a)
+2018-09-09T22:15:12.0303363+03:00 0HLGMH1UBTH52:00000001 [INF] Request starting HTTP/1.1 GET http://localhost:5000/swagger/index.html   (ca22a1cb)
+2018-09-09T22:15:12.0894643+03:00 0HLGMH1UBTH52:00000001 [INF] Request finished in 59.267ms 200 text/html (791a596a)
+2018-09-09T22:15:12.2105850+03:00 0HLGMH1UBTH52:00000002 [INF] Request starting HTTP/1.1 GET http://localhost:5000/swagger/swagger-ui.css   (ca22a1cb)
+2018-09-09T22:15:12.2149830+03:00 0HLGMH1UBTH53:00000001 [INF] Request starting HTTP/1.1 GET http://localhost:5000/swagger/swagger-ui-bundle.js   (ca22a1cb)
+2018-09-09T22:15:12.2151383+03:00 0HLGMH1UBTH54:00000001 [INF] Request starting HTTP/1.1 GET http://localhost:5000/swagger/swagger-ui-standalone-preset.js   (ca22a1cb)
+2018-09-09T22:15:12.2807614+03:00 0HLGMH1UBTH52:00000002 [INF] Sending file. Request path: '"/swagger-ui.css"'. Physical path: '"N/A"' (27b0a520)
+2018-09-09T22:15:12.2809821+03:00 0HLGMH1UBTH52:00000002 [INF] Request finished in 70.5169ms 200 text/css (791a596a)
+2018-09-09T22:15:12.2834784+03:00 0HLGMH1UBTH54:00000001 [INF] Sending file. Request path: '"/swagger-ui-standalone-preset.js"'. Physical path: '"N/A"' (27b0a520)
+2018-09-09T22:15:12.2836465+03:00 0HLGMH1UBTH54:00000001 [INF] Request finished in 68.5485ms 200 application/javascript (791a596a)
+2018-09-09T22:15:12.2980146+03:00 0HLGMH1UBTH53:00000001 [INF] Sending file. Request path: '"/swagger-ui-bundle.js"'. Physical path: '"N/A"' (27b0a520)
+2018-09-09T22:15:12.2984287+03:00 0HLGMH1UBTH53:00000001 [INF] Request finished in 83.4687ms 200 application/javascript (791a596a)
+2018-09-09T22:15:13.1779637+03:00 0HLGMH1UBTH53:00000002 [INF] Request starting HTTP/1.1 GET http://localhost:5000/swagger/v1/swagger.json   (ca22a1cb)
+2018-09-09T22:15:13.4338831+03:00 0HLGMH1UBTH53:00000002 [INF] Request finished in 255.9596ms 200 application/json;charset=utf-8 (791a596a)
+2018-09-09T22:47:55.0109025+03:00 0HLGMHKHC2CT1:00000001 [INF] Request starting HTTP/1.1 GET http://localhost:5000/swagger/index.html   (ca22a1cb)
+2018-09-09T22:47:55.0408458+03:00 0HLGMHKHC2CT1:00000001 [WRN] Failed to determine the https port for redirect. (ca76cc21)
+2018-09-09T22:47:55.3345663+03:00 0HLGMHKHC2CT1:00000001 [INF] Request finished in 346.9266ms 200 text/html (791a596a)
+2018-09-09T22:47:56.2617930+03:00 0HLGMHKHC2CT1:00000002 [INF] Request starting HTTP/1.1 GET http://localhost:5000/swagger/v1/swagger.json   (ca22a1cb)
+2018-09-09T22:47:56.7719275+03:00 0HLGMHKHC2CT1:00000002 [INF] Request finished in 510.1565ms 200 application/json;charset=utf-8 (791a596a)
+2018-09-09T22:48:50.6720233+03:00 0HLGMHKHC2CT3:00000001 [INF] Request starting HTTP/1.1 GET http://localhost:5000/swagger/index.html   (ca22a1cb)
+2018-09-09T22:48:50.6739686+03:00 0HLGMHKHC2CT3:00000001 [INF] Request finished in 2.1455ms 200 text/html (791a596a)
+2018-09-09T22:48:51.6236177+03:00 0HLGMHKHC2CT3:00000002 [INF] Request starting HTTP/1.1 GET http://localhost:5000/swagger/v1/swagger.json   (ca22a1cb)
+2018-09-09T22:48:51.6782011+03:00 0HLGMHKHC2CT3:00000002 [INF] Request finished in 54.5328ms 200 application/json;charset=utf-8 (791a596a)
+2018-09-09T22:49:25.4889375+03:00 0HLGMHKHC2CT5:00000001 [INF] Request starting HTTP/1.1 GET http://localhost:5000/api/Customer   (ca22a1cb)
+2018-09-09T22:49:25.6104431+03:00 0HLGMHKHC2CT5:00000001 [INF] Route matched with "{action = \"Get\", controller = \"Customer\"}". Executing action "DemoBlog.Controllers.CustomerController.Get (DemoBlog)" (a44c0341)
+2018-09-09T22:49:25.6359485+03:00 0HLGMHKHC2CT5:00000001 [INF] Executing action method "DemoBlog.Controllers.CustomerController.Get (DemoBlog)" - Validation state: Valid (dad538d7)
+2018-09-09T22:49:25.6503769+03:00 0HLGMHKHC2CT5:00000001 [INF] Entity Framework Core "2.2.0-preview1-35029" initialized '"ApplicationDbContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "MigrationsAssembly=DemoBlog " (9958f5bb)
+2018-09-09T22:49:26.2871450+03:00 0HLGMHKHC2CT5:00000001 [INF] Executed DbCommand ("4"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [u].[Id], [u].[AccessFailedCount], [u].[ConcurrencyStamp], [u].[CreatedBy], [u].[CreatedDate], [u].[Email], [u].[EmailConfirmed], [u].[FullName], [u].[IsEnabled], [u].[LockoutEnabled], [u].[LockoutEnd], [u].[NormalizedEmail], [u].[NormalizedUserName], [u].[PasswordHash], [u].[PhoneNumber], [u].[PhoneNumberConfirmed], [u].[SecurityStamp], [u].[TwoFactorEnabled], [u].[UpdatedBy], [u].[UpdatedDate], [u].[UserName]
+FROM [AspNetUsers] AS [u]
+ORDER BY [u].[FullName], [u].[Id]" (0723d8ff)
+2018-09-09T22:49:26.5207246+03:00 0HLGMHKHC2CT5:00000001 [INF] Executed DbCommand ("36"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [u.Articles].[Id], [u.Articles].[AuthorId], [u.Articles].[Body], [u.Articles].[CategoryId], [u.Articles].[CreatedBy], [u.Articles].[CreatedDate], [u.Articles].[DateCreated], [u.Articles].[DateModified], [u.Articles].[Slug], [u.Articles].[Title], [u.Articles].[UpdatedBy], [u.Articles].[UpdatedDate]
+FROM [AppArticles] AS [u.Articles]
+INNER JOIN (
+    SELECT [u0].[Id], [u0].[FullName]
+    FROM [AspNetUsers] AS [u0]
+) AS [t] ON [u.Articles].[AuthorId] = [t].[Id]
+ORDER BY [t].[FullName], [t].[Id], [u.Articles].[Id]" (0723d8ff)
+2018-09-09T22:49:26.6349737+03:00 0HLGMHKHC2CT5:00000001 [INF] Executed action "DemoBlog.Controllers.CustomerController.Get (DemoBlog)" in 1019.1865ms (afa2e885)
+2018-09-09T22:49:26.8980799+03:00 0HLGMHKHC2CT5:00000001 [ERR] An unhandled exception has occurred while executing the request. (48a46595)
+AutoMapper.AutoMapperMappingException: Error mapping types.
+
+Mapping types:
+List`1 -> IEnumerable`1
+System.Collections.Generic.List`1[[DAL.Models.ApplicationUser, DAL, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] -> System.Collections.Generic.IEnumerable`1[[DemoBlog.ViewModels.TagViewModel, DemoBlog, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] ---> AutoMapper.AutoMapperConfigurationException: 
+Unmapped members were found. Review the types and members below.
+Add a custom mapping expression, ignore, add a custom resolver, or modify the source/destination type
+For no matching constructor, add a no-arg ctor, add optional arguments, or map all of the constructor parameters
+===============================================================
+AutoMapper created this type map for you, but your types cannot be mapped using the current configuration.
+ApplicationUser -> TagViewModel (Destination member list)
+DAL.Models.ApplicationUser -> DemoBlog.ViewModels.TagViewModel (Destination member list)
+
+Unmapped properties:
+Name
+Slug
+DateCreated
+DateModified
+
+   at AutoMapper.ConfigurationValidator.AssertConfigurationIsValid(IEnumerable`1 typeMaps) in C:\projects\automapper\src\AutoMapper\ConfigurationValidator.cs:line 48
+   at lambda_method(Closure , List`1 , IEnumerable`1 , ResolutionContext )
+   --- End of inner exception stack trace ---
+   at lambda_method(Closure , List`1 , IEnumerable`1 , ResolutionContext )
+   at lambda_method(Closure , Object , Object , ResolutionContext )
+   at AutoMapper.Mapper.AutoMapper.IMapper.Map[TDestination](Object source) in C:\projects\automapper\src\AutoMapper\Mapper.cs:line 207
+   at DemoBlog.Controllers.CustomerController.Get() in D:\Proj\Visual Studio\DemoBlog\DemoBlog\Controllers\ArticleController.cs:line 38
+   at lambda_method(Closure , Object , Object[] )
+   at Microsoft.Extensions.Internal.ObjectMethodExecutor.Execute(Object target, Object[] parameters)
+   at Microsoft.AspNetCore.Mvc.Internal.ActionMethodExecutor.SyncActionResultExecutor.Execute(IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.InvokeActionMethodAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.InvokeNextActionFilterAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.Rethrow(ActionExecutedContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.InvokeInnerFilterAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeNextResourceFilter()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Rethrow(ResourceExecutedContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeFilterPipelineAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeAsync()
+   at Microsoft.AspNetCore.Builder.RouterMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.StaticFiles.StaticFileMiddleware.Invoke(HttpContext context)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIIndexMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.StaticFiles.StaticFileMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Cors.Infrastructure.CorsMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.Invoke(HttpContext context)
+2018-09-09T22:49:27.0555530+03:00 0HLGMHKHC2CT5:00000001 [INF] Request finished in 1566.6378ms 500 text/html; charset=utf-8 (791a596a)
+2018-09-09T22:57:07.5629601+03:00 0HLGMHPM1JR6J:00000001 [INF] Request starting HTTP/1.1 GET http://localhost:5000/swagger/   (ca22a1cb)
+2018-09-09T22:57:07.5930967+03:00 0HLGMHPM1JR6J:00000001 [WRN] Failed to determine the https port for redirect. (ca76cc21)
+2018-09-09T22:57:07.8722781+03:00 0HLGMHPM1JR6J:00000001 [INF] Request finished in 328.4172ms 301  (791a596a)
+2018-09-09T22:57:07.8811801+03:00 0HLGMHPM1JR6J:00000002 [INF] Request starting HTTP/1.1 GET http://localhost:5000/swagger/index.html   (ca22a1cb)
+2018-09-09T22:57:07.9099483+03:00 0HLGMHPM1JR6J:00000002 [INF] Request finished in 28.8469ms 200 text/html (791a596a)
+2018-09-09T22:57:08.3798400+03:00 0HLGMHPM1JR6J:00000003 [INF] Request starting HTTP/1.1 GET http://localhost:5000/swagger/v1/swagger.json   (ca22a1cb)
+2018-09-09T22:57:08.8384604+03:00 0HLGMHPM1JR6J:00000003 [INF] Request finished in 458.8368ms 200 application/json;charset=utf-8 (791a596a)
+2018-09-09T22:57:28.0542134+03:00 0HLGMHPM1JR6L:00000001 [INF] Request starting HTTP/1.1 GET http://localhost:5000/api/Customer   (ca22a1cb)
+2018-09-09T22:57:28.1642761+03:00 0HLGMHPM1JR6L:00000001 [INF] Route matched with "{action = \"Get\", controller = \"Customer\"}". Executing action "DemoBlog.Controllers.CustomerController.Get (DemoBlog)" (a44c0341)
+2018-09-09T22:57:28.1972401+03:00 0HLGMHPM1JR6L:00000001 [INF] Executing action method "DemoBlog.Controllers.CustomerController.Get (DemoBlog)" - Validation state: Valid (dad538d7)
+2018-09-09T22:57:28.2147811+03:00 0HLGMHPM1JR6L:00000001 [INF] Entity Framework Core "2.2.0-preview1-35029" initialized '"ApplicationDbContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "MigrationsAssembly=DemoBlog " (9958f5bb)
+2018-09-09T22:57:28.7188018+03:00 0HLGMHPM1JR6L:00000001 [INF] Executed DbCommand ("3"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [u].[Id], [u].[AccessFailedCount], [u].[ConcurrencyStamp], [u].[CreatedBy], [u].[CreatedDate], [u].[Email], [u].[EmailConfirmed], [u].[FullName], [u].[IsEnabled], [u].[LockoutEnabled], [u].[LockoutEnd], [u].[NormalizedEmail], [u].[NormalizedUserName], [u].[PasswordHash], [u].[PhoneNumber], [u].[PhoneNumberConfirmed], [u].[SecurityStamp], [u].[TwoFactorEnabled], [u].[UpdatedBy], [u].[UpdatedDate], [u].[UserName]
+FROM [AspNetUsers] AS [u]
+ORDER BY [u].[FullName], [u].[Id]" (0723d8ff)
+2018-09-09T22:57:28.9017093+03:00 0HLGMHPM1JR6L:00000001 [INF] Executed DbCommand ("4"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [u.Articles].[Id], [u.Articles].[AuthorId], [u.Articles].[Body], [u.Articles].[CategoryId], [u.Articles].[CreatedBy], [u.Articles].[CreatedDate], [u.Articles].[Slug], [u.Articles].[Title], [u.Articles].[UpdatedBy], [u.Articles].[UpdatedDate]
+FROM [AppArticles] AS [u.Articles]
+INNER JOIN (
+    SELECT [u0].[Id], [u0].[FullName]
+    FROM [AspNetUsers] AS [u0]
+) AS [t] ON [u.Articles].[AuthorId] = [t].[Id]
+ORDER BY [t].[FullName], [t].[Id], [u.Articles].[Id]" (0723d8ff)
+2018-09-09T22:57:28.9872556+03:00 0HLGMHPM1JR6L:00000001 [INF] Executed action "DemoBlog.Controllers.CustomerController.Get (DemoBlog)" in 817.5274ms (afa2e885)
+2018-09-09T22:57:29.0646745+03:00 0HLGMHPM1JR6L:00000001 [ERR] An unhandled exception has occurred while executing the request. (48a46595)
+AutoMapper.AutoMapperMappingException: Error mapping types.
+
+Mapping types:
+List`1 -> IEnumerable`1
+System.Collections.Generic.List`1[[DAL.Models.ApplicationUser, DAL, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] -> System.Collections.Generic.IEnumerable`1[[DemoBlog.ViewModels.TagViewModel, DemoBlog, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] ---> AutoMapper.AutoMapperConfigurationException: 
+Unmapped members were found. Review the types and members below.
+Add a custom mapping expression, ignore, add a custom resolver, or modify the source/destination type
+For no matching constructor, add a no-arg ctor, add optional arguments, or map all of the constructor parameters
+===============================================================
+AutoMapper created this type map for you, but your types cannot be mapped using the current configuration.
+ApplicationUser -> TagViewModel (Destination member list)
+DAL.Models.ApplicationUser -> DemoBlog.ViewModels.TagViewModel (Destination member list)
+
+Unmapped properties:
+Name
+Slug
+DateCreated
+DateModified
+
+   at AutoMapper.ConfigurationValidator.AssertConfigurationIsValid(IEnumerable`1 typeMaps) in C:\projects\automapper\src\AutoMapper\ConfigurationValidator.cs:line 48
+   at lambda_method(Closure , List`1 , IEnumerable`1 , ResolutionContext )
+   --- End of inner exception stack trace ---
+   at lambda_method(Closure , List`1 , IEnumerable`1 , ResolutionContext )
+   at lambda_method(Closure , Object , Object , ResolutionContext )
+   at AutoMapper.Mapper.AutoMapper.IMapper.Map[TDestination](Object source) in C:\projects\automapper\src\AutoMapper\Mapper.cs:line 207
+   at DemoBlog.Controllers.CustomerController.Get() in D:\Proj\Visual Studio\DemoBlog\DemoBlog\Controllers\ArticleController.cs:line 38
+   at lambda_method(Closure , Object , Object[] )
+   at Microsoft.Extensions.Internal.ObjectMethodExecutor.Execute(Object target, Object[] parameters)
+   at Microsoft.AspNetCore.Mvc.Internal.ActionMethodExecutor.SyncActionResultExecutor.Execute(IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.InvokeActionMethodAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.InvokeNextActionFilterAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.Rethrow(ActionExecutedContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.InvokeInnerFilterAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeNextResourceFilter()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Rethrow(ResourceExecutedContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeFilterPipelineAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeAsync()
+   at Microsoft.AspNetCore.Builder.RouterMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.StaticFiles.StaticFileMiddleware.Invoke(HttpContext context)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIIndexMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.StaticFiles.StaticFileMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Cors.Infrastructure.CorsMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.Invoke(HttpContext context)
+2018-09-09T22:57:29.1359006+03:00 0HLGMHPM1JR6L:00000001 [INF] Request finished in 1081.6774ms 500 text/html; charset=utf-8 (791a596a)
+2018-09-09T23:06:13.6583572+03:00 0HLGMHPM1JR6M:00000001 [INF] Request starting HTTP/1.1 GET http://localhost:5000/swagger   (ca22a1cb)
+2018-09-09T23:06:13.6621114+03:00 0HLGMHPM1JR6M:00000001 [INF] Request finished in 3.9663ms 301  (791a596a)
+2018-09-09T23:06:13.6716923+03:00 0HLGMHPM1JR6M:00000002 [INF] Request starting HTTP/1.1 GET http://localhost:5000/swagger/index.html   (ca22a1cb)
+2018-09-09T23:06:13.6728544+03:00 0HLGMHPM1JR6M:00000002 [INF] Request finished in 1.2652ms 200 text/html (791a596a)
+2018-09-09T23:06:14.0950369+03:00 0HLGMHPM1JR6M:00000003 [INF] Request starting HTTP/1.1 GET http://localhost:5000/swagger/v1/swagger.json   (ca22a1cb)
+2018-09-09T23:06:14.1507833+03:00 0HLGMHPM1JR6M:00000003 [INF] Request finished in 55.7545ms 200 application/json;charset=utf-8 (791a596a)
+2018-09-09T23:11:33.6111783+03:00 0HLGMI1O4PEQM:00000001 [INF] Request starting HTTP/1.1 GET http://localhost:5000/swagger/index.html   (ca22a1cb)
+2018-09-09T23:11:33.6485561+03:00 0HLGMI1O4PEQM:00000001 [WRN] Failed to determine the https port for redirect. (ca76cc21)
+2018-09-09T23:11:33.9608292+03:00 0HLGMI1O4PEQM:00000001 [INF] Request finished in 380.9282ms 200 text/html (791a596a)
+2018-09-09T23:11:35.0359910+03:00 0HLGMI1O4PEQM:00000002 [INF] Request starting HTTP/1.1 GET http://localhost:5000/swagger/v1/swagger.json   (ca22a1cb)
+2018-09-09T23:11:35.6329403+03:00 0HLGMI1O4PEQM:00000002 [INF] Request finished in 597.2025ms 200 application/json;charset=utf-8 (791a596a)
+2018-09-09T23:11:46.3625369+03:00 0HLGMI1O4PEQO:00000001 [INF] Request starting HTTP/1.1 GET http://localhost:5000/api/Article   (ca22a1cb)
+2018-09-09T23:11:46.4695631+03:00 0HLGMI1O4PEQO:00000001 [INF] Route matched with "{action = \"Get\", controller = \"Article\"}". Executing action "DemoBlog.Controllers.ArticleController.Get (DemoBlog)" (a44c0341)
+2018-09-09T23:11:46.4988464+03:00 0HLGMI1O4PEQO:00000001 [INF] Executing action method "DemoBlog.Controllers.ArticleController.Get (DemoBlog)" - Validation state: Valid (dad538d7)
+2018-09-09T23:11:46.5114449+03:00 0HLGMI1O4PEQO:00000001 [INF] Entity Framework Core "2.2.0-preview1-35029" initialized '"ApplicationDbContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "MigrationsAssembly=DemoBlog " (9958f5bb)
+2018-09-09T23:11:47.0307563+03:00 0HLGMI1O4PEQO:00000001 [INF] Executed DbCommand ("16"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [a].[Id], [a].[AuthorId], [a].[Body], [a].[CategoryId], [a].[CreatedBy], [a].[CreatedDate], [a].[Slug], [a].[Title], [a].[UpdatedBy], [a].[UpdatedDate]
+FROM [AppArticles] AS [a]
+ORDER BY [a].[Id]" (0723d8ff)
+2018-09-09T23:11:47.2073594+03:00 0HLGMI1O4PEQO:00000001 [INF] Executed DbCommand ("3"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [a.ArticleTags].[ArticleId], [a.ArticleTags].[TagId], [a.ArticleTags].[CreatedBy], [a.ArticleTags].[CreatedDate], [a.ArticleTags].[DateCreated], [a.ArticleTags].[DateModified], [a.ArticleTags].[Id], [a.ArticleTags].[UpdatedBy], [a.ArticleTags].[UpdatedDate]
+FROM [ArticleTag] AS [a.ArticleTags]
+INNER JOIN (
+    SELECT [a0].[Id]
+    FROM [AppArticles] AS [a0]
+) AS [t] ON [a.ArticleTags].[ArticleId] = [t].[Id]
+ORDER BY [t].[Id]" (0723d8ff)
+2018-09-09T23:11:47.2664802+03:00 0HLGMI1O4PEQO:00000001 [INF] Executed action method "DemoBlog.Controllers.ArticleController.Get (DemoBlog)", returned result "Microsoft.AspNetCore.Mvc.OkObjectResult" in 762.5164ms. (50a9e262)
+2018-09-09T23:11:47.2994415+03:00 0HLGMI1O4PEQO:00000001 [INF] Executing ObjectResult, writing value of type '"System.Collections.Generic.List`1[[DemoBlog.ViewModels.ArticleViewModel, DemoBlog, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]"'. (8a1b66c8)
+2018-09-09T23:11:47.3543829+03:00 0HLGMI1O4PEQO:00000001 [INF] Executed action "DemoBlog.Controllers.ArticleController.Get (DemoBlog)" in 878.3395ms (afa2e885)
+2018-09-09T23:11:47.3547157+03:00 0HLGMI1O4PEQO:00000001 [INF] Request finished in 992.2549ms 200 application/json; charset=utf-8 (791a596a)

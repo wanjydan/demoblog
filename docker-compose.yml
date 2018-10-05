@@ -1,0 +1,56 @@
+version: '3'
+
+services:
+  db:
+     container_name: demoblogdb
+     image: postgres
+     restart: always
+     ports:
+       - 5432
+     environment:
+         POSTGRE_PASSWORD: P@ssw0rd!
+     volumes:
+       - pgdata:/var/lib/postgresql/data
+     networks:
+       - demoblognetwork
+
+  web:
+     container_name: demoblogapi
+     image: demoblogapi
+     ports:
+       - 5000:80
+     build:
+       context: .
+       dockerfile: Dockerfile
+     links:
+       - db
+     depends_on:
+       - "db"
+     networks:
+       - demoblognetwork
+
+volumes:
+  pgdata:
+
+networks:
+  demoblognetwork:
+     driver: bridge
+     
+     
+     
+#docker run -d -p 5432:5432 --name demoblogdb -e
+#docker exec -it demoblogdb bash
+#psql -U postgres
+#CREATE DATABASE demoblogdb;
+#\q
+#psql -h localhost -p 5432 -U postgres -W
+#\l
+
+#docker login --username=wanjydan --password=***
+#docker tag 2c853c235270 wanjydan/demoblog:firsttry
+#docker push wanjydan/demoblog
+
+#heroku login
+#heroku container:login
+#heroku container:push web --app coredemoblog
+#heroku container:release web

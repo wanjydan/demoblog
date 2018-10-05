@@ -1,0 +1,550 @@
+2018-09-13T08:32:41.2677462+03:00 0HLGP799GHKGH:00000001 [INF] Request starting HTTP/1.1 GET http://localhost:5000/api/categories/3   (ca22a1cb)
+2018-09-13T08:32:41.2937187+03:00 0HLGP799GHKGH:00000001 [WRN] Failed to determine the https port for redirect. (ca76cc21)
+2018-09-13T08:32:41.8366366+03:00 0HLGP799GHKGH:00000001 [INF] Route matched with "{action = \"GetCategory\", controller = \"Categories\"}". Executing action "DemoBlog.Controllers.CategoriesController.GetCategory (DemoBlog)" (a44c0341)
+2018-09-13T08:32:41.9192151+03:00 0HLGP799GHKGH:00000001 [INF] Executing action method "DemoBlog.Controllers.CategoriesController.GetCategory (DemoBlog)" with arguments (["3"]) - Validation state: Valid (4e3479ed)
+2018-09-13T08:32:43.5639528+03:00 0HLGP799GHKGH:00000001 [INF] Entity Framework Core "2.2.0-preview1-35029" initialized '"ApplicationDbContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "MigrationsAssembly=DemoBlog " (9958f5bb)
+2018-09-13T08:32:44.6182085+03:00 0HLGP799GHKGH:00000001 [INF] Executed DbCommand ("18"ms) [Parameters=["@__id_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [c].[Id], [c].[CreatedBy], [c].[CreatedDate], [c].[Name], [c].[Slug], [c].[UpdatedBy], [c].[UpdatedDate]
+FROM [AppCategories] AS [c]
+WHERE [c].[Id] = @__id_0
+ORDER BY [c].[Id]" (0723d8ff)
+2018-09-13T08:32:44.8264933+03:00 0HLGP799GHKGH:00000001 [INF] Executed DbCommand ("7"ms) [Parameters=["@__id_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [c.Articles].[Id], [c.Articles].[AuthorId], [c.Articles].[Body], [c.Articles].[CategoryId], [c.Articles].[CreatedBy], [c.Articles].[CreatedDate], [c.Articles].[Slug], [c.Articles].[Title], [c.Articles].[UpdatedBy], [c.Articles].[UpdatedDate]
+FROM [AppArticles] AS [c.Articles]
+INNER JOIN (
+    SELECT TOP(1) [c0].[Id]
+    FROM [AppCategories] AS [c0]
+    WHERE [c0].[Id] = @__id_0
+    ORDER BY [c0].[Id]
+) AS [t] ON [c.Articles].[CategoryId] = [t].[Id]
+ORDER BY [t].[Id]" (0723d8ff)
+2018-09-13T08:32:45.0379844+03:00 0HLGP799GHKGH:00000001 [INF] Executed action method "DemoBlog.Controllers.CategoriesController.GetCategory (DemoBlog)", returned result "Microsoft.AspNetCore.Mvc.OkObjectResult" in 3112.3206ms. (50a9e262)
+2018-09-13T08:32:45.0592501+03:00 0HLGP799GHKGH:00000001 [INF] Executing ObjectResult, writing value of type '"DemoBlog.ViewModels.CategoryViewModel"'. (8a1b66c8)
+2018-09-13T08:32:45.1487019+03:00 0HLGP799GHKGH:00000001 [INF] Executed action "DemoBlog.Controllers.CategoriesController.GetCategory (DemoBlog)" in 3305.5513ms (afa2e885)
+2018-09-13T08:32:45.2948547+03:00 0HLGP799GHKGH:00000001 [ERR] An unhandled exception has occurred while executing the request. (48a46595)
+Newtonsoft.Json.JsonSerializationException: Self referencing loop detected for property 'category' with type 'DemoBlog.ViewModels.CategoryViewModel'. Path 'articles[0]'.
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalWriter.CheckForCircularReference(JsonWriter writer, Object value, JsonProperty property, JsonContract contract, JsonContainerContract containerContract, JsonProperty containerProperty)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalWriter.CalculatePropertyValues(JsonWriter writer, Object value, JsonContainerContract contract, JsonProperty member, JsonProperty property, JsonContract& memberContract, Object& memberValue)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalWriter.SerializeObject(JsonWriter writer, Object value, JsonObjectContract contract, JsonProperty member, JsonContainerContract collectionContract, JsonProperty containerProperty)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalWriter.SerializeValue(JsonWriter writer, Object value, JsonContract valueContract, JsonProperty member, JsonContainerContract containerContract, JsonProperty containerProperty)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalWriter.SerializeList(JsonWriter writer, IEnumerable values, JsonArrayContract contract, JsonProperty member, JsonContainerContract collectionContract, JsonProperty containerProperty)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalWriter.SerializeValue(JsonWriter writer, Object value, JsonContract valueContract, JsonProperty member, JsonContainerContract containerContract, JsonProperty containerProperty)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalWriter.SerializeObject(JsonWriter writer, Object value, JsonObjectContract contract, JsonProperty member, JsonContainerContract collectionContract, JsonProperty containerProperty)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalWriter.SerializeValue(JsonWriter writer, Object value, JsonContract valueContract, JsonProperty member, JsonContainerContract containerContract, JsonProperty containerProperty)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalWriter.Serialize(JsonWriter jsonWriter, Object value, Type objectType)
+   at Newtonsoft.Json.JsonSerializer.SerializeInternal(JsonWriter jsonWriter, Object value, Type objectType)
+   at Newtonsoft.Json.JsonSerializer.Serialize(JsonWriter jsonWriter, Object value)
+   at Microsoft.AspNetCore.Mvc.Formatters.JsonOutputFormatter.WriteObject(TextWriter writer, Object value)
+   at Microsoft.AspNetCore.Mvc.Formatters.JsonOutputFormatter.WriteResponseBodyAsync(OutputFormatterWriteContext context, Encoding selectedEncoding)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeResultAsync(IActionResult result)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeNextResultFilterAsync[TFilter,TFilterAsync]()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Rethrow(ResultExecutedContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.ResultNext[TFilter,TFilterAsync](State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeResultFilters()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeNextResourceFilter()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Rethrow(ResourceExecutedContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeFilterPipelineAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeAsync()
+   at Microsoft.AspNetCore.Builder.RouterMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.StaticFiles.StaticFileMiddleware.Invoke(HttpContext context)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIIndexMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.StaticFiles.StaticFileMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Cors.Infrastructure.CorsMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.Invoke(HttpContext context)
+2018-09-13T08:32:45.2949989+03:00 0HLGP799GHKGH:00000001 [WRN] The response has already started, the error page middleware will not be executed. (e1dd4c0d)
+2018-09-13T08:32:45.3174294+03:00 0HLGP799GHKGH:00000001 [ERR] Connection id ""0HLGP799GHKGH"", Request id ""0HLGP799GHKGH:00000001"": An unhandled exception was thrown by the application. (560e7d32)
+Newtonsoft.Json.JsonSerializationException: Self referencing loop detected for property 'category' with type 'DemoBlog.ViewModels.CategoryViewModel'. Path 'articles[0]'.
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalWriter.CheckForCircularReference(JsonWriter writer, Object value, JsonProperty property, JsonContract contract, JsonContainerContract containerContract, JsonProperty containerProperty)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalWriter.CalculatePropertyValues(JsonWriter writer, Object value, JsonContainerContract contract, JsonProperty member, JsonProperty property, JsonContract& memberContract, Object& memberValue)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalWriter.SerializeObject(JsonWriter writer, Object value, JsonObjectContract contract, JsonProperty member, JsonContainerContract collectionContract, JsonProperty containerProperty)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalWriter.SerializeValue(JsonWriter writer, Object value, JsonContract valueContract, JsonProperty member, JsonContainerContract containerContract, JsonProperty containerProperty)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalWriter.SerializeList(JsonWriter writer, IEnumerable values, JsonArrayContract contract, JsonProperty member, JsonContainerContract collectionContract, JsonProperty containerProperty)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalWriter.SerializeValue(JsonWriter writer, Object value, JsonContract valueContract, JsonProperty member, JsonContainerContract containerContract, JsonProperty containerProperty)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalWriter.SerializeObject(JsonWriter writer, Object value, JsonObjectContract contract, JsonProperty member, JsonContainerContract collectionContract, JsonProperty containerProperty)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalWriter.SerializeValue(JsonWriter writer, Object value, JsonContract valueContract, JsonProperty member, JsonContainerContract containerContract, JsonProperty containerProperty)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalWriter.Serialize(JsonWriter jsonWriter, Object value, Type objectType)
+   at Newtonsoft.Json.JsonSerializer.SerializeInternal(JsonWriter jsonWriter, Object value, Type objectType)
+   at Newtonsoft.Json.JsonSerializer.Serialize(JsonWriter jsonWriter, Object value)
+   at Microsoft.AspNetCore.Mvc.Formatters.JsonOutputFormatter.WriteObject(TextWriter writer, Object value)
+   at Microsoft.AspNetCore.Mvc.Formatters.JsonOutputFormatter.WriteResponseBodyAsync(OutputFormatterWriteContext context, Encoding selectedEncoding)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeResultAsync(IActionResult result)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeNextResultFilterAsync[TFilter,TFilterAsync]()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Rethrow(ResultExecutedContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.ResultNext[TFilter,TFilterAsync](State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeResultFilters()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeNextResourceFilter()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Rethrow(ResourceExecutedContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeFilterPipelineAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeAsync()
+   at Microsoft.AspNetCore.Builder.RouterMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.StaticFiles.StaticFileMiddleware.Invoke(HttpContext context)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIIndexMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.StaticFiles.StaticFileMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Cors.Infrastructure.CorsMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Http.HttpProtocol.ProcessRequests[TContext](IHttpApplication`1 application)
+2018-09-13T08:32:45.3290668+03:00 0HLGP799GHKGH:00000001 [INF] Request finished in 4076.9384ms 200 application/json; charset=utf-8 (791a596a)
+2018-09-13T08:34:23.5585522+03:00 0HLGP7A804T86:00000001 [INF] Request starting HTTP/1.1 GET http://localhost:5000/api/categories/3   (ca22a1cb)
+2018-09-13T08:34:23.5818275+03:00 0HLGP7A804T86:00000001 [WRN] Failed to determine the https port for redirect. (ca76cc21)
+2018-09-13T08:34:24.0216928+03:00 0HLGP7A804T86:00000001 [INF] Route matched with "{action = \"GetCategory\", controller = \"Categories\"}". Executing action "DemoBlog.Controllers.CategoriesController.GetCategory (DemoBlog)" (a44c0341)
+2018-09-13T08:34:24.0731134+03:00 0HLGP7A804T86:00000001 [INF] Executing action method "DemoBlog.Controllers.CategoriesController.GetCategory (DemoBlog)" with arguments (["3"]) - Validation state: Valid (4e3479ed)
+2018-09-13T08:34:25.2101474+03:00 0HLGP7A804T86:00000001 [INF] Entity Framework Core "2.2.0-preview1-35029" initialized '"ApplicationDbContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "MigrationsAssembly=DemoBlog " (9958f5bb)
+2018-09-13T08:34:26.1299526+03:00 0HLGP7A804T86:00000001 [INF] Executed DbCommand ("17"ms) [Parameters=["@__id_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [c].[Id], [c].[CreatedBy], [c].[CreatedDate], [c].[Name], [c].[Slug], [c].[UpdatedBy], [c].[UpdatedDate]
+FROM [AppCategories] AS [c]
+WHERE [c].[Id] = @__id_0
+ORDER BY [c].[Id]" (0723d8ff)
+2018-09-13T08:34:26.2985132+03:00 0HLGP7A804T86:00000001 [INF] Executed DbCommand ("5"ms) [Parameters=["@__id_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [c.Articles].[Id], [c.Articles].[AuthorId], [c.Articles].[Body], [c.Articles].[CategoryId], [c.Articles].[CreatedBy], [c.Articles].[CreatedDate], [c.Articles].[Slug], [c.Articles].[Title], [c.Articles].[UpdatedBy], [c.Articles].[UpdatedDate]
+FROM [AppArticles] AS [c.Articles]
+INNER JOIN (
+    SELECT TOP(1) [c0].[Id]
+    FROM [AppCategories] AS [c0]
+    WHERE [c0].[Id] = @__id_0
+    ORDER BY [c0].[Id]
+) AS [t] ON [c.Articles].[CategoryId] = [t].[Id]
+ORDER BY [t].[Id]" (0723d8ff)
+2018-09-13T08:34:26.4134837+03:00 0HLGP7A804T86:00000001 [INF] Executed action method "DemoBlog.Controllers.CategoriesController.GetCategory (DemoBlog)", returned result "Microsoft.AspNetCore.Mvc.OkObjectResult" in 2335.5137ms. (50a9e262)
+2018-09-13T08:34:26.4305820+03:00 0HLGP7A804T86:00000001 [INF] Executing ObjectResult, writing value of type '"DemoBlog.ViewModels.CategoryViewModel"'. (8a1b66c8)
+2018-09-13T08:34:26.4685174+03:00 0HLGP7A804T86:00000001 [INF] Executed action "DemoBlog.Controllers.CategoriesController.GetCategory (DemoBlog)" in 2440.6635ms (afa2e885)
+2018-09-13T08:34:26.4866063+03:00 0HLGP7A804T86:00000001 [INF] Request finished in 2943.0842ms 200 application/json; charset=utf-8 (791a596a)
+2018-09-13T08:47:28.4371605+03:00 0HLGP7HHTBH26:00000001 [INF] Request starting HTTP/1.1 GET http://localhost:5000/api/categories/3   (ca22a1cb)
+2018-09-13T08:47:28.4616359+03:00 0HLGP7HHTBH26:00000001 [WRN] Failed to determine the https port for redirect. (ca76cc21)
+2018-09-13T08:47:28.8564338+03:00 0HLGP7HHTBH26:00000001 [INF] Route matched with "{action = \"GetCategory\", controller = \"Categories\"}". Executing action "DemoBlog.Controllers.CategoriesController.GetCategory (DemoBlog)" (a44c0341)
+2018-09-13T08:47:28.9144240+03:00 0HLGP7HHTBH26:00000001 [INF] Executing action method "DemoBlog.Controllers.CategoriesController.GetCategory (DemoBlog)" with arguments (["3"]) - Validation state: Valid (4e3479ed)
+2018-09-13T08:47:30.0314289+03:00 0HLGP7HHTBH26:00000001 [INF] Entity Framework Core "2.2.0-preview1-35029" initialized '"ApplicationDbContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "MigrationsAssembly=DemoBlog " (9958f5bb)
+2018-09-13T08:47:30.9324095+03:00 0HLGP7HHTBH26:00000001 [INF] Executed DbCommand ("23"ms) [Parameters=["@__id_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [c].[Id], [c].[CreatedBy], [c].[CreatedDate], [c].[Name], [c].[Slug], [c].[UpdatedBy], [c].[UpdatedDate]
+FROM [AppCategories] AS [c]
+WHERE [c].[Id] = @__id_0
+ORDER BY [c].[Id]" (0723d8ff)
+2018-09-13T08:47:31.1027093+03:00 0HLGP7HHTBH26:00000001 [INF] Executed DbCommand ("5"ms) [Parameters=["@__id_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [c.Articles].[Id], [c.Articles].[AuthorId], [c.Articles].[Body], [c.Articles].[CategoryId], [c.Articles].[CreatedBy], [c.Articles].[CreatedDate], [c.Articles].[Slug], [c.Articles].[Title], [c.Articles].[UpdatedBy], [c.Articles].[UpdatedDate]
+FROM [AppArticles] AS [c.Articles]
+INNER JOIN (
+    SELECT TOP(1) [c0].[Id]
+    FROM [AppCategories] AS [c0]
+    WHERE [c0].[Id] = @__id_0
+    ORDER BY [c0].[Id]
+) AS [t] ON [c.Articles].[CategoryId] = [t].[Id]
+ORDER BY [t].[Id]" (0723d8ff)
+2018-09-13T08:47:31.2406949+03:00 0HLGP7HHTBH26:00000001 [INF] Executed action method "DemoBlog.Controllers.CategoriesController.GetCategory (DemoBlog)", returned result "Microsoft.AspNetCore.Mvc.OkObjectResult" in 2321.8814ms. (50a9e262)
+2018-09-13T08:47:31.2556695+03:00 0HLGP7HHTBH26:00000001 [INF] Executing ObjectResult, writing value of type '"DemoBlog.ViewModels.CategoryViewModel"'. (8a1b66c8)
+2018-09-13T08:47:31.3078622+03:00 0HLGP7HHTBH26:00000001 [INF] Executed action "DemoBlog.Controllers.CategoriesController.GetCategory (DemoBlog)" in 2445.114ms (afa2e885)
+2018-09-13T08:47:31.3279007+03:00 0HLGP7HHTBH26:00000001 [INF] Request finished in 2905.7968ms 200 application/json; charset=utf-8 (791a596a)
+2018-09-13T08:49:17.8090818+03:00 0HLGP7HHTBH26:00000002 [INF] Request starting HTTP/1.1 PUT http://localhost:5000/api/categories/6 application/json 59 (ca22a1cb)
+2018-09-13T08:49:17.8233267+03:00 0HLGP7HHTBH26:00000002 [INF] Route matched with "{action = \"UpdateCategory\", controller = \"Categories\"}". Executing action "DemoBlog.Controllers.CategoriesController.UpdateCategory (DemoBlog)" (a44c0341)
+2018-09-13T08:49:17.9336132+03:00 0HLGP7HHTBH26:00000002 [INF] Executing action method "DemoBlog.Controllers.CategoriesController.UpdateCategory (DemoBlog)" with arguments (["6", "DemoBlog.ViewModels.CategoryViewModel"]) - Validation state: Valid (4e3479ed)
+2018-09-13T08:49:17.9376941+03:00 0HLGP7HHTBH26:00000002 [INF] Executed action method "DemoBlog.Controllers.CategoriesController.UpdateCategory (DemoBlog)", returned result "Microsoft.AspNetCore.Mvc.BadRequestObjectResult" in 3.8611ms. (50a9e262)
+2018-09-13T08:49:17.9383922+03:00 0HLGP7HHTBH26:00000002 [INF] Executing ObjectResult, writing value of type '"System.String"'. (8a1b66c8)
+2018-09-13T08:49:17.9404009+03:00 0HLGP7HHTBH26:00000002 [INF] Executed action "DemoBlog.Controllers.CategoriesController.UpdateCategory (DemoBlog)" in 116.8196ms (afa2e885)
+2018-09-13T08:49:17.9415365+03:00 0HLGP7HHTBH26:00000002 [INF] Request finished in 132.5478ms 400 text/plain; charset=utf-8 (791a596a)
+2018-09-13T08:49:27.3350054+03:00 0HLGP7HHTBH26:00000003 [INF] Request starting HTTP/1.1 GET http://localhost:5000/api/categories/3   (ca22a1cb)
+2018-09-13T08:49:27.3365919+03:00 0HLGP7HHTBH26:00000003 [INF] Route matched with "{action = \"GetCategory\", controller = \"Categories\"}". Executing action "DemoBlog.Controllers.CategoriesController.GetCategory (DemoBlog)" (a44c0341)
+2018-09-13T08:49:27.3371257+03:00 0HLGP7HHTBH26:00000003 [INF] Executing action method "DemoBlog.Controllers.CategoriesController.GetCategory (DemoBlog)" with arguments (["3"]) - Validation state: Valid (4e3479ed)
+2018-09-13T08:49:27.3403136+03:00 0HLGP7HHTBH26:00000003 [INF] Entity Framework Core "2.2.0-preview1-35029" initialized '"ApplicationDbContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "MigrationsAssembly=DemoBlog " (9958f5bb)
+2018-09-13T08:49:27.3682010+03:00 0HLGP7HHTBH26:00000003 [INF] Executed DbCommand ("5"ms) [Parameters=["@__id_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [c].[Id], [c].[CreatedBy], [c].[CreatedDate], [c].[Name], [c].[Slug], [c].[UpdatedBy], [c].[UpdatedDate]
+FROM [AppCategories] AS [c]
+WHERE [c].[Id] = @__id_0
+ORDER BY [c].[Id]" (0723d8ff)
+2018-09-13T08:49:27.3744083+03:00 0HLGP7HHTBH26:00000003 [INF] Executed DbCommand ("5"ms) [Parameters=["@__id_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [c.Articles].[Id], [c.Articles].[AuthorId], [c.Articles].[Body], [c.Articles].[CategoryId], [c.Articles].[CreatedBy], [c.Articles].[CreatedDate], [c.Articles].[Slug], [c.Articles].[Title], [c.Articles].[UpdatedBy], [c.Articles].[UpdatedDate]
+FROM [AppArticles] AS [c.Articles]
+INNER JOIN (
+    SELECT TOP(1) [c0].[Id]
+    FROM [AppCategories] AS [c0]
+    WHERE [c0].[Id] = @__id_0
+    ORDER BY [c0].[Id]
+) AS [t] ON [c.Articles].[CategoryId] = [t].[Id]
+ORDER BY [t].[Id]" (0723d8ff)
+2018-09-13T08:49:27.3780711+03:00 0HLGP7HHTBH26:00000003 [INF] Executed action method "DemoBlog.Controllers.CategoriesController.GetCategory (DemoBlog)", returned result "Microsoft.AspNetCore.Mvc.OkObjectResult" in 40.7601ms. (50a9e262)
+2018-09-13T08:49:27.3785968+03:00 0HLGP7HHTBH26:00000003 [INF] Executing ObjectResult, writing value of type '"DemoBlog.ViewModels.CategoryViewModel"'. (8a1b66c8)
+2018-09-13T08:49:27.3794180+03:00 0HLGP7HHTBH26:00000003 [INF] Executed action "DemoBlog.Controllers.CategoriesController.GetCategory (DemoBlog)" in 42.6661ms (afa2e885)
+2018-09-13T08:49:27.3797315+03:00 0HLGP7HHTBH26:00000003 [INF] Request finished in 44.898ms 200 application/json; charset=utf-8 (791a596a)
+2018-09-13T08:49:39.6562414+03:00 0HLGP7HHTBH26:00000004 [INF] Request starting HTTP/1.1 GET http://localhost:5000/api/categories   (ca22a1cb)
+2018-09-13T08:49:39.6624898+03:00 0HLGP7HHTBH26:00000004 [INF] Route matched with "{action = \"GetCategories\", controller = \"Categories\"}". Executing action "DemoBlog.Controllers.CategoriesController.GetCategories (DemoBlog)" (a44c0341)
+2018-09-13T08:49:39.6716754+03:00 0HLGP7HHTBH26:00000004 [INF] Executing action method "DemoBlog.Controllers.CategoriesController.GetCategories (DemoBlog)" - Validation state: Valid (dad538d7)
+2018-09-13T08:49:39.6740827+03:00 0HLGP7HHTBH26:00000004 [INF] Entity Framework Core "2.2.0-preview1-35029" initialized '"ApplicationDbContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "MigrationsAssembly=DemoBlog " (9958f5bb)
+2018-09-13T08:49:39.7441072+03:00 0HLGP7HHTBH26:00000004 [INF] Executed DbCommand ("22"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [a].[Id], [a].[CreatedBy], [a].[CreatedDate], [a].[Name], [a].[Slug], [a].[UpdatedBy], [a].[UpdatedDate]
+FROM [AppCategories] AS [a]" (0723d8ff)
+2018-09-13T08:49:39.7914622+03:00 0HLGP7HHTBH26:00000004 [INF] Executed action method "DemoBlog.Controllers.CategoriesController.GetCategories (DemoBlog)", returned result "Microsoft.AspNetCore.Mvc.OkObjectResult" in 119.6067ms. (50a9e262)
+2018-09-13T08:49:39.7918864+03:00 0HLGP7HHTBH26:00000004 [INF] Executing ObjectResult, writing value of type '"System.Collections.Generic.List`1[[DemoBlog.ViewModels.CategoryViewModel, DemoBlog, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]"'. (8a1b66c8)
+2018-09-13T08:49:39.7944221+03:00 0HLGP7HHTBH26:00000004 [INF] Executed action "DemoBlog.Controllers.CategoriesController.GetCategories (DemoBlog)" in 131.715ms (afa2e885)
+2018-09-13T08:49:39.7951454+03:00 0HLGP7HHTBH26:00000004 [INF] Request finished in 138.9959ms 200 application/json; charset=utf-8 (791a596a)
+2018-09-13T08:51:53.6515384+03:00 0HLGP7HHTBH28:00000001 [INF] Request starting HTTP/1.1 GET http://localhost:5000/api/articles/2   (ca22a1cb)
+2018-09-13T08:51:53.6701017+03:00 0HLGP7HHTBH28:00000001 [INF] Route matched with "{action = \"GetArticle\", controller = \"Articles\"}". Executing action "DemoBlog.Controllers.ArticlesController.GetArticle (DemoBlog)" (a44c0341)
+2018-09-13T08:51:53.6922371+03:00 0HLGP7HHTBH28:00000001 [INF] Executing action method "DemoBlog.Controllers.ArticlesController.GetArticle (DemoBlog)" with arguments (["2"]) - Validation state: Valid (4e3479ed)
+2018-09-13T08:51:53.6951332+03:00 0HLGP7HHTBH28:00000001 [INF] Entity Framework Core "2.2.0-preview1-35029" initialized '"ApplicationDbContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "MigrationsAssembly=DemoBlog " (9958f5bb)
+2018-09-13T08:51:53.9053877+03:00 0HLGP7HHTBH28:00000001 [INF] Executed DbCommand ("10"ms) [Parameters=["@__id_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [a].[Id], [a].[AuthorId], [a].[Body], [a].[CategoryId], [a].[CreatedBy], [a].[CreatedDate], [a].[Slug], [a].[Title], [a].[UpdatedBy], [a].[UpdatedDate], [a.Category].[Id], [a.Category].[CreatedBy], [a.Category].[CreatedDate], [a.Category].[Name], [a.Category].[Slug], [a.Category].[UpdatedBy], [a.Category].[UpdatedDate], [a.Author].[Id], [a.Author].[AccessFailedCount], [a.Author].[ConcurrencyStamp], [a.Author].[CreatedBy], [a.Author].[CreatedDate], [a.Author].[Email], [a.Author].[EmailConfirmed], [a.Author].[FullName], [a.Author].[IsEnabled], [a.Author].[LockoutEnabled], [a.Author].[LockoutEnd], [a.Author].[NormalizedEmail], [a.Author].[NormalizedUserName], [a.Author].[PasswordHash], [a.Author].[PhoneNumber], [a.Author].[PhoneNumberConfirmed], [a.Author].[SecurityStamp], [a.Author].[TwoFactorEnabled], [a.Author].[UpdatedBy], [a.Author].[UpdatedDate], [a.Author].[UserName]
+FROM [AppArticles] AS [a]
+LEFT JOIN [AppCategories] AS [a.Category] ON [a].[CategoryId] = [a.Category].[Id]
+LEFT JOIN [AspNetUsers] AS [a.Author] ON [a].[AuthorId] = [a.Author].[Id]
+WHERE [a].[Id] = @__id_0
+ORDER BY [a].[Id]" (0723d8ff)
+2018-09-13T08:51:54.0266635+03:00 0HLGP7HHTBH28:00000001 [INF] Executed DbCommand ("7"ms) [Parameters=["@__id_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [a.ArticleTags].[Id], [a.ArticleTags].[ArticleId], [a.ArticleTags].[TagId], [a.ArticleTags].[CreatedBy], [a.ArticleTags].[CreatedDate], [a.ArticleTags].[UpdatedBy], [a.ArticleTags].[UpdatedDate], [a.Tag].[Id], [a.Tag].[CreatedBy], [a.Tag].[CreatedDate], [a.Tag].[Name], [a.Tag].[Slug], [a.Tag].[UpdatedBy], [a.Tag].[UpdatedDate]
+FROM [AppArticleTags] AS [a.ArticleTags]
+INNER JOIN [AppTags] AS [a.Tag] ON [a.ArticleTags].[TagId] = [a.Tag].[Id]
+INNER JOIN (
+    SELECT DISTINCT [t].*
+    FROM (
+        SELECT TOP(1) [a0].[Id]
+        FROM [AppArticles] AS [a0]
+        LEFT JOIN [AppCategories] AS [a.Category0] ON [a0].[CategoryId] = [a.Category0].[Id]
+        LEFT JOIN [AspNetUsers] AS [a.Author0] ON [a0].[AuthorId] = [a.Author0].[Id]
+        WHERE [a0].[Id] = @__id_0
+        ORDER BY [a0].[Id]
+    ) AS [t]
+) AS [t0] ON [a.ArticleTags].[ArticleId] = [t0].[Id]
+ORDER BY [t0].[Id]" (0723d8ff)
+2018-09-13T08:51:54.0736045+03:00 0HLGP7HHTBH28:00000001 [INF] Executed DbCommand ("5"ms) [Parameters=["@__id_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [a.Comments].[Id], [a.Comments].[ArticleId], [a.Comments].[Body], [a.Comments].[CreatedBy], [a.Comments].[CreatedDate], [a.Comments].[UpdatedBy], [a.Comments].[UpdatedDate]
+FROM [AppComments] AS [a.Comments]
+INNER JOIN (
+    SELECT DISTINCT [t1].*
+    FROM (
+        SELECT TOP(1) [a1].[Id]
+        FROM [AppArticles] AS [a1]
+        LEFT JOIN [AppCategories] AS [a.Category1] ON [a1].[CategoryId] = [a.Category1].[Id]
+        LEFT JOIN [AspNetUsers] AS [a.Author1] ON [a1].[AuthorId] = [a.Author1].[Id]
+        WHERE [a1].[Id] = @__id_0
+        ORDER BY [a1].[Id]
+    ) AS [t1]
+) AS [t2] ON [a.Comments].[ArticleId] = [t2].[Id]
+ORDER BY [t2].[Id]" (0723d8ff)
+2018-09-13T08:51:54.1114471+03:00 0HLGP7HHTBH28:00000001 [INF] Executed action method "DemoBlog.Controllers.ArticlesController.GetArticle (DemoBlog)", returned result "Microsoft.AspNetCore.Mvc.OkObjectResult" in 419.0038ms. (50a9e262)
+2018-09-13T08:51:54.1152744+03:00 0HLGP7HHTBH28:00000001 [INF] Executing ObjectResult, writing value of type '"DemoBlog.ViewModels.ArticleViewModel"'. (8a1b66c8)
+2018-09-13T08:51:54.1246875+03:00 0HLGP7HHTBH28:00000001 [INF] Executed action "DemoBlog.Controllers.ArticlesController.GetArticle (DemoBlog)" in 454.3758ms (afa2e885)
+2018-09-13T08:51:54.1250374+03:00 0HLGP7HHTBH28:00000001 [INF] Request finished in 473.6273ms 200 application/json; charset=utf-8 (791a596a)
+2018-09-13T08:56:18.7399757+03:00 0HLGP7MFUNFVO:00000001 [INF] Request starting HTTP/1.1 GET http://localhost:5000/api/articles/2   (ca22a1cb)
+2018-09-13T08:56:18.7643104+03:00 0HLGP7MFUNFVO:00000001 [WRN] Failed to determine the https port for redirect. (ca76cc21)
+2018-09-13T08:56:19.2073034+03:00 0HLGP7MFUNFVO:00000001 [INF] Route matched with "{action = \"GetArticle\", controller = \"Articles\"}". Executing action "DemoBlog.Controllers.ArticlesController.GetArticle (DemoBlog)" (a44c0341)
+2018-09-13T08:56:19.2619491+03:00 0HLGP7MFUNFVO:00000001 [INF] Executing action method "DemoBlog.Controllers.ArticlesController.GetArticle (DemoBlog)" with arguments (["2"]) - Validation state: Valid (4e3479ed)
+2018-09-13T08:56:20.4358444+03:00 0HLGP7MFUNFVO:00000001 [INF] Entity Framework Core "2.2.0-preview1-35029" initialized '"ApplicationDbContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "MigrationsAssembly=DemoBlog " (9958f5bb)
+2018-09-13T08:56:21.4761730+03:00 0HLGP7MFUNFVO:00000001 [INF] Executed DbCommand ("18"ms) [Parameters=["@__id_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [a].[Id], [a].[AuthorId], [a].[Body], [a].[CategoryId], [a].[CreatedBy], [a].[CreatedDate], [a].[Slug], [a].[Title], [a].[UpdatedBy], [a].[UpdatedDate], [a.Category].[Id], [a.Category].[CreatedBy], [a.Category].[CreatedDate], [a.Category].[Name], [a.Category].[Slug], [a.Category].[UpdatedBy], [a.Category].[UpdatedDate], [a.Author].[Id], [a.Author].[AccessFailedCount], [a.Author].[ConcurrencyStamp], [a.Author].[CreatedBy], [a.Author].[CreatedDate], [a.Author].[Email], [a.Author].[EmailConfirmed], [a.Author].[FullName], [a.Author].[IsEnabled], [a.Author].[LockoutEnabled], [a.Author].[LockoutEnd], [a.Author].[NormalizedEmail], [a.Author].[NormalizedUserName], [a.Author].[PasswordHash], [a.Author].[PhoneNumber], [a.Author].[PhoneNumberConfirmed], [a.Author].[SecurityStamp], [a.Author].[TwoFactorEnabled], [a.Author].[UpdatedBy], [a.Author].[UpdatedDate], [a.Author].[UserName]
+FROM [AppArticles] AS [a]
+LEFT JOIN [AppCategories] AS [a.Category] ON [a].[CategoryId] = [a.Category].[Id]
+LEFT JOIN [AspNetUsers] AS [a.Author] ON [a].[AuthorId] = [a.Author].[Id]
+WHERE [a].[Id] = @__id_0
+ORDER BY [a].[Id]" (0723d8ff)
+2018-09-13T08:56:21.7771108+03:00 0HLGP7MFUNFVO:00000001 [INF] Executed DbCommand ("7"ms) [Parameters=["@__id_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [a.ArticleTags].[Id], [a.ArticleTags].[ArticleId], [a.ArticleTags].[TagId], [a.ArticleTags].[CreatedBy], [a.ArticleTags].[CreatedDate], [a.ArticleTags].[UpdatedBy], [a.ArticleTags].[UpdatedDate], [a.Tag].[Id], [a.Tag].[CreatedBy], [a.Tag].[CreatedDate], [a.Tag].[Name], [a.Tag].[Slug], [a.Tag].[UpdatedBy], [a.Tag].[UpdatedDate]
+FROM [AppArticleTags] AS [a.ArticleTags]
+INNER JOIN [AppTags] AS [a.Tag] ON [a.ArticleTags].[TagId] = [a.Tag].[Id]
+INNER JOIN (
+    SELECT DISTINCT [t].*
+    FROM (
+        SELECT TOP(1) [a0].[Id]
+        FROM [AppArticles] AS [a0]
+        LEFT JOIN [AppCategories] AS [a.Category0] ON [a0].[CategoryId] = [a.Category0].[Id]
+        LEFT JOIN [AspNetUsers] AS [a.Author0] ON [a0].[AuthorId] = [a.Author0].[Id]
+        WHERE [a0].[Id] = @__id_0
+        ORDER BY [a0].[Id]
+    ) AS [t]
+) AS [t0] ON [a.ArticleTags].[ArticleId] = [t0].[Id]
+ORDER BY [t0].[Id]" (0723d8ff)
+2018-09-13T08:56:21.8454594+03:00 0HLGP7MFUNFVO:00000001 [INF] Executed DbCommand ("4"ms) [Parameters=["@__id_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [a.Comments].[Id], [a.Comments].[ArticleId], [a.Comments].[Body], [a.Comments].[CreatedBy], [a.Comments].[CreatedDate], [a.Comments].[UpdatedBy], [a.Comments].[UpdatedDate]
+FROM [AppComments] AS [a.Comments]
+INNER JOIN (
+    SELECT DISTINCT [t1].*
+    FROM (
+        SELECT TOP(1) [a1].[Id]
+        FROM [AppArticles] AS [a1]
+        LEFT JOIN [AppCategories] AS [a.Category1] ON [a1].[CategoryId] = [a.Category1].[Id]
+        LEFT JOIN [AspNetUsers] AS [a.Author1] ON [a1].[AuthorId] = [a.Author1].[Id]
+        WHERE [a1].[Id] = @__id_0
+        ORDER BY [a1].[Id]
+    ) AS [t1]
+) AS [t2] ON [a.Comments].[ArticleId] = [t2].[Id]
+ORDER BY [t2].[Id]" (0723d8ff)
+2018-09-13T08:56:21.9395548+03:00 0HLGP7MFUNFVO:00000001 [INF] Executed action method "DemoBlog.Controllers.ArticlesController.GetArticle (DemoBlog)", returned result "Microsoft.AspNetCore.Mvc.OkObjectResult" in 2672.8232ms. (50a9e262)
+2018-09-13T08:56:21.9579842+03:00 0HLGP7MFUNFVO:00000001 [INF] Executing ObjectResult, writing value of type '"DemoBlog.ViewModels.ArticleViewModel"'. (8a1b66c8)
+2018-09-13T08:56:22.0128857+03:00 0HLGP7MFUNFVO:00000001 [INF] Executed action "DemoBlog.Controllers.ArticlesController.GetArticle (DemoBlog)" in 2799.1937ms (afa2e885)
+2018-09-13T08:56:22.0349415+03:00 0HLGP7MFUNFVO:00000001 [INF] Request finished in 3307.5497ms 200 application/json; charset=utf-8 (791a596a)
+2018-09-13T09:06:51.4612455+03:00 0HLGP7SCGQUVK:00000001 [INF] Request starting HTTP/1.1 GET http://localhost:5000/api/articles/2   (ca22a1cb)
+2018-09-13T09:06:51.4854963+03:00 0HLGP7SCGQUVK:00000001 [WRN] Failed to determine the https port for redirect. (ca76cc21)
+2018-09-13T09:06:51.8941986+03:00 0HLGP7SCGQUVK:00000001 [INF] Route matched with "{action = \"GetArticle\", controller = \"Articles\"}". Executing action "DemoBlog.Controllers.ArticlesController.GetArticle (DemoBlog)" (a44c0341)
+2018-09-13T09:06:51.9653670+03:00 0HLGP7SCGQUVK:00000001 [INF] Executing action method "DemoBlog.Controllers.ArticlesController.GetArticle (DemoBlog)" with arguments (["2"]) - Validation state: Valid (4e3479ed)
+2018-09-13T09:06:53.0963168+03:00 0HLGP7SCGQUVK:00000001 [INF] Entity Framework Core "2.2.0-preview1-35029" initialized '"ApplicationDbContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "MigrationsAssembly=DemoBlog " (9958f5bb)
+2018-09-13T09:06:54.1522581+03:00 0HLGP7SCGQUVK:00000001 [INF] Executed DbCommand ("18"ms) [Parameters=["@__id_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [a].[Id], [a].[AuthorId], [a].[Body], [a].[CategoryId], [a].[CreatedBy], [a].[CreatedDate], [a].[Slug], [a].[Title], [a].[UpdatedBy], [a].[UpdatedDate], [a.Category].[Id], [a.Category].[CreatedBy], [a.Category].[CreatedDate], [a.Category].[Name], [a.Category].[Slug], [a.Category].[UpdatedBy], [a.Category].[UpdatedDate], [a.Author].[Id], [a.Author].[AccessFailedCount], [a.Author].[ConcurrencyStamp], [a.Author].[CreatedBy], [a.Author].[CreatedDate], [a.Author].[Email], [a.Author].[EmailConfirmed], [a.Author].[FullName], [a.Author].[IsEnabled], [a.Author].[LockoutEnabled], [a.Author].[LockoutEnd], [a.Author].[NormalizedEmail], [a.Author].[NormalizedUserName], [a.Author].[PasswordHash], [a.Author].[PhoneNumber], [a.Author].[PhoneNumberConfirmed], [a.Author].[SecurityStamp], [a.Author].[TwoFactorEnabled], [a.Author].[UpdatedBy], [a.Author].[UpdatedDate], [a.Author].[UserName]
+FROM [AppArticles] AS [a]
+LEFT JOIN [AppCategories] AS [a.Category] ON [a].[CategoryId] = [a.Category].[Id]
+LEFT JOIN [AspNetUsers] AS [a.Author] ON [a].[AuthorId] = [a.Author].[Id]
+WHERE [a].[Id] = @__id_0
+ORDER BY [a].[Id]" (0723d8ff)
+2018-09-13T09:06:54.4476495+03:00 0HLGP7SCGQUVK:00000001 [INF] Executed DbCommand ("7"ms) [Parameters=["@__id_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [a.ArticleTags].[Id], [a.ArticleTags].[ArticleId], [a.ArticleTags].[TagId], [a.ArticleTags].[CreatedBy], [a.ArticleTags].[CreatedDate], [a.ArticleTags].[UpdatedBy], [a.ArticleTags].[UpdatedDate], [a.Tag].[Id], [a.Tag].[CreatedBy], [a.Tag].[CreatedDate], [a.Tag].[Name], [a.Tag].[Slug], [a.Tag].[UpdatedBy], [a.Tag].[UpdatedDate]
+FROM [AppArticleTags] AS [a.ArticleTags]
+INNER JOIN [AppTags] AS [a.Tag] ON [a.ArticleTags].[TagId] = [a.Tag].[Id]
+INNER JOIN (
+    SELECT DISTINCT [t].*
+    FROM (
+        SELECT TOP(1) [a0].[Id]
+        FROM [AppArticles] AS [a0]
+        LEFT JOIN [AppCategories] AS [a.Category0] ON [a0].[CategoryId] = [a.Category0].[Id]
+        LEFT JOIN [AspNetUsers] AS [a.Author0] ON [a0].[AuthorId] = [a.Author0].[Id]
+        WHERE [a0].[Id] = @__id_0
+        ORDER BY [a0].[Id]
+    ) AS [t]
+) AS [t0] ON [a.ArticleTags].[ArticleId] = [t0].[Id]
+ORDER BY [t0].[Id]" (0723d8ff)
+2018-09-13T09:06:54.5141940+03:00 0HLGP7SCGQUVK:00000001 [INF] Executed DbCommand ("4"ms) [Parameters=["@__id_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [a.Comments].[Id], [a.Comments].[ArticleId], [a.Comments].[Body], [a.Comments].[CreatedBy], [a.Comments].[CreatedDate], [a.Comments].[UpdatedBy], [a.Comments].[UpdatedDate]
+FROM [AppComments] AS [a.Comments]
+INNER JOIN (
+    SELECT DISTINCT [t1].*
+    FROM (
+        SELECT TOP(1) [a1].[Id]
+        FROM [AppArticles] AS [a1]
+        LEFT JOIN [AppCategories] AS [a.Category1] ON [a1].[CategoryId] = [a.Category1].[Id]
+        LEFT JOIN [AspNetUsers] AS [a.Author1] ON [a1].[AuthorId] = [a.Author1].[Id]
+        WHERE [a1].[Id] = @__id_0
+        ORDER BY [a1].[Id]
+    ) AS [t1]
+) AS [t2] ON [a.Comments].[ArticleId] = [t2].[Id]
+ORDER BY [t2].[Id]" (0723d8ff)
+2018-09-13T09:06:54.6535377+03:00 0HLGP7SCGQUVK:00000001 [INF] Executed action method "DemoBlog.Controllers.ArticlesController.GetArticle (DemoBlog)", returned result "Microsoft.AspNetCore.Mvc.OkObjectResult" in 2684.029ms. (50a9e262)
+2018-09-13T09:06:54.6726878+03:00 0HLGP7SCGQUVK:00000001 [INF] Executing ObjectResult, writing value of type '"DemoBlog.ViewModels.ArticleViewModel"'. (8a1b66c8)
+2018-09-13T09:06:54.7315181+03:00 0HLGP7SCGQUVK:00000001 [INF] Executed action "DemoBlog.Controllers.ArticlesController.GetArticle (DemoBlog)" in 2830.0475ms (afa2e885)
+2018-09-13T09:06:54.7808736+03:00 0HLGP7SCGQUVK:00000001 [ERR] An unhandled exception has occurred while executing the request. (48a46595)
+Newtonsoft.Json.JsonSerializationException: Self referencing loop detected with type 'DemoBlog.ViewModels.ArticleViewModel'. Path 'category.articles'.
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalWriter.CheckForCircularReference(JsonWriter writer, Object value, JsonProperty property, JsonContract contract, JsonContainerContract containerContract, JsonProperty containerProperty)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalWriter.SerializeList(JsonWriter writer, IEnumerable values, JsonArrayContract contract, JsonProperty member, JsonContainerContract collectionContract, JsonProperty containerProperty)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalWriter.SerializeValue(JsonWriter writer, Object value, JsonContract valueContract, JsonProperty member, JsonContainerContract containerContract, JsonProperty containerProperty)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalWriter.SerializeObject(JsonWriter writer, Object value, JsonObjectContract contract, JsonProperty member, JsonContainerContract collectionContract, JsonProperty containerProperty)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalWriter.SerializeValue(JsonWriter writer, Object value, JsonContract valueContract, JsonProperty member, JsonContainerContract containerContract, JsonProperty containerProperty)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalWriter.SerializeObject(JsonWriter writer, Object value, JsonObjectContract contract, JsonProperty member, JsonContainerContract collectionContract, JsonProperty containerProperty)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalWriter.SerializeValue(JsonWriter writer, Object value, JsonContract valueContract, JsonProperty member, JsonContainerContract containerContract, JsonProperty containerProperty)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalWriter.Serialize(JsonWriter jsonWriter, Object value, Type objectType)
+   at Newtonsoft.Json.JsonSerializer.SerializeInternal(JsonWriter jsonWriter, Object value, Type objectType)
+   at Newtonsoft.Json.JsonSerializer.Serialize(JsonWriter jsonWriter, Object value)
+   at Microsoft.AspNetCore.Mvc.Formatters.JsonOutputFormatter.WriteObject(TextWriter writer, Object value)
+   at Microsoft.AspNetCore.Mvc.Formatters.JsonOutputFormatter.WriteResponseBodyAsync(OutputFormatterWriteContext context, Encoding selectedEncoding)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeResultAsync(IActionResult result)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeNextResultFilterAsync[TFilter,TFilterAsync]()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Rethrow(ResultExecutedContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.ResultNext[TFilter,TFilterAsync](State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeResultFilters()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeNextResourceFilter()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Rethrow(ResourceExecutedContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeFilterPipelineAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeAsync()
+   at Microsoft.AspNetCore.Builder.RouterMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.StaticFiles.StaticFileMiddleware.Invoke(HttpContext context)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIIndexMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.StaticFiles.StaticFileMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Cors.Infrastructure.CorsMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.Invoke(HttpContext context)
+2018-09-13T09:06:54.7811059+03:00 0HLGP7SCGQUVK:00000001 [WRN] The response has already started, the error page middleware will not be executed. (e1dd4c0d)
+2018-09-13T09:06:54.7899044+03:00 0HLGP7SCGQUVK:00000001 [ERR] Connection id ""0HLGP7SCGQUVK"", Request id ""0HLGP7SCGQUVK:00000001"": An unhandled exception was thrown by the application. (560e7d32)
+Newtonsoft.Json.JsonSerializationException: Self referencing loop detected with type 'DemoBlog.ViewModels.ArticleViewModel'. Path 'category.articles'.
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalWriter.CheckForCircularReference(JsonWriter writer, Object value, JsonProperty property, JsonContract contract, JsonContainerContract containerContract, JsonProperty containerProperty)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalWriter.SerializeList(JsonWriter writer, IEnumerable values, JsonArrayContract contract, JsonProperty member, JsonContainerContract collectionContract, JsonProperty containerProperty)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalWriter.SerializeValue(JsonWriter writer, Object value, JsonContract valueContract, JsonProperty member, JsonContainerContract containerContract, JsonProperty containerProperty)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalWriter.SerializeObject(JsonWriter writer, Object value, JsonObjectContract contract, JsonProperty member, JsonContainerContract collectionContract, JsonProperty containerProperty)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalWriter.SerializeValue(JsonWriter writer, Object value, JsonContract valueContract, JsonProperty member, JsonContainerContract containerContract, JsonProperty containerProperty)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalWriter.SerializeObject(JsonWriter writer, Object value, JsonObjectContract contract, JsonProperty member, JsonContainerContract collectionContract, JsonProperty containerProperty)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalWriter.SerializeValue(JsonWriter writer, Object value, JsonContract valueContract, JsonProperty member, JsonContainerContract containerContract, JsonProperty containerProperty)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalWriter.Serialize(JsonWriter jsonWriter, Object value, Type objectType)
+   at Newtonsoft.Json.JsonSerializer.SerializeInternal(JsonWriter jsonWriter, Object value, Type objectType)
+   at Newtonsoft.Json.JsonSerializer.Serialize(JsonWriter jsonWriter, Object value)
+   at Microsoft.AspNetCore.Mvc.Formatters.JsonOutputFormatter.WriteObject(TextWriter writer, Object value)
+   at Microsoft.AspNetCore.Mvc.Formatters.JsonOutputFormatter.WriteResponseBodyAsync(OutputFormatterWriteContext context, Encoding selectedEncoding)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeResultAsync(IActionResult result)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeNextResultFilterAsync[TFilter,TFilterAsync]()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Rethrow(ResultExecutedContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.ResultNext[TFilter,TFilterAsync](State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeResultFilters()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeNextResourceFilter()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Rethrow(ResourceExecutedContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeFilterPipelineAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeAsync()
+   at Microsoft.AspNetCore.Builder.RouterMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.StaticFiles.StaticFileMiddleware.Invoke(HttpContext context)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIIndexMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.StaticFiles.StaticFileMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Cors.Infrastructure.CorsMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Http.HttpProtocol.ProcessRequests[TContext](IHttpApplication`1 application)
+2018-09-13T09:06:54.8019144+03:00 0HLGP7SCGQUVK:00000001 [INF] Request finished in 3356.9356ms 200 application/json; charset=utf-8 (791a596a)
+2018-09-13T09:08:01.3207729+03:00 0HLGP7T1B0I3L:00000001 [INF] Request starting HTTP/1.1 GET http://localhost:5000/api/articles/2   (ca22a1cb)
+2018-09-13T09:08:01.3465722+03:00 0HLGP7T1B0I3L:00000001 [WRN] Failed to determine the https port for redirect. (ca76cc21)
+2018-09-13T09:08:01.7493538+03:00 0HLGP7T1B0I3L:00000001 [INF] Route matched with "{action = \"GetArticle\", controller = \"Articles\"}". Executing action "DemoBlog.Controllers.ArticlesController.GetArticle (DemoBlog)" (a44c0341)
+2018-09-13T09:08:01.7986417+03:00 0HLGP7T1B0I3L:00000001 [INF] Executing action method "DemoBlog.Controllers.ArticlesController.GetArticle (DemoBlog)" with arguments (["2"]) - Validation state: Valid (4e3479ed)
+2018-09-13T09:08:03.0325060+03:00 0HLGP7T1B0I3L:00000001 [INF] Entity Framework Core "2.2.0-preview1-35029" initialized '"ApplicationDbContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "MigrationsAssembly=DemoBlog " (9958f5bb)
+2018-09-13T09:08:04.0701560+03:00 0HLGP7T1B0I3L:00000001 [INF] Executed DbCommand ("19"ms) [Parameters=["@__id_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [a].[Id], [a].[AuthorId], [a].[Body], [a].[CategoryId], [a].[CreatedBy], [a].[CreatedDate], [a].[Slug], [a].[Title], [a].[UpdatedBy], [a].[UpdatedDate], [a.Category].[Id], [a.Category].[CreatedBy], [a.Category].[CreatedDate], [a.Category].[Name], [a.Category].[Slug], [a.Category].[UpdatedBy], [a.Category].[UpdatedDate], [a.Author].[Id], [a.Author].[AccessFailedCount], [a.Author].[ConcurrencyStamp], [a.Author].[CreatedBy], [a.Author].[CreatedDate], [a.Author].[Email], [a.Author].[EmailConfirmed], [a.Author].[FullName], [a.Author].[IsEnabled], [a.Author].[LockoutEnabled], [a.Author].[LockoutEnd], [a.Author].[NormalizedEmail], [a.Author].[NormalizedUserName], [a.Author].[PasswordHash], [a.Author].[PhoneNumber], [a.Author].[PhoneNumberConfirmed], [a.Author].[SecurityStamp], [a.Author].[TwoFactorEnabled], [a.Author].[UpdatedBy], [a.Author].[UpdatedDate], [a.Author].[UserName]
+FROM [AppArticles] AS [a]
+LEFT JOIN [AppCategories] AS [a.Category] ON [a].[CategoryId] = [a.Category].[Id]
+LEFT JOIN [AspNetUsers] AS [a.Author] ON [a].[AuthorId] = [a.Author].[Id]
+WHERE [a].[Id] = @__id_0
+ORDER BY [a].[Id]" (0723d8ff)
+2018-09-13T09:08:04.3787127+03:00 0HLGP7T1B0I3L:00000001 [INF] Executed DbCommand ("7"ms) [Parameters=["@__id_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [a.ArticleTags].[Id], [a.ArticleTags].[ArticleId], [a.ArticleTags].[TagId], [a.ArticleTags].[CreatedBy], [a.ArticleTags].[CreatedDate], [a.ArticleTags].[UpdatedBy], [a.ArticleTags].[UpdatedDate], [a.Tag].[Id], [a.Tag].[CreatedBy], [a.Tag].[CreatedDate], [a.Tag].[Name], [a.Tag].[Slug], [a.Tag].[UpdatedBy], [a.Tag].[UpdatedDate]
+FROM [AppArticleTags] AS [a.ArticleTags]
+INNER JOIN [AppTags] AS [a.Tag] ON [a.ArticleTags].[TagId] = [a.Tag].[Id]
+INNER JOIN (
+    SELECT DISTINCT [t].*
+    FROM (
+        SELECT TOP(1) [a0].[Id]
+        FROM [AppArticles] AS [a0]
+        LEFT JOIN [AppCategories] AS [a.Category0] ON [a0].[CategoryId] = [a.Category0].[Id]
+        LEFT JOIN [AspNetUsers] AS [a.Author0] ON [a0].[AuthorId] = [a.Author0].[Id]
+        WHERE [a0].[Id] = @__id_0
+        ORDER BY [a0].[Id]
+    ) AS [t]
+) AS [t0] ON [a.ArticleTags].[ArticleId] = [t0].[Id]
+ORDER BY [t0].[Id]" (0723d8ff)
+2018-09-13T09:08:04.4512065+03:00 0HLGP7T1B0I3L:00000001 [INF] Executed DbCommand ("4"ms) [Parameters=["@__id_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [a.Comments].[Id], [a.Comments].[ArticleId], [a.Comments].[Body], [a.Comments].[CreatedBy], [a.Comments].[CreatedDate], [a.Comments].[UpdatedBy], [a.Comments].[UpdatedDate]
+FROM [AppComments] AS [a.Comments]
+INNER JOIN (
+    SELECT DISTINCT [t1].*
+    FROM (
+        SELECT TOP(1) [a1].[Id]
+        FROM [AppArticles] AS [a1]
+        LEFT JOIN [AppCategories] AS [a.Category1] ON [a1].[CategoryId] = [a.Category1].[Id]
+        LEFT JOIN [AspNetUsers] AS [a.Author1] ON [a1].[AuthorId] = [a.Author1].[Id]
+        WHERE [a1].[Id] = @__id_0
+        ORDER BY [a1].[Id]
+    ) AS [t1]
+) AS [t2] ON [a.Comments].[ArticleId] = [t2].[Id]
+ORDER BY [t2].[Id]" (0723d8ff)
+2018-09-13T09:08:04.5950470+03:00 0HLGP7T1B0I3L:00000001 [INF] Executed action method "DemoBlog.Controllers.ArticlesController.GetArticle (DemoBlog)", returned result "Microsoft.AspNetCore.Mvc.OkObjectResult" in 2792.0034ms. (50a9e262)
+2018-09-13T09:08:04.6148469+03:00 0HLGP7T1B0I3L:00000001 [INF] Executing ObjectResult, writing value of type '"DemoBlog.ViewModels.ArticleViewModel"'. (8a1b66c8)
+2018-09-13T09:08:04.6649869+03:00 0HLGP7T1B0I3L:00000001 [INF] Executed action "DemoBlog.Controllers.ArticlesController.GetArticle (DemoBlog)" in 2908.9137ms (afa2e885)
+2018-09-13T09:08:04.7180081+03:00 0HLGP7T1B0I3L:00000001 [ERR] An unhandled exception has occurred while executing the request. (48a46595)
+Newtonsoft.Json.JsonSerializationException: Self referencing loop detected with type 'DemoBlog.ViewModels.ArticleViewModel'. Path 'category.articles'.
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalWriter.CheckForCircularReference(JsonWriter writer, Object value, JsonProperty property, JsonContract contract, JsonContainerContract containerContract, JsonProperty containerProperty)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalWriter.SerializeList(JsonWriter writer, IEnumerable values, JsonArrayContract contract, JsonProperty member, JsonContainerContract collectionContract, JsonProperty containerProperty)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalWriter.SerializeValue(JsonWriter writer, Object value, JsonContract valueContract, JsonProperty member, JsonContainerContract containerContract, JsonProperty containerProperty)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalWriter.SerializeObject(JsonWriter writer, Object value, JsonObjectContract contract, JsonProperty member, JsonContainerContract collectionContract, JsonProperty containerProperty)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalWriter.SerializeValue(JsonWriter writer, Object value, JsonContract valueContract, JsonProperty member, JsonContainerContract containerContract, JsonProperty containerProperty)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalWriter.SerializeObject(JsonWriter writer, Object value, JsonObjectContract contract, JsonProperty member, JsonContainerContract collectionContract, JsonProperty containerProperty)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalWriter.SerializeValue(JsonWriter writer, Object value, JsonContract valueContract, JsonProperty member, JsonContainerContract containerContract, JsonProperty containerProperty)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalWriter.Serialize(JsonWriter jsonWriter, Object value, Type objectType)
+   at Newtonsoft.Json.JsonSerializer.SerializeInternal(JsonWriter jsonWriter, Object value, Type objectType)
+   at Newtonsoft.Json.JsonSerializer.Serialize(JsonWriter jsonWriter, Object value)
+   at Microsoft.AspNetCore.Mvc.Formatters.JsonOutputFormatter.WriteObject(TextWriter writer, Object value)
+   at Microsoft.AspNetCore.Mvc.Formatters.JsonOutputFormatter.WriteResponseBodyAsync(OutputFormatterWriteContext context, Encoding selectedEncoding)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeResultAsync(IActionResult result)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeNextResultFilterAsync[TFilter,TFilterAsync]()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Rethrow(ResultExecutedContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.ResultNext[TFilter,TFilterAsync](State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeResultFilters()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeNextResourceFilter()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Rethrow(ResourceExecutedContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeFilterPipelineAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeAsync()
+   at Microsoft.AspNetCore.Builder.RouterMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.StaticFiles.StaticFileMiddleware.Invoke(HttpContext context)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIIndexMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.StaticFiles.StaticFileMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Cors.Infrastructure.CorsMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.Invoke(HttpContext context)
+2018-09-13T09:08:04.7181878+03:00 0HLGP7T1B0I3L:00000001 [WRN] The response has already started, the error page middleware will not be executed. (e1dd4c0d)
+2018-09-13T09:08:04.7255340+03:00 0HLGP7T1B0I3L:00000001 [ERR] Connection id ""0HLGP7T1B0I3L"", Request id ""0HLGP7T1B0I3L:00000001"": An unhandled exception was thrown by the application. (560e7d32)
+Newtonsoft.Json.JsonSerializationException: Self referencing loop detected with type 'DemoBlog.ViewModels.ArticleViewModel'. Path 'category.articles'.
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalWriter.CheckForCircularReference(JsonWriter writer, Object value, JsonProperty property, JsonContract contract, JsonContainerContract containerContract, JsonProperty containerProperty)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalWriter.SerializeList(JsonWriter writer, IEnumerable values, JsonArrayContract contract, JsonProperty member, JsonContainerContract collectionContract, JsonProperty containerProperty)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalWriter.SerializeValue(JsonWriter writer, Object value, JsonContract valueContract, JsonProperty member, JsonContainerContract containerContract, JsonProperty containerProperty)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalWriter.SerializeObject(JsonWriter writer, Object value, JsonObjectContract contract, JsonProperty member, JsonContainerContract collectionContract, JsonProperty containerProperty)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalWriter.SerializeValue(JsonWriter writer, Object value, JsonContract valueContract, JsonProperty member, JsonContainerContract containerContract, JsonProperty containerProperty)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalWriter.SerializeObject(JsonWriter writer, Object value, JsonObjectContract contract, JsonProperty member, JsonContainerContract collectionContract, JsonProperty containerProperty)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalWriter.SerializeValue(JsonWriter writer, Object value, JsonContract valueContract, JsonProperty member, JsonContainerContract containerContract, JsonProperty containerProperty)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalWriter.Serialize(JsonWriter jsonWriter, Object value, Type objectType)
+   at Newtonsoft.Json.JsonSerializer.SerializeInternal(JsonWriter jsonWriter, Object value, Type objectType)
+   at Newtonsoft.Json.JsonSerializer.Serialize(JsonWriter jsonWriter, Object value)
+   at Microsoft.AspNetCore.Mvc.Formatters.JsonOutputFormatter.WriteObject(TextWriter writer, Object value)
+   at Microsoft.AspNetCore.Mvc.Formatters.JsonOutputFormatter.WriteResponseBodyAsync(OutputFormatterWriteContext context, Encoding selectedEncoding)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeResultAsync(IActionResult result)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeNextResultFilterAsync[TFilter,TFilterAsync]()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Rethrow(ResultExecutedContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.ResultNext[TFilter,TFilterAsync](State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeResultFilters()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeNextResourceFilter()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Rethrow(ResourceExecutedContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeFilterPipelineAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeAsync()
+   at Microsoft.AspNetCore.Builder.RouterMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.StaticFiles.StaticFileMiddleware.Invoke(HttpContext context)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIIndexMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.StaticFiles.StaticFileMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Cors.Infrastructure.CorsMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Http.HttpProtocol.ProcessRequests[TContext](IHttpApplication`1 application)
+2018-09-13T09:08:04.7385026+03:00 0HLGP7T1B0I3L:00000001 [INF] Request finished in 3434.2136ms 200 application/json; charset=utf-8 (791a596a)
+2018-09-13T09:14:56.4080754+03:00 0HLGP80T1H7UL:00000001 [INF] Request starting HTTP/1.1 GET http://localhost:5000/api/articles/2   (ca22a1cb)
+2018-09-13T09:14:56.4342421+03:00 0HLGP80T1H7UL:00000001 [WRN] Failed to determine the https port for redirect. (ca76cc21)
+2018-09-13T09:14:56.9596806+03:00 0HLGP80T1H7UL:00000001 [INF] Route matched with "{action = \"GetArticle\", controller = \"Articles\"}". Executing action "DemoBlog.Controllers.ArticlesController.GetArticle (DemoBlog)" (a44c0341)
+2018-09-13T09:14:57.0308575+03:00 0HLGP80T1H7UL:00000001 [INF] Executing action method "DemoBlog.Controllers.ArticlesController.GetArticle (DemoBlog)" with arguments (["2"]) - Validation state: Valid (4e3479ed)
+2018-09-13T09:14:58.3050850+03:00 0HLGP80T1H7UL:00000001 [INF] Entity Framework Core "2.2.0-preview1-35029" initialized '"ApplicationDbContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "MigrationsAssembly=DemoBlog " (9958f5bb)
+2018-09-13T09:14:59.4189758+03:00 0HLGP80T1H7UL:00000001 [INF] Executed DbCommand ("23"ms) [Parameters=["@__id_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [a].[Id], [a].[AuthorId], [a].[Body], [a].[CategoryId], [a].[CreatedBy], [a].[CreatedDate], [a].[Slug], [a].[Title], [a].[UpdatedBy], [a].[UpdatedDate], [a.Category].[Id], [a.Category].[CreatedBy], [a.Category].[CreatedDate], [a.Category].[Name], [a.Category].[Slug], [a.Category].[UpdatedBy], [a.Category].[UpdatedDate], [a.Author].[Id], [a.Author].[AccessFailedCount], [a.Author].[ConcurrencyStamp], [a.Author].[CreatedBy], [a.Author].[CreatedDate], [a.Author].[Email], [a.Author].[EmailConfirmed], [a.Author].[FullName], [a.Author].[IsEnabled], [a.Author].[LockoutEnabled], [a.Author].[LockoutEnd], [a.Author].[NormalizedEmail], [a.Author].[NormalizedUserName], [a.Author].[PasswordHash], [a.Author].[PhoneNumber], [a.Author].[PhoneNumberConfirmed], [a.Author].[SecurityStamp], [a.Author].[TwoFactorEnabled], [a.Author].[UpdatedBy], [a.Author].[UpdatedDate], [a.Author].[UserName]
+FROM [AppArticles] AS [a]
+LEFT JOIN [AppCategories] AS [a.Category] ON [a].[CategoryId] = [a.Category].[Id]
+LEFT JOIN [AspNetUsers] AS [a.Author] ON [a].[AuthorId] = [a.Author].[Id]
+WHERE [a].[Id] = @__id_0
+ORDER BY [a].[Id]" (0723d8ff)
+2018-09-13T09:14:59.7473627+03:00 0HLGP80T1H7UL:00000001 [INF] Executed DbCommand ("8"ms) [Parameters=["@__id_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [a.ArticleTags].[Id], [a.ArticleTags].[ArticleId], [a.ArticleTags].[TagId], [a.ArticleTags].[CreatedBy], [a.ArticleTags].[CreatedDate], [a.ArticleTags].[UpdatedBy], [a.ArticleTags].[UpdatedDate], [a.Tag].[Id], [a.Tag].[CreatedBy], [a.Tag].[CreatedDate], [a.Tag].[Name], [a.Tag].[Slug], [a.Tag].[UpdatedBy], [a.Tag].[UpdatedDate]
+FROM [AppArticleTags] AS [a.ArticleTags]
+INNER JOIN [AppTags] AS [a.Tag] ON [a.ArticleTags].[TagId] = [a.Tag].[Id]
+INNER JOIN (
+    SELECT DISTINCT [t].*
+    FROM (
+        SELECT TOP(1) [a0].[Id]
+        FROM [AppArticles] AS [a0]
+        LEFT JOIN [AppCategories] AS [a.Category0] ON [a0].[CategoryId] = [a.Category0].[Id]
+        LEFT JOIN [AspNetUsers] AS [a.Author0] ON [a0].[AuthorId] = [a.Author0].[Id]
+        WHERE [a0].[Id] = @__id_0
+        ORDER BY [a0].[Id]
+    ) AS [t]
+) AS [t0] ON [a.ArticleTags].[ArticleId] = [t0].[Id]
+ORDER BY [t0].[Id]" (0723d8ff)
+2018-09-13T09:14:59.8153623+03:00 0HLGP80T1H7UL:00000001 [INF] Executed DbCommand ("4"ms) [Parameters=["@__id_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [a.Comments].[Id], [a.Comments].[ArticleId], [a.Comments].[Body], [a.Comments].[CreatedBy], [a.Comments].[CreatedDate], [a.Comments].[UpdatedBy], [a.Comments].[UpdatedDate]
+FROM [AppComments] AS [a.Comments]
+INNER JOIN (
+    SELECT DISTINCT [t1].*
+    FROM (
+        SELECT TOP(1) [a1].[Id]
+        FROM [AppArticles] AS [a1]
+        LEFT JOIN [AppCategories] AS [a.Category1] ON [a1].[CategoryId] = [a.Category1].[Id]
+        LEFT JOIN [AspNetUsers] AS [a.Author1] ON [a1].[AuthorId] = [a.Author1].[Id]
+        WHERE [a1].[Id] = @__id_0
+        ORDER BY [a1].[Id]
+    ) AS [t1]
+) AS [t2] ON [a.Comments].[ArticleId] = [t2].[Id]
+ORDER BY [t2].[Id]" (0723d8ff)
+2018-09-13T09:14:59.9262518+03:00 0HLGP80T1H7UL:00000001 [INF] Executed action method "DemoBlog.Controllers.ArticlesController.GetArticle (DemoBlog)", returned result "Microsoft.AspNetCore.Mvc.OkObjectResult" in 2890.7795ms. (50a9e262)
+2018-09-13T09:14:59.9469671+03:00 0HLGP80T1H7UL:00000001 [INF] Executing ObjectResult, writing value of type '"DemoBlog.ViewModels.ArticleViewModel"'. (8a1b66c8)
+2018-09-13T09:15:00.0074659+03:00 0HLGP80T1H7UL:00000001 [INF] Executed action "DemoBlog.Controllers.ArticlesController.GetArticle (DemoBlog)" in 3039.9547ms (afa2e885)
+2018-09-13T09:15:00.0323614+03:00 0HLGP80T1H7UL:00000001 [INF] Request finished in 3642.0074ms 200 application/json; charset=utf-8 (791a596a)

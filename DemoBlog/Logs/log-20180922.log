@@ -1,0 +1,1378 @@
+2018-09-22T18:58:46.3136499+03:00 0HLH0KH3J6I76:00000001 [INF] Request starting HTTP/1.1 POST http://localhost:5000/connect/token application/x-www-form-urlencoded 120 (ca22a1cb)
+2018-09-22T18:58:46.3806700+03:00 0HLH0KH3J6I76:00000001 [WRN] Failed to determine the https port for redirect. (ca76cc21)
+2018-09-22T18:58:47.2588701+03:00 0HLH0KH3J6I76:00000001 [INF] The token request was successfully extracted from the HTTP request: "{
+  \"username\": \"user\",
+  \"password\": \"[removed for security reasons]\",
+  \"grant_type\": \"password\",
+  \"scope\": \"openid email phone profile offline_access roles\"
+}". (ebc01284)
+2018-09-22T18:58:47.2931453+03:00 0HLH0KH3J6I76:00000001 [DBG] The token request validation process was partially skipped because the 'client_id' parameter was missing or empty. (fcec36a0)
+2018-09-22T18:58:47.2936986+03:00 0HLH0KH3J6I76:00000001 [INF] The token request was successfully validated. (d7e51e65)
+2018-09-22T18:58:47.3100483+03:00 0HLH0KH3J6I76:00000001 [DBG] The default token request handling was skipped from user code. (72afae05)
+2018-09-22T18:58:48.9966406+03:00 0HLH0KH3J6I76:00000001 [INF] Route matched with "{action = \"Exchange\", controller = \"Authorization\"}". Executing action "DemoBlog.Controllers.AuthorizationController.Exchange (DemoBlog)" (a44c0341)
+2018-09-22T18:58:49.2331005+03:00 0HLH0KH3J6I76:00000001 [INF] Executing action method "DemoBlog.Controllers.AuthorizationController.Exchange (DemoBlog)" with arguments (["{
+  \"username\": \"user\",
+  \"password\": \"[removed for security reasons]\",
+  \"grant_type\": \"password\",
+  \"scope\": \"openid email phone profile offline_access roles\"
+}"]) - Validation state: Valid (4e3479ed)
+2018-09-22T18:58:53.4085037+03:00 0HLH0KH3J6I76:00000001 [INF] Entity Framework Core "2.2.0-preview1-35029" initialized '"ApplicationDbContext"' using provider '"Npgsql.EntityFrameworkCore.PostgreSQL"' with options: "MigrationsAssembly=DemoBlog " (9958f5bb)
+2018-09-22T18:59:06.8786302+03:00 0HLH0KH3J6I76:00000001 [INF] Executed DbCommand ("1,354"ms) [Parameters=["@__normalizedEmail_0='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SELECT u.\"Id\", u.\"AccessFailedCount\", u.\"ConcurrencyStamp\", u.\"CreatedById\", u.\"CreatedDate\", u.\"Email\", u.\"EmailConfirmed\", u.\"FullName\", u.\"IsEnabled\", u.\"LockoutEnabled\", u.\"LockoutEnd\", u.\"NormalizedEmail\", u.\"NormalizedUserName\", u.\"PasswordHash\", u.\"PhoneNumber\", u.\"PhoneNumberConfirmed\", u.\"SecurityStamp\", u.\"TwoFactorEnabled\", u.\"UpdatedDate\", u.\"UserName\"
+FROM \"AspNetUsers\" AS u
+WHERE u.\"NormalizedEmail\" = @__normalizedEmail_0
+LIMIT 1" (0723d8ff)
+2018-09-22T18:59:07.1773426+03:00 0HLH0KH3J6I76:00000001 [INF] Executed DbCommand ("61"ms) [Parameters=["@__normalizedUserName_0='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SELECT u.\"Id\", u.\"AccessFailedCount\", u.\"ConcurrencyStamp\", u.\"CreatedById\", u.\"CreatedDate\", u.\"Email\", u.\"EmailConfirmed\", u.\"FullName\", u.\"IsEnabled\", u.\"LockoutEnabled\", u.\"LockoutEnd\", u.\"NormalizedEmail\", u.\"NormalizedUserName\", u.\"PasswordHash\", u.\"PhoneNumber\", u.\"PhoneNumberConfirmed\", u.\"SecurityStamp\", u.\"TwoFactorEnabled\", u.\"UpdatedDate\", u.\"UserName\"
+FROM \"AspNetUsers\" AS u
+WHERE u.\"NormalizedUserName\" = @__normalizedUserName_0
+LIMIT 1" (0723d8ff)
+2018-09-22T18:59:08.4941356+03:00 0HLH0KH3J6I76:00000001 [INF] Executed DbCommand ("304"ms) [Parameters=["@__user_Id_0='?'"], CommandType='Text', CommandTimeout='30']"
+""SELECT uc.\"Id\", uc.\"ClaimType\", uc.\"ClaimValue\", uc.\"UserId\"
+FROM \"AspNetUserClaims\" AS uc
+WHERE uc.\"UserId\" = @__user_Id_0" (0723d8ff)
+2018-09-22T18:59:09.2644482+03:00 0HLH0KH3J6I76:00000001 [INF] Executed DbCommand ("615"ms) [Parameters=["@__userId_0='?'"], CommandType='Text', CommandTimeout='30']"
+""SELECT role.\"Name\"
+FROM \"AspNetUserRoles\" AS \"userRole\"
+INNER JOIN \"AspNetRoles\" AS role ON \"userRole\".\"RoleId\" = role.\"Id\"
+WHERE \"userRole\".\"UserId\" = @__userId_0" (0723d8ff)
+2018-09-22T18:59:09.3061898+03:00 0HLH0KH3J6I76:00000001 [INF] Executed DbCommand ("1"ms) [Parameters=["@__normalizedName_0='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SELECT r.\"Id\", r.\"ConcurrencyStamp\", r.\"CreatedById\", r.\"CreatedDate\", r.\"Description\", r.\"Name\", r.\"NormalizedName\", r.\"UpdatedById\", r.\"UpdatedDate\"
+FROM \"AspNetRoles\" AS r
+WHERE r.\"NormalizedName\" = @__normalizedName_0
+LIMIT 1" (0723d8ff)
+2018-09-22T18:59:09.4633095+03:00 0HLH0KH3J6I76:00000001 [INF] Executed DbCommand ("80"ms) [Parameters=["@__role_Id_0='?'"], CommandType='Text', CommandTimeout='30']"
+""SELECT rc.\"ClaimType\", rc.\"ClaimValue\"
+FROM \"AspNetRoleClaims\" AS rc
+WHERE rc.\"RoleId\" = @__role_Id_0" (0723d8ff)
+2018-09-22T18:59:09.5395046+03:00 0HLH0KH3J6I76:00000001 [INF] Executed action method "DemoBlog.Controllers.AuthorizationController.Exchange (DemoBlog)", returned result "Microsoft.AspNetCore.Mvc.SignInResult" in 20301.2318ms. (50a9e262)
+2018-09-22T18:59:09.5660892+03:00 0HLH0KH3J6I76:00000001 [INF] Executing SignInResult with authentication scheme ("ASOS") and the following principal: "System.Security.Claims.ClaimsPrincipal". (f8bf0a82)
+2018-09-22T18:59:11.0916011+03:00 0HLH0KH3J6I76:00000001 [INF] Executed DbCommand ("529"ms) [Parameters=["@p0='?', @p1='?', @p2='?', @p3='?', @p4='?', @p5='?', @p6='?', @p7='?'"], CommandType='Text', CommandTimeout='30']"
+""INSERT INTO \"OpenIddictAuthorizations\" (\"Id\", \"ApplicationId\", \"ConcurrencyToken\", \"Properties\", \"Scopes\", \"Status\", \"Subject\", \"Type\")
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7);" (0723d8ff)
+2018-09-22T18:59:11.2756281+03:00 0HLH0KH3J6I76:00000001 [INF] An ad hoc authorization was automatically created and associated with an unknown application: "16c26500-1bfd-4247-af1a-3071d30c19ea". (b5fe4ad7)
+2018-09-22T18:59:11.3949282+03:00 0HLH0KH3J6I76:00000001 [DBG] '"AspNet.Identity.SecurityStamp"' was excluded from the access token claims. (ed8f369e)
+2018-09-22T18:59:11.3951836+03:00 0HLH0KH3J6I76:00000001 [DBG] '"email"' was excluded from the access token claims. (ed8f369e)
+2018-09-22T18:59:11.3952891+03:00 0HLH0KH3J6I76:00000001 [DBG] '"phone"' was excluded from the access token claims. (ed8f369e)
+2018-09-22T18:59:12.0333226+03:00 0HLH0KH3J6I76:00000001 [INF] Executed DbCommand ("316"ms) [Parameters=["@p0='?', @p1='?', @p2='?', @p3='?', @p4='?' (DbType = DateTimeOffset), @p5='?' (DbType = DateTimeOffset), @p6='?', @p7='?', @p8='?', @p9='?', @p10='?', @p11='?'"], CommandType='Text', CommandTimeout='30']"
+""INSERT INTO \"OpenIddictTokens\" (\"Id\", \"ApplicationId\", \"AuthorizationId\", \"ConcurrencyToken\", \"CreationDate\", \"ExpirationDate\", \"Payload\", \"Properties\", \"ReferenceId\", \"Status\", \"Subject\", \"Type\")
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9, @p10, @p11);" (0723d8ff)
+2018-09-22T18:59:12.0734294+03:00 0HLH0KH3J6I76:00000001 [DBG] '"AspNet.Identity.SecurityStamp"' was excluded from the identity token claims. (7dcd2335)
+2018-09-22T18:59:12.1629907+03:00 0HLH0KH3J6I76:00000001 [INF] The token response was successfully returned: "{
+  \"token_type\": \"Bearer\",
+  \"access_token\": \"[removed for security reasons]\",
+  \"expires_in\": 3600,
+  \"refresh_token\": \"[removed for security reasons]\",
+  \"id_token\": \"[removed for security reasons]\"
+}". (12d98310)
+2018-09-22T18:59:12.2864992+03:00 0HLH0KH3J6I76:00000001 [INF] Executed action "DemoBlog.Controllers.AuthorizationController.Exchange (DemoBlog)" in 23263.5803ms (afa2e885)
+2018-09-22T18:59:12.3094342+03:00 0HLH0KH3J6I76:00000001 [INF] Request finished in 26011.201ms 200 application/json;charset=UTF-8 (791a596a)
+2018-09-22T19:00:06.1289496+03:00 0HLH0KH3J6I76:00000002 [INF] Request starting HTTP/1.1 GET http://localhost:5000/api/articles   (ca22a1cb)
+2018-09-22T19:00:06.1524741+03:00 0HLH0KH3J6I76:00000002 [INF] Route matched with "{action = \"GetArticles\", controller = \"Articles\"}". Executing action "DemoBlog.Controllers.ArticlesController.GetArticles (DemoBlog)" (a44c0341)
+2018-09-22T19:00:06.1841399+03:00 0HLH0KH3J6I76:00000002 [INF] Executing action method "DemoBlog.Controllers.ArticlesController.GetArticles (DemoBlog)" - Validation state: Valid (dad538d7)
+2018-09-22T19:00:06.2006284+03:00 0HLH0KH3J6I76:00000002 [INF] Entity Framework Core "2.2.0-preview1-35029" initialized '"ApplicationDbContext"' using provider '"Npgsql.EntityFrameworkCore.PostgreSQL"' with options: "MigrationsAssembly=DemoBlog " (9958f5bb)
+2018-09-22T19:00:06.9288961+03:00 0HLH0KH3J6I76:00000002 [INF] Executed DbCommand ("426"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT a.\"Id\", a.\"Body\", a.\"CategoryId\", a.\"CreatedById\", a.\"CreatedDate\", a.\"Slug\", a.\"Title\", a.\"UpdatedById\", a.\"UpdatedDate\", \"a.Category\".\"Id\", \"a.Category\".\"CreatedById\", \"a.Category\".\"CreatedDate\", \"a.Category\".\"Name\", \"a.Category\".\"Slug\", \"a.Category\".\"UpdatedById\", \"a.Category\".\"UpdatedDate\", \"a.CreatedBy\".\"Id\", \"a.CreatedBy\".\"AccessFailedCount\", \"a.CreatedBy\".\"ConcurrencyStamp\", \"a.CreatedBy\".\"CreatedById\", \"a.CreatedBy\".\"CreatedDate\", \"a.CreatedBy\".\"Email\", \"a.CreatedBy\".\"EmailConfirmed\", \"a.CreatedBy\".\"FullName\", \"a.CreatedBy\".\"IsEnabled\", \"a.CreatedBy\".\"LockoutEnabled\", \"a.CreatedBy\".\"LockoutEnd\", \"a.CreatedBy\".\"NormalizedEmail\", \"a.CreatedBy\".\"NormalizedUserName\", \"a.CreatedBy\".\"PasswordHash\", \"a.CreatedBy\".\"PhoneNumber\", \"a.CreatedBy\".\"PhoneNumberConfirmed\", \"a.CreatedBy\".\"SecurityStamp\", \"a.CreatedBy\".\"TwoFactorEnabled\", \"a.CreatedBy\".\"UpdatedDate\", \"a.CreatedBy\".\"UserName\"
+FROM \"AppArticles\" AS a
+LEFT JOIN \"AppCategories\" AS \"a.Category\" ON a.\"CategoryId\" = \"a.Category\".\"Id\"
+LEFT JOIN \"AspNetUsers\" AS \"a.CreatedBy\" ON a.\"CreatedById\" = \"a.CreatedBy\".\"Id\"" (0723d8ff)
+2018-09-22T19:00:07.0970694+03:00 0HLH0KH3J6I76:00000002 [INF] Executed action method "DemoBlog.Controllers.ArticlesController.GetArticles (DemoBlog)", returned result "Microsoft.AspNetCore.Mvc.OkObjectResult" in 912.684ms. (50a9e262)
+2018-09-22T19:00:07.1197461+03:00 0HLH0KH3J6I76:00000002 [INF] Executing ObjectResult, writing value of type '"System.Collections.Generic.List`1[[DemoBlog.ViewModels.ArticleListViewModel, DemoBlog, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]"'. (8a1b66c8)
+2018-09-22T19:00:07.2019375+03:00 0HLH0KH3J6I76:00000002 [INF] Executed action "DemoBlog.Controllers.ArticlesController.GetArticles (DemoBlog)" in 1049.1801ms (afa2e885)
+2018-09-22T19:00:07.2046006+03:00 0HLH0KH3J6I76:00000002 [INF] Request finished in 1075.6881ms 200 application/json; charset=utf-8 (791a596a)
+2018-09-22T19:00:25.5953704+03:00 0HLH0KH3J6I76:00000003 [INF] Request starting HTTP/1.1 POST http://localhost:5000/api/articles application/json 99 (ca22a1cb)
+2018-09-22T19:00:25.6298898+03:00 0HLH0KH3J6I76:00000003 [INF] Route matched with "{action = \"CreateArticle\", controller = \"Articles\"}". Executing action "DemoBlog.Controllers.ArticlesController.CreateArticle (DemoBlog)" (a44c0341)
+2018-09-22T19:00:25.7226742+03:00 0HLH0KH3J6I76:00000003 [INF] "Bearer" was not authenticated. Failure message: "Authentication failed because the access token was expired." (48071232)
+2018-09-22T19:00:25.7349791+03:00 0HLH0KH3J6I76:00000003 [INF] Authorization failed. (b15dd539)
+2018-09-22T19:00:25.7356034+03:00 0HLH0KH3J6I76:00000003 [INF] Authorization failed for the request at filter '"Microsoft.AspNetCore.Mvc.Authorization.AuthorizeFilter"'. (8b6446cb)
+2018-09-22T19:00:25.7415525+03:00 0HLH0KH3J6I76:00000003 [INF] Executing ChallengeResult with authentication schemes (["Bearer"]). (f3dca807)
+2018-09-22T19:00:25.7696190+03:00 0HLH0KH3J6I76:00000003 [INF] AuthenticationScheme: "Bearer" was challenged. (d45f1f38)
+2018-09-22T19:00:25.7697950+03:00 0HLH0KH3J6I76:00000003 [INF] Executed action "DemoBlog.Controllers.ArticlesController.CreateArticle (DemoBlog)" in 139.7685ms (afa2e885)
+2018-09-22T19:00:25.7718177+03:00 0HLH0KH3J6I76:00000003 [INF] Request finished in 176.4415ms 401  (791a596a)
+2018-09-22T19:00:25.7758289+03:00  [INF] Connection id ""0HLH0KH3J6I76"", Request id ""0HLH0KH3J6I76:00000003"": the application completed without reading the entire request body. (54ac9468)
+2018-09-22T19:00:44.9745466+03:00 0HLH0KH3J6I76:00000004 [INF] Request starting HTTP/1.1 POST http://localhost:5000/api/articles application/json 99 (ca22a1cb)
+2018-09-22T19:00:44.9757675+03:00 0HLH0KH3J6I76:00000004 [INF] Route matched with "{action = \"CreateArticle\", controller = \"Articles\"}". Executing action "DemoBlog.Controllers.ArticlesController.CreateArticle (DemoBlog)" (a44c0341)
+2018-09-22T19:00:44.9824549+03:00 0HLH0KH3J6I76:00000004 [DBG] AuthenticationScheme: "Bearer" was successfully authenticated. (1805f3b3)
+2018-09-22T19:00:44.9872521+03:00 0HLH0KH3J6I76:00000004 [INF] Authorization was successful. (0d575a54)
+2018-09-22T19:00:44.9916518+03:00 0HLH0KH3J6I76:00000004 [INF] Entity Framework Core "2.2.0-preview1-35029" initialized '"ApplicationDbContext"' using provider '"Npgsql.EntityFrameworkCore.PostgreSQL"' with options: "MigrationsAssembly=DemoBlog " (9958f5bb)
+2018-09-22T19:00:45.0414739+03:00 0HLH0KH3J6I76:00000004 [INF] Executed DbCommand ("17"ms) [Parameters=["@__get_Item_0='?'"], CommandType='Text', CommandTimeout='30']"
+""SELECT e.\"Id\", e.\"AccessFailedCount\", e.\"ConcurrencyStamp\", e.\"CreatedById\", e.\"CreatedDate\", e.\"Email\", e.\"EmailConfirmed\", e.\"FullName\", e.\"IsEnabled\", e.\"LockoutEnabled\", e.\"LockoutEnd\", e.\"NormalizedEmail\", e.\"NormalizedUserName\", e.\"PasswordHash\", e.\"PhoneNumber\", e.\"PhoneNumberConfirmed\", e.\"SecurityStamp\", e.\"TwoFactorEnabled\", e.\"UpdatedDate\", e.\"UserName\"
+FROM \"AspNetUsers\" AS e
+WHERE e.\"Id\" = @__get_Item_0
+LIMIT 1" (0723d8ff)
+2018-09-22T19:00:45.1379945+03:00 0HLH0KH3J6I76:00000004 [INF] Executing action method "DemoBlog.Controllers.ArticlesController.CreateArticle (DemoBlog)" with arguments (["DemoBlog.ViewModels.ArticleCreateViewModel"]) - Validation state: Valid (4e3479ed)
+2018-09-22T19:00:45.3535380+03:00 0HLH0KH3J6I76:00000004 [INF] Executed DbCommand ("23"ms) [Parameters=["@__id_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT c.\"Id\", c.\"CreatedById\", c.\"CreatedDate\", c.\"Name\", c.\"Slug\", c.\"UpdatedById\", c.\"UpdatedDate\"
+FROM \"AppCategories\" AS c
+WHERE c.\"Id\" = @__id_0
+ORDER BY c.\"Id\"
+LIMIT 1" (0723d8ff)
+2018-09-22T19:00:45.4277239+03:00 0HLH0KH3J6I76:00000004 [INF] Executed DbCommand ("22"ms) [Parameters=["@__id_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT \"c.Articles\".\"Id\", \"c.Articles\".\"Body\", \"c.Articles\".\"CategoryId\", \"c.Articles\".\"CreatedById\", \"c.Articles\".\"CreatedDate\", \"c.Articles\".\"Slug\", \"c.Articles\".\"Title\", \"c.Articles\".\"UpdatedById\", \"c.Articles\".\"UpdatedDate\", \"a.CreatedBy\".\"Id\", \"a.CreatedBy\".\"AccessFailedCount\", \"a.CreatedBy\".\"ConcurrencyStamp\", \"a.CreatedBy\".\"CreatedById\", \"a.CreatedBy\".\"CreatedDate\", \"a.CreatedBy\".\"Email\", \"a.CreatedBy\".\"EmailConfirmed\", \"a.CreatedBy\".\"FullName\", \"a.CreatedBy\".\"IsEnabled\", \"a.CreatedBy\".\"LockoutEnabled\", \"a.CreatedBy\".\"LockoutEnd\", \"a.CreatedBy\".\"NormalizedEmail\", \"a.CreatedBy\".\"NormalizedUserName\", \"a.CreatedBy\".\"PasswordHash\", \"a.CreatedBy\".\"PhoneNumber\", \"a.CreatedBy\".\"PhoneNumberConfirmed\", \"a.CreatedBy\".\"SecurityStamp\", \"a.CreatedBy\".\"TwoFactorEnabled\", \"a.CreatedBy\".\"UpdatedDate\", \"a.CreatedBy\".\"UserName\"
+FROM \"AppArticles\" AS \"c.Articles\"
+LEFT JOIN \"AspNetUsers\" AS \"a.CreatedBy\" ON \"c.Articles\".\"CreatedById\" = \"a.CreatedBy\".\"Id\"
+INNER JOIN (
+    SELECT c0.\"Id\"
+    FROM \"AppCategories\" AS c0
+    WHERE c0.\"Id\" = @__id_0
+    ORDER BY c0.\"Id\"
+    LIMIT 1
+) AS t ON \"c.Articles\".\"CategoryId\" = t.\"Id\"
+ORDER BY t.\"Id\"" (0723d8ff)
+2018-09-22T19:00:45.6618453+03:00 0HLH0KH3J6I76:00000004 [INF] Executed DbCommand ("98"ms) [Parameters=["@__id_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT t.\"Id\", t.\"CreatedById\", t.\"CreatedDate\", t.\"Name\", t.\"Slug\", t.\"UpdatedById\", t.\"UpdatedDate\"
+FROM \"AppTags\" AS t
+WHERE t.\"Id\" = @__id_0
+ORDER BY t.\"Id\"
+LIMIT 1" (0723d8ff)
+2018-09-22T19:00:45.9711617+03:00 0HLH0KH3J6I76:00000004 [INF] Executed DbCommand ("288"ms) [Parameters=["@__id_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT \"t.ArticleTags\".\"Id\", \"t.ArticleTags\".\"ArticleId\", \"t.ArticleTags\".\"TagId\", \"t.ArticleTags\".\"CreatedById\", \"t.ArticleTags\".\"CreatedDate\", \"t.ArticleTags\".\"UpdatedById\", \"t.ArticleTags\".\"UpdatedDate\", \"a.Article\".\"Id\", \"a.Article\".\"Body\", \"a.Article\".\"CategoryId\", \"a.Article\".\"CreatedById\", \"a.Article\".\"CreatedDate\", \"a.Article\".\"Slug\", \"a.Article\".\"Title\", \"a.Article\".\"UpdatedById\", \"a.Article\".\"UpdatedDate\", \"a.Article.CreatedBy\".\"Id\", \"a.Article.CreatedBy\".\"AccessFailedCount\", \"a.Article.CreatedBy\".\"ConcurrencyStamp\", \"a.Article.CreatedBy\".\"CreatedById\", \"a.Article.CreatedBy\".\"CreatedDate\", \"a.Article.CreatedBy\".\"Email\", \"a.Article.CreatedBy\".\"EmailConfirmed\", \"a.Article.CreatedBy\".\"FullName\", \"a.Article.CreatedBy\".\"IsEnabled\", \"a.Article.CreatedBy\".\"LockoutEnabled\", \"a.Article.CreatedBy\".\"LockoutEnd\", \"a.Article.CreatedBy\".\"NormalizedEmail\", \"a.Article.CreatedBy\".\"NormalizedUserName\", \"a.Article.CreatedBy\".\"PasswordHash\", \"a.Article.CreatedBy\".\"PhoneNumber\", \"a.Article.CreatedBy\".\"PhoneNumberConfirmed\", \"a.Article.CreatedBy\".\"SecurityStamp\", \"a.Article.CreatedBy\".\"TwoFactorEnabled\", \"a.Article.CreatedBy\".\"UpdatedDate\", \"a.Article.CreatedBy\".\"UserName\", \"a.Article.Category\".\"Id\", \"a.Article.Category\".\"CreatedById\", \"a.Article.Category\".\"CreatedDate\", \"a.Article.Category\".\"Name\", \"a.Article.Category\".\"Slug\", \"a.Article.Category\".\"UpdatedById\", \"a.Article.Category\".\"UpdatedDate\"
+FROM \"AppArticleTags\" AS \"t.ArticleTags\"
+INNER JOIN \"AppArticles\" AS \"a.Article\" ON \"t.ArticleTags\".\"ArticleId\" = \"a.Article\".\"Id\"
+LEFT JOIN \"AspNetUsers\" AS \"a.Article.CreatedBy\" ON \"a.Article\".\"CreatedById\" = \"a.Article.CreatedBy\".\"Id\"
+LEFT JOIN \"AppCategories\" AS \"a.Article.Category\" ON \"a.Article\".\"CategoryId\" = \"a.Article.Category\".\"Id\"
+INNER JOIN (
+    SELECT t0.\"Id\"
+    FROM \"AppTags\" AS t0
+    WHERE t0.\"Id\" = @__id_0
+    ORDER BY t0.\"Id\"
+    LIMIT 1
+) AS t1 ON \"t.ArticleTags\".\"TagId\" = t1.\"Id\"
+ORDER BY t1.\"Id\"" (0723d8ff)
+2018-09-22T19:00:46.0482801+03:00 0HLH0KH3J6I76:00000004 [INF] Executed DbCommand ("1"ms) [Parameters=["@__id_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT t.\"Id\", t.\"CreatedById\", t.\"CreatedDate\", t.\"Name\", t.\"Slug\", t.\"UpdatedById\", t.\"UpdatedDate\"
+FROM \"AppTags\" AS t
+WHERE t.\"Id\" = @__id_0
+ORDER BY t.\"Id\"
+LIMIT 1" (0723d8ff)
+2018-09-22T19:00:46.0534088+03:00 0HLH0KH3J6I76:00000004 [INF] Executed DbCommand ("4"ms) [Parameters=["@__id_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT \"t.ArticleTags\".\"Id\", \"t.ArticleTags\".\"ArticleId\", \"t.ArticleTags\".\"TagId\", \"t.ArticleTags\".\"CreatedById\", \"t.ArticleTags\".\"CreatedDate\", \"t.ArticleTags\".\"UpdatedById\", \"t.ArticleTags\".\"UpdatedDate\", \"a.Article\".\"Id\", \"a.Article\".\"Body\", \"a.Article\".\"CategoryId\", \"a.Article\".\"CreatedById\", \"a.Article\".\"CreatedDate\", \"a.Article\".\"Slug\", \"a.Article\".\"Title\", \"a.Article\".\"UpdatedById\", \"a.Article\".\"UpdatedDate\", \"a.Article.CreatedBy\".\"Id\", \"a.Article.CreatedBy\".\"AccessFailedCount\", \"a.Article.CreatedBy\".\"ConcurrencyStamp\", \"a.Article.CreatedBy\".\"CreatedById\", \"a.Article.CreatedBy\".\"CreatedDate\", \"a.Article.CreatedBy\".\"Email\", \"a.Article.CreatedBy\".\"EmailConfirmed\", \"a.Article.CreatedBy\".\"FullName\", \"a.Article.CreatedBy\".\"IsEnabled\", \"a.Article.CreatedBy\".\"LockoutEnabled\", \"a.Article.CreatedBy\".\"LockoutEnd\", \"a.Article.CreatedBy\".\"NormalizedEmail\", \"a.Article.CreatedBy\".\"NormalizedUserName\", \"a.Article.CreatedBy\".\"PasswordHash\", \"a.Article.CreatedBy\".\"PhoneNumber\", \"a.Article.CreatedBy\".\"PhoneNumberConfirmed\", \"a.Article.CreatedBy\".\"SecurityStamp\", \"a.Article.CreatedBy\".\"TwoFactorEnabled\", \"a.Article.CreatedBy\".\"UpdatedDate\", \"a.Article.CreatedBy\".\"UserName\", \"a.Article.Category\".\"Id\", \"a.Article.Category\".\"CreatedById\", \"a.Article.Category\".\"CreatedDate\", \"a.Article.Category\".\"Name\", \"a.Article.Category\".\"Slug\", \"a.Article.Category\".\"UpdatedById\", \"a.Article.Category\".\"UpdatedDate\"
+FROM \"AppArticleTags\" AS \"t.ArticleTags\"
+INNER JOIN \"AppArticles\" AS \"a.Article\" ON \"t.ArticleTags\".\"ArticleId\" = \"a.Article\".\"Id\"
+LEFT JOIN \"AspNetUsers\" AS \"a.Article.CreatedBy\" ON \"a.Article\".\"CreatedById\" = \"a.Article.CreatedBy\".\"Id\"
+LEFT JOIN \"AppCategories\" AS \"a.Article.Category\" ON \"a.Article\".\"CategoryId\" = \"a.Article.Category\".\"Id\"
+INNER JOIN (
+    SELECT t0.\"Id\"
+    FROM \"AppTags\" AS t0
+    WHERE t0.\"Id\" = @__id_0
+    ORDER BY t0.\"Id\"
+    LIMIT 1
+) AS t1 ON \"t.ArticleTags\".\"TagId\" = t1.\"Id\"
+ORDER BY t1.\"Id\"" (0723d8ff)
+2018-09-22T19:00:46.8386737+03:00 0HLH0KH3J6I76:00000004 [INF] Executed DbCommand ("290"ms) [Parameters=["@p0='?', @p1='?' (DbType = Int32), @p2='?', @p3='?' (DbType = DateTime), @p4='?', @p5='?' (Size = 100), @p6='?', @p7='?' (DbType = DateTime)"], CommandType='Text', CommandTimeout='30']"
+""INSERT INTO \"AppArticles\" (\"Body\", \"CategoryId\", \"CreatedById\", \"CreatedDate\", \"Slug\", \"Title\", \"UpdatedById\", \"UpdatedDate\")
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7)
+RETURNING \"Id\";" (0723d8ff)
+2018-09-22T19:00:46.9182431+03:00 0HLH0KH3J6I76:00000004 [INF] Executed DbCommand ("47"ms) [Parameters=["@p0='?' (DbType = Int32), @p1='?' (DbType = Int32), @p2='?', @p3='?' (DbType = DateTime), @p4='?', @p5='?' (DbType = DateTime)"], CommandType='Text', CommandTimeout='30']"
+""INSERT INTO \"AppArticleTags\" (\"ArticleId\", \"TagId\", \"CreatedById\", \"CreatedDate\", \"UpdatedById\", \"UpdatedDate\")
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5)
+RETURNING \"Id\";" (0723d8ff)
+2018-09-22T19:00:46.9314741+03:00 0HLH0KH3J6I76:00000004 [INF] Executed DbCommand ("2"ms) [Parameters=["@p0='?' (DbType = Int32), @p1='?' (DbType = Int32), @p2='?', @p3='?' (DbType = DateTime), @p4='?', @p5='?' (DbType = DateTime)"], CommandType='Text', CommandTimeout='30']"
+""INSERT INTO \"AppArticleTags\" (\"ArticleId\", \"TagId\", \"CreatedById\", \"CreatedDate\", \"UpdatedById\", \"UpdatedDate\")
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5)
+RETURNING \"Id\";" (0723d8ff)
+2018-09-22T19:00:47.0341303+03:00 0HLH0KH3J6I76:00000004 [INF] Executed DbCommand ("3"ms) [Parameters=["@__id_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT a.\"Id\", a.\"Body\", a.\"CategoryId\", a.\"CreatedById\", a.\"CreatedDate\", a.\"Slug\", a.\"Title\", a.\"UpdatedById\", a.\"UpdatedDate\", \"a.Category\".\"Id\", \"a.Category\".\"CreatedById\", \"a.Category\".\"CreatedDate\", \"a.Category\".\"Name\", \"a.Category\".\"Slug\", \"a.Category\".\"UpdatedById\", \"a.Category\".\"UpdatedDate\", \"a.CreatedBy\".\"Id\", \"a.CreatedBy\".\"AccessFailedCount\", \"a.CreatedBy\".\"ConcurrencyStamp\", \"a.CreatedBy\".\"CreatedById\", \"a.CreatedBy\".\"CreatedDate\", \"a.CreatedBy\".\"Email\", \"a.CreatedBy\".\"EmailConfirmed\", \"a.CreatedBy\".\"FullName\", \"a.CreatedBy\".\"IsEnabled\", \"a.CreatedBy\".\"LockoutEnabled\", \"a.CreatedBy\".\"LockoutEnd\", \"a.CreatedBy\".\"NormalizedEmail\", \"a.CreatedBy\".\"NormalizedUserName\", \"a.CreatedBy\".\"PasswordHash\", \"a.CreatedBy\".\"PhoneNumber\", \"a.CreatedBy\".\"PhoneNumberConfirmed\", \"a.CreatedBy\".\"SecurityStamp\", \"a.CreatedBy\".\"TwoFactorEnabled\", \"a.CreatedBy\".\"UpdatedDate\", \"a.CreatedBy\".\"UserName\"
+FROM \"AppArticles\" AS a
+LEFT JOIN \"AppCategories\" AS \"a.Category\" ON a.\"CategoryId\" = \"a.Category\".\"Id\"
+LEFT JOIN \"AspNetUsers\" AS \"a.CreatedBy\" ON a.\"CreatedById\" = \"a.CreatedBy\".\"Id\"
+WHERE a.\"Id\" = @__id_0
+ORDER BY a.\"Id\"
+LIMIT 1" (0723d8ff)
+2018-09-22T19:00:47.0752942+03:00 0HLH0KH3J6I76:00000004 [INF] Executed DbCommand ("11"ms) [Parameters=["@__id_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT \"a.ArticleTags\".\"Id\", \"a.ArticleTags\".\"ArticleId\", \"a.ArticleTags\".\"TagId\", \"a.ArticleTags\".\"CreatedById\", \"a.ArticleTags\".\"CreatedDate\", \"a.ArticleTags\".\"UpdatedById\", \"a.ArticleTags\".\"UpdatedDate\", \"a.Tag\".\"Id\", \"a.Tag\".\"CreatedById\", \"a.Tag\".\"CreatedDate\", \"a.Tag\".\"Name\", \"a.Tag\".\"Slug\", \"a.Tag\".\"UpdatedById\", \"a.Tag\".\"UpdatedDate\"
+FROM \"AppArticleTags\" AS \"a.ArticleTags\"
+INNER JOIN \"AppTags\" AS \"a.Tag\" ON \"a.ArticleTags\".\"TagId\" = \"a.Tag\".\"Id\"
+INNER JOIN (
+    SELECT DISTINCT t.*
+    FROM (
+        SELECT a0.\"Id\"
+        FROM \"AppArticles\" AS a0
+        LEFT JOIN \"AppCategories\" AS \"a.Category0\" ON a0.\"CategoryId\" = \"a.Category0\".\"Id\"
+        LEFT JOIN \"AspNetUsers\" AS \"a.CreatedBy0\" ON a0.\"CreatedById\" = \"a.CreatedBy0\".\"Id\"
+        WHERE a0.\"Id\" = @__id_0
+        ORDER BY a0.\"Id\"
+        LIMIT 1
+    ) AS t
+) AS t0 ON \"a.ArticleTags\".\"ArticleId\" = t0.\"Id\"
+ORDER BY t0.\"Id\"" (0723d8ff)
+2018-09-22T19:00:47.3763664+03:00 0HLH0KH3J6I76:00000004 [INF] Executed DbCommand ("291"ms) [Parameters=["@__id_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT \"a.Comments\".\"Id\", \"a.Comments\".\"ArticleId\", \"a.Comments\".\"Body\", \"a.Comments\".\"CreatedById\", \"a.Comments\".\"CreatedDate\", \"a.Comments\".\"UpdatedById\", \"a.Comments\".\"UpdatedDate\"
+FROM \"AppComments\" AS \"a.Comments\"
+INNER JOIN (
+    SELECT DISTINCT t1.*
+    FROM (
+        SELECT a1.\"Id\"
+        FROM \"AppArticles\" AS a1
+        LEFT JOIN \"AppCategories\" AS \"a.Category1\" ON a1.\"CategoryId\" = \"a.Category1\".\"Id\"
+        LEFT JOIN \"AspNetUsers\" AS \"a.CreatedBy1\" ON a1.\"CreatedById\" = \"a.CreatedBy1\".\"Id\"
+        WHERE a1.\"Id\" = @__id_0
+        ORDER BY a1.\"Id\"
+        LIMIT 1
+    ) AS t1
+) AS t2 ON \"a.Comments\".\"ArticleId\" = t2.\"Id\"
+ORDER BY t2.\"Id\"" (0723d8ff)
+2018-09-22T19:00:47.4629492+03:00 0HLH0KH3J6I76:00000004 [INF] Executed action method "DemoBlog.Controllers.ArticlesController.CreateArticle (DemoBlog)", returned result "Microsoft.AspNetCore.Mvc.CreatedAtActionResult" in 2324.709ms. (50a9e262)
+2018-09-22T19:00:47.4637452+03:00 0HLH0KH3J6I76:00000004 [INF] Executing ObjectResult, writing value of type '"DemoBlog.ViewModels.ArticleViewModel"'. (8a1b66c8)
+2018-09-22T19:00:47.5028154+03:00 0HLH0KH3J6I76:00000004 [INF] Executed action "DemoBlog.Controllers.ArticlesController.CreateArticle (DemoBlog)" in 2526.7921ms (afa2e885)
+2018-09-22T19:00:47.5046362+03:00 0HLH0KH3J6I76:00000004 [INF] Request finished in 2530.2147ms 201 application/json; charset=utf-8 (791a596a)
+2018-09-22T19:01:01.7057726+03:00 0HLH0KH3J6I76:00000005 [INF] Request starting HTTP/1.1 GET http://localhost:5000/api/articles   (ca22a1cb)
+2018-09-22T19:01:01.7110126+03:00 0HLH0KH3J6I76:00000005 [INF] Route matched with "{action = \"GetArticles\", controller = \"Articles\"}". Executing action "DemoBlog.Controllers.ArticlesController.GetArticles (DemoBlog)" (a44c0341)
+2018-09-22T19:01:01.7115635+03:00 0HLH0KH3J6I76:00000005 [INF] Executing action method "DemoBlog.Controllers.ArticlesController.GetArticles (DemoBlog)" - Validation state: Valid (dad538d7)
+2018-09-22T19:01:01.7123421+03:00 0HLH0KH3J6I76:00000005 [INF] Entity Framework Core "2.2.0-preview1-35029" initialized '"ApplicationDbContext"' using provider '"Npgsql.EntityFrameworkCore.PostgreSQL"' with options: "MigrationsAssembly=DemoBlog " (9958f5bb)
+2018-09-22T19:01:01.7198867+03:00 0HLH0KH3J6I76:00000005 [INF] Executed DbCommand ("5"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT a.\"Id\", a.\"Body\", a.\"CategoryId\", a.\"CreatedById\", a.\"CreatedDate\", a.\"Slug\", a.\"Title\", a.\"UpdatedById\", a.\"UpdatedDate\", \"a.Category\".\"Id\", \"a.Category\".\"CreatedById\", \"a.Category\".\"CreatedDate\", \"a.Category\".\"Name\", \"a.Category\".\"Slug\", \"a.Category\".\"UpdatedById\", \"a.Category\".\"UpdatedDate\", \"a.CreatedBy\".\"Id\", \"a.CreatedBy\".\"AccessFailedCount\", \"a.CreatedBy\".\"ConcurrencyStamp\", \"a.CreatedBy\".\"CreatedById\", \"a.CreatedBy\".\"CreatedDate\", \"a.CreatedBy\".\"Email\", \"a.CreatedBy\".\"EmailConfirmed\", \"a.CreatedBy\".\"FullName\", \"a.CreatedBy\".\"IsEnabled\", \"a.CreatedBy\".\"LockoutEnabled\", \"a.CreatedBy\".\"LockoutEnd\", \"a.CreatedBy\".\"NormalizedEmail\", \"a.CreatedBy\".\"NormalizedUserName\", \"a.CreatedBy\".\"PasswordHash\", \"a.CreatedBy\".\"PhoneNumber\", \"a.CreatedBy\".\"PhoneNumberConfirmed\", \"a.CreatedBy\".\"SecurityStamp\", \"a.CreatedBy\".\"TwoFactorEnabled\", \"a.CreatedBy\".\"UpdatedDate\", \"a.CreatedBy\".\"UserName\"
+FROM \"AppArticles\" AS a
+LEFT JOIN \"AppCategories\" AS \"a.Category\" ON a.\"CategoryId\" = \"a.Category\".\"Id\"
+LEFT JOIN \"AspNetUsers\" AS \"a.CreatedBy\" ON a.\"CreatedById\" = \"a.CreatedBy\".\"Id\"" (0723d8ff)
+2018-09-22T19:01:01.7290869+03:00 0HLH0KH3J6I76:00000005 [INF] Executed action method "DemoBlog.Controllers.ArticlesController.GetArticles (DemoBlog)", returned result "Microsoft.AspNetCore.Mvc.OkObjectResult" in 17.307ms. (50a9e262)
+2018-09-22T19:01:01.7294914+03:00 0HLH0KH3J6I76:00000005 [INF] Executing ObjectResult, writing value of type '"System.Collections.Generic.List`1[[DemoBlog.ViewModels.ArticleListViewModel, DemoBlog, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]"'. (8a1b66c8)
+2018-09-22T19:01:01.7300243+03:00 0HLH0KH3J6I76:00000005 [INF] Executed action "DemoBlog.Controllers.ArticlesController.GetArticles (DemoBlog)" in 18.8408ms (afa2e885)
+2018-09-22T19:01:01.7302509+03:00 0HLH0KH3J6I76:00000005 [INF] Request finished in 24.6497ms 200 application/json; charset=utf-8 (791a596a)
+2018-09-22T19:01:21.1491615+03:00 0HLH0KH3J6I76:00000006 [INF] Request starting HTTP/1.1 PUT http://localhost:5000/api/articles/5 application/json 112 (ca22a1cb)
+2018-09-22T19:01:21.1773592+03:00 0HLH0KH3J6I76:00000006 [INF] Route matched with "{action = \"UpdateArticle\", controller = \"Articles\"}". Executing action "DemoBlog.Controllers.ArticlesController.UpdateArticle (DemoBlog)" (a44c0341)
+2018-09-22T19:01:21.1779646+03:00 0HLH0KH3J6I76:00000006 [DBG] AuthenticationScheme: "Bearer" was successfully authenticated. (1805f3b3)
+2018-09-22T19:01:21.1782826+03:00 0HLH0KH3J6I76:00000006 [INF] Authorization was successful. (0d575a54)
+2018-09-22T19:01:21.1791329+03:00 0HLH0KH3J6I76:00000006 [INF] Entity Framework Core "2.2.0-preview1-35029" initialized '"ApplicationDbContext"' using provider '"Npgsql.EntityFrameworkCore.PostgreSQL"' with options: "MigrationsAssembly=DemoBlog " (9958f5bb)
+2018-09-22T19:01:21.1829013+03:00 0HLH0KH3J6I76:00000006 [INF] Executed DbCommand ("2"ms) [Parameters=["@__get_Item_0='?'"], CommandType='Text', CommandTimeout='30']"
+""SELECT e.\"Id\", e.\"AccessFailedCount\", e.\"ConcurrencyStamp\", e.\"CreatedById\", e.\"CreatedDate\", e.\"Email\", e.\"EmailConfirmed\", e.\"FullName\", e.\"IsEnabled\", e.\"LockoutEnabled\", e.\"LockoutEnd\", e.\"NormalizedEmail\", e.\"NormalizedUserName\", e.\"PasswordHash\", e.\"PhoneNumber\", e.\"PhoneNumberConfirmed\", e.\"SecurityStamp\", e.\"TwoFactorEnabled\", e.\"UpdatedDate\", e.\"UserName\"
+FROM \"AspNetUsers\" AS e
+WHERE e.\"Id\" = @__get_Item_0
+LIMIT 1" (0723d8ff)
+2018-09-22T19:01:21.1979714+03:00 0HLH0KH3J6I76:00000006 [INF] Executing action method "DemoBlog.Controllers.ArticlesController.UpdateArticle (DemoBlog)" with arguments (["5", "DemoBlog.ViewModels.ArticleEditViewModel"]) - Validation state: Valid (4e3479ed)
+2018-09-22T19:01:21.2082651+03:00 0HLH0KH3J6I76:00000006 [INF] Executed DbCommand ("2"ms) [Parameters=["@__id_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT a.\"Id\", a.\"Body\", a.\"CategoryId\", a.\"CreatedById\", a.\"CreatedDate\", a.\"Slug\", a.\"Title\", a.\"UpdatedById\", a.\"UpdatedDate\", \"a.Category\".\"Id\", \"a.Category\".\"CreatedById\", \"a.Category\".\"CreatedDate\", \"a.Category\".\"Name\", \"a.Category\".\"Slug\", \"a.Category\".\"UpdatedById\", \"a.Category\".\"UpdatedDate\", \"a.CreatedBy\".\"Id\", \"a.CreatedBy\".\"AccessFailedCount\", \"a.CreatedBy\".\"ConcurrencyStamp\", \"a.CreatedBy\".\"CreatedById\", \"a.CreatedBy\".\"CreatedDate\", \"a.CreatedBy\".\"Email\", \"a.CreatedBy\".\"EmailConfirmed\", \"a.CreatedBy\".\"FullName\", \"a.CreatedBy\".\"IsEnabled\", \"a.CreatedBy\".\"LockoutEnabled\", \"a.CreatedBy\".\"LockoutEnd\", \"a.CreatedBy\".\"NormalizedEmail\", \"a.CreatedBy\".\"NormalizedUserName\", \"a.CreatedBy\".\"PasswordHash\", \"a.CreatedBy\".\"PhoneNumber\", \"a.CreatedBy\".\"PhoneNumberConfirmed\", \"a.CreatedBy\".\"SecurityStamp\", \"a.CreatedBy\".\"TwoFactorEnabled\", \"a.CreatedBy\".\"UpdatedDate\", \"a.CreatedBy\".\"UserName\"
+FROM \"AppArticles\" AS a
+LEFT JOIN \"AppCategories\" AS \"a.Category\" ON a.\"CategoryId\" = \"a.Category\".\"Id\"
+LEFT JOIN \"AspNetUsers\" AS \"a.CreatedBy\" ON a.\"CreatedById\" = \"a.CreatedBy\".\"Id\"
+WHERE a.\"Id\" = @__id_0
+ORDER BY a.\"Id\"
+LIMIT 1" (0723d8ff)
+2018-09-22T19:01:21.2126064+03:00 0HLH0KH3J6I76:00000006 [INF] Executed DbCommand ("3"ms) [Parameters=["@__id_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT \"a.ArticleTags\".\"Id\", \"a.ArticleTags\".\"ArticleId\", \"a.ArticleTags\".\"TagId\", \"a.ArticleTags\".\"CreatedById\", \"a.ArticleTags\".\"CreatedDate\", \"a.ArticleTags\".\"UpdatedById\", \"a.ArticleTags\".\"UpdatedDate\", \"a.Tag\".\"Id\", \"a.Tag\".\"CreatedById\", \"a.Tag\".\"CreatedDate\", \"a.Tag\".\"Name\", \"a.Tag\".\"Slug\", \"a.Tag\".\"UpdatedById\", \"a.Tag\".\"UpdatedDate\"
+FROM \"AppArticleTags\" AS \"a.ArticleTags\"
+INNER JOIN \"AppTags\" AS \"a.Tag\" ON \"a.ArticleTags\".\"TagId\" = \"a.Tag\".\"Id\"
+INNER JOIN (
+    SELECT DISTINCT t.*
+    FROM (
+        SELECT a0.\"Id\"
+        FROM \"AppArticles\" AS a0
+        LEFT JOIN \"AppCategories\" AS \"a.Category0\" ON a0.\"CategoryId\" = \"a.Category0\".\"Id\"
+        LEFT JOIN \"AspNetUsers\" AS \"a.CreatedBy0\" ON a0.\"CreatedById\" = \"a.CreatedBy0\".\"Id\"
+        WHERE a0.\"Id\" = @__id_0
+        ORDER BY a0.\"Id\"
+        LIMIT 1
+    ) AS t
+) AS t0 ON \"a.ArticleTags\".\"ArticleId\" = t0.\"Id\"
+ORDER BY t0.\"Id\"" (0723d8ff)
+2018-09-22T19:01:21.2180865+03:00 0HLH0KH3J6I76:00000006 [INF] Executed DbCommand ("2"ms) [Parameters=["@__id_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT \"a.Comments\".\"Id\", \"a.Comments\".\"ArticleId\", \"a.Comments\".\"Body\", \"a.Comments\".\"CreatedById\", \"a.Comments\".\"CreatedDate\", \"a.Comments\".\"UpdatedById\", \"a.Comments\".\"UpdatedDate\"
+FROM \"AppComments\" AS \"a.Comments\"
+INNER JOIN (
+    SELECT DISTINCT t1.*
+    FROM (
+        SELECT a1.\"Id\"
+        FROM \"AppArticles\" AS a1
+        LEFT JOIN \"AppCategories\" AS \"a.Category1\" ON a1.\"CategoryId\" = \"a.Category1\".\"Id\"
+        LEFT JOIN \"AspNetUsers\" AS \"a.CreatedBy1\" ON a1.\"CreatedById\" = \"a.CreatedBy1\".\"Id\"
+        WHERE a1.\"Id\" = @__id_0
+        ORDER BY a1.\"Id\"
+        LIMIT 1
+    ) AS t1
+) AS t2 ON \"a.Comments\".\"ArticleId\" = t2.\"Id\"
+ORDER BY t2.\"Id\"" (0723d8ff)
+2018-09-22T19:01:21.2212296+03:00 0HLH0KH3J6I76:00000006 [INF] Authorization failed. (b15dd539)
+2018-09-22T19:01:21.3011567+03:00 0HLH0KH3J6I76:00000006 [INF] Executed DbCommand ("36"ms) [Parameters=["@p6='?' (DbType = Int32), @p0='?', @p1='?' (DbType = Int32), @p2='?', @p3='?' (Size = 100), @p4='?', @p5='?' (DbType = DateTime)"], CommandType='Text', CommandTimeout='30']"
+""UPDATE \"AppArticles\" SET \"Body\" = @p0, \"CategoryId\" = @p1, \"Slug\" = @p2, \"Title\" = @p3, \"UpdatedById\" = @p4, \"UpdatedDate\" = @p5
+WHERE \"Id\" = @p6;" (0723d8ff)
+2018-09-22T19:01:21.3030444+03:00 0HLH0KH3J6I76:00000006 [INF] Executed action method "DemoBlog.Controllers.ArticlesController.UpdateArticle (DemoBlog)", returned result "Microsoft.AspNetCore.Mvc.NoContentResult" in 104.8401ms. (50a9e262)
+2018-09-22T19:01:21.3087556+03:00 0HLH0KH3J6I76:00000006 [INF] Executing HttpStatusCodeResult, setting HTTP status code 204 (e28ccfae)
+2018-09-22T19:01:21.3090823+03:00 0HLH0KH3J6I76:00000006 [INF] Executed action "DemoBlog.Controllers.ArticlesController.UpdateArticle (DemoBlog)" in 131.5664ms (afa2e885)
+2018-09-22T19:01:21.3094465+03:00 0HLH0KH3J6I76:00000006 [INF] Request finished in 160.3797ms 204  (791a596a)
+2018-09-22T19:01:48.3257868+03:00 0HLH0KH3J6I76:00000007 [INF] Request starting HTTP/1.1 GET http://localhost:5000/api/articles/5   (ca22a1cb)
+2018-09-22T19:01:48.3399448+03:00 0HLH0KH3J6I76:00000007 [INF] Route matched with "{action = \"GetArticle\", controller = \"Articles\"}". Executing action "DemoBlog.Controllers.ArticlesController.GetArticle (DemoBlog)" (a44c0341)
+2018-09-22T19:01:48.3407257+03:00 0HLH0KH3J6I76:00000007 [INF] Executing action method "DemoBlog.Controllers.ArticlesController.GetArticle (DemoBlog)" with arguments (["5"]) - Validation state: Valid (4e3479ed)
+2018-09-22T19:01:48.3450957+03:00 0HLH0KH3J6I76:00000007 [INF] Entity Framework Core "2.2.0-preview1-35029" initialized '"ApplicationDbContext"' using provider '"Npgsql.EntityFrameworkCore.PostgreSQL"' with options: "MigrationsAssembly=DemoBlog " (9958f5bb)
+2018-09-22T19:01:48.3492720+03:00 0HLH0KH3J6I76:00000007 [INF] Executed DbCommand ("3"ms) [Parameters=["@__id_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT a.\"Id\", a.\"Body\", a.\"CategoryId\", a.\"CreatedById\", a.\"CreatedDate\", a.\"Slug\", a.\"Title\", a.\"UpdatedById\", a.\"UpdatedDate\", \"a.Category\".\"Id\", \"a.Category\".\"CreatedById\", \"a.Category\".\"CreatedDate\", \"a.Category\".\"Name\", \"a.Category\".\"Slug\", \"a.Category\".\"UpdatedById\", \"a.Category\".\"UpdatedDate\", \"a.CreatedBy\".\"Id\", \"a.CreatedBy\".\"AccessFailedCount\", \"a.CreatedBy\".\"ConcurrencyStamp\", \"a.CreatedBy\".\"CreatedById\", \"a.CreatedBy\".\"CreatedDate\", \"a.CreatedBy\".\"Email\", \"a.CreatedBy\".\"EmailConfirmed\", \"a.CreatedBy\".\"FullName\", \"a.CreatedBy\".\"IsEnabled\", \"a.CreatedBy\".\"LockoutEnabled\", \"a.CreatedBy\".\"LockoutEnd\", \"a.CreatedBy\".\"NormalizedEmail\", \"a.CreatedBy\".\"NormalizedUserName\", \"a.CreatedBy\".\"PasswordHash\", \"a.CreatedBy\".\"PhoneNumber\", \"a.CreatedBy\".\"PhoneNumberConfirmed\", \"a.CreatedBy\".\"SecurityStamp\", \"a.CreatedBy\".\"TwoFactorEnabled\", \"a.CreatedBy\".\"UpdatedDate\", \"a.CreatedBy\".\"UserName\"
+FROM \"AppArticles\" AS a
+LEFT JOIN \"AppCategories\" AS \"a.Category\" ON a.\"CategoryId\" = \"a.Category\".\"Id\"
+LEFT JOIN \"AspNetUsers\" AS \"a.CreatedBy\" ON a.\"CreatedById\" = \"a.CreatedBy\".\"Id\"
+WHERE a.\"Id\" = @__id_0
+ORDER BY a.\"Id\"
+LIMIT 1" (0723d8ff)
+2018-09-22T19:01:48.3530594+03:00 0HLH0KH3J6I76:00000007 [INF] Executed DbCommand ("3"ms) [Parameters=["@__id_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT \"a.ArticleTags\".\"Id\", \"a.ArticleTags\".\"ArticleId\", \"a.ArticleTags\".\"TagId\", \"a.ArticleTags\".\"CreatedById\", \"a.ArticleTags\".\"CreatedDate\", \"a.ArticleTags\".\"UpdatedById\", \"a.ArticleTags\".\"UpdatedDate\", \"a.Tag\".\"Id\", \"a.Tag\".\"CreatedById\", \"a.Tag\".\"CreatedDate\", \"a.Tag\".\"Name\", \"a.Tag\".\"Slug\", \"a.Tag\".\"UpdatedById\", \"a.Tag\".\"UpdatedDate\"
+FROM \"AppArticleTags\" AS \"a.ArticleTags\"
+INNER JOIN \"AppTags\" AS \"a.Tag\" ON \"a.ArticleTags\".\"TagId\" = \"a.Tag\".\"Id\"
+INNER JOIN (
+    SELECT DISTINCT t.*
+    FROM (
+        SELECT a0.\"Id\"
+        FROM \"AppArticles\" AS a0
+        LEFT JOIN \"AppCategories\" AS \"a.Category0\" ON a0.\"CategoryId\" = \"a.Category0\".\"Id\"
+        LEFT JOIN \"AspNetUsers\" AS \"a.CreatedBy0\" ON a0.\"CreatedById\" = \"a.CreatedBy0\".\"Id\"
+        WHERE a0.\"Id\" = @__id_0
+        ORDER BY a0.\"Id\"
+        LIMIT 1
+    ) AS t
+) AS t0 ON \"a.ArticleTags\".\"ArticleId\" = t0.\"Id\"
+ORDER BY t0.\"Id\"" (0723d8ff)
+2018-09-22T19:01:48.3565622+03:00 0HLH0KH3J6I76:00000007 [INF] Executed DbCommand ("2"ms) [Parameters=["@__id_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT \"a.Comments\".\"Id\", \"a.Comments\".\"ArticleId\", \"a.Comments\".\"Body\", \"a.Comments\".\"CreatedById\", \"a.Comments\".\"CreatedDate\", \"a.Comments\".\"UpdatedById\", \"a.Comments\".\"UpdatedDate\"
+FROM \"AppComments\" AS \"a.Comments\"
+INNER JOIN (
+    SELECT DISTINCT t1.*
+    FROM (
+        SELECT a1.\"Id\"
+        FROM \"AppArticles\" AS a1
+        LEFT JOIN \"AppCategories\" AS \"a.Category1\" ON a1.\"CategoryId\" = \"a.Category1\".\"Id\"
+        LEFT JOIN \"AspNetUsers\" AS \"a.CreatedBy1\" ON a1.\"CreatedById\" = \"a.CreatedBy1\".\"Id\"
+        WHERE a1.\"Id\" = @__id_0
+        ORDER BY a1.\"Id\"
+        LIMIT 1
+    ) AS t1
+) AS t2 ON \"a.Comments\".\"ArticleId\" = t2.\"Id\"
+ORDER BY t2.\"Id\"" (0723d8ff)
+2018-09-22T19:01:48.3575378+03:00 0HLH0KH3J6I76:00000007 [INF] Executed action method "DemoBlog.Controllers.ArticlesController.GetArticle (DemoBlog)", returned result "Microsoft.AspNetCore.Mvc.OkObjectResult" in 16.6403ms. (50a9e262)
+2018-09-22T19:01:48.3577324+03:00 0HLH0KH3J6I76:00000007 [INF] Executing ObjectResult, writing value of type '"DemoBlog.ViewModels.ArticleViewModel"'. (8a1b66c8)
+2018-09-22T19:01:48.3582168+03:00 0HLH0KH3J6I76:00000007 [INF] Executed action "DemoBlog.Controllers.ArticlesController.GetArticle (DemoBlog)" in 18.1331ms (afa2e885)
+2018-09-22T19:01:48.3583829+03:00 0HLH0KH3J6I76:00000007 [INF] Request finished in 32.8168ms 200 application/json; charset=utf-8 (791a596a)
+2018-09-22T19:05:40.0371778+03:00 0HLH0KH3J6I78:00000001 [INF] Request starting HTTP/1.1 PUT http://localhost:5000/api/articles/5 application/json 110 (ca22a1cb)
+2018-09-22T19:05:40.0390579+03:00 0HLH0KH3J6I78:00000001 [INF] Route matched with "{action = \"UpdateArticle\", controller = \"Articles\"}". Executing action "DemoBlog.Controllers.ArticlesController.UpdateArticle (DemoBlog)" (a44c0341)
+2018-09-22T19:05:40.0400670+03:00 0HLH0KH3J6I78:00000001 [DBG] AuthenticationScheme: "Bearer" was successfully authenticated. (1805f3b3)
+2018-09-22T19:05:40.0404104+03:00 0HLH0KH3J6I78:00000001 [INF] Authorization was successful. (0d575a54)
+2018-09-22T19:05:40.0415269+03:00 0HLH0KH3J6I78:00000001 [INF] Entity Framework Core "2.2.0-preview1-35029" initialized '"ApplicationDbContext"' using provider '"Npgsql.EntityFrameworkCore.PostgreSQL"' with options: "MigrationsAssembly=DemoBlog " (9958f5bb)
+2018-09-22T19:05:40.0467914+03:00 0HLH0KH3J6I78:00000001 [INF] Executed DbCommand ("2"ms) [Parameters=["@__get_Item_0='?'"], CommandType='Text', CommandTimeout='30']"
+""SELECT e.\"Id\", e.\"AccessFailedCount\", e.\"ConcurrencyStamp\", e.\"CreatedById\", e.\"CreatedDate\", e.\"Email\", e.\"EmailConfirmed\", e.\"FullName\", e.\"IsEnabled\", e.\"LockoutEnabled\", e.\"LockoutEnd\", e.\"NormalizedEmail\", e.\"NormalizedUserName\", e.\"PasswordHash\", e.\"PhoneNumber\", e.\"PhoneNumberConfirmed\", e.\"SecurityStamp\", e.\"TwoFactorEnabled\", e.\"UpdatedDate\", e.\"UserName\"
+FROM \"AspNetUsers\" AS e
+WHERE e.\"Id\" = @__get_Item_0
+LIMIT 1" (0723d8ff)
+2018-09-22T19:05:40.0481219+03:00 0HLH0KH3J6I78:00000001 [INF] Executing action method "DemoBlog.Controllers.ArticlesController.UpdateArticle (DemoBlog)" with arguments (["5", "DemoBlog.ViewModels.ArticleEditViewModel"]) - Validation state: Valid (4e3479ed)
+2018-09-22T19:05:40.0512992+03:00 0HLH0KH3J6I78:00000001 [INF] Executed DbCommand ("2"ms) [Parameters=["@__id_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT a.\"Id\", a.\"Body\", a.\"CategoryId\", a.\"CreatedById\", a.\"CreatedDate\", a.\"Slug\", a.\"Title\", a.\"UpdatedById\", a.\"UpdatedDate\", \"a.Category\".\"Id\", \"a.Category\".\"CreatedById\", \"a.Category\".\"CreatedDate\", \"a.Category\".\"Name\", \"a.Category\".\"Slug\", \"a.Category\".\"UpdatedById\", \"a.Category\".\"UpdatedDate\", \"a.CreatedBy\".\"Id\", \"a.CreatedBy\".\"AccessFailedCount\", \"a.CreatedBy\".\"ConcurrencyStamp\", \"a.CreatedBy\".\"CreatedById\", \"a.CreatedBy\".\"CreatedDate\", \"a.CreatedBy\".\"Email\", \"a.CreatedBy\".\"EmailConfirmed\", \"a.CreatedBy\".\"FullName\", \"a.CreatedBy\".\"IsEnabled\", \"a.CreatedBy\".\"LockoutEnabled\", \"a.CreatedBy\".\"LockoutEnd\", \"a.CreatedBy\".\"NormalizedEmail\", \"a.CreatedBy\".\"NormalizedUserName\", \"a.CreatedBy\".\"PasswordHash\", \"a.CreatedBy\".\"PhoneNumber\", \"a.CreatedBy\".\"PhoneNumberConfirmed\", \"a.CreatedBy\".\"SecurityStamp\", \"a.CreatedBy\".\"TwoFactorEnabled\", \"a.CreatedBy\".\"UpdatedDate\", \"a.CreatedBy\".\"UserName\"
+FROM \"AppArticles\" AS a
+LEFT JOIN \"AppCategories\" AS \"a.Category\" ON a.\"CategoryId\" = \"a.Category\".\"Id\"
+LEFT JOIN \"AspNetUsers\" AS \"a.CreatedBy\" ON a.\"CreatedById\" = \"a.CreatedBy\".\"Id\"
+WHERE a.\"Id\" = @__id_0
+ORDER BY a.\"Id\"
+LIMIT 1" (0723d8ff)
+2018-09-22T19:05:40.0553863+03:00 0HLH0KH3J6I78:00000001 [INF] Executed DbCommand ("3"ms) [Parameters=["@__id_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT \"a.ArticleTags\".\"Id\", \"a.ArticleTags\".\"ArticleId\", \"a.ArticleTags\".\"TagId\", \"a.ArticleTags\".\"CreatedById\", \"a.ArticleTags\".\"CreatedDate\", \"a.ArticleTags\".\"UpdatedById\", \"a.ArticleTags\".\"UpdatedDate\", \"a.Tag\".\"Id\", \"a.Tag\".\"CreatedById\", \"a.Tag\".\"CreatedDate\", \"a.Tag\".\"Name\", \"a.Tag\".\"Slug\", \"a.Tag\".\"UpdatedById\", \"a.Tag\".\"UpdatedDate\"
+FROM \"AppArticleTags\" AS \"a.ArticleTags\"
+INNER JOIN \"AppTags\" AS \"a.Tag\" ON \"a.ArticleTags\".\"TagId\" = \"a.Tag\".\"Id\"
+INNER JOIN (
+    SELECT DISTINCT t.*
+    FROM (
+        SELECT a0.\"Id\"
+        FROM \"AppArticles\" AS a0
+        LEFT JOIN \"AppCategories\" AS \"a.Category0\" ON a0.\"CategoryId\" = \"a.Category0\".\"Id\"
+        LEFT JOIN \"AspNetUsers\" AS \"a.CreatedBy0\" ON a0.\"CreatedById\" = \"a.CreatedBy0\".\"Id\"
+        WHERE a0.\"Id\" = @__id_0
+        ORDER BY a0.\"Id\"
+        LIMIT 1
+    ) AS t
+) AS t0 ON \"a.ArticleTags\".\"ArticleId\" = t0.\"Id\"
+ORDER BY t0.\"Id\"" (0723d8ff)
+2018-09-22T19:05:40.0581849+03:00 0HLH0KH3J6I78:00000001 [INF] Executed DbCommand ("2"ms) [Parameters=["@__id_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT \"a.Comments\".\"Id\", \"a.Comments\".\"ArticleId\", \"a.Comments\".\"Body\", \"a.Comments\".\"CreatedById\", \"a.Comments\".\"CreatedDate\", \"a.Comments\".\"UpdatedById\", \"a.Comments\".\"UpdatedDate\"
+FROM \"AppComments\" AS \"a.Comments\"
+INNER JOIN (
+    SELECT DISTINCT t1.*
+    FROM (
+        SELECT a1.\"Id\"
+        FROM \"AppArticles\" AS a1
+        LEFT JOIN \"AppCategories\" AS \"a.Category1\" ON a1.\"CategoryId\" = \"a.Category1\".\"Id\"
+        LEFT JOIN \"AspNetUsers\" AS \"a.CreatedBy1\" ON a1.\"CreatedById\" = \"a.CreatedBy1\".\"Id\"
+        WHERE a1.\"Id\" = @__id_0
+        ORDER BY a1.\"Id\"
+        LIMIT 1
+    ) AS t1
+) AS t2 ON \"a.Comments\".\"ArticleId\" = t2.\"Id\"
+ORDER BY t2.\"Id\"" (0723d8ff)
+2018-09-22T19:05:40.0587883+03:00 0HLH0KH3J6I78:00000001 [INF] Authorization failed. (b15dd539)
+2018-09-22T19:05:40.0589510+03:00 0HLH0KH3J6I78:00000001 [INF] Executed action method "DemoBlog.Controllers.ArticlesController.UpdateArticle (DemoBlog)", returned result "Microsoft.AspNetCore.Mvc.ChallengeResult" in 10.7058ms. (50a9e262)
+2018-09-22T19:05:40.0593047+03:00 0HLH0KH3J6I78:00000001 [INF] Executing ChallengeResult with authentication schemes ([]). (f3dca807)
+2018-09-22T19:05:40.0728480+03:00 0HLH0KH3J6I78:00000001 [INF] AuthenticationScheme: "Identity.Application" was challenged. (d45f1f38)
+2018-09-22T19:05:40.0730593+03:00 0HLH0KH3J6I78:00000001 [INF] Executed action "DemoBlog.Controllers.ArticlesController.UpdateArticle (DemoBlog)" in 33.8707ms (afa2e885)
+2018-09-22T19:05:40.0733421+03:00 0HLH0KH3J6I78:00000001 [INF] Request finished in 36.3913ms 302  (791a596a)
+2018-09-22T19:05:40.1611255+03:00 0HLH0KH3J6I78:00000002 [INF] Request starting HTTP/1.1 GET http://localhost:5000/Account/Login?ReturnUrl=%2Fapi%2Farticles%2F5   (ca22a1cb)
+2018-09-22T19:05:40.1633939+03:00 0HLH0KH3J6I78:00000002 [INF] Request finished in 2.3167ms 404  (791a596a)
+2018-09-22T19:11:44.6882623+03:00 0HLH0KOBJ8KAG:00000001 [INF] Request starting HTTP/1.1 PUT http://localhost:5000/api/articles/5 application/json 110 (ca22a1cb)
+2018-09-22T19:11:44.7148102+03:00 0HLH0KOBJ8KAG:00000001 [WRN] Failed to determine the https port for redirect. (ca76cc21)
+2018-09-22T19:11:45.1927713+03:00 0HLH0KOBJ8KAG:00000001 [INF] Route matched with "{action = \"UpdateArticle\", controller = \"Articles\"}". Executing action "DemoBlog.Controllers.ArticlesController.UpdateArticle (DemoBlog)" (a44c0341)
+2018-09-22T19:11:45.2898264+03:00 0HLH0KOBJ8KAG:00000001 [DBG] AuthenticationScheme: "Bearer" was successfully authenticated. (1805f3b3)
+2018-09-22T19:11:45.3079930+03:00 0HLH0KOBJ8KAG:00000001 [INF] Authorization was successful. (0d575a54)
+2018-09-22T19:11:46.8398080+03:00 0HLH0KOBJ8KAG:00000001 [INF] Entity Framework Core "2.2.0-preview1-35029" initialized '"ApplicationDbContext"' using provider '"Npgsql.EntityFrameworkCore.PostgreSQL"' with options: "MigrationsAssembly=DemoBlog " (9958f5bb)
+2018-09-22T19:11:48.2869379+03:00 0HLH0KOBJ8KAG:00000001 [INF] Executed DbCommand ("22"ms) [Parameters=["@__get_Item_0='?'"], CommandType='Text', CommandTimeout='30']"
+""SELECT e.\"Id\", e.\"AccessFailedCount\", e.\"ConcurrencyStamp\", e.\"CreatedById\", e.\"CreatedDate\", e.\"Email\", e.\"EmailConfirmed\", e.\"FullName\", e.\"IsEnabled\", e.\"LockoutEnabled\", e.\"LockoutEnd\", e.\"NormalizedEmail\", e.\"NormalizedUserName\", e.\"PasswordHash\", e.\"PhoneNumber\", e.\"PhoneNumberConfirmed\", e.\"SecurityStamp\", e.\"TwoFactorEnabled\", e.\"UpdatedDate\", e.\"UserName\"
+FROM \"AspNetUsers\" AS e
+WHERE e.\"Id\" = @__get_Item_0
+LIMIT 1" (0723d8ff)
+2018-09-22T19:11:48.7684438+03:00 0HLH0KOBJ8KAG:00000001 [INF] Executing action method "DemoBlog.Controllers.ArticlesController.UpdateArticle (DemoBlog)" with arguments (["5", "DemoBlog.ViewModels.ArticleEditViewModel"]) - Validation state: Valid (4e3479ed)
+2018-09-22T19:11:49.2976648+03:00 0HLH0KOBJ8KAG:00000001 [INF] Executed DbCommand ("8"ms) [Parameters=["@__id_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT a.\"Id\", a.\"Body\", a.\"CategoryId\", a.\"CreatedById\", a.\"CreatedDate\", a.\"Slug\", a.\"Title\", a.\"UpdatedById\", a.\"UpdatedDate\", \"a.Category\".\"Id\", \"a.Category\".\"CreatedById\", \"a.Category\".\"CreatedDate\", \"a.Category\".\"Name\", \"a.Category\".\"Slug\", \"a.Category\".\"UpdatedById\", \"a.Category\".\"UpdatedDate\", \"a.CreatedBy\".\"Id\", \"a.CreatedBy\".\"AccessFailedCount\", \"a.CreatedBy\".\"ConcurrencyStamp\", \"a.CreatedBy\".\"CreatedById\", \"a.CreatedBy\".\"CreatedDate\", \"a.CreatedBy\".\"Email\", \"a.CreatedBy\".\"EmailConfirmed\", \"a.CreatedBy\".\"FullName\", \"a.CreatedBy\".\"IsEnabled\", \"a.CreatedBy\".\"LockoutEnabled\", \"a.CreatedBy\".\"LockoutEnd\", \"a.CreatedBy\".\"NormalizedEmail\", \"a.CreatedBy\".\"NormalizedUserName\", \"a.CreatedBy\".\"PasswordHash\", \"a.CreatedBy\".\"PhoneNumber\", \"a.CreatedBy\".\"PhoneNumberConfirmed\", \"a.CreatedBy\".\"SecurityStamp\", \"a.CreatedBy\".\"TwoFactorEnabled\", \"a.CreatedBy\".\"UpdatedDate\", \"a.CreatedBy\".\"UserName\"
+FROM \"AppArticles\" AS a
+LEFT JOIN \"AppCategories\" AS \"a.Category\" ON a.\"CategoryId\" = \"a.Category\".\"Id\"
+LEFT JOIN \"AspNetUsers\" AS \"a.CreatedBy\" ON a.\"CreatedById\" = \"a.CreatedBy\".\"Id\"
+WHERE a.\"Id\" = @__id_0
+ORDER BY a.\"Id\"
+LIMIT 1" (0723d8ff)
+2018-09-22T19:11:49.4706639+03:00 0HLH0KOBJ8KAG:00000001 [INF] Executed DbCommand ("4"ms) [Parameters=["@__id_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT \"a.ArticleTags\".\"Id\", \"a.ArticleTags\".\"ArticleId\", \"a.ArticleTags\".\"TagId\", \"a.ArticleTags\".\"CreatedById\", \"a.ArticleTags\".\"CreatedDate\", \"a.ArticleTags\".\"UpdatedById\", \"a.ArticleTags\".\"UpdatedDate\", \"a.Tag\".\"Id\", \"a.Tag\".\"CreatedById\", \"a.Tag\".\"CreatedDate\", \"a.Tag\".\"Name\", \"a.Tag\".\"Slug\", \"a.Tag\".\"UpdatedById\", \"a.Tag\".\"UpdatedDate\"
+FROM \"AppArticleTags\" AS \"a.ArticleTags\"
+INNER JOIN \"AppTags\" AS \"a.Tag\" ON \"a.ArticleTags\".\"TagId\" = \"a.Tag\".\"Id\"
+INNER JOIN (
+    SELECT DISTINCT t.*
+    FROM (
+        SELECT a0.\"Id\"
+        FROM \"AppArticles\" AS a0
+        LEFT JOIN \"AppCategories\" AS \"a.Category0\" ON a0.\"CategoryId\" = \"a.Category0\".\"Id\"
+        LEFT JOIN \"AspNetUsers\" AS \"a.CreatedBy0\" ON a0.\"CreatedById\" = \"a.CreatedBy0\".\"Id\"
+        WHERE a0.\"Id\" = @__id_0
+        ORDER BY a0.\"Id\"
+        LIMIT 1
+    ) AS t
+) AS t0 ON \"a.ArticleTags\".\"ArticleId\" = t0.\"Id\"
+ORDER BY t0.\"Id\"" (0723d8ff)
+2018-09-22T19:11:49.5712935+03:00 0HLH0KOBJ8KAG:00000001 [INF] Executed DbCommand ("22"ms) [Parameters=["@__id_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT \"a.Comments\".\"Id\", \"a.Comments\".\"ArticleId\", \"a.Comments\".\"Body\", \"a.Comments\".\"CreatedById\", \"a.Comments\".\"CreatedDate\", \"a.Comments\".\"UpdatedById\", \"a.Comments\".\"UpdatedDate\"
+FROM \"AppComments\" AS \"a.Comments\"
+INNER JOIN (
+    SELECT DISTINCT t1.*
+    FROM (
+        SELECT a1.\"Id\"
+        FROM \"AppArticles\" AS a1
+        LEFT JOIN \"AppCategories\" AS \"a.Category1\" ON a1.\"CategoryId\" = \"a.Category1\".\"Id\"
+        LEFT JOIN \"AspNetUsers\" AS \"a.CreatedBy1\" ON a1.\"CreatedById\" = \"a.CreatedBy1\".\"Id\"
+        WHERE a1.\"Id\" = @__id_0
+        ORDER BY a1.\"Id\"
+        LIMIT 1
+    ) AS t1
+) AS t2 ON \"a.Comments\".\"ArticleId\" = t2.\"Id\"
+ORDER BY t2.\"Id\"" (0723d8ff)
+2018-09-22T19:11:49.5879366+03:00 0HLH0KOBJ8KAG:00000001 [INF] Authorization failed. (b15dd539)
+2018-09-22T19:11:49.5979369+03:00 0HLH0KOBJ8KAG:00000001 [INF] Executed action method "DemoBlog.Controllers.ArticlesController.UpdateArticle (DemoBlog)", returned result "Microsoft.AspNetCore.Mvc.UnauthorizedResult" in 823.2791ms. (50a9e262)
+2018-09-22T19:11:49.6156754+03:00 0HLH0KOBJ8KAG:00000001 [INF] Executing HttpStatusCodeResult, setting HTTP status code 401 (e28ccfae)
+2018-09-22T19:11:49.6307156+03:00 0HLH0KOBJ8KAG:00000001 [INF] Executed action "DemoBlog.Controllers.ArticlesController.UpdateArticle (DemoBlog)" in 4429.7498ms (afa2e885)
+2018-09-22T19:11:49.6765733+03:00 0HLH0KOBJ8KAG:00000001 [INF] Request finished in 5002.7605ms 401  (791a596a)
+2018-09-22T19:16:57.1527455+03:00 0HLH0KOBJ8KAI:00000001 [INF] Request starting HTTP/1.1 POST http://localhost:5000/connect/token application/x-www-form-urlencoded 121 (ca22a1cb)
+2018-09-22T19:16:57.2814423+03:00 0HLH0KOBJ8KAI:00000001 [INF] The token request was successfully extracted from the HTTP request: "{
+  \"username\": \"admin\",
+  \"password\": \"[removed for security reasons]\",
+  \"grant_type\": \"password\",
+  \"scope\": \"openid email phone profile offline_access roles\"
+}". (ebc01284)
+2018-09-22T19:16:57.3152844+03:00 0HLH0KOBJ8KAI:00000001 [DBG] The token request validation process was partially skipped because the 'client_id' parameter was missing or empty. (fcec36a0)
+2018-09-22T19:16:57.3157113+03:00 0HLH0KOBJ8KAI:00000001 [INF] The token request was successfully validated. (d7e51e65)
+2018-09-22T19:16:57.3292051+03:00 0HLH0KOBJ8KAI:00000001 [DBG] The default token request handling was skipped from user code. (72afae05)
+2018-09-22T19:16:57.3401897+03:00 0HLH0KOBJ8KAI:00000001 [INF] Route matched with "{action = \"Exchange\", controller = \"Authorization\"}". Executing action "DemoBlog.Controllers.AuthorizationController.Exchange (DemoBlog)" (a44c0341)
+2018-09-22T19:16:57.3572484+03:00 0HLH0KOBJ8KAI:00000001 [INF] Executing action method "DemoBlog.Controllers.AuthorizationController.Exchange (DemoBlog)" with arguments (["{
+  \"username\": \"admin\",
+  \"password\": \"[removed for security reasons]\",
+  \"grant_type\": \"password\",
+  \"scope\": \"openid email phone profile offline_access roles\"
+}"]) - Validation state: Valid (4e3479ed)
+2018-09-22T19:16:57.3877579+03:00 0HLH0KOBJ8KAI:00000001 [INF] Entity Framework Core "2.2.0-preview1-35029" initialized '"ApplicationDbContext"' using provider '"Npgsql.EntityFrameworkCore.PostgreSQL"' with options: "MigrationsAssembly=DemoBlog " (9958f5bb)
+2018-09-22T19:16:57.4172250+03:00 0HLH0KOBJ8KAI:00000001 [INF] Executed DbCommand ("2"ms) [Parameters=["@__normalizedEmail_0='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SELECT u.\"Id\", u.\"AccessFailedCount\", u.\"ConcurrencyStamp\", u.\"CreatedById\", u.\"CreatedDate\", u.\"Email\", u.\"EmailConfirmed\", u.\"FullName\", u.\"IsEnabled\", u.\"LockoutEnabled\", u.\"LockoutEnd\", u.\"NormalizedEmail\", u.\"NormalizedUserName\", u.\"PasswordHash\", u.\"PhoneNumber\", u.\"PhoneNumberConfirmed\", u.\"SecurityStamp\", u.\"TwoFactorEnabled\", u.\"UpdatedDate\", u.\"UserName\"
+FROM \"AspNetUsers\" AS u
+WHERE u.\"NormalizedEmail\" = @__normalizedEmail_0
+LIMIT 1" (0723d8ff)
+2018-09-22T19:16:57.4628790+03:00 0HLH0KOBJ8KAI:00000001 [INF] Executed DbCommand ("1"ms) [Parameters=["@__normalizedUserName_0='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SELECT u.\"Id\", u.\"AccessFailedCount\", u.\"ConcurrencyStamp\", u.\"CreatedById\", u.\"CreatedDate\", u.\"Email\", u.\"EmailConfirmed\", u.\"FullName\", u.\"IsEnabled\", u.\"LockoutEnabled\", u.\"LockoutEnd\", u.\"NormalizedEmail\", u.\"NormalizedUserName\", u.\"PasswordHash\", u.\"PhoneNumber\", u.\"PhoneNumberConfirmed\", u.\"SecurityStamp\", u.\"TwoFactorEnabled\", u.\"UpdatedDate\", u.\"UserName\"
+FROM \"AspNetUsers\" AS u
+WHERE u.\"NormalizedUserName\" = @__normalizedUserName_0
+LIMIT 1" (0723d8ff)
+2018-09-22T19:16:57.6901439+03:00 0HLH0KOBJ8KAI:00000001 [INF] Executed DbCommand ("2"ms) [Parameters=["@__user_Id_0='?'"], CommandType='Text', CommandTimeout='30']"
+""SELECT uc.\"Id\", uc.\"ClaimType\", uc.\"ClaimValue\", uc.\"UserId\"
+FROM \"AspNetUserClaims\" AS uc
+WHERE uc.\"UserId\" = @__user_Id_0" (0723d8ff)
+2018-09-22T19:16:57.7523113+03:00 0HLH0KOBJ8KAI:00000001 [INF] Executed DbCommand ("3"ms) [Parameters=["@__userId_0='?'"], CommandType='Text', CommandTimeout='30']"
+""SELECT role.\"Name\"
+FROM \"AspNetUserRoles\" AS \"userRole\"
+INNER JOIN \"AspNetRoles\" AS role ON \"userRole\".\"RoleId\" = role.\"Id\"
+WHERE \"userRole\".\"UserId\" = @__userId_0" (0723d8ff)
+2018-09-22T19:16:57.7881540+03:00 0HLH0KOBJ8KAI:00000001 [INF] Executed DbCommand ("1"ms) [Parameters=["@__normalizedName_0='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SELECT r.\"Id\", r.\"ConcurrencyStamp\", r.\"CreatedById\", r.\"CreatedDate\", r.\"Description\", r.\"Name\", r.\"NormalizedName\", r.\"UpdatedById\", r.\"UpdatedDate\"
+FROM \"AspNetRoles\" AS r
+WHERE r.\"NormalizedName\" = @__normalizedName_0
+LIMIT 1" (0723d8ff)
+2018-09-22T19:16:57.9058796+03:00 0HLH0KOBJ8KAI:00000001 [INF] Executed DbCommand ("79"ms) [Parameters=["@__role_Id_0='?'"], CommandType='Text', CommandTimeout='30']"
+""SELECT rc.\"ClaimType\", rc.\"ClaimValue\"
+FROM \"AspNetRoleClaims\" AS rc
+WHERE rc.\"RoleId\" = @__role_Id_0" (0723d8ff)
+2018-09-22T19:16:57.9266224+03:00 0HLH0KOBJ8KAI:00000001 [INF] Executed action method "DemoBlog.Controllers.AuthorizationController.Exchange (DemoBlog)", returned result "Microsoft.AspNetCore.Mvc.SignInResult" in 569.0892ms. (50a9e262)
+2018-09-22T19:16:57.9300172+03:00 0HLH0KOBJ8KAI:00000001 [INF] Executing SignInResult with authentication scheme ("ASOS") and the following principal: "System.Security.Claims.ClaimsPrincipal". (f8bf0a82)
+2018-09-22T19:16:58.3153879+03:00 0HLH0KOBJ8KAI:00000001 [INF] Executed DbCommand ("2"ms) [Parameters=["@p0='?', @p1='?', @p2='?', @p3='?', @p4='?', @p5='?', @p6='?', @p7='?'"], CommandType='Text', CommandTimeout='30']"
+""INSERT INTO \"OpenIddictAuthorizations\" (\"Id\", \"ApplicationId\", \"ConcurrencyToken\", \"Properties\", \"Scopes\", \"Status\", \"Subject\", \"Type\")
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7);" (0723d8ff)
+2018-09-22T19:16:58.3965583+03:00 0HLH0KOBJ8KAI:00000001 [INF] An ad hoc authorization was automatically created and associated with an unknown application: "8cfd6052-4363-4184-8621-04006f99da9c". (b5fe4ad7)
+2018-09-22T19:16:58.4394679+03:00 0HLH0KOBJ8KAI:00000001 [DBG] '"AspNet.Identity.SecurityStamp"' was excluded from the access token claims. (ed8f369e)
+2018-09-22T19:16:58.4398340+03:00 0HLH0KOBJ8KAI:00000001 [DBG] '"email"' was excluded from the access token claims. (ed8f369e)
+2018-09-22T19:16:58.4399323+03:00 0HLH0KOBJ8KAI:00000001 [DBG] '"phone"' was excluded from the access token claims. (ed8f369e)
+2018-09-22T19:16:58.5984107+03:00 0HLH0KOBJ8KAI:00000001 [INF] Executed DbCommand ("10"ms) [Parameters=["@p0='?', @p1='?', @p2='?', @p3='?', @p4='?' (DbType = DateTimeOffset), @p5='?' (DbType = DateTimeOffset), @p6='?', @p7='?', @p8='?', @p9='?', @p10='?', @p11='?'"], CommandType='Text', CommandTimeout='30']"
+""INSERT INTO \"OpenIddictTokens\" (\"Id\", \"ApplicationId\", \"AuthorizationId\", \"ConcurrencyToken\", \"CreationDate\", \"ExpirationDate\", \"Payload\", \"Properties\", \"ReferenceId\", \"Status\", \"Subject\", \"Type\")
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9, @p10, @p11);" (0723d8ff)
+2018-09-22T19:16:58.6476842+03:00 0HLH0KOBJ8KAI:00000001 [DBG] '"AspNet.Identity.SecurityStamp"' was excluded from the identity token claims. (7dcd2335)
+2018-09-22T19:16:58.6806236+03:00 0HLH0KOBJ8KAI:00000001 [INF] The token response was successfully returned: "{
+  \"token_type\": \"Bearer\",
+  \"access_token\": \"[removed for security reasons]\",
+  \"expires_in\": 3600,
+  \"refresh_token\": \"[removed for security reasons]\",
+  \"id_token\": \"[removed for security reasons]\"
+}". (12d98310)
+2018-09-22T19:16:58.7124301+03:00 0HLH0KOBJ8KAI:00000001 [INF] Executed action "DemoBlog.Controllers.AuthorizationController.Exchange (DemoBlog)" in 1371.8659ms (afa2e885)
+2018-09-22T19:16:58.7131302+03:00 0HLH0KOBJ8KAI:00000001 [INF] Request finished in 1560.6425ms 200 application/json;charset=UTF-8 (791a596a)
+2018-09-22T19:19:10.4926809+03:00 0HLH0KOBJ8KAK:00000001 [INF] Request starting HTTP/1.1 POST http://localhost:5000/api/account/users application/json 224 (ca22a1cb)
+2018-09-22T19:19:10.5052364+03:00 0HLH0KOBJ8KAK:00000001 [INF] Route matched with "{action = \"Register\", controller = \"Account\"}". Executing action "DemoBlog.Controllers.AccountController.Register (DemoBlog)" (a44c0341)
+2018-09-22T19:19:10.5094658+03:00 0HLH0KOBJ8KAK:00000001 [DBG] AuthenticationScheme: "Bearer" was successfully authenticated. (1805f3b3)
+2018-09-22T19:19:10.5102877+03:00 0HLH0KOBJ8KAK:00000001 [INF] Authorization was successful. (0d575a54)
+2018-09-22T19:19:10.5114111+03:00 0HLH0KOBJ8KAK:00000001 [INF] Entity Framework Core "2.2.0-preview1-35029" initialized '"ApplicationDbContext"' using provider '"Npgsql.EntityFrameworkCore.PostgreSQL"' with options: "MigrationsAssembly=DemoBlog " (9958f5bb)
+2018-09-22T19:19:10.5306529+03:00 0HLH0KOBJ8KAK:00000001 [INF] Executed DbCommand ("2"ms) [Parameters=["@__get_Item_0='?'"], CommandType='Text', CommandTimeout='30']"
+""SELECT e.\"Id\", e.\"AccessFailedCount\", e.\"ConcurrencyStamp\", e.\"CreatedById\", e.\"CreatedDate\", e.\"Email\", e.\"EmailConfirmed\", e.\"FullName\", e.\"IsEnabled\", e.\"LockoutEnabled\", e.\"LockoutEnd\", e.\"NormalizedEmail\", e.\"NormalizedUserName\", e.\"PasswordHash\", e.\"PhoneNumber\", e.\"PhoneNumberConfirmed\", e.\"SecurityStamp\", e.\"TwoFactorEnabled\", e.\"UpdatedDate\", e.\"UserName\"
+FROM \"AspNetUsers\" AS e
+WHERE e.\"Id\" = @__get_Item_0
+LIMIT 1" (0723d8ff)
+2018-09-22T19:19:10.5910724+03:00 0HLH0KOBJ8KAK:00000001 [INF] Executing action method "DemoBlog.Controllers.AccountController.Register (DemoBlog)" with arguments (["DemoBlog.ViewModels.UserEditViewModel"]) - Validation state: Valid (4e3479ed)
+2018-09-22T19:19:10.5973675+03:00 0HLH0KOBJ8KAK:00000001 [INF] Authorization was successful. (0d575a54)
+2018-09-22T19:19:10.7952165+03:00 0HLH0KOBJ8KAK:00000001 [INF] Executed DbCommand ("1"ms) [Parameters=["@__normalizedUserName_0='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SELECT u.\"Id\", u.\"AccessFailedCount\", u.\"ConcurrencyStamp\", u.\"CreatedById\", u.\"CreatedDate\", u.\"Email\", u.\"EmailConfirmed\", u.\"FullName\", u.\"IsEnabled\", u.\"LockoutEnabled\", u.\"LockoutEnd\", u.\"NormalizedEmail\", u.\"NormalizedUserName\", u.\"PasswordHash\", u.\"PhoneNumber\", u.\"PhoneNumberConfirmed\", u.\"SecurityStamp\", u.\"TwoFactorEnabled\", u.\"UpdatedDate\", u.\"UserName\"
+FROM \"AspNetUsers\" AS u
+WHERE u.\"NormalizedUserName\" = @__normalizedUserName_0
+LIMIT 1" (0723d8ff)
+2018-09-22T19:19:10.8245036+03:00 0HLH0KOBJ8KAK:00000001 [INF] Executed DbCommand ("1"ms) [Parameters=["@__normalizedEmail_0='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SELECT u.\"Id\", u.\"AccessFailedCount\", u.\"ConcurrencyStamp\", u.\"CreatedById\", u.\"CreatedDate\", u.\"Email\", u.\"EmailConfirmed\", u.\"FullName\", u.\"IsEnabled\", u.\"LockoutEnabled\", u.\"LockoutEnd\", u.\"NormalizedEmail\", u.\"NormalizedUserName\", u.\"PasswordHash\", u.\"PhoneNumber\", u.\"PhoneNumberConfirmed\", u.\"SecurityStamp\", u.\"TwoFactorEnabled\", u.\"UpdatedDate\", u.\"UserName\"
+FROM \"AspNetUsers\" AS u
+WHERE u.\"NormalizedEmail\" = @__normalizedEmail_0
+LIMIT 1" (0723d8ff)
+2018-09-22T19:19:11.0093485+03:00 0HLH0KOBJ8KAK:00000001 [INF] Executed DbCommand ("38"ms) [Parameters=["@p0='?', @p1='?' (DbType = Int32), @p2='?', @p3='?', @p4='?' (DbType = DateTime), @p5='?' (Size = 256), @p6='?' (DbType = Boolean), @p7='?', @p8='?' (DbType = Boolean), @p9='?' (DbType = Boolean), @p10='?' (DbType = DateTimeOffset), @p11='?' (Size = 256), @p12='?' (Size = 256), @p13='?', @p14='?', @p15='?' (DbType = Boolean), @p16='?', @p17='?' (DbType = Boolean), @p18='?' (DbType = DateTime), @p19='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""INSERT INTO \"AspNetUsers\" (\"Id\", \"AccessFailedCount\", \"ConcurrencyStamp\", \"CreatedById\", \"CreatedDate\", \"Email\", \"EmailConfirmed\", \"FullName\", \"IsEnabled\", \"LockoutEnabled\", \"LockoutEnd\", \"NormalizedEmail\", \"NormalizedUserName\", \"PasswordHash\", \"PhoneNumber\", \"PhoneNumberConfirmed\", \"SecurityStamp\", \"TwoFactorEnabled\", \"UpdatedDate\", \"UserName\")
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9, @p10, @p11, @p12, @p13, @p14, @p15, @p16, @p17, @p18, @p19);" (0723d8ff)
+2018-09-22T19:19:11.0558093+03:00 0HLH0KOBJ8KAK:00000001 [INF] Executed DbCommand ("31"ms) [Parameters=["@p22='?', @p23='?', @p20='?', @p21='?' (DbType = DateTime)"], CommandType='Text', CommandTimeout='30']"
+""UPDATE \"AspNetUsers\" SET \"CreatedById\" = @p20, \"UpdatedDate\" = @p21
+WHERE \"Id\" = @p22 AND \"ConcurrencyStamp\" = @p23;" (0723d8ff)
+2018-09-22T19:19:11.0646941+03:00 0HLH0KOBJ8KAK:00000001 [INF] Executed DbCommand ("1"ms) [Parameters=["@__normalizedUserName_0='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SELECT u.\"Id\", u.\"AccessFailedCount\", u.\"ConcurrencyStamp\", u.\"CreatedById\", u.\"CreatedDate\", u.\"Email\", u.\"EmailConfirmed\", u.\"FullName\", u.\"IsEnabled\", u.\"LockoutEnabled\", u.\"LockoutEnd\", u.\"NormalizedEmail\", u.\"NormalizedUserName\", u.\"PasswordHash\", u.\"PhoneNumber\", u.\"PhoneNumberConfirmed\", u.\"SecurityStamp\", u.\"TwoFactorEnabled\", u.\"UpdatedDate\", u.\"UserName\"
+FROM \"AspNetUsers\" AS u
+WHERE u.\"NormalizedUserName\" = @__normalizedUserName_0
+LIMIT 1" (0723d8ff)
+2018-09-22T19:19:11.1038534+03:00 0HLH0KOBJ8KAK:00000001 [INF] Executed DbCommand ("1"ms) [Parameters=["@__normalizedRoleName_0='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SELECT r.\"Id\", r.\"ConcurrencyStamp\", r.\"CreatedById\", r.\"CreatedDate\", r.\"Description\", r.\"Name\", r.\"NormalizedName\", r.\"UpdatedById\", r.\"UpdatedDate\"
+FROM \"AspNetRoles\" AS r
+WHERE r.\"NormalizedName\" = @__normalizedRoleName_0
+LIMIT 2" (0723d8ff)
+2018-09-22T19:19:11.1404579+03:00 0HLH0KOBJ8KAK:00000001 [INF] Executed DbCommand ("1"ms) [Parameters=["@__get_Item_0='?', @__get_Item_1='?'"], CommandType='Text', CommandTimeout='30']"
+""SELECT e.\"UserId\", e.\"RoleId\"
+FROM \"AspNetUserRoles\" AS e
+WHERE (e.\"UserId\" = @__get_Item_0) AND (e.\"RoleId\" = @__get_Item_1)
+LIMIT 1" (0723d8ff)
+2018-09-22T19:19:11.1542674+03:00 0HLH0KOBJ8KAK:00000001 [INF] Executed DbCommand ("1"ms) [Parameters=["@__normalizedRoleName_0='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SELECT r.\"Id\", r.\"ConcurrencyStamp\", r.\"CreatedById\", r.\"CreatedDate\", r.\"Description\", r.\"Name\", r.\"NormalizedName\", r.\"UpdatedById\", r.\"UpdatedDate\"
+FROM \"AspNetRoles\" AS r
+WHERE r.\"NormalizedName\" = @__normalizedRoleName_0
+LIMIT 2" (0723d8ff)
+2018-09-22T19:19:11.1830302+03:00 0HLH0KOBJ8KAK:00000001 [INF] Executed DbCommand ("1"ms) [Parameters=["@__normalizedUserName_0='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SELECT u.\"Id\", u.\"AccessFailedCount\", u.\"ConcurrencyStamp\", u.\"CreatedById\", u.\"CreatedDate\", u.\"Email\", u.\"EmailConfirmed\", u.\"FullName\", u.\"IsEnabled\", u.\"LockoutEnabled\", u.\"LockoutEnd\", u.\"NormalizedEmail\", u.\"NormalizedUserName\", u.\"PasswordHash\", u.\"PhoneNumber\", u.\"PhoneNumberConfirmed\", u.\"SecurityStamp\", u.\"TwoFactorEnabled\", u.\"UpdatedDate\", u.\"UserName\"
+FROM \"AspNetUsers\" AS u
+WHERE u.\"NormalizedUserName\" = @__normalizedUserName_0
+LIMIT 1" (0723d8ff)
+2018-09-22T19:19:11.1855645+03:00 0HLH0KOBJ8KAK:00000001 [INF] Executed DbCommand ("1"ms) [Parameters=["@__normalizedEmail_0='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SELECT u.\"Id\", u.\"AccessFailedCount\", u.\"ConcurrencyStamp\", u.\"CreatedById\", u.\"CreatedDate\", u.\"Email\", u.\"EmailConfirmed\", u.\"FullName\", u.\"IsEnabled\", u.\"LockoutEnabled\", u.\"LockoutEnd\", u.\"NormalizedEmail\", u.\"NormalizedUserName\", u.\"PasswordHash\", u.\"PhoneNumber\", u.\"PhoneNumberConfirmed\", u.\"SecurityStamp\", u.\"TwoFactorEnabled\", u.\"UpdatedDate\", u.\"UserName\"
+FROM \"AspNetUsers\" AS u
+WHERE u.\"NormalizedEmail\" = @__normalizedEmail_0
+LIMIT 1" (0723d8ff)
+2018-09-22T19:19:11.2404190+03:00 0HLH0KOBJ8KAK:00000001 [INF] Executed DbCommand ("23"ms) [Parameters=["@p0='?', @p1='?'"], CommandType='Text', CommandTimeout='30']"
+""INSERT INTO \"AspNetUserRoles\" (\"UserId\", \"RoleId\")
+VALUES (@p0, @p1);" (0723d8ff)
+2018-09-22T19:19:11.2428168+03:00 0HLH0KOBJ8KAK:00000001 [INF] Executed DbCommand ("2"ms) [Parameters=["@p17='?', @p0='?' (DbType = Int32), @p1='?', @p18='?', @p2='?' (Size = 256), @p3='?' (DbType = Boolean), @p4='?', @p5='?' (DbType = Boolean), @p6='?' (DbType = Boolean), @p7='?' (DbType = DateTimeOffset), @p8='?' (Size = 256), @p9='?' (Size = 256), @p10='?', @p11='?', @p12='?' (DbType = Boolean), @p13='?', @p14='?' (DbType = Boolean), @p15='?' (DbType = DateTime), @p16='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""UPDATE \"AspNetUsers\" SET \"AccessFailedCount\" = @p0, \"ConcurrencyStamp\" = @p1, \"Email\" = @p2, \"EmailConfirmed\" = @p3, \"FullName\" = @p4, \"IsEnabled\" = @p5, \"LockoutEnabled\" = @p6, \"LockoutEnd\" = @p7, \"NormalizedEmail\" = @p8, \"NormalizedUserName\" = @p9, \"PasswordHash\" = @p10, \"PhoneNumber\" = @p11, \"PhoneNumberConfirmed\" = @p12, \"SecurityStamp\" = @p13, \"TwoFactorEnabled\" = @p14, \"UpdatedDate\" = @p15, \"UserName\" = @p16
+WHERE \"Id\" = @p17 AND \"ConcurrencyStamp\" = @p18;" (0723d8ff)
+2018-09-22T19:19:11.3056846+03:00 0HLH0KOBJ8KAK:00000001 [INF] Executed DbCommand ("1"ms) [Parameters=["@__userId_0='?'"], CommandType='Text', CommandTimeout='30']"
+""SELECT u.\"Id\", u.\"AccessFailedCount\", u.\"ConcurrencyStamp\", u.\"CreatedById\", u.\"CreatedDate\", u.\"Email\", u.\"EmailConfirmed\", u.\"FullName\", u.\"IsEnabled\", u.\"LockoutEnabled\", u.\"LockoutEnd\", u.\"NormalizedEmail\", u.\"NormalizedUserName\", u.\"PasswordHash\", u.\"PhoneNumber\", u.\"PhoneNumberConfirmed\", u.\"SecurityStamp\", u.\"TwoFactorEnabled\", u.\"UpdatedDate\", u.\"UserName\"
+FROM \"AspNetUsers\" AS u
+WHERE u.\"Id\" = @__userId_0
+ORDER BY u.\"Id\"
+LIMIT 1" (0723d8ff)
+2018-09-22T19:19:11.3198811+03:00 0HLH0KOBJ8KAK:00000001 [INF] Executed DbCommand ("2"ms) [Parameters=["@__userId_0='?'"], CommandType='Text', CommandTimeout='30']"
+""SELECT \"u.Roles\".\"UserId\", \"u.Roles\".\"RoleId\"
+FROM \"AspNetUserRoles\" AS \"u.Roles\"
+INNER JOIN (
+    SELECT u0.\"Id\"
+    FROM \"AspNetUsers\" AS u0
+    WHERE u0.\"Id\" = @__userId_0
+    ORDER BY u0.\"Id\"
+    LIMIT 1
+) AS t ON \"u.Roles\".\"UserId\" = t.\"Id\"
+ORDER BY t.\"Id\"" (0723d8ff)
+2018-09-22T19:19:11.3696391+03:00 0HLH0KOBJ8KAK:00000001 [INF] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT r.\"Name\"
+FROM \"AspNetRoles\" AS r
+WHERE r.\"Id\" IN ('27d7fdf9-c418-4a2b-9130-a92655e2487f')" (0723d8ff)
+2018-09-22T19:19:11.4323243+03:00 0HLH0KOBJ8KAK:00000001 [INF] Executed action method "DemoBlog.Controllers.AccountController.Register (DemoBlog)", returned result "Microsoft.AspNetCore.Mvc.CreatedAtActionResult" in 841.0252ms. (50a9e262)
+2018-09-22T19:19:11.4440496+03:00 0HLH0KOBJ8KAK:00000001 [INF] Executing ObjectResult, writing value of type '"DemoBlog.ViewModels.UserViewModel"'. (8a1b66c8)
+2018-09-22T19:19:11.4957989+03:00 0HLH0KOBJ8KAK:00000001 [INF] Executed action "DemoBlog.Controllers.AccountController.Register (DemoBlog)" in 990.3239ms (afa2e885)
+2018-09-22T19:19:11.4981535+03:00 0HLH0KOBJ8KAK:00000001 [INF] Request finished in 1005.5693ms 201 application/json; charset=utf-8 (791a596a)
+2018-09-22T19:19:39.8046504+03:00 0HLH0KOBJ8KAK:00000002 [INF] Request starting HTTP/1.1 POST http://localhost:5000/connect/token application/x-www-form-urlencoded 119 (ca22a1cb)
+2018-09-22T19:19:39.8065859+03:00 0HLH0KOBJ8KAK:00000002 [INF] The token request was successfully extracted from the HTTP request: "{
+  \"username\": \"wan\",
+  \"password\": \"[removed for security reasons]\",
+  \"grant_type\": \"password\",
+  \"scope\": \"openid email phone profile offline_access roles\"
+}". (ebc01284)
+2018-09-22T19:19:39.8067767+03:00 0HLH0KOBJ8KAK:00000002 [DBG] The token request validation process was partially skipped because the 'client_id' parameter was missing or empty. (fcec36a0)
+2018-09-22T19:19:39.8068189+03:00 0HLH0KOBJ8KAK:00000002 [INF] The token request was successfully validated. (d7e51e65)
+2018-09-22T19:19:39.8069584+03:00 0HLH0KOBJ8KAK:00000002 [DBG] The default token request handling was skipped from user code. (72afae05)
+2018-09-22T19:19:39.8076913+03:00 0HLH0KOBJ8KAK:00000002 [INF] Route matched with "{action = \"Exchange\", controller = \"Authorization\"}". Executing action "DemoBlog.Controllers.AuthorizationController.Exchange (DemoBlog)" (a44c0341)
+2018-09-22T19:19:39.8088626+03:00 0HLH0KOBJ8KAK:00000002 [INF] Executing action method "DemoBlog.Controllers.AuthorizationController.Exchange (DemoBlog)" with arguments (["{
+  \"username\": \"wan\",
+  \"password\": \"[removed for security reasons]\",
+  \"grant_type\": \"password\",
+  \"scope\": \"openid email phone profile offline_access roles\"
+}"]) - Validation state: Valid (4e3479ed)
+2018-09-22T19:19:39.8096221+03:00 0HLH0KOBJ8KAK:00000002 [INF] Entity Framework Core "2.2.0-preview1-35029" initialized '"ApplicationDbContext"' using provider '"Npgsql.EntityFrameworkCore.PostgreSQL"' with options: "MigrationsAssembly=DemoBlog " (9958f5bb)
+2018-09-22T19:19:39.8121393+03:00 0HLH0KOBJ8KAK:00000002 [INF] Executed DbCommand ("2"ms) [Parameters=["@__normalizedEmail_0='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SELECT u.\"Id\", u.\"AccessFailedCount\", u.\"ConcurrencyStamp\", u.\"CreatedById\", u.\"CreatedDate\", u.\"Email\", u.\"EmailConfirmed\", u.\"FullName\", u.\"IsEnabled\", u.\"LockoutEnabled\", u.\"LockoutEnd\", u.\"NormalizedEmail\", u.\"NormalizedUserName\", u.\"PasswordHash\", u.\"PhoneNumber\", u.\"PhoneNumberConfirmed\", u.\"SecurityStamp\", u.\"TwoFactorEnabled\", u.\"UpdatedDate\", u.\"UserName\"
+FROM \"AspNetUsers\" AS u
+WHERE u.\"NormalizedEmail\" = @__normalizedEmail_0
+LIMIT 1" (0723d8ff)
+2018-09-22T19:19:39.8141984+03:00 0HLH0KOBJ8KAK:00000002 [INF] Executed DbCommand ("1"ms) [Parameters=["@__normalizedUserName_0='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SELECT u.\"Id\", u.\"AccessFailedCount\", u.\"ConcurrencyStamp\", u.\"CreatedById\", u.\"CreatedDate\", u.\"Email\", u.\"EmailConfirmed\", u.\"FullName\", u.\"IsEnabled\", u.\"LockoutEnabled\", u.\"LockoutEnd\", u.\"NormalizedEmail\", u.\"NormalizedUserName\", u.\"PasswordHash\", u.\"PhoneNumber\", u.\"PhoneNumberConfirmed\", u.\"SecurityStamp\", u.\"TwoFactorEnabled\", u.\"UpdatedDate\", u.\"UserName\"
+FROM \"AspNetUsers\" AS u
+WHERE u.\"NormalizedUserName\" = @__normalizedUserName_0
+LIMIT 1" (0723d8ff)
+2018-09-22T19:19:39.8366739+03:00 0HLH0KOBJ8KAK:00000002 [INF] Executed DbCommand ("1"ms) [Parameters=["@__user_Id_0='?'"], CommandType='Text', CommandTimeout='30']"
+""SELECT uc.\"Id\", uc.\"ClaimType\", uc.\"ClaimValue\", uc.\"UserId\"
+FROM \"AspNetUserClaims\" AS uc
+WHERE uc.\"UserId\" = @__user_Id_0" (0723d8ff)
+2018-09-22T19:19:39.8420812+03:00 0HLH0KOBJ8KAK:00000002 [INF] Executed DbCommand ("1"ms) [Parameters=["@__userId_0='?'"], CommandType='Text', CommandTimeout='30']"
+""SELECT role.\"Name\"
+FROM \"AspNetUserRoles\" AS \"userRole\"
+INNER JOIN \"AspNetRoles\" AS role ON \"userRole\".\"RoleId\" = role.\"Id\"
+WHERE \"userRole\".\"UserId\" = @__userId_0" (0723d8ff)
+2018-09-22T19:19:39.8449930+03:00 0HLH0KOBJ8KAK:00000002 [INF] Executed DbCommand ("1"ms) [Parameters=["@__normalizedName_0='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SELECT r.\"Id\", r.\"ConcurrencyStamp\", r.\"CreatedById\", r.\"CreatedDate\", r.\"Description\", r.\"Name\", r.\"NormalizedName\", r.\"UpdatedById\", r.\"UpdatedDate\"
+FROM \"AspNetRoles\" AS r
+WHERE r.\"NormalizedName\" = @__normalizedName_0
+LIMIT 1" (0723d8ff)
+2018-09-22T19:19:39.8479992+03:00 0HLH0KOBJ8KAK:00000002 [INF] Executed DbCommand ("1"ms) [Parameters=["@__role_Id_0='?'"], CommandType='Text', CommandTimeout='30']"
+""SELECT rc.\"ClaimType\", rc.\"ClaimValue\"
+FROM \"AspNetRoleClaims\" AS rc
+WHERE rc.\"RoleId\" = @__role_Id_0" (0723d8ff)
+2018-09-22T19:19:39.8488225+03:00 0HLH0KOBJ8KAK:00000002 [INF] Executed action method "DemoBlog.Controllers.AuthorizationController.Exchange (DemoBlog)", returned result "Microsoft.AspNetCore.Mvc.SignInResult" in 39.7742ms. (50a9e262)
+2018-09-22T19:19:39.8492220+03:00 0HLH0KOBJ8KAK:00000002 [INF] Executing SignInResult with authentication scheme ("ASOS") and the following principal: "System.Security.Claims.ClaimsPrincipal". (f8bf0a82)
+2018-09-22T19:19:39.8537832+03:00 0HLH0KOBJ8KAK:00000002 [INF] Executed DbCommand ("1"ms) [Parameters=["@p0='?', @p1='?', @p2='?', @p3='?', @p4='?', @p5='?', @p6='?', @p7='?'"], CommandType='Text', CommandTimeout='30']"
+""INSERT INTO \"OpenIddictAuthorizations\" (\"Id\", \"ApplicationId\", \"ConcurrencyToken\", \"Properties\", \"Scopes\", \"Status\", \"Subject\", \"Type\")
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7);" (0723d8ff)
+2018-09-22T19:19:39.8552921+03:00 0HLH0KOBJ8KAK:00000002 [INF] An ad hoc authorization was automatically created and associated with an unknown application: "3837d383-0835-49bc-8533-2a26a1a242bd". (b5fe4ad7)
+2018-09-22T19:19:39.8558625+03:00 0HLH0KOBJ8KAK:00000002 [DBG] '"AspNet.Identity.SecurityStamp"' was excluded from the access token claims. (ed8f369e)
+2018-09-22T19:19:39.8559545+03:00 0HLH0KOBJ8KAK:00000002 [DBG] '"email"' was excluded from the access token claims. (ed8f369e)
+2018-09-22T19:19:39.8560291+03:00 0HLH0KOBJ8KAK:00000002 [DBG] '"phone"' was excluded from the access token claims. (ed8f369e)
+2018-09-22T19:19:39.8614975+03:00 0HLH0KOBJ8KAK:00000002 [INF] Executed DbCommand ("2"ms) [Parameters=["@p0='?', @p1='?', @p2='?', @p3='?', @p4='?' (DbType = DateTimeOffset), @p5='?' (DbType = DateTimeOffset), @p6='?', @p7='?', @p8='?', @p9='?', @p10='?', @p11='?'"], CommandType='Text', CommandTimeout='30']"
+""INSERT INTO \"OpenIddictTokens\" (\"Id\", \"ApplicationId\", \"AuthorizationId\", \"ConcurrencyToken\", \"CreationDate\", \"ExpirationDate\", \"Payload\", \"Properties\", \"ReferenceId\", \"Status\", \"Subject\", \"Type\")
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9, @p10, @p11);" (0723d8ff)
+2018-09-22T19:19:39.8634269+03:00 0HLH0KOBJ8KAK:00000002 [DBG] '"AspNet.Identity.SecurityStamp"' was excluded from the identity token claims. (7dcd2335)
+2018-09-22T19:19:39.8642406+03:00 0HLH0KOBJ8KAK:00000002 [INF] The token response was successfully returned: "{
+  \"token_type\": \"Bearer\",
+  \"access_token\": \"[removed for security reasons]\",
+  \"expires_in\": 3600,
+  \"refresh_token\": \"[removed for security reasons]\",
+  \"id_token\": \"[removed for security reasons]\"
+}". (12d98310)
+2018-09-22T19:19:39.8647990+03:00 0HLH0KOBJ8KAK:00000002 [INF] Executed action "DemoBlog.Controllers.AuthorizationController.Exchange (DemoBlog)" in 56.9748ms (afa2e885)
+2018-09-22T19:19:39.8649879+03:00 0HLH0KOBJ8KAK:00000002 [INF] Request finished in 60.5893ms 200 application/json;charset=UTF-8 (791a596a)
+2018-09-22T19:20:14.8959830+03:00 0HLH0KOBJ8KAK:00000003 [INF] Request starting HTTP/1.1 PUT http://localhost:5000/api/articles/5 application/json 110 (ca22a1cb)
+2018-09-22T19:20:14.8981220+03:00 0HLH0KOBJ8KAK:00000003 [INF] Route matched with "{action = \"UpdateArticle\", controller = \"Articles\"}". Executing action "DemoBlog.Controllers.ArticlesController.UpdateArticle (DemoBlog)" (a44c0341)
+2018-09-22T19:20:14.8986632+03:00 0HLH0KOBJ8KAK:00000003 [DBG] AuthenticationScheme: "Bearer" was successfully authenticated. (1805f3b3)
+2018-09-22T19:20:14.8988352+03:00 0HLH0KOBJ8KAK:00000003 [INF] Authorization was successful. (0d575a54)
+2018-09-22T19:20:14.9004616+03:00 0HLH0KOBJ8KAK:00000003 [INF] Entity Framework Core "2.2.0-preview1-35029" initialized '"ApplicationDbContext"' using provider '"Npgsql.EntityFrameworkCore.PostgreSQL"' with options: "MigrationsAssembly=DemoBlog " (9958f5bb)
+2018-09-22T19:20:14.9043996+03:00 0HLH0KOBJ8KAK:00000003 [INF] Executed DbCommand ("2"ms) [Parameters=["@__get_Item_0='?'"], CommandType='Text', CommandTimeout='30']"
+""SELECT e.\"Id\", e.\"AccessFailedCount\", e.\"ConcurrencyStamp\", e.\"CreatedById\", e.\"CreatedDate\", e.\"Email\", e.\"EmailConfirmed\", e.\"FullName\", e.\"IsEnabled\", e.\"LockoutEnabled\", e.\"LockoutEnd\", e.\"NormalizedEmail\", e.\"NormalizedUserName\", e.\"PasswordHash\", e.\"PhoneNumber\", e.\"PhoneNumberConfirmed\", e.\"SecurityStamp\", e.\"TwoFactorEnabled\", e.\"UpdatedDate\", e.\"UserName\"
+FROM \"AspNetUsers\" AS e
+WHERE e.\"Id\" = @__get_Item_0
+LIMIT 1" (0723d8ff)
+2018-09-22T19:20:14.9074393+03:00 0HLH0KOBJ8KAK:00000003 [INF] Executing action method "DemoBlog.Controllers.ArticlesController.UpdateArticle (DemoBlog)" with arguments (["5", "DemoBlog.ViewModels.ArticleEditViewModel"]) - Validation state: Valid (4e3479ed)
+2018-09-22T19:20:14.9125242+03:00 0HLH0KOBJ8KAK:00000003 [INF] Executed DbCommand ("2"ms) [Parameters=["@__id_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT a.\"Id\", a.\"Body\", a.\"CategoryId\", a.\"CreatedById\", a.\"CreatedDate\", a.\"Slug\", a.\"Title\", a.\"UpdatedById\", a.\"UpdatedDate\", \"a.Category\".\"Id\", \"a.Category\".\"CreatedById\", \"a.Category\".\"CreatedDate\", \"a.Category\".\"Name\", \"a.Category\".\"Slug\", \"a.Category\".\"UpdatedById\", \"a.Category\".\"UpdatedDate\", \"a.CreatedBy\".\"Id\", \"a.CreatedBy\".\"AccessFailedCount\", \"a.CreatedBy\".\"ConcurrencyStamp\", \"a.CreatedBy\".\"CreatedById\", \"a.CreatedBy\".\"CreatedDate\", \"a.CreatedBy\".\"Email\", \"a.CreatedBy\".\"EmailConfirmed\", \"a.CreatedBy\".\"FullName\", \"a.CreatedBy\".\"IsEnabled\", \"a.CreatedBy\".\"LockoutEnabled\", \"a.CreatedBy\".\"LockoutEnd\", \"a.CreatedBy\".\"NormalizedEmail\", \"a.CreatedBy\".\"NormalizedUserName\", \"a.CreatedBy\".\"PasswordHash\", \"a.CreatedBy\".\"PhoneNumber\", \"a.CreatedBy\".\"PhoneNumberConfirmed\", \"a.CreatedBy\".\"SecurityStamp\", \"a.CreatedBy\".\"TwoFactorEnabled\", \"a.CreatedBy\".\"UpdatedDate\", \"a.CreatedBy\".\"UserName\"
+FROM \"AppArticles\" AS a
+LEFT JOIN \"AppCategories\" AS \"a.Category\" ON a.\"CategoryId\" = \"a.Category\".\"Id\"
+LEFT JOIN \"AspNetUsers\" AS \"a.CreatedBy\" ON a.\"CreatedById\" = \"a.CreatedBy\".\"Id\"
+WHERE a.\"Id\" = @__id_0
+ORDER BY a.\"Id\"
+LIMIT 1" (0723d8ff)
+2018-09-22T19:20:14.9173438+03:00 0HLH0KOBJ8KAK:00000003 [INF] Executed DbCommand ("3"ms) [Parameters=["@__id_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT \"a.ArticleTags\".\"Id\", \"a.ArticleTags\".\"ArticleId\", \"a.ArticleTags\".\"TagId\", \"a.ArticleTags\".\"CreatedById\", \"a.ArticleTags\".\"CreatedDate\", \"a.ArticleTags\".\"UpdatedById\", \"a.ArticleTags\".\"UpdatedDate\", \"a.Tag\".\"Id\", \"a.Tag\".\"CreatedById\", \"a.Tag\".\"CreatedDate\", \"a.Tag\".\"Name\", \"a.Tag\".\"Slug\", \"a.Tag\".\"UpdatedById\", \"a.Tag\".\"UpdatedDate\"
+FROM \"AppArticleTags\" AS \"a.ArticleTags\"
+INNER JOIN \"AppTags\" AS \"a.Tag\" ON \"a.ArticleTags\".\"TagId\" = \"a.Tag\".\"Id\"
+INNER JOIN (
+    SELECT DISTINCT t.*
+    FROM (
+        SELECT a0.\"Id\"
+        FROM \"AppArticles\" AS a0
+        LEFT JOIN \"AppCategories\" AS \"a.Category0\" ON a0.\"CategoryId\" = \"a.Category0\".\"Id\"
+        LEFT JOIN \"AspNetUsers\" AS \"a.CreatedBy0\" ON a0.\"CreatedById\" = \"a.CreatedBy0\".\"Id\"
+        WHERE a0.\"Id\" = @__id_0
+        ORDER BY a0.\"Id\"
+        LIMIT 1
+    ) AS t
+) AS t0 ON \"a.ArticleTags\".\"ArticleId\" = t0.\"Id\"
+ORDER BY t0.\"Id\"" (0723d8ff)
+2018-09-22T19:20:14.9210461+03:00 0HLH0KOBJ8KAK:00000003 [INF] Executed DbCommand ("2"ms) [Parameters=["@__id_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT \"a.Comments\".\"Id\", \"a.Comments\".\"ArticleId\", \"a.Comments\".\"Body\", \"a.Comments\".\"CreatedById\", \"a.Comments\".\"CreatedDate\", \"a.Comments\".\"UpdatedById\", \"a.Comments\".\"UpdatedDate\"
+FROM \"AppComments\" AS \"a.Comments\"
+INNER JOIN (
+    SELECT DISTINCT t1.*
+    FROM (
+        SELECT a1.\"Id\"
+        FROM \"AppArticles\" AS a1
+        LEFT JOIN \"AppCategories\" AS \"a.Category1\" ON a1.\"CategoryId\" = \"a.Category1\".\"Id\"
+        LEFT JOIN \"AspNetUsers\" AS \"a.CreatedBy1\" ON a1.\"CreatedById\" = \"a.CreatedBy1\".\"Id\"
+        WHERE a1.\"Id\" = @__id_0
+        ORDER BY a1.\"Id\"
+        LIMIT 1
+    ) AS t1
+) AS t2 ON \"a.Comments\".\"ArticleId\" = t2.\"Id\"
+ORDER BY t2.\"Id\"" (0723d8ff)
+2018-09-22T19:20:14.9217432+03:00 0HLH0KOBJ8KAK:00000003 [INF] Authorization failed. (b15dd539)
+2018-09-22T19:20:14.9219491+03:00 0HLH0KOBJ8KAK:00000003 [INF] Executed action method "DemoBlog.Controllers.ArticlesController.UpdateArticle (DemoBlog)", returned result "Microsoft.AspNetCore.Mvc.UnauthorizedResult" in 14.3252ms. (50a9e262)
+2018-09-22T19:20:14.9223063+03:00 0HLH0KOBJ8KAK:00000003 [INF] Executing HttpStatusCodeResult, setting HTTP status code 401 (e28ccfae)
+2018-09-22T19:20:14.9225035+03:00 0HLH0KOBJ8KAK:00000003 [INF] Executed action "DemoBlog.Controllers.ArticlesController.UpdateArticle (DemoBlog)" in 24.2652ms (afa2e885)
+2018-09-22T19:20:14.9229644+03:00 0HLH0KOBJ8KAK:00000003 [INF] Request finished in 27.1732ms 401  (791a596a)
+2018-09-22T19:20:34.1314938+03:00 0HLH0KOBJ8KAK:00000004 [INF] Request starting HTTP/1.1 GET http://localhost:5000/api/articles/5   (ca22a1cb)
+2018-09-22T19:20:34.1440423+03:00 0HLH0KOBJ8KAK:00000004 [INF] Route matched with "{action = \"GetArticle\", controller = \"Articles\"}". Executing action "DemoBlog.Controllers.ArticlesController.GetArticle (DemoBlog)" (a44c0341)
+2018-09-22T19:20:34.1452339+03:00 0HLH0KOBJ8KAK:00000004 [INF] Executing action method "DemoBlog.Controllers.ArticlesController.GetArticle (DemoBlog)" with arguments (["5"]) - Validation state: Valid (4e3479ed)
+2018-09-22T19:20:34.1517934+03:00 0HLH0KOBJ8KAK:00000004 [INF] Entity Framework Core "2.2.0-preview1-35029" initialized '"ApplicationDbContext"' using provider '"Npgsql.EntityFrameworkCore.PostgreSQL"' with options: "MigrationsAssembly=DemoBlog " (9958f5bb)
+2018-09-22T19:20:34.1563770+03:00 0HLH0KOBJ8KAK:00000004 [INF] Executed DbCommand ("3"ms) [Parameters=["@__id_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT a.\"Id\", a.\"Body\", a.\"CategoryId\", a.\"CreatedById\", a.\"CreatedDate\", a.\"Slug\", a.\"Title\", a.\"UpdatedById\", a.\"UpdatedDate\", \"a.Category\".\"Id\", \"a.Category\".\"CreatedById\", \"a.Category\".\"CreatedDate\", \"a.Category\".\"Name\", \"a.Category\".\"Slug\", \"a.Category\".\"UpdatedById\", \"a.Category\".\"UpdatedDate\", \"a.CreatedBy\".\"Id\", \"a.CreatedBy\".\"AccessFailedCount\", \"a.CreatedBy\".\"ConcurrencyStamp\", \"a.CreatedBy\".\"CreatedById\", \"a.CreatedBy\".\"CreatedDate\", \"a.CreatedBy\".\"Email\", \"a.CreatedBy\".\"EmailConfirmed\", \"a.CreatedBy\".\"FullName\", \"a.CreatedBy\".\"IsEnabled\", \"a.CreatedBy\".\"LockoutEnabled\", \"a.CreatedBy\".\"LockoutEnd\", \"a.CreatedBy\".\"NormalizedEmail\", \"a.CreatedBy\".\"NormalizedUserName\", \"a.CreatedBy\".\"PasswordHash\", \"a.CreatedBy\".\"PhoneNumber\", \"a.CreatedBy\".\"PhoneNumberConfirmed\", \"a.CreatedBy\".\"SecurityStamp\", \"a.CreatedBy\".\"TwoFactorEnabled\", \"a.CreatedBy\".\"UpdatedDate\", \"a.CreatedBy\".\"UserName\"
+FROM \"AppArticles\" AS a
+LEFT JOIN \"AppCategories\" AS \"a.Category\" ON a.\"CategoryId\" = \"a.Category\".\"Id\"
+LEFT JOIN \"AspNetUsers\" AS \"a.CreatedBy\" ON a.\"CreatedById\" = \"a.CreatedBy\".\"Id\"
+WHERE a.\"Id\" = @__id_0
+ORDER BY a.\"Id\"
+LIMIT 1" (0723d8ff)
+2018-09-22T19:20:34.1605750+03:00 0HLH0KOBJ8KAK:00000004 [INF] Executed DbCommand ("3"ms) [Parameters=["@__id_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT \"a.ArticleTags\".\"Id\", \"a.ArticleTags\".\"ArticleId\", \"a.ArticleTags\".\"TagId\", \"a.ArticleTags\".\"CreatedById\", \"a.ArticleTags\".\"CreatedDate\", \"a.ArticleTags\".\"UpdatedById\", \"a.ArticleTags\".\"UpdatedDate\", \"a.Tag\".\"Id\", \"a.Tag\".\"CreatedById\", \"a.Tag\".\"CreatedDate\", \"a.Tag\".\"Name\", \"a.Tag\".\"Slug\", \"a.Tag\".\"UpdatedById\", \"a.Tag\".\"UpdatedDate\"
+FROM \"AppArticleTags\" AS \"a.ArticleTags\"
+INNER JOIN \"AppTags\" AS \"a.Tag\" ON \"a.ArticleTags\".\"TagId\" = \"a.Tag\".\"Id\"
+INNER JOIN (
+    SELECT DISTINCT t.*
+    FROM (
+        SELECT a0.\"Id\"
+        FROM \"AppArticles\" AS a0
+        LEFT JOIN \"AppCategories\" AS \"a.Category0\" ON a0.\"CategoryId\" = \"a.Category0\".\"Id\"
+        LEFT JOIN \"AspNetUsers\" AS \"a.CreatedBy0\" ON a0.\"CreatedById\" = \"a.CreatedBy0\".\"Id\"
+        WHERE a0.\"Id\" = @__id_0
+        ORDER BY a0.\"Id\"
+        LIMIT 1
+    ) AS t
+) AS t0 ON \"a.ArticleTags\".\"ArticleId\" = t0.\"Id\"
+ORDER BY t0.\"Id\"" (0723d8ff)
+2018-09-22T19:20:34.1652795+03:00 0HLH0KOBJ8KAK:00000004 [INF] Executed DbCommand ("3"ms) [Parameters=["@__id_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT \"a.Comments\".\"Id\", \"a.Comments\".\"ArticleId\", \"a.Comments\".\"Body\", \"a.Comments\".\"CreatedById\", \"a.Comments\".\"CreatedDate\", \"a.Comments\".\"UpdatedById\", \"a.Comments\".\"UpdatedDate\"
+FROM \"AppComments\" AS \"a.Comments\"
+INNER JOIN (
+    SELECT DISTINCT t1.*
+    FROM (
+        SELECT a1.\"Id\"
+        FROM \"AppArticles\" AS a1
+        LEFT JOIN \"AppCategories\" AS \"a.Category1\" ON a1.\"CategoryId\" = \"a.Category1\".\"Id\"
+        LEFT JOIN \"AspNetUsers\" AS \"a.CreatedBy1\" ON a1.\"CreatedById\" = \"a.CreatedBy1\".\"Id\"
+        WHERE a1.\"Id\" = @__id_0
+        ORDER BY a1.\"Id\"
+        LIMIT 1
+    ) AS t1
+) AS t2 ON \"a.Comments\".\"ArticleId\" = t2.\"Id\"
+ORDER BY t2.\"Id\"" (0723d8ff)
+2018-09-22T19:20:34.2600572+03:00 0HLH0KOBJ8KAK:00000004 [INF] Executed action method "DemoBlog.Controllers.ArticlesController.GetArticle (DemoBlog)", returned result "Microsoft.AspNetCore.Mvc.OkObjectResult" in 114.6058ms. (50a9e262)
+2018-09-22T19:20:34.2611099+03:00 0HLH0KOBJ8KAK:00000004 [INF] Executing ObjectResult, writing value of type '"DemoBlog.ViewModels.ArticleViewModel"'. (8a1b66c8)
+2018-09-22T19:20:34.3049397+03:00 0HLH0KOBJ8KAK:00000004 [INF] Executed action "DemoBlog.Controllers.ArticlesController.GetArticle (DemoBlog)" in 160.6177ms (afa2e885)
+2018-09-22T19:20:34.3053616+03:00 0HLH0KOBJ8KAK:00000004 [INF] Request finished in 174.0467ms 200 application/json; charset=utf-8 (791a596a)
+2018-09-22T19:21:42.7684393+03:00 0HLH0KOBJ8KAK:00000005 [INF] Request starting HTTP/1.1 GET http://localhost:5000/api/articles/5   (ca22a1cb)
+2018-09-22T19:21:42.7708680+03:00 0HLH0KOBJ8KAK:00000005 [INF] Route matched with "{action = \"GetArticle\", controller = \"Articles\"}". Executing action "DemoBlog.Controllers.ArticlesController.GetArticle (DemoBlog)" (a44c0341)
+2018-09-22T19:21:42.7738555+03:00 0HLH0KOBJ8KAK:00000005 [INF] Executing action method "DemoBlog.Controllers.ArticlesController.GetArticle (DemoBlog)" with arguments (["5"]) - Validation state: Valid (4e3479ed)
+2018-09-22T19:21:42.7765166+03:00 0HLH0KOBJ8KAK:00000005 [INF] Entity Framework Core "2.2.0-preview1-35029" initialized '"ApplicationDbContext"' using provider '"Npgsql.EntityFrameworkCore.PostgreSQL"' with options: "MigrationsAssembly=DemoBlog " (9958f5bb)
+2018-09-22T19:21:42.7835826+03:00 0HLH0KOBJ8KAK:00000005 [INF] Executed DbCommand ("3"ms) [Parameters=["@__id_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT a.\"Id\", a.\"Body\", a.\"CategoryId\", a.\"CreatedById\", a.\"CreatedDate\", a.\"Slug\", a.\"Title\", a.\"UpdatedById\", a.\"UpdatedDate\", \"a.Category\".\"Id\", \"a.Category\".\"CreatedById\", \"a.Category\".\"CreatedDate\", \"a.Category\".\"Name\", \"a.Category\".\"Slug\", \"a.Category\".\"UpdatedById\", \"a.Category\".\"UpdatedDate\", \"a.CreatedBy\".\"Id\", \"a.CreatedBy\".\"AccessFailedCount\", \"a.CreatedBy\".\"ConcurrencyStamp\", \"a.CreatedBy\".\"CreatedById\", \"a.CreatedBy\".\"CreatedDate\", \"a.CreatedBy\".\"Email\", \"a.CreatedBy\".\"EmailConfirmed\", \"a.CreatedBy\".\"FullName\", \"a.CreatedBy\".\"IsEnabled\", \"a.CreatedBy\".\"LockoutEnabled\", \"a.CreatedBy\".\"LockoutEnd\", \"a.CreatedBy\".\"NormalizedEmail\", \"a.CreatedBy\".\"NormalizedUserName\", \"a.CreatedBy\".\"PasswordHash\", \"a.CreatedBy\".\"PhoneNumber\", \"a.CreatedBy\".\"PhoneNumberConfirmed\", \"a.CreatedBy\".\"SecurityStamp\", \"a.CreatedBy\".\"TwoFactorEnabled\", \"a.CreatedBy\".\"UpdatedDate\", \"a.CreatedBy\".\"UserName\"
+FROM \"AppArticles\" AS a
+LEFT JOIN \"AppCategories\" AS \"a.Category\" ON a.\"CategoryId\" = \"a.Category\".\"Id\"
+LEFT JOIN \"AspNetUsers\" AS \"a.CreatedBy\" ON a.\"CreatedById\" = \"a.CreatedBy\".\"Id\"
+WHERE a.\"Id\" = @__id_0
+ORDER BY a.\"Id\"
+LIMIT 1" (0723d8ff)
+2018-09-22T19:21:42.7877178+03:00 0HLH0KOBJ8KAK:00000005 [INF] Executed DbCommand ("3"ms) [Parameters=["@__id_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT \"a.ArticleTags\".\"Id\", \"a.ArticleTags\".\"ArticleId\", \"a.ArticleTags\".\"TagId\", \"a.ArticleTags\".\"CreatedById\", \"a.ArticleTags\".\"CreatedDate\", \"a.ArticleTags\".\"UpdatedById\", \"a.ArticleTags\".\"UpdatedDate\", \"a.Tag\".\"Id\", \"a.Tag\".\"CreatedById\", \"a.Tag\".\"CreatedDate\", \"a.Tag\".\"Name\", \"a.Tag\".\"Slug\", \"a.Tag\".\"UpdatedById\", \"a.Tag\".\"UpdatedDate\"
+FROM \"AppArticleTags\" AS \"a.ArticleTags\"
+INNER JOIN \"AppTags\" AS \"a.Tag\" ON \"a.ArticleTags\".\"TagId\" = \"a.Tag\".\"Id\"
+INNER JOIN (
+    SELECT DISTINCT t.*
+    FROM (
+        SELECT a0.\"Id\"
+        FROM \"AppArticles\" AS a0
+        LEFT JOIN \"AppCategories\" AS \"a.Category0\" ON a0.\"CategoryId\" = \"a.Category0\".\"Id\"
+        LEFT JOIN \"AspNetUsers\" AS \"a.CreatedBy0\" ON a0.\"CreatedById\" = \"a.CreatedBy0\".\"Id\"
+        WHERE a0.\"Id\" = @__id_0
+        ORDER BY a0.\"Id\"
+        LIMIT 1
+    ) AS t
+) AS t0 ON \"a.ArticleTags\".\"ArticleId\" = t0.\"Id\"
+ORDER BY t0.\"Id\"" (0723d8ff)
+2018-09-22T19:21:42.7920169+03:00 0HLH0KOBJ8KAK:00000005 [INF] Executed DbCommand ("3"ms) [Parameters=["@__id_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT \"a.Comments\".\"Id\", \"a.Comments\".\"ArticleId\", \"a.Comments\".\"Body\", \"a.Comments\".\"CreatedById\", \"a.Comments\".\"CreatedDate\", \"a.Comments\".\"UpdatedById\", \"a.Comments\".\"UpdatedDate\"
+FROM \"AppComments\" AS \"a.Comments\"
+INNER JOIN (
+    SELECT DISTINCT t1.*
+    FROM (
+        SELECT a1.\"Id\"
+        FROM \"AppArticles\" AS a1
+        LEFT JOIN \"AppCategories\" AS \"a.Category1\" ON a1.\"CategoryId\" = \"a.Category1\".\"Id\"
+        LEFT JOIN \"AspNetUsers\" AS \"a.CreatedBy1\" ON a1.\"CreatedById\" = \"a.CreatedBy1\".\"Id\"
+        WHERE a1.\"Id\" = @__id_0
+        ORDER BY a1.\"Id\"
+        LIMIT 1
+    ) AS t1
+) AS t2 ON \"a.Comments\".\"ArticleId\" = t2.\"Id\"
+ORDER BY t2.\"Id\"" (0723d8ff)
+2018-09-22T19:21:42.7952958+03:00 0HLH0KOBJ8KAK:00000005 [INF] Executed action method "DemoBlog.Controllers.ArticlesController.GetArticle (DemoBlog)", returned result "Microsoft.AspNetCore.Mvc.OkObjectResult" in 20.9866ms. (50a9e262)
+2018-09-22T19:21:42.7956301+03:00 0HLH0KOBJ8KAK:00000005 [INF] Executing ObjectResult, writing value of type '"DemoBlog.ViewModels.ArticleViewModel"'. (8a1b66c8)
+2018-09-22T19:21:42.7963656+03:00 0HLH0KOBJ8KAK:00000005 [INF] Executed action "DemoBlog.Controllers.ArticlesController.GetArticle (DemoBlog)" in 25.3501ms (afa2e885)
+2018-09-22T19:21:42.7965784+03:00 0HLH0KOBJ8KAK:00000005 [INF] Request finished in 28.3104ms 200 application/json; charset=utf-8 (791a596a)
+2018-09-22T19:21:49.8272939+03:00 0HLH0KOBJ8KAK:00000006 [INF] Request starting HTTP/1.1 PUT http://localhost:5000/api/articles/5 application/json 110 (ca22a1cb)
+2018-09-22T19:21:49.8283404+03:00 0HLH0KOBJ8KAK:00000006 [INF] Route matched with "{action = \"UpdateArticle\", controller = \"Articles\"}". Executing action "DemoBlog.Controllers.ArticlesController.UpdateArticle (DemoBlog)" (a44c0341)
+2018-09-22T19:21:49.8300511+03:00 0HLH0KOBJ8KAK:00000006 [DBG] AuthenticationScheme: "Bearer" was successfully authenticated. (1805f3b3)
+2018-09-22T19:21:49.8303046+03:00 0HLH0KOBJ8KAK:00000006 [INF] Authorization was successful. (0d575a54)
+2018-09-22T19:21:49.8313879+03:00 0HLH0KOBJ8KAK:00000006 [INF] Entity Framework Core "2.2.0-preview1-35029" initialized '"ApplicationDbContext"' using provider '"Npgsql.EntityFrameworkCore.PostgreSQL"' with options: "MigrationsAssembly=DemoBlog " (9958f5bb)
+2018-09-22T19:21:49.8364202+03:00 0HLH0KOBJ8KAK:00000006 [INF] Executed DbCommand ("1"ms) [Parameters=["@__get_Item_0='?'"], CommandType='Text', CommandTimeout='30']"
+""SELECT e.\"Id\", e.\"AccessFailedCount\", e.\"ConcurrencyStamp\", e.\"CreatedById\", e.\"CreatedDate\", e.\"Email\", e.\"EmailConfirmed\", e.\"FullName\", e.\"IsEnabled\", e.\"LockoutEnabled\", e.\"LockoutEnd\", e.\"NormalizedEmail\", e.\"NormalizedUserName\", e.\"PasswordHash\", e.\"PhoneNumber\", e.\"PhoneNumberConfirmed\", e.\"SecurityStamp\", e.\"TwoFactorEnabled\", e.\"UpdatedDate\", e.\"UserName\"
+FROM \"AspNetUsers\" AS e
+WHERE e.\"Id\" = @__get_Item_0
+LIMIT 1" (0723d8ff)
+2018-09-22T19:21:49.8381106+03:00 0HLH0KOBJ8KAK:00000006 [INF] Executing action method "DemoBlog.Controllers.ArticlesController.UpdateArticle (DemoBlog)" with arguments (["5", "DemoBlog.ViewModels.ArticleEditViewModel"]) - Validation state: Valid (4e3479ed)
+2018-09-22T19:21:49.8432747+03:00 0HLH0KOBJ8KAK:00000006 [INF] Executed DbCommand ("3"ms) [Parameters=["@__id_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT a.\"Id\", a.\"Body\", a.\"CategoryId\", a.\"CreatedById\", a.\"CreatedDate\", a.\"Slug\", a.\"Title\", a.\"UpdatedById\", a.\"UpdatedDate\", \"a.Category\".\"Id\", \"a.Category\".\"CreatedById\", \"a.Category\".\"CreatedDate\", \"a.Category\".\"Name\", \"a.Category\".\"Slug\", \"a.Category\".\"UpdatedById\", \"a.Category\".\"UpdatedDate\", \"a.CreatedBy\".\"Id\", \"a.CreatedBy\".\"AccessFailedCount\", \"a.CreatedBy\".\"ConcurrencyStamp\", \"a.CreatedBy\".\"CreatedById\", \"a.CreatedBy\".\"CreatedDate\", \"a.CreatedBy\".\"Email\", \"a.CreatedBy\".\"EmailConfirmed\", \"a.CreatedBy\".\"FullName\", \"a.CreatedBy\".\"IsEnabled\", \"a.CreatedBy\".\"LockoutEnabled\", \"a.CreatedBy\".\"LockoutEnd\", \"a.CreatedBy\".\"NormalizedEmail\", \"a.CreatedBy\".\"NormalizedUserName\", \"a.CreatedBy\".\"PasswordHash\", \"a.CreatedBy\".\"PhoneNumber\", \"a.CreatedBy\".\"PhoneNumberConfirmed\", \"a.CreatedBy\".\"SecurityStamp\", \"a.CreatedBy\".\"TwoFactorEnabled\", \"a.CreatedBy\".\"UpdatedDate\", \"a.CreatedBy\".\"UserName\"
+FROM \"AppArticles\" AS a
+LEFT JOIN \"AppCategories\" AS \"a.Category\" ON a.\"CategoryId\" = \"a.Category\".\"Id\"
+LEFT JOIN \"AspNetUsers\" AS \"a.CreatedBy\" ON a.\"CreatedById\" = \"a.CreatedBy\".\"Id\"
+WHERE a.\"Id\" = @__id_0
+ORDER BY a.\"Id\"
+LIMIT 1" (0723d8ff)
+2018-09-22T19:21:49.8487537+03:00 0HLH0KOBJ8KAK:00000006 [INF] Executed DbCommand ("3"ms) [Parameters=["@__id_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT \"a.ArticleTags\".\"Id\", \"a.ArticleTags\".\"ArticleId\", \"a.ArticleTags\".\"TagId\", \"a.ArticleTags\".\"CreatedById\", \"a.ArticleTags\".\"CreatedDate\", \"a.ArticleTags\".\"UpdatedById\", \"a.ArticleTags\".\"UpdatedDate\", \"a.Tag\".\"Id\", \"a.Tag\".\"CreatedById\", \"a.Tag\".\"CreatedDate\", \"a.Tag\".\"Name\", \"a.Tag\".\"Slug\", \"a.Tag\".\"UpdatedById\", \"a.Tag\".\"UpdatedDate\"
+FROM \"AppArticleTags\" AS \"a.ArticleTags\"
+INNER JOIN \"AppTags\" AS \"a.Tag\" ON \"a.ArticleTags\".\"TagId\" = \"a.Tag\".\"Id\"
+INNER JOIN (
+    SELECT DISTINCT t.*
+    FROM (
+        SELECT a0.\"Id\"
+        FROM \"AppArticles\" AS a0
+        LEFT JOIN \"AppCategories\" AS \"a.Category0\" ON a0.\"CategoryId\" = \"a.Category0\".\"Id\"
+        LEFT JOIN \"AspNetUsers\" AS \"a.CreatedBy0\" ON a0.\"CreatedById\" = \"a.CreatedBy0\".\"Id\"
+        WHERE a0.\"Id\" = @__id_0
+        ORDER BY a0.\"Id\"
+        LIMIT 1
+    ) AS t
+) AS t0 ON \"a.ArticleTags\".\"ArticleId\" = t0.\"Id\"
+ORDER BY t0.\"Id\"" (0723d8ff)
+2018-09-22T19:21:49.8526575+03:00 0HLH0KOBJ8KAK:00000006 [INF] Executed DbCommand ("3"ms) [Parameters=["@__id_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT \"a.Comments\".\"Id\", \"a.Comments\".\"ArticleId\", \"a.Comments\".\"Body\", \"a.Comments\".\"CreatedById\", \"a.Comments\".\"CreatedDate\", \"a.Comments\".\"UpdatedById\", \"a.Comments\".\"UpdatedDate\"
+FROM \"AppComments\" AS \"a.Comments\"
+INNER JOIN (
+    SELECT DISTINCT t1.*
+    FROM (
+        SELECT a1.\"Id\"
+        FROM \"AppArticles\" AS a1
+        LEFT JOIN \"AppCategories\" AS \"a.Category1\" ON a1.\"CategoryId\" = \"a.Category1\".\"Id\"
+        LEFT JOIN \"AspNetUsers\" AS \"a.CreatedBy1\" ON a1.\"CreatedById\" = \"a.CreatedBy1\".\"Id\"
+        WHERE a1.\"Id\" = @__id_0
+        ORDER BY a1.\"Id\"
+        LIMIT 1
+    ) AS t1
+) AS t2 ON \"a.Comments\".\"ArticleId\" = t2.\"Id\"
+ORDER BY t2.\"Id\"" (0723d8ff)
+2018-09-22T19:21:49.8531918+03:00 0HLH0KOBJ8KAK:00000006 [INF] Authorization failed. (b15dd539)
+2018-09-22T19:21:49.8533592+03:00 0HLH0KOBJ8KAK:00000006 [INF] Executed action method "DemoBlog.Controllers.ArticlesController.UpdateArticle (DemoBlog)", returned result "Microsoft.AspNetCore.Mvc.UnauthorizedResult" in 15.0917ms. (50a9e262)
+2018-09-22T19:21:49.8535891+03:00 0HLH0KOBJ8KAK:00000006 [INF] Executing HttpStatusCodeResult, setting HTTP status code 401 (e28ccfae)
+2018-09-22T19:21:49.8537612+03:00 0HLH0KOBJ8KAK:00000006 [INF] Executed action "DemoBlog.Controllers.ArticlesController.UpdateArticle (DemoBlog)" in 25.3177ms (afa2e885)
+2018-09-22T19:21:49.8540628+03:00 0HLH0KOBJ8KAK:00000006 [INF] Request finished in 27.1951ms 401  (791a596a)
+2018-09-22T19:22:56.3719101+03:00 0HLH0KOBJ8KAK:00000007 [INF] Request starting HTTP/1.1 GET http://localhost:5000/api/articles/5   (ca22a1cb)
+2018-09-22T19:22:56.3736874+03:00 0HLH0KOBJ8KAK:00000007 [INF] Route matched with "{action = \"GetArticle\", controller = \"Articles\"}". Executing action "DemoBlog.Controllers.ArticlesController.GetArticle (DemoBlog)" (a44c0341)
+2018-09-22T19:22:56.3751866+03:00 0HLH0KOBJ8KAK:00000007 [INF] Executing action method "DemoBlog.Controllers.ArticlesController.GetArticle (DemoBlog)" with arguments (["5"]) - Validation state: Valid (4e3479ed)
+2018-09-22T19:22:56.3766223+03:00 0HLH0KOBJ8KAK:00000007 [INF] Entity Framework Core "2.2.0-preview1-35029" initialized '"ApplicationDbContext"' using provider '"Npgsql.EntityFrameworkCore.PostgreSQL"' with options: "MigrationsAssembly=DemoBlog " (9958f5bb)
+2018-09-22T19:22:56.3821941+03:00 0HLH0KOBJ8KAK:00000007 [INF] Executed DbCommand ("4"ms) [Parameters=["@__id_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT a.\"Id\", a.\"Body\", a.\"CategoryId\", a.\"CreatedById\", a.\"CreatedDate\", a.\"Slug\", a.\"Title\", a.\"UpdatedById\", a.\"UpdatedDate\", \"a.Category\".\"Id\", \"a.Category\".\"CreatedById\", \"a.Category\".\"CreatedDate\", \"a.Category\".\"Name\", \"a.Category\".\"Slug\", \"a.Category\".\"UpdatedById\", \"a.Category\".\"UpdatedDate\", \"a.CreatedBy\".\"Id\", \"a.CreatedBy\".\"AccessFailedCount\", \"a.CreatedBy\".\"ConcurrencyStamp\", \"a.CreatedBy\".\"CreatedById\", \"a.CreatedBy\".\"CreatedDate\", \"a.CreatedBy\".\"Email\", \"a.CreatedBy\".\"EmailConfirmed\", \"a.CreatedBy\".\"FullName\", \"a.CreatedBy\".\"IsEnabled\", \"a.CreatedBy\".\"LockoutEnabled\", \"a.CreatedBy\".\"LockoutEnd\", \"a.CreatedBy\".\"NormalizedEmail\", \"a.CreatedBy\".\"NormalizedUserName\", \"a.CreatedBy\".\"PasswordHash\", \"a.CreatedBy\".\"PhoneNumber\", \"a.CreatedBy\".\"PhoneNumberConfirmed\", \"a.CreatedBy\".\"SecurityStamp\", \"a.CreatedBy\".\"TwoFactorEnabled\", \"a.CreatedBy\".\"UpdatedDate\", \"a.CreatedBy\".\"UserName\"
+FROM \"AppArticles\" AS a
+LEFT JOIN \"AppCategories\" AS \"a.Category\" ON a.\"CategoryId\" = \"a.Category\".\"Id\"
+LEFT JOIN \"AspNetUsers\" AS \"a.CreatedBy\" ON a.\"CreatedById\" = \"a.CreatedBy\".\"Id\"
+WHERE a.\"Id\" = @__id_0
+ORDER BY a.\"Id\"
+LIMIT 1" (0723d8ff)
+2018-09-22T19:22:56.3865971+03:00 0HLH0KOBJ8KAK:00000007 [INF] Executed DbCommand ("3"ms) [Parameters=["@__id_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT \"a.ArticleTags\".\"Id\", \"a.ArticleTags\".\"ArticleId\", \"a.ArticleTags\".\"TagId\", \"a.ArticleTags\".\"CreatedById\", \"a.ArticleTags\".\"CreatedDate\", \"a.ArticleTags\".\"UpdatedById\", \"a.ArticleTags\".\"UpdatedDate\", \"a.Tag\".\"Id\", \"a.Tag\".\"CreatedById\", \"a.Tag\".\"CreatedDate\", \"a.Tag\".\"Name\", \"a.Tag\".\"Slug\", \"a.Tag\".\"UpdatedById\", \"a.Tag\".\"UpdatedDate\"
+FROM \"AppArticleTags\" AS \"a.ArticleTags\"
+INNER JOIN \"AppTags\" AS \"a.Tag\" ON \"a.ArticleTags\".\"TagId\" = \"a.Tag\".\"Id\"
+INNER JOIN (
+    SELECT DISTINCT t.*
+    FROM (
+        SELECT a0.\"Id\"
+        FROM \"AppArticles\" AS a0
+        LEFT JOIN \"AppCategories\" AS \"a.Category0\" ON a0.\"CategoryId\" = \"a.Category0\".\"Id\"
+        LEFT JOIN \"AspNetUsers\" AS \"a.CreatedBy0\" ON a0.\"CreatedById\" = \"a.CreatedBy0\".\"Id\"
+        WHERE a0.\"Id\" = @__id_0
+        ORDER BY a0.\"Id\"
+        LIMIT 1
+    ) AS t
+) AS t0 ON \"a.ArticleTags\".\"ArticleId\" = t0.\"Id\"
+ORDER BY t0.\"Id\"" (0723d8ff)
+2018-09-22T19:22:56.3908080+03:00 0HLH0KOBJ8KAK:00000007 [INF] Executed DbCommand ("3"ms) [Parameters=["@__id_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT \"a.Comments\".\"Id\", \"a.Comments\".\"ArticleId\", \"a.Comments\".\"Body\", \"a.Comments\".\"CreatedById\", \"a.Comments\".\"CreatedDate\", \"a.Comments\".\"UpdatedById\", \"a.Comments\".\"UpdatedDate\"
+FROM \"AppComments\" AS \"a.Comments\"
+INNER JOIN (
+    SELECT DISTINCT t1.*
+    FROM (
+        SELECT a1.\"Id\"
+        FROM \"AppArticles\" AS a1
+        LEFT JOIN \"AppCategories\" AS \"a.Category1\" ON a1.\"CategoryId\" = \"a.Category1\".\"Id\"
+        LEFT JOIN \"AspNetUsers\" AS \"a.CreatedBy1\" ON a1.\"CreatedById\" = \"a.CreatedBy1\".\"Id\"
+        WHERE a1.\"Id\" = @__id_0
+        ORDER BY a1.\"Id\"
+        LIMIT 1
+    ) AS t1
+) AS t2 ON \"a.Comments\".\"ArticleId\" = t2.\"Id\"
+ORDER BY t2.\"Id\"" (0723d8ff)
+2018-09-22T19:22:56.3918420+03:00 0HLH0KOBJ8KAK:00000007 [INF] Executed action method "DemoBlog.Controllers.ArticlesController.GetArticle (DemoBlog)", returned result "Microsoft.AspNetCore.Mvc.OkObjectResult" in 16.4368ms. (50a9e262)
+2018-09-22T19:22:56.3921376+03:00 0HLH0KOBJ8KAK:00000007 [INF] Executing ObjectResult, writing value of type '"DemoBlog.ViewModels.ArticleViewModel"'. (8a1b66c8)
+2018-09-22T19:22:56.3929529+03:00 0HLH0KOBJ8KAK:00000007 [INF] Executed action "DemoBlog.Controllers.ArticlesController.GetArticle (DemoBlog)" in 19.1253ms (afa2e885)
+2018-09-22T19:22:56.3931864+03:00 0HLH0KOBJ8KAK:00000007 [INF] Request finished in 21.4613ms 200 application/json; charset=utf-8 (791a596a)
+2018-09-22T19:23:17.0279232+03:00 0HLH0KOBJ8KAK:00000008 [INF] Request starting HTTP/1.1 PUT http://localhost:5000/api/articles/5 application/json 110 (ca22a1cb)
+2018-09-22T19:23:17.0289069+03:00 0HLH0KOBJ8KAK:00000008 [INF] Route matched with "{action = \"UpdateArticle\", controller = \"Articles\"}". Executing action "DemoBlog.Controllers.ArticlesController.UpdateArticle (DemoBlog)" (a44c0341)
+2018-09-22T19:23:17.0296033+03:00 0HLH0KOBJ8KAK:00000008 [DBG] AuthenticationScheme: "Bearer" was successfully authenticated. (1805f3b3)
+2018-09-22T19:23:17.0298176+03:00 0HLH0KOBJ8KAK:00000008 [INF] Authorization was successful. (0d575a54)
+2018-09-22T19:23:17.0304761+03:00 0HLH0KOBJ8KAK:00000008 [INF] Entity Framework Core "2.2.0-preview1-35029" initialized '"ApplicationDbContext"' using provider '"Npgsql.EntityFrameworkCore.PostgreSQL"' with options: "MigrationsAssembly=DemoBlog " (9958f5bb)
+2018-09-22T19:23:17.0343333+03:00 0HLH0KOBJ8KAK:00000008 [INF] Executed DbCommand ("2"ms) [Parameters=["@__get_Item_0='?'"], CommandType='Text', CommandTimeout='30']"
+""SELECT e.\"Id\", e.\"AccessFailedCount\", e.\"ConcurrencyStamp\", e.\"CreatedById\", e.\"CreatedDate\", e.\"Email\", e.\"EmailConfirmed\", e.\"FullName\", e.\"IsEnabled\", e.\"LockoutEnabled\", e.\"LockoutEnd\", e.\"NormalizedEmail\", e.\"NormalizedUserName\", e.\"PasswordHash\", e.\"PhoneNumber\", e.\"PhoneNumberConfirmed\", e.\"SecurityStamp\", e.\"TwoFactorEnabled\", e.\"UpdatedDate\", e.\"UserName\"
+FROM \"AspNetUsers\" AS e
+WHERE e.\"Id\" = @__get_Item_0
+LIMIT 1" (0723d8ff)
+2018-09-22T19:23:17.0358408+03:00 0HLH0KOBJ8KAK:00000008 [INF] Executing action method "DemoBlog.Controllers.ArticlesController.UpdateArticle (DemoBlog)" with arguments (["5", "DemoBlog.ViewModels.ArticleEditViewModel"]) - Validation state: Valid (4e3479ed)
+2018-09-22T19:23:17.0403124+03:00 0HLH0KOBJ8KAK:00000008 [INF] Executed DbCommand ("3"ms) [Parameters=["@__id_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT a.\"Id\", a.\"Body\", a.\"CategoryId\", a.\"CreatedById\", a.\"CreatedDate\", a.\"Slug\", a.\"Title\", a.\"UpdatedById\", a.\"UpdatedDate\", \"a.Category\".\"Id\", \"a.Category\".\"CreatedById\", \"a.Category\".\"CreatedDate\", \"a.Category\".\"Name\", \"a.Category\".\"Slug\", \"a.Category\".\"UpdatedById\", \"a.Category\".\"UpdatedDate\", \"a.CreatedBy\".\"Id\", \"a.CreatedBy\".\"AccessFailedCount\", \"a.CreatedBy\".\"ConcurrencyStamp\", \"a.CreatedBy\".\"CreatedById\", \"a.CreatedBy\".\"CreatedDate\", \"a.CreatedBy\".\"Email\", \"a.CreatedBy\".\"EmailConfirmed\", \"a.CreatedBy\".\"FullName\", \"a.CreatedBy\".\"IsEnabled\", \"a.CreatedBy\".\"LockoutEnabled\", \"a.CreatedBy\".\"LockoutEnd\", \"a.CreatedBy\".\"NormalizedEmail\", \"a.CreatedBy\".\"NormalizedUserName\", \"a.CreatedBy\".\"PasswordHash\", \"a.CreatedBy\".\"PhoneNumber\", \"a.CreatedBy\".\"PhoneNumberConfirmed\", \"a.CreatedBy\".\"SecurityStamp\", \"a.CreatedBy\".\"TwoFactorEnabled\", \"a.CreatedBy\".\"UpdatedDate\", \"a.CreatedBy\".\"UserName\"
+FROM \"AppArticles\" AS a
+LEFT JOIN \"AppCategories\" AS \"a.Category\" ON a.\"CategoryId\" = \"a.Category\".\"Id\"
+LEFT JOIN \"AspNetUsers\" AS \"a.CreatedBy\" ON a.\"CreatedById\" = \"a.CreatedBy\".\"Id\"
+WHERE a.\"Id\" = @__id_0
+ORDER BY a.\"Id\"
+LIMIT 1" (0723d8ff)
+2018-09-22T19:23:17.0443306+03:00 0HLH0KOBJ8KAK:00000008 [INF] Executed DbCommand ("3"ms) [Parameters=["@__id_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT \"a.ArticleTags\".\"Id\", \"a.ArticleTags\".\"ArticleId\", \"a.ArticleTags\".\"TagId\", \"a.ArticleTags\".\"CreatedById\", \"a.ArticleTags\".\"CreatedDate\", \"a.ArticleTags\".\"UpdatedById\", \"a.ArticleTags\".\"UpdatedDate\", \"a.Tag\".\"Id\", \"a.Tag\".\"CreatedById\", \"a.Tag\".\"CreatedDate\", \"a.Tag\".\"Name\", \"a.Tag\".\"Slug\", \"a.Tag\".\"UpdatedById\", \"a.Tag\".\"UpdatedDate\"
+FROM \"AppArticleTags\" AS \"a.ArticleTags\"
+INNER JOIN \"AppTags\" AS \"a.Tag\" ON \"a.ArticleTags\".\"TagId\" = \"a.Tag\".\"Id\"
+INNER JOIN (
+    SELECT DISTINCT t.*
+    FROM (
+        SELECT a0.\"Id\"
+        FROM \"AppArticles\" AS a0
+        LEFT JOIN \"AppCategories\" AS \"a.Category0\" ON a0.\"CategoryId\" = \"a.Category0\".\"Id\"
+        LEFT JOIN \"AspNetUsers\" AS \"a.CreatedBy0\" ON a0.\"CreatedById\" = \"a.CreatedBy0\".\"Id\"
+        WHERE a0.\"Id\" = @__id_0
+        ORDER BY a0.\"Id\"
+        LIMIT 1
+    ) AS t
+) AS t0 ON \"a.ArticleTags\".\"ArticleId\" = t0.\"Id\"
+ORDER BY t0.\"Id\"" (0723d8ff)
+2018-09-22T19:23:17.0478272+03:00 0HLH0KOBJ8KAK:00000008 [INF] Executed DbCommand ("2"ms) [Parameters=["@__id_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT \"a.Comments\".\"Id\", \"a.Comments\".\"ArticleId\", \"a.Comments\".\"Body\", \"a.Comments\".\"CreatedById\", \"a.Comments\".\"CreatedDate\", \"a.Comments\".\"UpdatedById\", \"a.Comments\".\"UpdatedDate\"
+FROM \"AppComments\" AS \"a.Comments\"
+INNER JOIN (
+    SELECT DISTINCT t1.*
+    FROM (
+        SELECT a1.\"Id\"
+        FROM \"AppArticles\" AS a1
+        LEFT JOIN \"AppCategories\" AS \"a.Category1\" ON a1.\"CategoryId\" = \"a.Category1\".\"Id\"
+        LEFT JOIN \"AspNetUsers\" AS \"a.CreatedBy1\" ON a1.\"CreatedById\" = \"a.CreatedBy1\".\"Id\"
+        WHERE a1.\"Id\" = @__id_0
+        ORDER BY a1.\"Id\"
+        LIMIT 1
+    ) AS t1
+) AS t2 ON \"a.Comments\".\"ArticleId\" = t2.\"Id\"
+ORDER BY t2.\"Id\"" (0723d8ff)
+2018-09-22T19:23:17.0482286+03:00 0HLH0KOBJ8KAK:00000008 [INF] Authorization failed. (b15dd539)
+2018-09-22T19:23:17.1470075+03:00 0HLH0KOBJ8KAK:00000008 [INF] Executed DbCommand ("1"ms) [Parameters=["@p6='?' (DbType = Int32), @p0='?', @p1='?' (DbType = Int32), @p2='?', @p3='?' (Size = 100), @p4='?', @p5='?' (DbType = DateTime)"], CommandType='Text', CommandTimeout='30']"
+""UPDATE \"AppArticles\" SET \"Body\" = @p0, \"CategoryId\" = @p1, \"Slug\" = @p2, \"Title\" = @p3, \"UpdatedById\" = @p4, \"UpdatedDate\" = @p5
+WHERE \"Id\" = @p6;" (0723d8ff)
+2018-09-22T19:23:17.1570404+03:00 0HLH0KOBJ8KAK:00000008 [INF] Executed action method "DemoBlog.Controllers.ArticlesController.UpdateArticle (DemoBlog)", returned result "Microsoft.AspNetCore.Mvc.NoContentResult" in 120.8727ms. (50a9e262)
+2018-09-22T19:23:17.1573893+03:00 0HLH0KOBJ8KAK:00000008 [INF] Executing HttpStatusCodeResult, setting HTTP status code 204 (e28ccfae)
+2018-09-22T19:23:17.1575061+03:00 0HLH0KOBJ8KAK:00000008 [INF] Executed action "DemoBlog.Controllers.ArticlesController.UpdateArticle (DemoBlog)" in 128.5065ms (afa2e885)
+2018-09-22T19:23:17.1577564+03:00 0HLH0KOBJ8KAK:00000008 [INF] Request finished in 129.9785ms 204  (791a596a)
+2018-09-22T19:23:24.3783149+03:00 0HLH0KOBJ8KAK:00000009 [INF] Request starting HTTP/1.1 POST http://localhost:5000/api/articles application/json 99 (ca22a1cb)
+2018-09-22T19:23:24.3914607+03:00 0HLH0KOBJ8KAK:00000009 [INF] Route matched with "{action = \"CreateArticle\", controller = \"Articles\"}". Executing action "DemoBlog.Controllers.ArticlesController.CreateArticle (DemoBlog)" (a44c0341)
+2018-09-22T19:23:24.3920182+03:00 0HLH0KOBJ8KAK:00000009 [DBG] AuthenticationScheme: "Bearer" was successfully authenticated. (1805f3b3)
+2018-09-22T19:23:24.3921727+03:00 0HLH0KOBJ8KAK:00000009 [INF] Authorization was successful. (0d575a54)
+2018-09-22T19:23:24.3930365+03:00 0HLH0KOBJ8KAK:00000009 [INF] Entity Framework Core "2.2.0-preview1-35029" initialized '"ApplicationDbContext"' using provider '"Npgsql.EntityFrameworkCore.PostgreSQL"' with options: "MigrationsAssembly=DemoBlog " (9958f5bb)
+2018-09-22T19:23:24.4005517+03:00 0HLH0KOBJ8KAK:00000009 [INF] Executed DbCommand ("2"ms) [Parameters=["@__get_Item_0='?'"], CommandType='Text', CommandTimeout='30']"
+""SELECT e.\"Id\", e.\"AccessFailedCount\", e.\"ConcurrencyStamp\", e.\"CreatedById\", e.\"CreatedDate\", e.\"Email\", e.\"EmailConfirmed\", e.\"FullName\", e.\"IsEnabled\", e.\"LockoutEnabled\", e.\"LockoutEnd\", e.\"NormalizedEmail\", e.\"NormalizedUserName\", e.\"PasswordHash\", e.\"PhoneNumber\", e.\"PhoneNumberConfirmed\", e.\"SecurityStamp\", e.\"TwoFactorEnabled\", e.\"UpdatedDate\", e.\"UserName\"
+FROM \"AspNetUsers\" AS e
+WHERE e.\"Id\" = @__get_Item_0
+LIMIT 1" (0723d8ff)
+2018-09-22T19:23:24.4251600+03:00 0HLH0KOBJ8KAK:00000009 [INF] Executing action method "DemoBlog.Controllers.ArticlesController.CreateArticle (DemoBlog)" with arguments (["DemoBlog.ViewModels.ArticleCreateViewModel"]) - Validation state: Valid (4e3479ed)
+2018-09-22T19:23:24.5143045+03:00 0HLH0KOBJ8KAK:00000009 [INF] Executed DbCommand ("1"ms) [Parameters=["@__id_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT c.\"Id\", c.\"CreatedById\", c.\"CreatedDate\", c.\"Name\", c.\"Slug\", c.\"UpdatedById\", c.\"UpdatedDate\"
+FROM \"AppCategories\" AS c
+WHERE c.\"Id\" = @__id_0
+ORDER BY c.\"Id\"
+LIMIT 1" (0723d8ff)
+2018-09-22T19:23:24.5274004+03:00 0HLH0KOBJ8KAK:00000009 [INF] Executed DbCommand ("2"ms) [Parameters=["@__id_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT \"c.Articles\".\"Id\", \"c.Articles\".\"Body\", \"c.Articles\".\"CategoryId\", \"c.Articles\".\"CreatedById\", \"c.Articles\".\"CreatedDate\", \"c.Articles\".\"Slug\", \"c.Articles\".\"Title\", \"c.Articles\".\"UpdatedById\", \"c.Articles\".\"UpdatedDate\", \"a.CreatedBy\".\"Id\", \"a.CreatedBy\".\"AccessFailedCount\", \"a.CreatedBy\".\"ConcurrencyStamp\", \"a.CreatedBy\".\"CreatedById\", \"a.CreatedBy\".\"CreatedDate\", \"a.CreatedBy\".\"Email\", \"a.CreatedBy\".\"EmailConfirmed\", \"a.CreatedBy\".\"FullName\", \"a.CreatedBy\".\"IsEnabled\", \"a.CreatedBy\".\"LockoutEnabled\", \"a.CreatedBy\".\"LockoutEnd\", \"a.CreatedBy\".\"NormalizedEmail\", \"a.CreatedBy\".\"NormalizedUserName\", \"a.CreatedBy\".\"PasswordHash\", \"a.CreatedBy\".\"PhoneNumber\", \"a.CreatedBy\".\"PhoneNumberConfirmed\", \"a.CreatedBy\".\"SecurityStamp\", \"a.CreatedBy\".\"TwoFactorEnabled\", \"a.CreatedBy\".\"UpdatedDate\", \"a.CreatedBy\".\"UserName\"
+FROM \"AppArticles\" AS \"c.Articles\"
+LEFT JOIN \"AspNetUsers\" AS \"a.CreatedBy\" ON \"c.Articles\".\"CreatedById\" = \"a.CreatedBy\".\"Id\"
+INNER JOIN (
+    SELECT c0.\"Id\"
+    FROM \"AppCategories\" AS c0
+    WHERE c0.\"Id\" = @__id_0
+    ORDER BY c0.\"Id\"
+    LIMIT 1
+) AS t ON \"c.Articles\".\"CategoryId\" = t.\"Id\"
+ORDER BY t.\"Id\"" (0723d8ff)
+2018-09-22T19:23:24.6288102+03:00 0HLH0KOBJ8KAK:00000009 [INF] Executed DbCommand ("1"ms) [Parameters=["@__id_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT t.\"Id\", t.\"CreatedById\", t.\"CreatedDate\", t.\"Name\", t.\"Slug\", t.\"UpdatedById\", t.\"UpdatedDate\"
+FROM \"AppTags\" AS t
+WHERE t.\"Id\" = @__id_0
+ORDER BY t.\"Id\"
+LIMIT 1" (0723d8ff)
+2018-09-22T19:23:24.6420973+03:00 0HLH0KOBJ8KAK:00000009 [INF] Executed DbCommand ("3"ms) [Parameters=["@__id_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT \"t.ArticleTags\".\"Id\", \"t.ArticleTags\".\"ArticleId\", \"t.ArticleTags\".\"TagId\", \"t.ArticleTags\".\"CreatedById\", \"t.ArticleTags\".\"CreatedDate\", \"t.ArticleTags\".\"UpdatedById\", \"t.ArticleTags\".\"UpdatedDate\", \"a.Article\".\"Id\", \"a.Article\".\"Body\", \"a.Article\".\"CategoryId\", \"a.Article\".\"CreatedById\", \"a.Article\".\"CreatedDate\", \"a.Article\".\"Slug\", \"a.Article\".\"Title\", \"a.Article\".\"UpdatedById\", \"a.Article\".\"UpdatedDate\", \"a.Article.CreatedBy\".\"Id\", \"a.Article.CreatedBy\".\"AccessFailedCount\", \"a.Article.CreatedBy\".\"ConcurrencyStamp\", \"a.Article.CreatedBy\".\"CreatedById\", \"a.Article.CreatedBy\".\"CreatedDate\", \"a.Article.CreatedBy\".\"Email\", \"a.Article.CreatedBy\".\"EmailConfirmed\", \"a.Article.CreatedBy\".\"FullName\", \"a.Article.CreatedBy\".\"IsEnabled\", \"a.Article.CreatedBy\".\"LockoutEnabled\", \"a.Article.CreatedBy\".\"LockoutEnd\", \"a.Article.CreatedBy\".\"NormalizedEmail\", \"a.Article.CreatedBy\".\"NormalizedUserName\", \"a.Article.CreatedBy\".\"PasswordHash\", \"a.Article.CreatedBy\".\"PhoneNumber\", \"a.Article.CreatedBy\".\"PhoneNumberConfirmed\", \"a.Article.CreatedBy\".\"SecurityStamp\", \"a.Article.CreatedBy\".\"TwoFactorEnabled\", \"a.Article.CreatedBy\".\"UpdatedDate\", \"a.Article.CreatedBy\".\"UserName\", \"a.Article.Category\".\"Id\", \"a.Article.Category\".\"CreatedById\", \"a.Article.Category\".\"CreatedDate\", \"a.Article.Category\".\"Name\", \"a.Article.Category\".\"Slug\", \"a.Article.Category\".\"UpdatedById\", \"a.Article.Category\".\"UpdatedDate\"
+FROM \"AppArticleTags\" AS \"t.ArticleTags\"
+INNER JOIN \"AppArticles\" AS \"a.Article\" ON \"t.ArticleTags\".\"ArticleId\" = \"a.Article\".\"Id\"
+LEFT JOIN \"AspNetUsers\" AS \"a.Article.CreatedBy\" ON \"a.Article\".\"CreatedById\" = \"a.Article.CreatedBy\".\"Id\"
+LEFT JOIN \"AppCategories\" AS \"a.Article.Category\" ON \"a.Article\".\"CategoryId\" = \"a.Article.Category\".\"Id\"
+INNER JOIN (
+    SELECT t0.\"Id\"
+    FROM \"AppTags\" AS t0
+    WHERE t0.\"Id\" = @__id_0
+    ORDER BY t0.\"Id\"
+    LIMIT 1
+) AS t1 ON \"t.ArticleTags\".\"TagId\" = t1.\"Id\"
+ORDER BY t1.\"Id\"" (0723d8ff)
+2018-09-22T19:23:24.6689262+03:00 0HLH0KOBJ8KAK:00000009 [INF] Executed DbCommand ("1"ms) [Parameters=["@__id_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT t.\"Id\", t.\"CreatedById\", t.\"CreatedDate\", t.\"Name\", t.\"Slug\", t.\"UpdatedById\", t.\"UpdatedDate\"
+FROM \"AppTags\" AS t
+WHERE t.\"Id\" = @__id_0
+ORDER BY t.\"Id\"
+LIMIT 1" (0723d8ff)
+2018-09-22T19:23:24.6728988+03:00 0HLH0KOBJ8KAK:00000009 [INF] Executed DbCommand ("3"ms) [Parameters=["@__id_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT \"t.ArticleTags\".\"Id\", \"t.ArticleTags\".\"ArticleId\", \"t.ArticleTags\".\"TagId\", \"t.ArticleTags\".\"CreatedById\", \"t.ArticleTags\".\"CreatedDate\", \"t.ArticleTags\".\"UpdatedById\", \"t.ArticleTags\".\"UpdatedDate\", \"a.Article\".\"Id\", \"a.Article\".\"Body\", \"a.Article\".\"CategoryId\", \"a.Article\".\"CreatedById\", \"a.Article\".\"CreatedDate\", \"a.Article\".\"Slug\", \"a.Article\".\"Title\", \"a.Article\".\"UpdatedById\", \"a.Article\".\"UpdatedDate\", \"a.Article.CreatedBy\".\"Id\", \"a.Article.CreatedBy\".\"AccessFailedCount\", \"a.Article.CreatedBy\".\"ConcurrencyStamp\", \"a.Article.CreatedBy\".\"CreatedById\", \"a.Article.CreatedBy\".\"CreatedDate\", \"a.Article.CreatedBy\".\"Email\", \"a.Article.CreatedBy\".\"EmailConfirmed\", \"a.Article.CreatedBy\".\"FullName\", \"a.Article.CreatedBy\".\"IsEnabled\", \"a.Article.CreatedBy\".\"LockoutEnabled\", \"a.Article.CreatedBy\".\"LockoutEnd\", \"a.Article.CreatedBy\".\"NormalizedEmail\", \"a.Article.CreatedBy\".\"NormalizedUserName\", \"a.Article.CreatedBy\".\"PasswordHash\", \"a.Article.CreatedBy\".\"PhoneNumber\", \"a.Article.CreatedBy\".\"PhoneNumberConfirmed\", \"a.Article.CreatedBy\".\"SecurityStamp\", \"a.Article.CreatedBy\".\"TwoFactorEnabled\", \"a.Article.CreatedBy\".\"UpdatedDate\", \"a.Article.CreatedBy\".\"UserName\", \"a.Article.Category\".\"Id\", \"a.Article.Category\".\"CreatedById\", \"a.Article.Category\".\"CreatedDate\", \"a.Article.Category\".\"Name\", \"a.Article.Category\".\"Slug\", \"a.Article.Category\".\"UpdatedById\", \"a.Article.Category\".\"UpdatedDate\"
+FROM \"AppArticleTags\" AS \"t.ArticleTags\"
+INNER JOIN \"AppArticles\" AS \"a.Article\" ON \"t.ArticleTags\".\"ArticleId\" = \"a.Article\".\"Id\"
+LEFT JOIN \"AspNetUsers\" AS \"a.Article.CreatedBy\" ON \"a.Article\".\"CreatedById\" = \"a.Article.CreatedBy\".\"Id\"
+LEFT JOIN \"AppCategories\" AS \"a.Article.Category\" ON \"a.Article\".\"CategoryId\" = \"a.Article.Category\".\"Id\"
+INNER JOIN (
+    SELECT t0.\"Id\"
+    FROM \"AppTags\" AS t0
+    WHERE t0.\"Id\" = @__id_0
+    ORDER BY t0.\"Id\"
+    LIMIT 1
+) AS t1 ON \"t.ArticleTags\".\"TagId\" = t1.\"Id\"
+ORDER BY t1.\"Id\"" (0723d8ff)
+2018-09-22T19:23:24.7709549+03:00 0HLH0KOBJ8KAK:00000009 [INF] Executed DbCommand ("29"ms) [Parameters=["@p0='?', @p1='?' (DbType = Int32), @p2='?', @p3='?' (DbType = DateTime), @p4='?', @p5='?' (Size = 100), @p6='?', @p7='?' (DbType = DateTime)"], CommandType='Text', CommandTimeout='30']"
+""INSERT INTO \"AppArticles\" (\"Body\", \"CategoryId\", \"CreatedById\", \"CreatedDate\", \"Slug\", \"Title\", \"UpdatedById\", \"UpdatedDate\")
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7)
+RETURNING \"Id\";" (0723d8ff)
+2018-09-22T19:23:24.8023221+03:00 0HLH0KOBJ8KAK:00000009 [INF] Executed DbCommand ("2"ms) [Parameters=["@p0='?' (DbType = Int32), @p1='?' (DbType = Int32), @p2='?', @p3='?' (DbType = DateTime), @p4='?', @p5='?' (DbType = DateTime)"], CommandType='Text', CommandTimeout='30']"
+""INSERT INTO \"AppArticleTags\" (\"ArticleId\", \"TagId\", \"CreatedById\", \"CreatedDate\", \"UpdatedById\", \"UpdatedDate\")
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5)
+RETURNING \"Id\";" (0723d8ff)
+2018-09-22T19:23:24.8137696+03:00 0HLH0KOBJ8KAK:00000009 [INF] Executed DbCommand ("2"ms) [Parameters=["@p0='?' (DbType = Int32), @p1='?' (DbType = Int32), @p2='?', @p3='?' (DbType = DateTime), @p4='?', @p5='?' (DbType = DateTime)"], CommandType='Text', CommandTimeout='30']"
+""INSERT INTO \"AppArticleTags\" (\"ArticleId\", \"TagId\", \"CreatedById\", \"CreatedDate\", \"UpdatedById\", \"UpdatedDate\")
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5)
+RETURNING \"Id\";" (0723d8ff)
+2018-09-22T19:23:24.8209310+03:00 0HLH0KOBJ8KAK:00000009 [INF] Executed DbCommand ("2"ms) [Parameters=["@__id_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT a.\"Id\", a.\"Body\", a.\"CategoryId\", a.\"CreatedById\", a.\"CreatedDate\", a.\"Slug\", a.\"Title\", a.\"UpdatedById\", a.\"UpdatedDate\", \"a.Category\".\"Id\", \"a.Category\".\"CreatedById\", \"a.Category\".\"CreatedDate\", \"a.Category\".\"Name\", \"a.Category\".\"Slug\", \"a.Category\".\"UpdatedById\", \"a.Category\".\"UpdatedDate\", \"a.CreatedBy\".\"Id\", \"a.CreatedBy\".\"AccessFailedCount\", \"a.CreatedBy\".\"ConcurrencyStamp\", \"a.CreatedBy\".\"CreatedById\", \"a.CreatedBy\".\"CreatedDate\", \"a.CreatedBy\".\"Email\", \"a.CreatedBy\".\"EmailConfirmed\", \"a.CreatedBy\".\"FullName\", \"a.CreatedBy\".\"IsEnabled\", \"a.CreatedBy\".\"LockoutEnabled\", \"a.CreatedBy\".\"LockoutEnd\", \"a.CreatedBy\".\"NormalizedEmail\", \"a.CreatedBy\".\"NormalizedUserName\", \"a.CreatedBy\".\"PasswordHash\", \"a.CreatedBy\".\"PhoneNumber\", \"a.CreatedBy\".\"PhoneNumberConfirmed\", \"a.CreatedBy\".\"SecurityStamp\", \"a.CreatedBy\".\"TwoFactorEnabled\", \"a.CreatedBy\".\"UpdatedDate\", \"a.CreatedBy\".\"UserName\"
+FROM \"AppArticles\" AS a
+LEFT JOIN \"AppCategories\" AS \"a.Category\" ON a.\"CategoryId\" = \"a.Category\".\"Id\"
+LEFT JOIN \"AspNetUsers\" AS \"a.CreatedBy\" ON a.\"CreatedById\" = \"a.CreatedBy\".\"Id\"
+WHERE a.\"Id\" = @__id_0
+ORDER BY a.\"Id\"
+LIMIT 1" (0723d8ff)
+2018-09-22T19:23:24.8231217+03:00 0HLH0KOBJ8KAK:00000009 [INF] Executed DbCommand ("2"ms) [Parameters=["@__id_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT \"a.ArticleTags\".\"Id\", \"a.ArticleTags\".\"ArticleId\", \"a.ArticleTags\".\"TagId\", \"a.ArticleTags\".\"CreatedById\", \"a.ArticleTags\".\"CreatedDate\", \"a.ArticleTags\".\"UpdatedById\", \"a.ArticleTags\".\"UpdatedDate\", \"a.Tag\".\"Id\", \"a.Tag\".\"CreatedById\", \"a.Tag\".\"CreatedDate\", \"a.Tag\".\"Name\", \"a.Tag\".\"Slug\", \"a.Tag\".\"UpdatedById\", \"a.Tag\".\"UpdatedDate\"
+FROM \"AppArticleTags\" AS \"a.ArticleTags\"
+INNER JOIN \"AppTags\" AS \"a.Tag\" ON \"a.ArticleTags\".\"TagId\" = \"a.Tag\".\"Id\"
+INNER JOIN (
+    SELECT DISTINCT t.*
+    FROM (
+        SELECT a0.\"Id\"
+        FROM \"AppArticles\" AS a0
+        LEFT JOIN \"AppCategories\" AS \"a.Category0\" ON a0.\"CategoryId\" = \"a.Category0\".\"Id\"
+        LEFT JOIN \"AspNetUsers\" AS \"a.CreatedBy0\" ON a0.\"CreatedById\" = \"a.CreatedBy0\".\"Id\"
+        WHERE a0.\"Id\" = @__id_0
+        ORDER BY a0.\"Id\"
+        LIMIT 1
+    ) AS t
+) AS t0 ON \"a.ArticleTags\".\"ArticleId\" = t0.\"Id\"
+ORDER BY t0.\"Id\"" (0723d8ff)
+2018-09-22T19:23:24.8251269+03:00 0HLH0KOBJ8KAK:00000009 [INF] Executed DbCommand ("1"ms) [Parameters=["@__id_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT \"a.Comments\".\"Id\", \"a.Comments\".\"ArticleId\", \"a.Comments\".\"Body\", \"a.Comments\".\"CreatedById\", \"a.Comments\".\"CreatedDate\", \"a.Comments\".\"UpdatedById\", \"a.Comments\".\"UpdatedDate\"
+FROM \"AppComments\" AS \"a.Comments\"
+INNER JOIN (
+    SELECT DISTINCT t1.*
+    FROM (
+        SELECT a1.\"Id\"
+        FROM \"AppArticles\" AS a1
+        LEFT JOIN \"AppCategories\" AS \"a.Category1\" ON a1.\"CategoryId\" = \"a.Category1\".\"Id\"
+        LEFT JOIN \"AspNetUsers\" AS \"a.CreatedBy1\" ON a1.\"CreatedById\" = \"a.CreatedBy1\".\"Id\"
+        WHERE a1.\"Id\" = @__id_0
+        ORDER BY a1.\"Id\"
+        LIMIT 1
+    ) AS t1
+) AS t2 ON \"a.Comments\".\"ArticleId\" = t2.\"Id\"
+ORDER BY t2.\"Id\"" (0723d8ff)
+2018-09-22T19:23:24.8262369+03:00 0HLH0KOBJ8KAK:00000009 [INF] Executed action method "DemoBlog.Controllers.ArticlesController.CreateArticle (DemoBlog)", returned result "Microsoft.AspNetCore.Mvc.CreatedAtActionResult" in 400.9182ms. (50a9e262)
+2018-09-22T19:23:24.8264784+03:00 0HLH0KOBJ8KAK:00000009 [INF] Executing ObjectResult, writing value of type '"DemoBlog.ViewModels.ArticleViewModel"'. (8a1b66c8)
+2018-09-22T19:23:24.8284035+03:00 0HLH0KOBJ8KAK:00000009 [INF] Executed action "DemoBlog.Controllers.ArticlesController.CreateArticle (DemoBlog)" in 436.7577ms (afa2e885)
+2018-09-22T19:23:24.8286704+03:00 0HLH0KOBJ8KAK:00000009 [INF] Request finished in 450.5513ms 201 application/json; charset=utf-8 (791a596a)
+2018-09-22T19:23:35.4212106+03:00 0HLH0KOBJ8KAK:0000000A [INF] Request starting HTTP/1.1 GET http://localhost:5000/api/articles/5   (ca22a1cb)
+2018-09-22T19:23:35.4222415+03:00 0HLH0KOBJ8KAK:0000000A [INF] Route matched with "{action = \"GetArticle\", controller = \"Articles\"}". Executing action "DemoBlog.Controllers.ArticlesController.GetArticle (DemoBlog)" (a44c0341)
+2018-09-22T19:23:35.4228759+03:00 0HLH0KOBJ8KAK:0000000A [INF] Executing action method "DemoBlog.Controllers.ArticlesController.GetArticle (DemoBlog)" with arguments (["5"]) - Validation state: Valid (4e3479ed)
+2018-09-22T19:23:35.4242712+03:00 0HLH0KOBJ8KAK:0000000A [INF] Entity Framework Core "2.2.0-preview1-35029" initialized '"ApplicationDbContext"' using provider '"Npgsql.EntityFrameworkCore.PostgreSQL"' with options: "MigrationsAssembly=DemoBlog " (9958f5bb)
+2018-09-22T19:23:35.4290385+03:00 0HLH0KOBJ8KAK:0000000A [INF] Executed DbCommand ("3"ms) [Parameters=["@__id_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT a.\"Id\", a.\"Body\", a.\"CategoryId\", a.\"CreatedById\", a.\"CreatedDate\", a.\"Slug\", a.\"Title\", a.\"UpdatedById\", a.\"UpdatedDate\", \"a.Category\".\"Id\", \"a.Category\".\"CreatedById\", \"a.Category\".\"CreatedDate\", \"a.Category\".\"Name\", \"a.Category\".\"Slug\", \"a.Category\".\"UpdatedById\", \"a.Category\".\"UpdatedDate\", \"a.CreatedBy\".\"Id\", \"a.CreatedBy\".\"AccessFailedCount\", \"a.CreatedBy\".\"ConcurrencyStamp\", \"a.CreatedBy\".\"CreatedById\", \"a.CreatedBy\".\"CreatedDate\", \"a.CreatedBy\".\"Email\", \"a.CreatedBy\".\"EmailConfirmed\", \"a.CreatedBy\".\"FullName\", \"a.CreatedBy\".\"IsEnabled\", \"a.CreatedBy\".\"LockoutEnabled\", \"a.CreatedBy\".\"LockoutEnd\", \"a.CreatedBy\".\"NormalizedEmail\", \"a.CreatedBy\".\"NormalizedUserName\", \"a.CreatedBy\".\"PasswordHash\", \"a.CreatedBy\".\"PhoneNumber\", \"a.CreatedBy\".\"PhoneNumberConfirmed\", \"a.CreatedBy\".\"SecurityStamp\", \"a.CreatedBy\".\"TwoFactorEnabled\", \"a.CreatedBy\".\"UpdatedDate\", \"a.CreatedBy\".\"UserName\"
+FROM \"AppArticles\" AS a
+LEFT JOIN \"AppCategories\" AS \"a.Category\" ON a.\"CategoryId\" = \"a.Category\".\"Id\"
+LEFT JOIN \"AspNetUsers\" AS \"a.CreatedBy\" ON a.\"CreatedById\" = \"a.CreatedBy\".\"Id\"
+WHERE a.\"Id\" = @__id_0
+ORDER BY a.\"Id\"
+LIMIT 1" (0723d8ff)
+2018-09-22T19:23:35.4331214+03:00 0HLH0KOBJ8KAK:0000000A [INF] Executed DbCommand ("3"ms) [Parameters=["@__id_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT \"a.ArticleTags\".\"Id\", \"a.ArticleTags\".\"ArticleId\", \"a.ArticleTags\".\"TagId\", \"a.ArticleTags\".\"CreatedById\", \"a.ArticleTags\".\"CreatedDate\", \"a.ArticleTags\".\"UpdatedById\", \"a.ArticleTags\".\"UpdatedDate\", \"a.Tag\".\"Id\", \"a.Tag\".\"CreatedById\", \"a.Tag\".\"CreatedDate\", \"a.Tag\".\"Name\", \"a.Tag\".\"Slug\", \"a.Tag\".\"UpdatedById\", \"a.Tag\".\"UpdatedDate\"
+FROM \"AppArticleTags\" AS \"a.ArticleTags\"
+INNER JOIN \"AppTags\" AS \"a.Tag\" ON \"a.ArticleTags\".\"TagId\" = \"a.Tag\".\"Id\"
+INNER JOIN (
+    SELECT DISTINCT t.*
+    FROM (
+        SELECT a0.\"Id\"
+        FROM \"AppArticles\" AS a0
+        LEFT JOIN \"AppCategories\" AS \"a.Category0\" ON a0.\"CategoryId\" = \"a.Category0\".\"Id\"
+        LEFT JOIN \"AspNetUsers\" AS \"a.CreatedBy0\" ON a0.\"CreatedById\" = \"a.CreatedBy0\".\"Id\"
+        WHERE a0.\"Id\" = @__id_0
+        ORDER BY a0.\"Id\"
+        LIMIT 1
+    ) AS t
+) AS t0 ON \"a.ArticleTags\".\"ArticleId\" = t0.\"Id\"
+ORDER BY t0.\"Id\"" (0723d8ff)
+2018-09-22T19:23:35.4368400+03:00 0HLH0KOBJ8KAK:0000000A [INF] Executed DbCommand ("2"ms) [Parameters=["@__id_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT \"a.Comments\".\"Id\", \"a.Comments\".\"ArticleId\", \"a.Comments\".\"Body\", \"a.Comments\".\"CreatedById\", \"a.Comments\".\"CreatedDate\", \"a.Comments\".\"UpdatedById\", \"a.Comments\".\"UpdatedDate\"
+FROM \"AppComments\" AS \"a.Comments\"
+INNER JOIN (
+    SELECT DISTINCT t1.*
+    FROM (
+        SELECT a1.\"Id\"
+        FROM \"AppArticles\" AS a1
+        LEFT JOIN \"AppCategories\" AS \"a.Category1\" ON a1.\"CategoryId\" = \"a.Category1\".\"Id\"
+        LEFT JOIN \"AspNetUsers\" AS \"a.CreatedBy1\" ON a1.\"CreatedById\" = \"a.CreatedBy1\".\"Id\"
+        WHERE a1.\"Id\" = @__id_0
+        ORDER BY a1.\"Id\"
+        LIMIT 1
+    ) AS t1
+) AS t2 ON \"a.Comments\".\"ArticleId\" = t2.\"Id\"
+ORDER BY t2.\"Id\"" (0723d8ff)
+2018-09-22T19:23:35.4375713+03:00 0HLH0KOBJ8KAK:0000000A [INF] Executed action method "DemoBlog.Controllers.ArticlesController.GetArticle (DemoBlog)", returned result "Microsoft.AspNetCore.Mvc.OkObjectResult" in 14.4983ms. (50a9e262)
+2018-09-22T19:23:35.4378308+03:00 0HLH0KOBJ8KAK:0000000A [INF] Executing ObjectResult, writing value of type '"DemoBlog.ViewModels.ArticleViewModel"'. (8a1b66c8)
+2018-09-22T19:23:35.4383357+03:00 0HLH0KOBJ8KAK:0000000A [INF] Executed action "DemoBlog.Controllers.ArticlesController.GetArticle (DemoBlog)" in 15.9832ms (afa2e885)
+2018-09-22T19:23:35.4385397+03:00 0HLH0KOBJ8KAK:0000000A [INF] Request finished in 17.4843ms 200 application/json; charset=utf-8 (791a596a)
+2018-09-22T19:24:31.6053592+03:00 0HLH0KOBJ8KAK:0000000B [INF] Request starting HTTP/1.1 POST http://localhost:5000/connect/token application/x-www-form-urlencoded 121 (ca22a1cb)
+2018-09-22T19:24:31.6120403+03:00 0HLH0KOBJ8KAK:0000000B [INF] The token request was successfully extracted from the HTTP request: "{
+  \"username\": \"admin\",
+  \"password\": \"[removed for security reasons]\",
+  \"grant_type\": \"password\",
+  \"scope\": \"openid email phone profile offline_access roles\"
+}". (ebc01284)
+2018-09-22T19:24:31.6122560+03:00 0HLH0KOBJ8KAK:0000000B [DBG] The token request validation process was partially skipped because the 'client_id' parameter was missing or empty. (fcec36a0)
+2018-09-22T19:24:31.6123035+03:00 0HLH0KOBJ8KAK:0000000B [INF] The token request was successfully validated. (d7e51e65)
+2018-09-22T19:24:31.6124428+03:00 0HLH0KOBJ8KAK:0000000B [DBG] The default token request handling was skipped from user code. (72afae05)
+2018-09-22T19:24:31.6130169+03:00 0HLH0KOBJ8KAK:0000000B [INF] Route matched with "{action = \"Exchange\", controller = \"Authorization\"}". Executing action "DemoBlog.Controllers.AuthorizationController.Exchange (DemoBlog)" (a44c0341)
+2018-09-22T19:24:31.6141134+03:00 0HLH0KOBJ8KAK:0000000B [INF] Executing action method "DemoBlog.Controllers.AuthorizationController.Exchange (DemoBlog)" with arguments (["{
+  \"username\": \"admin\",
+  \"password\": \"[removed for security reasons]\",
+  \"grant_type\": \"password\",
+  \"scope\": \"openid email phone profile offline_access roles\"
+}"]) - Validation state: Valid (4e3479ed)
+2018-09-22T19:24:31.6151862+03:00 0HLH0KOBJ8KAK:0000000B [INF] Entity Framework Core "2.2.0-preview1-35029" initialized '"ApplicationDbContext"' using provider '"Npgsql.EntityFrameworkCore.PostgreSQL"' with options: "MigrationsAssembly=DemoBlog " (9958f5bb)
+2018-09-22T19:24:31.6182077+03:00 0HLH0KOBJ8KAK:0000000B [INF] Executed DbCommand ("2"ms) [Parameters=["@__normalizedEmail_0='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SELECT u.\"Id\", u.\"AccessFailedCount\", u.\"ConcurrencyStamp\", u.\"CreatedById\", u.\"CreatedDate\", u.\"Email\", u.\"EmailConfirmed\", u.\"FullName\", u.\"IsEnabled\", u.\"LockoutEnabled\", u.\"LockoutEnd\", u.\"NormalizedEmail\", u.\"NormalizedUserName\", u.\"PasswordHash\", u.\"PhoneNumber\", u.\"PhoneNumberConfirmed\", u.\"SecurityStamp\", u.\"TwoFactorEnabled\", u.\"UpdatedDate\", u.\"UserName\"
+FROM \"AspNetUsers\" AS u
+WHERE u.\"NormalizedEmail\" = @__normalizedEmail_0
+LIMIT 1" (0723d8ff)
+2018-09-22T19:24:31.6205969+03:00 0HLH0KOBJ8KAK:0000000B [INF] Executed DbCommand ("1"ms) [Parameters=["@__normalizedUserName_0='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SELECT u.\"Id\", u.\"AccessFailedCount\", u.\"ConcurrencyStamp\", u.\"CreatedById\", u.\"CreatedDate\", u.\"Email\", u.\"EmailConfirmed\", u.\"FullName\", u.\"IsEnabled\", u.\"LockoutEnabled\", u.\"LockoutEnd\", u.\"NormalizedEmail\", u.\"NormalizedUserName\", u.\"PasswordHash\", u.\"PhoneNumber\", u.\"PhoneNumberConfirmed\", u.\"SecurityStamp\", u.\"TwoFactorEnabled\", u.\"UpdatedDate\", u.\"UserName\"
+FROM \"AspNetUsers\" AS u
+WHERE u.\"NormalizedUserName\" = @__normalizedUserName_0
+LIMIT 1" (0723d8ff)
+2018-09-22T19:24:31.6386753+03:00 0HLH0KOBJ8KAK:0000000B [INF] Executed DbCommand ("1"ms) [Parameters=["@__user_Id_0='?'"], CommandType='Text', CommandTimeout='30']"
+""SELECT uc.\"Id\", uc.\"ClaimType\", uc.\"ClaimValue\", uc.\"UserId\"
+FROM \"AspNetUserClaims\" AS uc
+WHERE uc.\"UserId\" = @__user_Id_0" (0723d8ff)
+2018-09-22T19:24:31.6423737+03:00 0HLH0KOBJ8KAK:0000000B [INF] Executed DbCommand ("2"ms) [Parameters=["@__userId_0='?'"], CommandType='Text', CommandTimeout='30']"
+""SELECT role.\"Name\"
+FROM \"AspNetUserRoles\" AS \"userRole\"
+INNER JOIN \"AspNetRoles\" AS role ON \"userRole\".\"RoleId\" = role.\"Id\"
+WHERE \"userRole\".\"UserId\" = @__userId_0" (0723d8ff)
+2018-09-22T19:24:31.6449979+03:00 0HLH0KOBJ8KAK:0000000B [INF] Executed DbCommand ("1"ms) [Parameters=["@__normalizedName_0='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SELECT r.\"Id\", r.\"ConcurrencyStamp\", r.\"CreatedById\", r.\"CreatedDate\", r.\"Description\", r.\"Name\", r.\"NormalizedName\", r.\"UpdatedById\", r.\"UpdatedDate\"
+FROM \"AspNetRoles\" AS r
+WHERE r.\"NormalizedName\" = @__normalizedName_0
+LIMIT 1" (0723d8ff)
+2018-09-22T19:24:31.6477198+03:00 0HLH0KOBJ8KAK:0000000B [INF] Executed DbCommand ("1"ms) [Parameters=["@__role_Id_0='?'"], CommandType='Text', CommandTimeout='30']"
+""SELECT rc.\"ClaimType\", rc.\"ClaimValue\"
+FROM \"AspNetRoleClaims\" AS rc
+WHERE rc.\"RoleId\" = @__role_Id_0" (0723d8ff)
+2018-09-22T19:24:31.6489295+03:00 0HLH0KOBJ8KAK:0000000B [INF] Executed action method "DemoBlog.Controllers.AuthorizationController.Exchange (DemoBlog)", returned result "Microsoft.AspNetCore.Mvc.SignInResult" in 34.4847ms. (50a9e262)
+2018-09-22T19:24:31.6491946+03:00 0HLH0KOBJ8KAK:0000000B [INF] Executing SignInResult with authentication scheme ("ASOS") and the following principal: "System.Security.Claims.ClaimsPrincipal". (f8bf0a82)
+2018-09-22T19:24:31.6529514+03:00 0HLH0KOBJ8KAK:0000000B [INF] Executed DbCommand ("1"ms) [Parameters=["@p0='?', @p1='?', @p2='?', @p3='?', @p4='?', @p5='?', @p6='?', @p7='?'"], CommandType='Text', CommandTimeout='30']"
+""INSERT INTO \"OpenIddictAuthorizations\" (\"Id\", \"ApplicationId\", \"ConcurrencyToken\", \"Properties\", \"Scopes\", \"Status\", \"Subject\", \"Type\")
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7);" (0723d8ff)
+2018-09-22T19:24:31.6570779+03:00 0HLH0KOBJ8KAK:0000000B [INF] An ad hoc authorization was automatically created and associated with an unknown application: "e4b0d5b6-7a7e-429b-9188-21727b250b69". (b5fe4ad7)
+2018-09-22T19:24:31.6574245+03:00 0HLH0KOBJ8KAK:0000000B [DBG] '"AspNet.Identity.SecurityStamp"' was excluded from the access token claims. (ed8f369e)
+2018-09-22T19:24:31.6576267+03:00 0HLH0KOBJ8KAK:0000000B [DBG] '"email"' was excluded from the access token claims. (ed8f369e)
+2018-09-22T19:24:31.6577261+03:00 0HLH0KOBJ8KAK:0000000B [DBG] '"phone"' was excluded from the access token claims. (ed8f369e)
+2018-09-22T19:24:31.6628669+03:00 0HLH0KOBJ8KAK:0000000B [INF] Executed DbCommand ("2"ms) [Parameters=["@p0='?', @p1='?', @p2='?', @p3='?', @p4='?' (DbType = DateTimeOffset), @p5='?' (DbType = DateTimeOffset), @p6='?', @p7='?', @p8='?', @p9='?', @p10='?', @p11='?'"], CommandType='Text', CommandTimeout='30']"
+""INSERT INTO \"OpenIddictTokens\" (\"Id\", \"ApplicationId\", \"AuthorizationId\", \"ConcurrencyToken\", \"CreationDate\", \"ExpirationDate\", \"Payload\", \"Properties\", \"ReferenceId\", \"Status\", \"Subject\", \"Type\")
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9, @p10, @p11);" (0723d8ff)
+2018-09-22T19:24:31.6644288+03:00 0HLH0KOBJ8KAK:0000000B [DBG] '"AspNet.Identity.SecurityStamp"' was excluded from the identity token claims. (7dcd2335)
+2018-09-22T19:24:31.6650596+03:00 0HLH0KOBJ8KAK:0000000B [INF] The token response was successfully returned: "{
+  \"token_type\": \"Bearer\",
+  \"access_token\": \"[removed for security reasons]\",
+  \"expires_in\": 3600,
+  \"refresh_token\": \"[removed for security reasons]\",
+  \"id_token\": \"[removed for security reasons]\"
+}". (12d98310)
+2018-09-22T19:24:31.6654895+03:00 0HLH0KOBJ8KAK:0000000B [INF] Executed action "DemoBlog.Controllers.AuthorizationController.Exchange (DemoBlog)" in 52.33ms (afa2e885)
+2018-09-22T19:24:31.6656990+03:00 0HLH0KOBJ8KAK:0000000B [INF] Request finished in 60.5106ms 200 application/json;charset=UTF-8 (791a596a)
+2018-09-22T19:25:04.0055365+03:00 0HLH0KOBJ8KAK:0000000C [INF] Request starting HTTP/1.1 PUT http://localhost:5000/api/articles/5 application/json 112 (ca22a1cb)
+2018-09-22T19:25:04.0065889+03:00 0HLH0KOBJ8KAK:0000000C [INF] Route matched with "{action = \"UpdateArticle\", controller = \"Articles\"}". Executing action "DemoBlog.Controllers.ArticlesController.UpdateArticle (DemoBlog)" (a44c0341)
+2018-09-22T19:25:04.0071888+03:00 0HLH0KOBJ8KAK:0000000C [DBG] AuthenticationScheme: "Bearer" was successfully authenticated. (1805f3b3)
+2018-09-22T19:25:04.0073624+03:00 0HLH0KOBJ8KAK:0000000C [INF] Authorization was successful. (0d575a54)
+2018-09-22T19:25:04.0092105+03:00 0HLH0KOBJ8KAK:0000000C [INF] Entity Framework Core "2.2.0-preview1-35029" initialized '"ApplicationDbContext"' using provider '"Npgsql.EntityFrameworkCore.PostgreSQL"' with options: "MigrationsAssembly=DemoBlog " (9958f5bb)
+2018-09-22T19:25:04.0137533+03:00 0HLH0KOBJ8KAK:0000000C [INF] Executed DbCommand ("2"ms) [Parameters=["@__get_Item_0='?'"], CommandType='Text', CommandTimeout='30']"
+""SELECT e.\"Id\", e.\"AccessFailedCount\", e.\"ConcurrencyStamp\", e.\"CreatedById\", e.\"CreatedDate\", e.\"Email\", e.\"EmailConfirmed\", e.\"FullName\", e.\"IsEnabled\", e.\"LockoutEnabled\", e.\"LockoutEnd\", e.\"NormalizedEmail\", e.\"NormalizedUserName\", e.\"PasswordHash\", e.\"PhoneNumber\", e.\"PhoneNumberConfirmed\", e.\"SecurityStamp\", e.\"TwoFactorEnabled\", e.\"UpdatedDate\", e.\"UserName\"
+FROM \"AspNetUsers\" AS e
+WHERE e.\"Id\" = @__get_Item_0
+LIMIT 1" (0723d8ff)
+2018-09-22T19:25:04.0161551+03:00 0HLH0KOBJ8KAK:0000000C [INF] Executing action method "DemoBlog.Controllers.ArticlesController.UpdateArticle (DemoBlog)" with arguments (["5", "DemoBlog.ViewModels.ArticleEditViewModel"]) - Validation state: Valid (4e3479ed)
+2018-09-22T19:25:04.0206754+03:00 0HLH0KOBJ8KAK:0000000C [INF] Executed DbCommand ("3"ms) [Parameters=["@__id_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT a.\"Id\", a.\"Body\", a.\"CategoryId\", a.\"CreatedById\", a.\"CreatedDate\", a.\"Slug\", a.\"Title\", a.\"UpdatedById\", a.\"UpdatedDate\", \"a.Category\".\"Id\", \"a.Category\".\"CreatedById\", \"a.Category\".\"CreatedDate\", \"a.Category\".\"Name\", \"a.Category\".\"Slug\", \"a.Category\".\"UpdatedById\", \"a.Category\".\"UpdatedDate\", \"a.CreatedBy\".\"Id\", \"a.CreatedBy\".\"AccessFailedCount\", \"a.CreatedBy\".\"ConcurrencyStamp\", \"a.CreatedBy\".\"CreatedById\", \"a.CreatedBy\".\"CreatedDate\", \"a.CreatedBy\".\"Email\", \"a.CreatedBy\".\"EmailConfirmed\", \"a.CreatedBy\".\"FullName\", \"a.CreatedBy\".\"IsEnabled\", \"a.CreatedBy\".\"LockoutEnabled\", \"a.CreatedBy\".\"LockoutEnd\", \"a.CreatedBy\".\"NormalizedEmail\", \"a.CreatedBy\".\"NormalizedUserName\", \"a.CreatedBy\".\"PasswordHash\", \"a.CreatedBy\".\"PhoneNumber\", \"a.CreatedBy\".\"PhoneNumberConfirmed\", \"a.CreatedBy\".\"SecurityStamp\", \"a.CreatedBy\".\"TwoFactorEnabled\", \"a.CreatedBy\".\"UpdatedDate\", \"a.CreatedBy\".\"UserName\"
+FROM \"AppArticles\" AS a
+LEFT JOIN \"AppCategories\" AS \"a.Category\" ON a.\"CategoryId\" = \"a.Category\".\"Id\"
+LEFT JOIN \"AspNetUsers\" AS \"a.CreatedBy\" ON a.\"CreatedById\" = \"a.CreatedBy\".\"Id\"
+WHERE a.\"Id\" = @__id_0
+ORDER BY a.\"Id\"
+LIMIT 1" (0723d8ff)
+2018-09-22T19:25:04.0248622+03:00 0HLH0KOBJ8KAK:0000000C [INF] Executed DbCommand ("3"ms) [Parameters=["@__id_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT \"a.ArticleTags\".\"Id\", \"a.ArticleTags\".\"ArticleId\", \"a.ArticleTags\".\"TagId\", \"a.ArticleTags\".\"CreatedById\", \"a.ArticleTags\".\"CreatedDate\", \"a.ArticleTags\".\"UpdatedById\", \"a.ArticleTags\".\"UpdatedDate\", \"a.Tag\".\"Id\", \"a.Tag\".\"CreatedById\", \"a.Tag\".\"CreatedDate\", \"a.Tag\".\"Name\", \"a.Tag\".\"Slug\", \"a.Tag\".\"UpdatedById\", \"a.Tag\".\"UpdatedDate\"
+FROM \"AppArticleTags\" AS \"a.ArticleTags\"
+INNER JOIN \"AppTags\" AS \"a.Tag\" ON \"a.ArticleTags\".\"TagId\" = \"a.Tag\".\"Id\"
+INNER JOIN (
+    SELECT DISTINCT t.*
+    FROM (
+        SELECT a0.\"Id\"
+        FROM \"AppArticles\" AS a0
+        LEFT JOIN \"AppCategories\" AS \"a.Category0\" ON a0.\"CategoryId\" = \"a.Category0\".\"Id\"
+        LEFT JOIN \"AspNetUsers\" AS \"a.CreatedBy0\" ON a0.\"CreatedById\" = \"a.CreatedBy0\".\"Id\"
+        WHERE a0.\"Id\" = @__id_0
+        ORDER BY a0.\"Id\"
+        LIMIT 1
+    ) AS t
+) AS t0 ON \"a.ArticleTags\".\"ArticleId\" = t0.\"Id\"
+ORDER BY t0.\"Id\"" (0723d8ff)
+2018-09-22T19:25:04.0304771+03:00 0HLH0KOBJ8KAK:0000000C [INF] Executed DbCommand ("4"ms) [Parameters=["@__id_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT \"a.Comments\".\"Id\", \"a.Comments\".\"ArticleId\", \"a.Comments\".\"Body\", \"a.Comments\".\"CreatedById\", \"a.Comments\".\"CreatedDate\", \"a.Comments\".\"UpdatedById\", \"a.Comments\".\"UpdatedDate\"
+FROM \"AppComments\" AS \"a.Comments\"
+INNER JOIN (
+    SELECT DISTINCT t1.*
+    FROM (
+        SELECT a1.\"Id\"
+        FROM \"AppArticles\" AS a1
+        LEFT JOIN \"AppCategories\" AS \"a.Category1\" ON a1.\"CategoryId\" = \"a.Category1\".\"Id\"
+        LEFT JOIN \"AspNetUsers\" AS \"a.CreatedBy1\" ON a1.\"CreatedById\" = \"a.CreatedBy1\".\"Id\"
+        WHERE a1.\"Id\" = @__id_0
+        ORDER BY a1.\"Id\"
+        LIMIT 1
+    ) AS t1
+) AS t2 ON \"a.Comments\".\"ArticleId\" = t2.\"Id\"
+ORDER BY t2.\"Id\"" (0723d8ff)
+2018-09-22T19:25:04.0310224+03:00 0HLH0KOBJ8KAK:0000000C [INF] Authorization was successful. (0d575a54)
+2018-09-22T19:25:04.0402269+03:00 0HLH0KOBJ8KAK:0000000C [INF] Executed DbCommand ("2"ms) [Parameters=["@p6='?' (DbType = Int32), @p0='?', @p1='?' (DbType = Int32), @p2='?', @p3='?' (Size = 100), @p4='?', @p5='?' (DbType = DateTime)"], CommandType='Text', CommandTimeout='30']"
+""UPDATE \"AppArticles\" SET \"Body\" = @p0, \"CategoryId\" = @p1, \"Slug\" = @p2, \"Title\" = @p3, \"UpdatedById\" = @p4, \"UpdatedDate\" = @p5
+WHERE \"Id\" = @p6;" (0723d8ff)
+2018-09-22T19:25:04.0424154+03:00 0HLH0KOBJ8KAK:0000000C [INF] Executed action method "DemoBlog.Controllers.ArticlesController.UpdateArticle (DemoBlog)", returned result "Microsoft.AspNetCore.Mvc.NoContentResult" in 26.0576ms. (50a9e262)
+2018-09-22T19:25:04.0426465+03:00 0HLH0KOBJ8KAK:0000000C [INF] Executing HttpStatusCodeResult, setting HTTP status code 204 (e28ccfae)
+2018-09-22T19:25:04.0427687+03:00 0HLH0KOBJ8KAK:0000000C [INF] Executed action "DemoBlog.Controllers.ArticlesController.UpdateArticle (DemoBlog)" in 36.0765ms (afa2e885)
+2018-09-22T19:25:04.0430668+03:00 0HLH0KOBJ8KAK:0000000C [INF] Request finished in 37.7198ms 204  (791a596a)
+2018-09-22T19:32:00.2828493+03:00 0HLH0L3LRQ4VA:00000001 [INF] Request starting HTTP/1.1 PUT http://localhost:5000/api/articles/5 application/json 112 (ca22a1cb)
+2018-09-22T19:32:00.3147409+03:00 0HLH0L3LRQ4VA:00000001 [WRN] Failed to determine the https port for redirect. (ca76cc21)
+2018-09-22T19:32:00.7972982+03:00 0HLH0L3LRQ4VA:00000001 [INF] Route matched with "{action = \"UpdateArticle\", controller = \"Articles\"}". Executing action "DemoBlog.Controllers.ArticlesController.UpdateArticle (DemoBlog)" (a44c0341)
+2018-09-22T19:32:00.9203663+03:00 0HLH0L3LRQ4VA:00000001 [INF] Executing action method "DemoBlog.Controllers.ArticlesController.UpdateArticle (DemoBlog)" with arguments (["5", "DemoBlog.ViewModels.ArticleEditViewModel"]) - Validation state: Valid (4e3479ed)
+2018-09-22T19:32:02.9639541+03:00 0HLH0L3LRQ4VA:00000001 [INF] Entity Framework Core "2.2.0-preview1-35029" initialized '"ApplicationDbContext"' using provider '"Npgsql.EntityFrameworkCore.PostgreSQL"' with options: "MigrationsAssembly=DemoBlog " (9958f5bb)
+2018-09-22T19:32:05.1015337+03:00 0HLH0L3LRQ4VA:00000001 [INF] Executed DbCommand ("73"ms) [Parameters=["@__id_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT a.\"Id\", a.\"Body\", a.\"CategoryId\", a.\"CreatedById\", a.\"CreatedDate\", a.\"Slug\", a.\"Title\", a.\"UpdatedById\", a.\"UpdatedDate\", \"a.Category\".\"Id\", \"a.Category\".\"CreatedById\", \"a.Category\".\"CreatedDate\", \"a.Category\".\"Name\", \"a.Category\".\"Slug\", \"a.Category\".\"UpdatedById\", \"a.Category\".\"UpdatedDate\", \"a.CreatedBy\".\"Id\", \"a.CreatedBy\".\"AccessFailedCount\", \"a.CreatedBy\".\"ConcurrencyStamp\", \"a.CreatedBy\".\"CreatedById\", \"a.CreatedBy\".\"CreatedDate\", \"a.CreatedBy\".\"Email\", \"a.CreatedBy\".\"EmailConfirmed\", \"a.CreatedBy\".\"FullName\", \"a.CreatedBy\".\"IsEnabled\", \"a.CreatedBy\".\"LockoutEnabled\", \"a.CreatedBy\".\"LockoutEnd\", \"a.CreatedBy\".\"NormalizedEmail\", \"a.CreatedBy\".\"NormalizedUserName\", \"a.CreatedBy\".\"PasswordHash\", \"a.CreatedBy\".\"PhoneNumber\", \"a.CreatedBy\".\"PhoneNumberConfirmed\", \"a.CreatedBy\".\"SecurityStamp\", \"a.CreatedBy\".\"TwoFactorEnabled\", \"a.CreatedBy\".\"UpdatedDate\", \"a.CreatedBy\".\"UserName\"
+FROM \"AppArticles\" AS a
+LEFT JOIN \"AppCategories\" AS \"a.Category\" ON a.\"CategoryId\" = \"a.Category\".\"Id\"
+LEFT JOIN \"AspNetUsers\" AS \"a.CreatedBy\" ON a.\"CreatedById\" = \"a.CreatedBy\".\"Id\"
+WHERE a.\"Id\" = @__id_0
+ORDER BY a.\"Id\"
+LIMIT 1" (0723d8ff)
+2018-09-22T19:32:05.5372109+03:00 0HLH0L3LRQ4VA:00000001 [INF] Executed DbCommand ("68"ms) [Parameters=["@__id_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT \"a.ArticleTags\".\"Id\", \"a.ArticleTags\".\"ArticleId\", \"a.ArticleTags\".\"TagId\", \"a.ArticleTags\".\"CreatedById\", \"a.ArticleTags\".\"CreatedDate\", \"a.ArticleTags\".\"UpdatedById\", \"a.ArticleTags\".\"UpdatedDate\", \"a.Tag\".\"Id\", \"a.Tag\".\"CreatedById\", \"a.Tag\".\"CreatedDate\", \"a.Tag\".\"Name\", \"a.Tag\".\"Slug\", \"a.Tag\".\"UpdatedById\", \"a.Tag\".\"UpdatedDate\"
+FROM \"AppArticleTags\" AS \"a.ArticleTags\"
+INNER JOIN \"AppTags\" AS \"a.Tag\" ON \"a.ArticleTags\".\"TagId\" = \"a.Tag\".\"Id\"
+INNER JOIN (
+    SELECT DISTINCT t.*
+    FROM (
+        SELECT a0.\"Id\"
+        FROM \"AppArticles\" AS a0
+        LEFT JOIN \"AppCategories\" AS \"a.Category0\" ON a0.\"CategoryId\" = \"a.Category0\".\"Id\"
+        LEFT JOIN \"AspNetUsers\" AS \"a.CreatedBy0\" ON a0.\"CreatedById\" = \"a.CreatedBy0\".\"Id\"
+        WHERE a0.\"Id\" = @__id_0
+        ORDER BY a0.\"Id\"
+        LIMIT 1
+    ) AS t
+) AS t0 ON \"a.ArticleTags\".\"ArticleId\" = t0.\"Id\"
+ORDER BY t0.\"Id\"" (0723d8ff)
+2018-09-22T19:32:05.6767115+03:00 0HLH0L3LRQ4VA:00000001 [INF] Executed DbCommand ("66"ms) [Parameters=["@__id_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT \"a.Comments\".\"Id\", \"a.Comments\".\"ArticleId\", \"a.Comments\".\"Body\", \"a.Comments\".\"CreatedById\", \"a.Comments\".\"CreatedDate\", \"a.Comments\".\"UpdatedById\", \"a.Comments\".\"UpdatedDate\"
+FROM \"AppComments\" AS \"a.Comments\"
+INNER JOIN (
+    SELECT DISTINCT t1.*
+    FROM (
+        SELECT a1.\"Id\"
+        FROM \"AppArticles\" AS a1
+        LEFT JOIN \"AppCategories\" AS \"a.Category1\" ON a1.\"CategoryId\" = \"a.Category1\".\"Id\"
+        LEFT JOIN \"AspNetUsers\" AS \"a.CreatedBy1\" ON a1.\"CreatedById\" = \"a.CreatedBy1\".\"Id\"
+        WHERE a1.\"Id\" = @__id_0
+        ORDER BY a1.\"Id\"
+        LIMIT 1
+    ) AS t1
+) AS t2 ON \"a.Comments\".\"ArticleId\" = t2.\"Id\"
+ORDER BY t2.\"Id\"" (0723d8ff)
+2018-09-22T19:32:05.7639556+03:00 0HLH0L3LRQ4VA:00000001 [INF] Executed action "DemoBlog.Controllers.ArticlesController.UpdateArticle (DemoBlog)" in 4961.1153ms (afa2e885)
+2018-09-22T19:32:06.6673549+03:00 0HLH0L3LRQ4VA:00000001 [ERR] An unhandled exception has occurred while executing the request. (48a46595)
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at DemoBlog.Controllers.ArticlesController.UpdateArticle(Int32 id, ArticleEditViewModel article) in D:\Proj\Visual Studio\DemoBlog\DemoBlog\Controllers\ArticlesController.cs:line 77
+   at Microsoft.AspNetCore.Mvc.Internal.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at System.Threading.Tasks.ValueTask`1.get_Result()
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.InvokeActionMethodAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.InvokeNextActionFilterAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.Rethrow(ActionExecutedContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.InvokeInnerFilterAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeNextResourceFilter()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Rethrow(ResourceExecutedContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeFilterPipelineAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeAsync()
+   at Microsoft.AspNetCore.Builder.RouterMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.StaticFiles.StaticFileMiddleware.Invoke(HttpContext context)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIIndexMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.StaticFiles.StaticFileMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Cors.Infrastructure.CorsMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.Invoke(HttpContext context)
+2018-09-22T19:32:06.8090336+03:00 0HLH0L3LRQ4VA:00000001 [INF] Request finished in 6545.5663ms 500 text/html; charset=utf-8 (791a596a)
