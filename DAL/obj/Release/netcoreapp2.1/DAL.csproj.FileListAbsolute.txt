@@ -1,0 +1,9 @@
+D:\Proj\Visual Studio\DemoBlog\DAL\bin\Release\netcoreapp2.1\DAL.deps.json
+D:\Proj\Visual Studio\DemoBlog\DAL\bin\Release\netcoreapp2.1\DAL.dll
+D:\Proj\Visual Studio\DemoBlog\DAL\bin\Release\netcoreapp2.1\DAL.pdb
+D:\Proj\Visual Studio\DemoBlog\DAL\obj\Release\netcoreapp2.1\DAL.csprojAssemblyReference.cache
+D:\Proj\Visual Studio\DemoBlog\DAL\obj\Release\netcoreapp2.1\DAL.csproj.CoreCompileInputs.cache
+D:\Proj\Visual Studio\DemoBlog\DAL\obj\Release\netcoreapp2.1\DAL.AssemblyInfoInputs.cache
+D:\Proj\Visual Studio\DemoBlog\DAL\obj\Release\netcoreapp2.1\DAL.AssemblyInfo.cs
+D:\Proj\Visual Studio\DemoBlog\DAL\obj\Release\netcoreapp2.1\DAL.dll
+D:\Proj\Visual Studio\DemoBlog\DAL\obj\Release\netcoreapp2.1\DAL.pdb
