@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using AutoMapper;
-using Microsoft.AspNetCore.Mvc;
 using DAL;
 using DAL.Models;
 using DemoBlog.Authorization;
 using DemoBlog.ViewModels;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 
 namespace DemoBlog.Controllers
 {
@@ -15,8 +15,8 @@ namespace DemoBlog.Controllers
     [ApiController]
     public class CategoriesController : ControllerBase
     {
-        private readonly IUnitOfWork _unitOfWork;
         private const string GetCategoryActionName = "GetCategory";
+        private readonly IUnitOfWork _unitOfWork;
 
         public CategoriesController(IUnitOfWork unitOfWork)
         {
@@ -38,19 +38,15 @@ namespace DemoBlog.Controllers
         [ProducesResponseType(200, Type = typeof(CategoryViewModel))]
         [ProducesResponseType(403)]
         [ProducesResponseType(404)]
-        public async Task<IActionResult> GetCategory([FromRoute] int id)
+        public async Task<IActionResult> GetCategory([FromRoute] Guid id)
         {
             if (!ModelState.IsValid)
-            {
                 return BadRequest(ModelState);
-            }
 
             var category = await _unitOfWork.Categories.GetCategory(id);
 
             if (category == null)
-            {
                 return NotFound();
-            }
 
             var categoryVM = Mapper.Map<CategoryViewModel>(category);
             return Ok(categoryVM);
@@ -63,7 +59,7 @@ namespace DemoBlog.Controllers
         [ProducesResponseType(400)]
         [ProducesResponseType(403)]
         [ProducesResponseType(404)]
-        public async Task<IActionResult> UpdateCategory([FromRoute] int id, [FromBody] CategoryViewModel category)
+        public async Task<IActionResult> UpdateCategory([FromRoute] Guid id, [FromBody] CategoryViewModel category)
         {
             if (ModelState.IsValid)
             {
@@ -73,7 +69,7 @@ namespace DemoBlog.Controllers
                 if (id != category.Id)
                     return BadRequest("Conflicting category id in parameter and model data");
 
-                Category appCategory = await _unitOfWork.Categories.GetCategory(id);
+                var appCategory = await _unitOfWork.Categories.GetCategory(id);
 
                 if (appCategory == null)
                     return NotFound(id);
@@ -104,13 +100,13 @@ namespace DemoBlog.Controllers
                     return BadRequest($"{nameof(category)} cannot be null");
 
 
-                Category appCategory = Mapper.Map<Category>(category);
+                var appCategory = Mapper.Map<Category>(category);
 
                 var result = await _unitOfWork.Categories.CreateCategory(appCategory);
 
                 if (result.Item1)
                 {
-                    CategoryViewModel categoryVM = await GetCategoryViewModelHelper(appCategory.Id);
+                    var categoryVM = await GetCategoryViewModelHelper(appCategory.Id);
                     return CreatedAtAction(GetCategoryActionName, new {id = categoryVM.Id}, categoryVM);
                 }
 
@@ -127,10 +123,10 @@ namespace DemoBlog.Controllers
         [ProducesResponseType(400)]
         [ProducesResponseType(403)]
         [ProducesResponseType(404)]
-        public async Task<IActionResult> DeleteCategory([FromRoute] int id)
+        public async Task<IActionResult> DeleteCategory([FromRoute] Guid id)
         {
             CategoryViewModel categoryVM = null;
-            Category appCategory = await _unitOfWork.Categories.GetCategory(id);
+            var appCategory = await _unitOfWork.Categories.GetCategory(id);
 
             if (appCategory != null)
                 categoryVM = await GetCategoryViewModelHelper(id);
@@ -148,7 +144,7 @@ namespace DemoBlog.Controllers
             return Ok(categoryVM);
         }
 
-        private async Task<CategoryViewModel> GetCategoryViewModelHelper(int id)
+        private async Task<CategoryViewModel> GetCategoryViewModelHelper(Guid id)
         {
             var category = await _unitOfWork.Categories.GetCategory(id);
             if (category != null)

@@ -21,7 +21,7 @@ namespace DAL.Repositories
                 .ToListAsync();
         }
 
-        public async Task<Tag> GetTag(int id)
+        public async Task<Tag> GetTag(Guid id)
         {
             return await _appContext.Tags
                 .Include(t => t.ArticleTags).ThenInclude(at => at.Article).ThenInclude(a => a.CreatedBy)

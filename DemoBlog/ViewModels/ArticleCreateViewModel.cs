@@ -8,11 +8,10 @@ namespace DemoBlog.ViewModels
     public class ArticleCreateViewModel
     {
         public string Title { get; set; }
-        public string Slug { get; set; }
         public string Body { get; set; }
 
-        public int CategoryId { get; set; }
+        public Guid CategoryId { get; set; }
 
-        public int[] TagIds { get; set; }
+        public Guid[] TagIds { get; set; }
     }
 }

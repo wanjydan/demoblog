@@ -9,7 +9,7 @@ namespace DAL.Repositories.Interfaces
     public interface ICategoryRepository: IRepository<Category>
     {
         Task<IEnumerable<Category>> GetCategories();
-        Task<Category> GetCategory(int id);
+        Task<Category> GetCategory(Guid id);
         Task<Tuple<bool, string>> UpdateCategory(Category category);
         Task<Tuple<bool, string>> CreateCategory(Category category);
         Task<Tuple<bool, string>> DeleteCategory(Category category);

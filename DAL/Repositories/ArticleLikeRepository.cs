@@ -16,7 +16,7 @@ namespace DAL.Repositories
 
 
 
-        public async Task<ArticleLike> GetArticleLike(int articleId, string userId)
+        public async Task<ArticleLike> GetArticleLike(Guid articleId, string userId)
         {
             return await _appContext.ArticleLikes
                 .Where(al => al.ArticleId == articleId && al.CreatedById == userId)

@@ -14,6 +14,7 @@ using DemoBlog.Helpers.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using OpenIddict.Validation;
+using DemoBlog.Helpers;
 
 namespace DemoBlog.Controllers
 {
@@ -45,28 +46,37 @@ namespace DemoBlog.Controllers
         }
 
         // GET: api/Articles/5
-        [HttpGet("{id}", Name = GetArticleActionName)]
+        [HttpGet("{idOrSlug}", Name = GetArticleActionName)]
         [ProducesResponseType(200, Type = typeof(ArticleViewModel))]
         [ProducesResponseType(403)]
         [ProducesResponseType(404)]
-        public async Task<IActionResult> GetArticle([FromRoute] int id)
+        public async Task<IActionResult> GetArticle([FromRoute] string idOrSlug)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            var article = await _unitOfWork.Articles.GetArticle(id);
+            Article article;
+
+            try
+            {
+                Guid id = Guid.Parse(idOrSlug);
+                article = await _unitOfWork.Articles.GetArticle(id);
+            }
+            catch (Exception)
+            {
+                article = await _unitOfWork.Articles.GetArticleBySlug(idOrSlug);
+            }
 
             if (article == null)
-            {
                 return NotFound();
-            }
 
             var articleVM = Mapper.Map<ArticleViewModel>(article);
             return Ok(articleVM);
         }
 
+        
         // PUT: api/Articles/5
         [HttpPut("{id}")]
         [Authorize(AuthenticationSchemes = OpenIddictValidationDefaults.AuthenticationScheme)]
@@ -74,7 +84,7 @@ namespace DemoBlog.Controllers
         [ProducesResponseType(400)]
         [ProducesResponseType(403)]
         [ProducesResponseType(404)]
-        public async Task<IActionResult> UpdateArticle([FromRoute] int id, [FromBody] ArticleEditViewModel article)
+        public async Task<IActionResult> UpdateArticle([FromRoute] Guid id, [FromBody] ArticleEditViewModel article)
         {
             ApplicationUser currentUser = await _accountManager.GetCurrentUser();
             Article appArticle = await _unitOfWork.Articles.GetArticle(id);
@@ -100,8 +110,13 @@ namespace DemoBlog.Controllers
                 if (appCategory == null)
                     return NotFound("Category not found");
 
+                appArticle.Slug = await GenarateUniqueSlug(SlugGenerator.GenerateSlug(article.Title));
                 appArticle.Category = appCategory;
 
+                var artTags = GetArticleTagsHelper(id);
+                if (artTags != null)
+                    await _unitOfWork.ArticleTags.DeleteArticleTags(artTags);
+                
                 ICollection<Tag> appTags = new List<Tag>();
                 foreach (var tagId in article.TagIds)
                 {
@@ -144,6 +159,8 @@ namespace DemoBlog.Controllers
                     return NotFound("Category not found");
 
                 appArticle.Category = appCategory;
+                appArticle.Slug = await GenarateUniqueSlug(SlugGenerator.GenerateSlug(article.Title));
+                appArticle.Image = "/images/featured/not-found.jpg";
 
                 ICollection<Tag> appTags = new List<Tag>();
                 foreach (var tagId in article.TagIds)
@@ -175,7 +192,7 @@ namespace DemoBlog.Controllers
         [ProducesResponseType(400)]
         [ProducesResponseType(403)]
         [ProducesResponseType(404)]
-        public async Task<IActionResult> DeleteArticle([FromRoute] int id)
+        public async Task<IActionResult> DeleteArticle([FromRoute] Guid id)
         {
             ArticleViewModel articleVM = null;
             Article appArticle = await _unitOfWork.Articles.GetArticle(id);
@@ -210,7 +227,7 @@ namespace DemoBlog.Controllers
         [ProducesResponseType(400)]
         [ProducesResponseType(403)]
         [ProducesResponseType(404)]
-        public async Task<IActionResult> LikeArticle([FromRoute] int id)
+        public async Task<IActionResult> LikeArticle([FromRoute] Guid id)
         {
             ArticleViewModel articleVM = null;
             Article appArticle = await _unitOfWork.Articles.GetArticle(id);
@@ -244,7 +261,7 @@ namespace DemoBlog.Controllers
         [ProducesResponseType(400)]
         [ProducesResponseType(403)]
         [ProducesResponseType(404)]
-        public async Task<IActionResult> UnlikeArticle([FromRoute] int id)
+        public async Task<IActionResult> UnlikeArticle([FromRoute] Guid id)
         {
             ArticleViewModel articleVM = null;
             Article appArticle = await _unitOfWork.Articles.GetArticle(id);
@@ -277,11 +294,14 @@ namespace DemoBlog.Controllers
         [ProducesResponseType(201, Type = typeof(ArticleViewModel))]
         [ProducesResponseType(400)]
         [ProducesResponseType(403)]
-        public async Task<IActionResult> UploadImage([FromRoute] int id, IFormFile image)
+        public async Task<IActionResult> UploadImage([FromRoute] Guid id, IFormFile image)
         {
             ArticleViewModel articleVM = null;
             ApplicationUser currentUser = await _accountManager.GetCurrentUser();
             Article appArticle = await _unitOfWork.Articles.GetArticle(id);
+
+            if (image == null || image.Length == 0)
+                return BadRequest("image cannot be null");
 
             if (appArticle != null)
                 articleVM = await GetArticleViewModelHelper(id);
@@ -298,7 +318,7 @@ namespace DemoBlog.Controllers
 
             if (result.Item1)
             {
-                appArticle.Image = result.Item2;
+                appArticle.Image = $"/images/featured/{result.Item2}";
                 result = await _unitOfWork.Articles.UpdateArticle(appArticle);
 
                 if (result.Item1)
@@ -312,7 +332,7 @@ namespace DemoBlog.Controllers
             return BadRequest(ModelState);
         }
 
-        private async Task<ArticleViewModel> GetArticleViewModelHelper(int id)
+        private async Task<ArticleViewModel> GetArticleViewModelHelper(Guid id)
         {
             var article = await _unitOfWork.Articles.GetArticle(id);
             if (article != null)
@@ -322,7 +342,7 @@ namespace DemoBlog.Controllers
             return null;
         }
 
-        private async Task<Article> GetArticleHelper(int id)
+        private async Task<Article> GetArticleHelper(Guid id)
         {
             var article = await _unitOfWork.Articles.GetArticle(id);
             if (article != null)
@@ -332,7 +352,7 @@ namespace DemoBlog.Controllers
             return null;
         }
 
-        private async Task<Category> GetCategoryHelper(int id)
+        private async Task<Category> GetCategoryHelper(Guid id)
         {
             var category = await _unitOfWork.Categories.GetCategory(id);
             if (category != null)
@@ -342,17 +362,16 @@ namespace DemoBlog.Controllers
             return null;
         }
 
-        private async Task<Tag> GetTagHelper(int id)
+        private async Task<Tag> GetTagHelper(Guid id)
         {
             var tag = await _unitOfWork.Tags.GetTag(id);
             if (tag != null)
                 return tag;
-
-
+            
             return null;
         }
 
-        private async Task<ArticleTag> GetArticleTagHelper(int articleId, int tagId)
+        private async Task<ArticleTag> GetArticleTagHelper(Guid articleId, Guid tagId)
         {
             var articleTag = await _unitOfWork.ArticleTags.GetArticleTag(articleId, tagId);
             if (articleTag != null)
@@ -361,13 +380,41 @@ namespace DemoBlog.Controllers
             return null;
         }
         
-        private async Task<ArticleLike> GetArticleLikeHelper(int articleId, string userId)
+        private async Task<ArticleLike> GetArticleLikeHelper(Guid articleId, string userId)
         {
             var articleLike = await _unitOfWork.ArticleLikes.GetArticleLike(articleId, userId);
             if (articleLike != null)
                 return articleLike;
 
             return null;
+        }
+
+        private ICollection<ArticleTag> GetArticleTagsHelper(Guid articleId)
+        {
+            var articleTags = _unitOfWork.ArticleTags.GetArticleTags(articleId);
+            if (articleTags != null)
+                return articleTags;
+
+            return null;
+        }
+
+        private async Task<string> GenarateUniqueSlug(string slug)
+        {
+            var article = await _unitOfWork.Articles.GetArticleBySlug(slug);
+            if (article == null)
+                return slug;
+
+            int i = 1;
+            string slugWithNumeric = $"{slug}-{i}";
+
+            while (true)
+            {
+                article = await _unitOfWork.Articles.GetArticleBySlug(slugWithNumeric);
+                if (article == null)
+                    return slugWithNumeric;
+
+                i++;
+            }
         }
     }
 }

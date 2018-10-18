@@ -9,7 +9,8 @@ namespace DAL.Repositories.Interfaces
     public interface IArticleRepository: IRepository<Article>
     {
         Task<IEnumerable<Article>> GetArticles();
-        Task<Article> GetArticle(int id);
+        Task<Article> GetArticle(Guid id);
+        Task<Article> GetArticleBySlug(string slug);
         Task<Tuple<bool, string>> UpdateArticle(Article article);
         Task<Tuple<bool, string>> UpdateArticle(Article article, ICollection<Tag> tags);
         Task<Tuple<bool, string>> CreateArticle(Article article, ICollection<Tag> tags);

@@ -4,7 +4,6 @@ using DAL;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace DemoBlog.Migrations
 {
@@ -15,9 +14,7 @@ namespace DemoBlog.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.SerialColumn)
-                .HasAnnotation("ProductVersion", "2.2.0-preview1-35029")
-                .HasAnnotation("Relational:MaxIdentifierLength", 63);
+                .HasAnnotation("ProductVersion", "2.2.0-preview1-35029");
 
             modelBuilder.Entity("DAL.Models.ApplicationRole", b =>
                 {
@@ -121,12 +118,12 @@ namespace DemoBlog.Migrations
 
             modelBuilder.Entity("DAL.Models.Article", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd();
 
                     b.Property<string>("Body");
 
-                    b.Property<int?>("CategoryId");
+                    b.Property<Guid?>("CategoryId");
 
                     b.Property<string>("CreatedById");
 
@@ -157,10 +154,9 @@ namespace DemoBlog.Migrations
 
             modelBuilder.Entity("DAL.Models.ArticleLike", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd();
+                    b.Property<Guid>("Id");
 
-                    b.Property<int>("ArticleId");
+                    b.Property<Guid>("ArticleId");
 
                     b.Property<string>("CreatedById");
 
@@ -183,12 +179,11 @@ namespace DemoBlog.Migrations
 
             modelBuilder.Entity("DAL.Models.ArticleTag", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd();
+                    b.Property<Guid>("Id");
 
-                    b.Property<int>("ArticleId");
+                    b.Property<Guid>("ArticleId");
 
-                    b.Property<int>("TagId");
+                    b.Property<Guid>("TagId");
 
                     b.Property<string>("CreatedById");
 
@@ -213,7 +208,7 @@ namespace DemoBlog.Migrations
 
             modelBuilder.Entity("DAL.Models.Category", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd();
 
                     b.Property<string>("CreatedById");
@@ -241,10 +236,10 @@ namespace DemoBlog.Migrations
 
             modelBuilder.Entity("DAL.Models.Comment", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<int?>("ArticleId");
+                    b.Property<Guid?>("ArticleId");
 
                     b.Property<string>("Body")
                         .IsRequired();
@@ -270,7 +265,7 @@ namespace DemoBlog.Migrations
 
             modelBuilder.Entity("DAL.Models.Tag", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd();
 
                     b.Property<string>("CreatedById");

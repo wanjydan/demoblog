@@ -8,7 +8,7 @@ namespace DAL.Repositories.Interfaces
 {
     public interface IArticleLikeRepository: IRepository<ArticleLike>
     {
-        Task<ArticleLike> GetArticleLike(int articleId, string userId);
+        Task<ArticleLike> GetArticleLike(Guid articleId, string userId);
         Task<Tuple<bool, string>> DeleteArticleLike(ArticleLike articleLike);
     }
 }

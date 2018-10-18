@@ -4,10 +4,12 @@ using DAL.Models;
 using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DemoBlog.ViewModels;
+using Microsoft.AspNetCore.Hosting.Internal;
 
 namespace DemoBlog.ViewModels
 {
@@ -16,7 +18,7 @@ namespace DemoBlog.ViewModels
         public AutoMapperProfile()
         {
             CreateMap<ApplicationUser, UserViewModel>()
-                   .ForMember(d => d.Roles, map => map.Ignore());
+                .ForMember(d => d.Roles, map => map.Ignore());
             CreateMap<UserViewModel, ApplicationUser>()
                 .ForMember(d => d.Roles, map => map.Ignore());
 
@@ -43,8 +45,9 @@ namespace DemoBlog.ViewModels
                 .ReverseMap();
 
             CreateMap<IdentityRoleClaim<string>, PermissionViewModel>()
-                .ConvertUsing(s => Mapper.Map<PermissionViewModel>(ApplicationPermissions.GetPermissionByValue(s.ClaimValue)));
-            
+                .ConvertUsing(s =>
+                    Mapper.Map<PermissionViewModel>(ApplicationPermissions.GetPermissionByValue(s.ClaimValue)));
+
             CreateMap<Article, ArticleViewModel>()
                 .ForMember(d => d.Author, map => map.MapFrom(s => s.CreatedBy))
                 .ForMember(d => d.Tags, map => map.MapFrom(s => s.ArticleTags.Select(at => at.Tag)));
@@ -72,8 +75,8 @@ namespace DemoBlog.ViewModels
                 .ForMember(d => d.Articles, map => map.MapFrom(s => s.ArticleTags.Select(at => at.Article)));
 
             CreateMap<Article, ArticleListViewModel>()
-                .ForMember(d => d.AuthorUserName, map => map.MapFrom(s => s.CreatedBy.UserName));
-
+                .ForMember(d => d.AuthorUserName, map => map.MapFrom(s => s.CreatedBy.UserName))
+                .ForMember(d => d.Body, map => map.MapFrom(s => s.Body.Length <= 100 ? s.Body : s.Body.Substring(0, 100) + "..."));
         }
     }
 }

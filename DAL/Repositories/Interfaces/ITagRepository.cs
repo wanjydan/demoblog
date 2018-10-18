@@ -9,7 +9,7 @@ namespace DAL.Repositories.Interfaces
     public interface ITagRepository: IRepository<Tag>
     {
         Task<IEnumerable<Tag>> GetTags();
-        Task<Tag> GetTag(int id);
+        Task<Tag> GetTag(Guid id);
         Task<Tuple<bool, string>> UpdateTag(Tag tag);
         Task<Tuple<bool, string>> CreateTag(Tag tag);
         Task<Tuple<bool, string>> DeleteTag(Tag tag);

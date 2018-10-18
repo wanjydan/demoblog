@@ -8,7 +8,9 @@ namespace DAL.Repositories.Interfaces
 {
     public interface IArticleTagRepository: IRepository<ArticleTag>
     {
-        Task<ArticleTag> GetArticleTag(int articleId, int tagId);
+        Task<ArticleTag> GetArticleTag(Guid articleId, Guid tagId);
+        ICollection<ArticleTag> GetArticleTags(Guid articleId);
         Task<Tuple<bool, string>> DeleteArticleTag(ArticleTag articleTag);
+        Task<Tuple<bool, string>> DeleteArticleTags(ICollection<ArticleTag> articleTags);
     }
 }

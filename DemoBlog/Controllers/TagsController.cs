@@ -41,7 +41,7 @@ namespace DemoBlog.Controllers
         [ProducesResponseType(200, Type = typeof(TagViewModel))]
         [ProducesResponseType(403)]
         [ProducesResponseType(404)]
-        public async Task<IActionResult> GetTag([FromRoute] int id)
+        public async Task<IActionResult> GetTag([FromRoute] Guid id)
         {
             if (!ModelState.IsValid)
             {
@@ -66,7 +66,7 @@ namespace DemoBlog.Controllers
         [ProducesResponseType(400)]
         [ProducesResponseType(403)]
         [ProducesResponseType(404)]
-        public async Task<IActionResult> UpdateTag([FromRoute] int id, [FromBody] TagViewModel tag)
+        public async Task<IActionResult> UpdateTag([FromRoute] Guid id, [FromBody] TagViewModel tag)
         {
             if (ModelState.IsValid)
             {
@@ -130,7 +130,7 @@ namespace DemoBlog.Controllers
         [ProducesResponseType(400)]
         [ProducesResponseType(403)]
         [ProducesResponseType(404)]
-        public async Task<IActionResult> DeleteTag([FromRoute] int id)
+        public async Task<IActionResult> DeleteTag([FromRoute] Guid id)
         {
             TagViewModel tagVM = null;
             Tag appTag = await _unitOfWork.Tags.GetTag(id);
@@ -151,7 +151,7 @@ namespace DemoBlog.Controllers
             return Ok(tagVM);
         }
 
-        private async Task<TagViewModel> GetTagViewModelHelper(int id)
+        private async Task<TagViewModel> GetTagViewModelHelper(Guid id)
         {
             var tag = await _unitOfWork.Tags.GetTag(id);
             if (tag != null)

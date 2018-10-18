@@ -48,6 +48,7 @@ namespace DAL
 //            builder.Entity<Category>().HasOne(c => c.UpdatedBy).WithMany(u => u.Categories);
             builder.Entity<Category>().ToTable($"App{nameof(this.Categories)}");
 
+//            builder.Entity<Tag>().HasKey(t => t.Id);
             builder.Entity<Tag>().Property(t => t.Name).IsRequired().HasMaxLength(100);
 //            builder.Entity<Tag>().HasOne(t => t.CreatedBy).WithMany(u => u.Tags);
 //            builder.Entity<Tag>().HasOne(t => t.UpdatedBy).WithMany(u => u.Tags);
@@ -67,7 +68,7 @@ namespace DAL
             builder.Entity<Article>().ToTable($"App{nameof(this.Articles)}");
 
             builder.Entity<ArticleTag>().HasKey(at => new {at.Id, at.ArticleId, at.TagId});
-            builder.Entity<ArticleTag>().Property(at => at.Id).ValueGeneratedOnAdd();
+//            builder.Entity<ArticleTag>().Property(at => at.Id).ValueGeneratedOnAdd();
             builder.Entity<ArticleTag>().HasOne(at => at.Article).WithMany(a => a.ArticleTags)
                 .HasForeignKey(at => at.ArticleId);
             builder.Entity<ArticleTag>().HasOne(at => at.Tag).WithMany(t => t.ArticleTags)
@@ -75,7 +76,7 @@ namespace DAL
             builder.Entity<ArticleTag>().ToTable($"App{nameof(this.ArticleTags)}");
 
             builder.Entity<ArticleLike>().HasKey(al => new {al.Id, al.ArticleId, al.CreatedById});
-            builder.Entity<ArticleLike>().Property(al => al.Id).ValueGeneratedOnAdd();
+//            builder.Entity<ArticleLike>().Property(al => al.Id).ValueGeneratedOnAdd();
             builder.Entity<ArticleLike>().HasOne(al => al.Article).WithMany(a => a.ArticleLikes)
                 .HasForeignKey(al => al.ArticleId);
             builder.Entity<ArticleLike>().HasOne(al => al.CreatedBy).WithMany(u => u.ArticleLikes)

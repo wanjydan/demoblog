@@ -21,7 +21,7 @@ namespace DAL.Repositories
                 .ToListAsync();
         }
 
-        public async Task<Category> GetCategory(int id)
+        public async Task<Category> GetCategory(Guid id)
         {
             return await _appContext.Categories
                 .Include(c => c.Articles).ThenInclude(a => a.CreatedBy)

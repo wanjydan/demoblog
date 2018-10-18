@@ -125,6 +125,7 @@ namespace DemoBlog
                     // options.UseRollingTokens(); //Uncomment to renew refresh tokens on every refreshToken request
                     // Note: to use JWT access tokens instead of the default encrypted format, the following lines are required:
                     // options.UseJsonWebTokens();
+                    options.SetAccessTokenLifetime(TimeSpan.FromDays(30));
                 })
                 .AddValidation(); //Only compatible with the default token format. For JWT tokens, use the Microsoft JWT bearer handler.
 
@@ -208,6 +209,33 @@ namespace DemoBlog
 
             services.AddTransient<IImageHandler, ImageHandler>();
             services.AddTransient<IImageWriter, ImageWriter>();
+
+            services.AddAuthentication()
+                .AddOAuthValidation()
+                // https://console.developers.google.com/projectselector/apis/library?pli=1
+                .AddGoogle(options =>
+                {
+                    options.ClientId = Configuration["Authentication:Google:ClientId"];
+                    options.ClientSecret = Configuration["Authentication:Google:ClientSecret"];
+                })
+                // https://developers.facebook.com/apps
+                .AddFacebook(options =>
+                {
+                    options.AppId = Configuration["Authentication:Facebook:AppId"];
+                    options.AppSecret = Configuration["Authentication:Facebook:AppSecret"];
+                })
+                // https://apps.twitter.com/
+                .AddTwitter(options =>
+                {
+                    options.ConsumerKey = Configuration["Authentication:Twitter:ConsumerKey"];
+                    options.ConsumerSecret = Configuration["Authentication:Twitter:ConsumerSecret"];
+                })
+                // https://apps.dev.microsoft.com/?mkt=en-us#/appList
+                .AddMicrosoftAccount(options =>
+                {
+                    options.ClientId = Configuration["Authentication:Microsoft:ClientId"];
+                    options.ClientSecret = Configuration["Authentication:Microsoft:ClientSecret"];
+                });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

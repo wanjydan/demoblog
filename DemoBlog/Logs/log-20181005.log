@@ -692,3 +692,19 @@ ORDER BY t2.\"Id\"" (0723d8ff)
 2018-10-05T15:37:59.0808151+03:00 0HLHANRG4MK37:00000002 [INF] Request finished in 147.5899ms 200 text/css (791a596a)
 2018-10-05T15:38:00.5772063+03:00 0HLHANRG4MK37:00000003 [INF] Request starting HTTP/1.1 GET http://localhost:5000/swagger/v1/swagger.json   (ca22a1cb)
 2018-10-05T15:38:01.1551306+03:00 0HLHANRG4MK37:00000003 [INF] Request finished in 577.9749ms 200 application/json;charset=utf-8 (791a596a)
+2018-10-05T16:41:27.1506629+03:00 0HLHAP0VLPTNL:00000001 [INF] Request starting HTTP/1.1 GET http://localhost:5000/api/articles   (ca22a1cb)
+2018-10-05T16:41:27.2320570+03:00 0HLHAP0VLPTNL:00000001 [WRN] Failed to determine the https port for redirect. (ca76cc21)
+2018-10-05T16:41:28.4944455+03:00 0HLHAP0VLPTNL:00000001 [INF] Route matched with "{action = \"GetArticles\", controller = \"Articles\"}". Executing action "DemoBlog.Controllers.ArticlesController.GetArticles (DemoBlog)" (a44c0341)
+2018-10-05T16:41:28.5474984+03:00 0HLHAP0VLPTNL:00000001 [INF] Executing action method "DemoBlog.Controllers.ArticlesController.GetArticles (DemoBlog)" - Validation state: Valid (dad538d7)
+2018-10-05T16:41:28.5588789+03:00 0HLHAP0VLPTNL:00000001 [INF] Entity Framework Core "2.2.0-preview1-35029" initialized '"ApplicationDbContext"' using provider '"Microsoft.EntityFrameworkCore.Sqlite"' with options: "MigrationsAssembly=DemoBlog " (9958f5bb)
+2018-10-05T16:41:28.9146294+03:00 0HLHAP0VLPTNL:00000001 [INF] Executed DbCommand ("0"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""PRAGMA foreign_keys=ON;" (0723d8ff)
+2018-10-05T16:41:28.9222236+03:00 0HLHAP0VLPTNL:00000001 [INF] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT \"a\".\"Id\", \"a\".\"Body\", \"a\".\"CategoryId\", \"a\".\"CreatedById\", \"a\".\"CreatedDate\", \"a\".\"Image\", \"a\".\"Slug\", \"a\".\"Title\", \"a\".\"UpdatedById\", \"a\".\"UpdatedDate\", \"a.Category\".\"Id\", \"a.Category\".\"CreatedById\", \"a.Category\".\"CreatedDate\", \"a.Category\".\"Name\", \"a.Category\".\"Slug\", \"a.Category\".\"UpdatedById\", \"a.Category\".\"UpdatedDate\", \"a.CreatedBy\".\"Id\", \"a.CreatedBy\".\"AccessFailedCount\", \"a.CreatedBy\".\"ConcurrencyStamp\", \"a.CreatedBy\".\"CreatedById\", \"a.CreatedBy\".\"CreatedDate\", \"a.CreatedBy\".\"Email\", \"a.CreatedBy\".\"EmailConfirmed\", \"a.CreatedBy\".\"FullName\", \"a.CreatedBy\".\"IsEnabled\", \"a.CreatedBy\".\"LockoutEnabled\", \"a.CreatedBy\".\"LockoutEnd\", \"a.CreatedBy\".\"NormalizedEmail\", \"a.CreatedBy\".\"NormalizedUserName\", \"a.CreatedBy\".\"PasswordHash\", \"a.CreatedBy\".\"PhoneNumber\", \"a.CreatedBy\".\"PhoneNumberConfirmed\", \"a.CreatedBy\".\"SecurityStamp\", \"a.CreatedBy\".\"TwoFactorEnabled\", \"a.CreatedBy\".\"UpdatedDate\", \"a.CreatedBy\".\"UserName\"
+FROM \"AppArticles\" AS \"a\"
+LEFT JOIN \"AppCategories\" AS \"a.Category\" ON \"a\".\"CategoryId\" = \"a.Category\".\"Id\"
+LEFT JOIN \"AspNetUsers\" AS \"a.CreatedBy\" ON \"a\".\"CreatedById\" = \"a.CreatedBy\".\"Id\"" (0723d8ff)
+2018-10-05T16:41:28.9819267+03:00 0HLHAP0VLPTNL:00000001 [INF] Executed action method "DemoBlog.Controllers.ArticlesController.GetArticles (DemoBlog)", returned result "Microsoft.AspNetCore.Mvc.OkObjectResult" in 426.6413ms. (50a9e262)
+2018-10-05T16:41:29.0057493+03:00 0HLHAP0VLPTNL:00000001 [INF] Executing ObjectResult, writing value of type '"System.Collections.Generic.List`1[[DemoBlog.ViewModels.ArticleListViewModel, DemoBlog, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]"'. (8a1b66c8)
+2018-10-05T16:41:29.1710769+03:00 0HLHAP0VLPTNL:00000001 [INF] Executed action "DemoBlog.Controllers.ArticlesController.GetArticles (DemoBlog)" in 669.2849ms (afa2e885)
+2018-10-05T16:41:29.1772707+03:00 0HLHAP0VLPTNL:00000001 [INF] Request finished in 2052.7706ms 200 application/json; charset=utf-8 (791a596a)

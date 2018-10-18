@@ -24,7 +24,7 @@ namespace DAL.Repositories
                 .ToListAsync();
         }
 
-        public async Task<Article> GetArticle(int id)
+        public async Task<Article> GetArticle(Guid id)
         {
             return await _appContext.Articles
                 .Include(a => a.ArticleTags).ThenInclude(at => at.Tag)
@@ -32,6 +32,17 @@ namespace DAL.Repositories
                 .Include(a => a.Category)
                 .Include(a => a.Comments)
                 .Where(a => a.Id == id)
+                .FirstOrDefaultAsync();
+        }
+
+        public async Task<Article> GetArticleBySlug(string slug)
+        {
+            return await _appContext.Articles
+                .Include(a => a.ArticleTags).ThenInclude(at => at.Tag)
+                .Include(a => a.CreatedBy)
+                .Include(a => a.Category)
+                .Include(a => a.Comments)
+                .Where(a => a.Slug == slug)
                 .FirstOrDefaultAsync();
         }
 
@@ -64,17 +75,18 @@ namespace DAL.Repositories
                 return Tuple.Create(false, e.Message);
             }
 
-            ICollection<ArticleTag> articleTags = new List<ArticleTag>();
+            /*ICollection<ArticleTag> articleTags = new List<ArticleTag>();
             foreach (var tag in tags)
             {
                 articleTags.Add(new ArticleTag()
                 {
+                    Id = Guid.NewGuid(),
                     Article = article,
                     Tag = tag
                 });
             }
 
-//            await RemoveTags(articleTags);
+            await RemoveTags(articleTags);*/
 
             await AddTags(article, tags);
 

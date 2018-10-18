@@ -16,17 +16,40 @@ namespace DAL.Repositories
 
 
 
-        public async Task<ArticleTag> GetArticleTag(int articleId, int tagId)
+        public async Task<ArticleTag> GetArticleTag(Guid articleId, Guid tagId)
         {
             return await _appContext.ArticleTags
                 .Where(at => at.ArticleId == articleId && at.TagId == tagId)
                 .FirstOrDefaultAsync();
         }
 
-        
+        public ICollection<ArticleTag> GetArticleTags(Guid articleId)
+        {
+            return _appContext.ArticleTags
+                .Where(at => at.ArticleId == articleId)
+                .ToList();
+        }
+
+
         public async Task<Tuple<bool, string>> DeleteArticleTag(ArticleTag articleTag)
         {
             _appContext.ArticleTags.Remove(articleTag);
+
+            try
+            {
+                await _appContext.SaveChangesAsync();
+            }
+            catch (DbUpdateException e)
+            {
+                return Tuple.Create(false, e.Message);
+            }
+
+            return Tuple.Create(true, string.Empty);
+        }
+
+        public async Task<Tuple<bool, string>> DeleteArticleTags(ICollection<ArticleTag> articleTags)
+        {
+            _appContext.ArticleTags.RemoveRange(articleTags);
 
             try
             {
