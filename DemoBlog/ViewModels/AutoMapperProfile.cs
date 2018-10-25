@@ -49,32 +49,24 @@ namespace DemoBlog.ViewModels
                     Mapper.Map<PermissionViewModel>(ApplicationPermissions.GetPermissionByValue(s.ClaimValue)));
 
             CreateMap<Article, ArticleViewModel>()
+                .ForMember(d => d.Likes, map => map.MapFrom(s => s.ArticleLikes.Count))
                 .ForMember(d => d.Author, map => map.MapFrom(s => s.CreatedBy))
                 .ForMember(d => d.Tags, map => map.MapFrom(s => s.ArticleTags.Select(at => at.Tag)));
 
+            CreateMap<Article, ArticlePatchViewModel>()
+                .ReverseMap();
+
             CreateMap<ArticleCreateViewModel, Article>()
-                .ForMember(d => d.Category, map => map.Ignore())
-                .ForMember(d => d.ArticleTags, map => map.Ignore())
-                .ForMember(d => d.Comments, map => map.Ignore())
-                .ForMember(d => d.CreatedBy, map => map.Ignore())
-                .ForMember(d => d.UpdatedBy, map => map.Ignore())
-                .ForMember(d => d.UpdatedDate, map => map.Ignore())
-                .ForMember(d => d.CreatedDate, map => map.Ignore());
+                .ReverseMap();
 
             CreateMap<ArticleEditViewModel, Article>()
-                .ForMember(d => d.Id, map => map.Ignore())
-                .ForMember(d => d.Category, map => map.Ignore())
-                .ForMember(d => d.ArticleTags, map => map.Ignore())
-                .ForMember(d => d.Comments, map => map.Ignore())
-                .ForMember(d => d.CreatedBy, map => map.Ignore())
-                .ForMember(d => d.UpdatedBy, map => map.Ignore())
-                .ForMember(d => d.UpdatedDate, map => map.Ignore())
-                .ForMember(d => d.CreatedDate, map => map.Ignore());
+                .ReverseMap();
 
             CreateMap<Tag, TagViewModel>()
                 .ForMember(d => d.Articles, map => map.MapFrom(s => s.ArticleTags.Select(at => at.Article)));
 
             CreateMap<Article, ArticleListViewModel>()
+                .ForMember(d => d.Likes, map => map.MapFrom(s => s.ArticleLikes.Count))
                 .ForMember(d => d.AuthorUserName, map => map.MapFrom(s => s.CreatedBy.UserName))
                 .ForMember(d => d.Body, map => map.MapFrom(s => s.Body.Length <= 100 ? s.Body : s.Body.Substring(0, 100) + "..."));
         }

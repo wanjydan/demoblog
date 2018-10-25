@@ -12,17 +12,22 @@
 
   <ItemGroup>
     <PackageReference Include="AutoMapper" Version="7.0.1" />
+    <PackageReference Include="CoreCompat.System.Drawing" Version="1.0.0-beta006" />
     <PackageReference Include="FluentValidation" Version="8.0.100" />
     <PackageReference Include="MailKit" Version="2.0.6" />
     <PackageReference Include="Microsoft.AspNetCore.App" />
+    <PackageReference Include="Microsoft.AspNetCore.ResponseCaching" Version="2.2.0-preview3-35497" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="2.1.4" />
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.0.1916590" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.1.1" />
     <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="2.1.2" />
     <PackageReference Include="OpenIddict" Version="2.0.0-rc3-final" />
     <PackageReference Include="OpenIddict.EntityFrameworkCore" Version="2.0.0-rc3-final" />
+    <PackageReference Include="SendGrid" Version="9.10.0" />
     <PackageReference Include="Serilog.Extensions.Logging.File" Version="2.0.0-dev-00024" />
+    <PackageReference Include="SixLabors.ImageSharp" Version="1.0.0-beta0005" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="3.0.0" />
+    <PackageReference Include="System.Linq.Dynamic.Core" Version="1.0.9" />
   </ItemGroup>
 
   <ItemGroup>

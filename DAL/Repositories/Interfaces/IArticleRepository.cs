@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DAL.Models;
@@ -8,7 +9,7 @@ namespace DAL.Repositories.Interfaces
 {
     public interface IArticleRepository: IRepository<Article>
     {
-        Task<IEnumerable<Article>> GetArticles();
+        IQueryable<Article> GetArticles();
         Task<Article> GetArticle(Guid id);
         Task<Article> GetArticleBySlug(string slug);
         Task<Tuple<bool, string>> UpdateArticle(Article article);

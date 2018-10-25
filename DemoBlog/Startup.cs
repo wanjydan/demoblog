@@ -20,7 +20,14 @@ using DemoBlog.Helpers;
 using DemoBlog.ViewModels;
 using Swashbuckle.AspNetCore.Swagger;
 using System;
+using System.Security.Policy;
 using DemoBlog.Helpers.Interfaces;
+using DemoBlog.Services;
+using DemoBlog.Services.Interfaces;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc.Infrastructure;
+using Microsoft.AspNetCore.Mvc.Routing;
+using Newtonsoft.Json.Serialization;
 using AppPermissions = DAL.Core.ApplicationPermissions;
 
 namespace DemoBlog
@@ -69,6 +76,7 @@ namespace DemoBlog
                     options.UseOpenIddict();
                 });
             }
+
 
             // add identity
             services.AddIdentity<ApplicationUser, ApplicationRole>()
@@ -134,8 +142,10 @@ namespace DemoBlog
             // Add cors
             services.AddCors();
 
+            services.AddResponseCaching();
+
             // Add framework services.
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1)
 
 
 
@@ -143,10 +153,10 @@ namespace DemoBlog
             //services.AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<Startup>());
 
 
-            //.AddJsonOptions(opts =>
-            //{
-            //    opts.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
-            //});
+            .AddJsonOptions(opts =>
+            {
+                opts.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
+            });
 
 
 
@@ -210,7 +220,7 @@ namespace DemoBlog
             services.AddTransient<IImageHandler, ImageHandler>();
             services.AddTransient<IImageWriter, ImageWriter>();
 
-            services.AddAuthentication()
+            /*services.AddAuthentication()
                 .AddOAuthValidation()
                 // https://console.developers.google.com/projectselector/apis/library?pli=1
                 .AddGoogle(options =>
@@ -235,7 +245,18 @@ namespace DemoBlog
                 {
                     options.ClientId = Configuration["Authentication:Microsoft:ClientId"];
                     options.ClientSecret = Configuration["Authentication:Microsoft:ClientSecret"];
-                });
+                });*/
+
+            services.AddSingleton<IActionContextAccessor, ActionContextAccessor>();
+            services.AddScoped<IUrlHelper, UrlHelper>(implementationFactory =>
+            {
+                var actionContext = implementationFactory.GetService<IActionContextAccessor>().ActionContext;
+                return new UrlHelper(actionContext);
+            });
+
+            services.AddTransient<IPropertyMappingService, PropertyMappingService>();
+
+            services.AddTransient<ITypeHelperService, TypeHelperService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -269,6 +290,24 @@ namespace DemoBlog
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseAuthentication();
+
+
+            app.UseResponseCaching();
+
+            app.Use(async (context, next) =>
+            {
+                // For GetTypedHeaders, add: using Microsoft.AspNetCore.Http;
+                context.Response.GetTypedHeaders().CacheControl =
+                    new Microsoft.Net.Http.Headers.CacheControlHeaderValue()
+                    {
+                        Public = true,
+                        MaxAge = TimeSpan.FromSeconds(60)
+                    };
+                context.Response.Headers[Microsoft.Net.Http.Headers.HeaderNames.Vary] =
+                    new string[] { "Accept-Encoding" };
+
+                await next();
+            });
 
 
             app.UseSwagger();

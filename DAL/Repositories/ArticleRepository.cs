@@ -16,18 +16,19 @@ namespace DAL.Repositories
 
 
 
-        public async Task<IEnumerable<Article>> GetArticles()
+        public IQueryable<Article> GetArticles()
         {
-            return await _appContext.Articles
+            return _appContext.Articles
+                .Include(a => a.ArticleLikes)
                 .Include(a => a.CreatedBy)
-                .Include(a => a.Category)
-                .ToListAsync();
+                .Include(a => a.Category);
         }
 
         public async Task<Article> GetArticle(Guid id)
         {
             return await _appContext.Articles
                 .Include(a => a.ArticleTags).ThenInclude(at => at.Tag)
+                .Include(a => a.ArticleLikes)
                 .Include(a => a.CreatedBy)
                 .Include(a => a.Category)
                 .Include(a => a.Comments)
@@ -35,10 +36,16 @@ namespace DAL.Repositories
                 .FirstOrDefaultAsync();
         }
 
+        private bool Predicate(ArticleLike articleLike)
+        {
+            throw new NotImplementedException();
+        }
+
         public async Task<Article> GetArticleBySlug(string slug)
         {
             return await _appContext.Articles
                 .Include(a => a.ArticleTags).ThenInclude(at => at.Tag)
+                .Include(a => a.ArticleLikes)
                 .Include(a => a.CreatedBy)
                 .Include(a => a.Category)
                 .Include(a => a.Comments)

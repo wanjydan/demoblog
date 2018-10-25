@@ -1,0 +1,236 @@
+2018-10-23T16:15:08.3534056+03:00 0HLHOT66UP0HF:00000001 [INF] Request starting HTTP/1.1 GET http://localhost:5000/api/articles?orderBy=title,%20id   (ca22a1cb)
+2018-10-23T16:15:08.4523065+03:00 0HLHOT66UP0HF:00000001 [WRN] Failed to determine the https port for redirect. (ca76cc21)
+2018-10-23T16:15:10.7826591+03:00 0HLHOT66UP0HF:00000001 [INF] Route matched with "{action = \"GetArticles\", controller = \"Articles\"}". Executing action "DemoBlog.Controllers.ArticlesController.GetArticles (DemoBlog)" (a44c0341)
+2018-10-23T16:15:11.0024807+03:00 0HLHOT66UP0HF:00000001 [INF] Executing action method "DemoBlog.Controllers.ArticlesController.GetArticles (DemoBlog)" with arguments (["DemoBlog.Helpers.QueryParameters"]) - Validation state: Valid (4e3479ed)
+2018-10-23T16:15:11.0208411+03:00 0HLHOT66UP0HF:00000001 [INF] Entity Framework Core "2.2.0-preview1-35029" initialized '"ApplicationDbContext"' using provider '"Microsoft.EntityFrameworkCore.Sqlite"' with options: "MigrationsAssembly=DemoBlog " (9958f5bb)
+2018-10-23T16:15:11.1471038+03:00 0HLHOT66UP0HF:00000001 [INF] Executed action "DemoBlog.Controllers.ArticlesController.GetArticles (DemoBlog)" in 356.2817ms (afa2e885)
+2018-10-23T16:15:11.9766126+03:00 0HLHOT66UP0HF:00000001 [ERR] An unhandled exception has occurred while executing the request. (48a46595)
+System.NotImplementedException: The method or operation is not implemented.
+   at DemoBlog.Controllers.ArticlesController.ApplySort(IQueryable`1 articles, String orderBy, Dictionary`2 dictionary) in D:\Proj\Visual Studio\DemoBlog\DemoBlog\Controllers\ArticlesController.cs:line 106
+   at DemoBlog.Controllers.ArticlesController.GetArticles(QueryParameters queryParameters) in D:\Proj\Visual Studio\DemoBlog\DemoBlog\Controllers\ArticlesController.cs:line 61
+   at lambda_method(Closure , Object , Object[] )
+   at Microsoft.Extensions.Internal.ObjectMethodExecutor.Execute(Object target, Object[] parameters)
+   at Microsoft.AspNetCore.Mvc.Internal.ActionMethodExecutor.SyncActionResultExecutor.Execute(IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.InvokeActionMethodAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.InvokeNextActionFilterAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.Rethrow(ActionExecutedContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.InvokeInnerFilterAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeNextResourceFilter()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Rethrow(ResourceExecutedContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeFilterPipelineAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeAsync()
+   at Microsoft.AspNetCore.Builder.RouterMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.StaticFiles.StaticFileMiddleware.Invoke(HttpContext context)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIIndexMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.StaticFiles.StaticFileMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Cors.Infrastructure.CorsMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.Invoke(HttpContext context)
+2018-10-23T16:15:12.1908897+03:00 0HLHOT66UP0HF:00000001 [INF] Request finished in 3898.7735ms 500 text/html; charset=utf-8 (791a596a)
+2018-10-23T16:29:33.6320687+03:00 0HLHOTE8S3HNU:00000001 [INF] Request starting HTTP/1.1 GET http://localhost:5000/api/articles?orderBy=title,%20id   (ca22a1cb)
+2018-10-23T16:29:33.6727698+03:00 0HLHOTE8S3HNU:00000001 [WRN] Failed to determine the https port for redirect. (ca76cc21)
+2018-10-23T16:29:34.3516601+03:00 0HLHOTE8S3HNU:00000001 [INF] Route matched with "{action = \"GetArticles\", controller = \"Articles\"}". Executing action "DemoBlog.Controllers.ArticlesController.GetArticles (DemoBlog)" (a44c0341)
+2018-10-23T16:29:34.4598619+03:00 0HLHOTE8S3HNU:00000001 [INF] Executing action method "DemoBlog.Controllers.ArticlesController.GetArticles (DemoBlog)" with arguments (["DemoBlog.Helpers.QueryParameters"]) - Validation state: Valid (4e3479ed)
+2018-10-23T16:29:34.4866718+03:00 0HLHOTE8S3HNU:00000001 [INF] Entity Framework Core "2.2.0-preview1-35029" initialized '"ApplicationDbContext"' using provider '"Microsoft.EntityFrameworkCore.Sqlite"' with options: "MigrationsAssembly=DemoBlog " (9958f5bb)
+2018-10-23T16:29:34.8604043+03:00 0HLHOTE8S3HNU:00000001 [WRN] The Include operation for navigation '"[a].ArticleLikes"' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information. (10efaee6)
+2018-10-23T16:29:34.8646389+03:00 0HLHOTE8S3HNU:00000001 [WRN] The Include operation for navigation '"[a].CreatedBy"' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information. (10efaee6)
+2018-10-23T16:29:34.8647574+03:00 0HLHOTE8S3HNU:00000001 [WRN] The Include operation for navigation '"[a].Category"' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information. (10efaee6)
+2018-10-23T16:29:34.9315923+03:00 0HLHOTE8S3HNU:00000001 [INF] Executed DbCommand ("0"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""PRAGMA foreign_keys=ON;" (0723d8ff)
+2018-10-23T16:29:34.9368615+03:00 0HLHOTE8S3HNU:00000001 [INF] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM \"AppArticles\" AS \"a\"" (0723d8ff)
+2018-10-23T16:29:35.7928025+03:00 0HLHOTE8S3HNU:00000001 [INF] Executed DbCommand ("0"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""PRAGMA foreign_keys=ON;" (0723d8ff)
+2018-10-23T16:29:35.8833653+03:00 0HLHOTE8S3HNU:00000001 [INF] Executed DbCommand ("32"ms) [Parameters=["@__p_1='?', @__p_0='?'"], CommandType='Text', CommandTimeout='30']"
+""SELECT \"a\".\"Id\", \"a\".\"Body\", \"a\".\"CategoryId\", \"a\".\"CreatedById\", \"a\".\"CreatedDate\", \"a\".\"Image\", \"a\".\"Slug\", \"a\".\"Title\", \"a\".\"UpdatedById\", \"a\".\"UpdatedDate\", \"a.Category\".\"Id\", \"a.Category\".\"CreatedById\", \"a.Category\".\"CreatedDate\", \"a.Category\".\"Name\", \"a.Category\".\"Slug\", \"a.Category\".\"UpdatedById\", \"a.Category\".\"UpdatedDate\", \"a.CreatedBy\".\"Id\", \"a.CreatedBy\".\"AccessFailedCount\", \"a.CreatedBy\".\"ConcurrencyStamp\", \"a.CreatedBy\".\"CreatedById\", \"a.CreatedBy\".\"CreatedDate\", \"a.CreatedBy\".\"Email\", \"a.CreatedBy\".\"EmailConfirmed\", \"a.CreatedBy\".\"FullName\", \"a.CreatedBy\".\"IsEnabled\", \"a.CreatedBy\".\"LockoutEnabled\", \"a.CreatedBy\".\"LockoutEnd\", \"a.CreatedBy\".\"NormalizedEmail\", \"a.CreatedBy\".\"NormalizedUserName\", \"a.CreatedBy\".\"PasswordHash\", \"a.CreatedBy\".\"PhoneNumber\", \"a.CreatedBy\".\"PhoneNumberConfirmed\", \"a.CreatedBy\".\"SecurityStamp\", \"a.CreatedBy\".\"TwoFactorEnabled\", \"a.CreatedBy\".\"UpdatedDate\", \"a.CreatedBy\".\"UserName\"
+FROM \"AppArticles\" AS \"a\"
+LEFT JOIN \"AppCategories\" AS \"a.Category\" ON \"a\".\"CategoryId\" = \"a.Category\".\"Id\"
+LEFT JOIN \"AspNetUsers\" AS \"a.CreatedBy\" ON \"a\".\"CreatedById\" = \"a.CreatedBy\".\"Id\"
+ORDER BY \"a\".\"Id\", \"a\".\"Title\"
+LIMIT @__p_1 OFFSET @__p_0" (0723d8ff)
+2018-10-23T16:29:36.3458039+03:00 0HLHOTE8S3HNU:00000001 [INF] Executed DbCommand ("1"ms) [Parameters=["@__p_1='?', @__p_0='?'"], CommandType='Text', CommandTimeout='30']"
+""SELECT \"a.ArticleLikes\".\"Id\", \"a.ArticleLikes\".\"ArticleId\", \"a.ArticleLikes\".\"CreatedById\", \"a.ArticleLikes\".\"CreatedDate\", \"a.ArticleLikes\".\"UpdatedById\", \"a.ArticleLikes\".\"UpdatedDate\"
+FROM \"AppArticleLikes\" AS \"a.ArticleLikes\"
+INNER JOIN (
+    SELECT DISTINCT \"t\".*
+    FROM (
+        SELECT \"a0\".\"Id\", \"a0\".\"Title\"
+        FROM \"AppArticles\" AS \"a0\"
+        LEFT JOIN \"AppCategories\" AS \"a.Category0\" ON \"a0\".\"CategoryId\" = \"a.Category0\".\"Id\"
+        LEFT JOIN \"AspNetUsers\" AS \"a.CreatedBy0\" ON \"a0\".\"CreatedById\" = \"a.CreatedBy0\".\"Id\"
+        ORDER BY \"a0\".\"Id\", \"a0\".\"Title\"
+        LIMIT @__p_1 OFFSET @__p_0
+    ) AS \"t\"
+) AS \"t0\" ON \"a.ArticleLikes\".\"ArticleId\" = \"t0\".\"Id\"
+ORDER BY \"t0\".\"Id\", \"t0\".\"Title\"" (0723d8ff)
+2018-10-23T16:29:36.6593583+03:00 0HLHOTE8S3HNU:00000001 [INF] Executed action method "DemoBlog.Controllers.ArticlesController.GetArticles (DemoBlog)", returned result "Microsoft.AspNetCore.Mvc.OkObjectResult" in 2192.1929ms. (50a9e262)
+2018-10-23T16:29:36.6871677+03:00 0HLHOTE8S3HNU:00000001 [INF] Executing ObjectResult, writing value of type '"System.Collections.Generic.List`1[[DemoBlog.ViewModels.ArticleListViewModel, DemoBlog, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]"'. (8a1b66c8)
+2018-10-23T16:29:36.7761753+03:00 0HLHOTE8S3HNU:00000001 [INF] Executed action "DemoBlog.Controllers.ArticlesController.GetArticles (DemoBlog)" in 2416.349ms (afa2e885)
+2018-10-23T16:29:36.7903876+03:00 0HLHOTE8S3HNU:00000001 [INF] Request finished in 3186.622ms 200 application/json; charset=utf-8 (791a596a)
+2018-10-23T16:29:46.7156525+03:00 0HLHOTE8S3HNU:00000002 [INF] Request starting HTTP/1.1 GET http://localhost:5000/api/articles?orderBy=titleid   (ca22a1cb)
+2018-10-23T16:29:46.7200078+03:00 0HLHOTE8S3HNU:00000002 [INF] Route matched with "{action = \"GetArticles\", controller = \"Articles\"}". Executing action "DemoBlog.Controllers.ArticlesController.GetArticles (DemoBlog)" (a44c0341)
+2018-10-23T16:29:46.7222176+03:00 0HLHOTE8S3HNU:00000002 [INF] Executing action method "DemoBlog.Controllers.ArticlesController.GetArticles (DemoBlog)" with arguments (["DemoBlog.Helpers.QueryParameters"]) - Validation state: Valid (4e3479ed)
+2018-10-23T16:29:46.7385363+03:00 0HLHOTE8S3HNU:00000002 [INF] Executed action method "DemoBlog.Controllers.ArticlesController.GetArticles (DemoBlog)", returned result "Microsoft.AspNetCore.Mvc.BadRequestResult" in 15.9657ms. (50a9e262)
+2018-10-23T16:29:46.7477036+03:00 0HLHOTE8S3HNU:00000002 [INF] Executing HttpStatusCodeResult, setting HTTP status code 400 (e28ccfae)
+2018-10-23T16:29:46.7483161+03:00 0HLHOTE8S3HNU:00000002 [INF] Executed action "DemoBlog.Controllers.ArticlesController.GetArticles (DemoBlog)" in 28.0603ms (afa2e885)
+2018-10-23T16:29:46.7657669+03:00 0HLHOTE8S3HNU:00000002 [INF] Request finished in 50.1647ms 400  (791a596a)
+2018-10-23T16:29:55.7659414+03:00 0HLHOTE8S3HNU:00000003 [INF] Request starting HTTP/1.1 GET http://localhost:5000/api/articles?orderBy=title,id   (ca22a1cb)
+2018-10-23T16:29:55.7675249+03:00 0HLHOTE8S3HNU:00000003 [INF] Route matched with "{action = \"GetArticles\", controller = \"Articles\"}". Executing action "DemoBlog.Controllers.ArticlesController.GetArticles (DemoBlog)" (a44c0341)
+2018-10-23T16:29:55.7682837+03:00 0HLHOTE8S3HNU:00000003 [INF] Executing action method "DemoBlog.Controllers.ArticlesController.GetArticles (DemoBlog)" with arguments (["DemoBlog.Helpers.QueryParameters"]) - Validation state: Valid (4e3479ed)
+2018-10-23T16:29:55.7699783+03:00 0HLHOTE8S3HNU:00000003 [INF] Entity Framework Core "2.2.0-preview1-35029" initialized '"ApplicationDbContext"' using provider '"Microsoft.EntityFrameworkCore.Sqlite"' with options: "MigrationsAssembly=DemoBlog " (9958f5bb)
+2018-10-23T16:29:55.8085464+03:00 0HLHOTE8S3HNU:00000003 [INF] Executed DbCommand ("0"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""PRAGMA foreign_keys=ON;" (0723d8ff)
+2018-10-23T16:29:55.8121886+03:00 0HLHOTE8S3HNU:00000003 [INF] Executed DbCommand ("2"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM \"AppArticles\" AS \"a\"" (0723d8ff)
+2018-10-23T16:29:55.8137616+03:00 0HLHOTE8S3HNU:00000003 [INF] Executed DbCommand ("0"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""PRAGMA foreign_keys=ON;" (0723d8ff)
+2018-10-23T16:29:55.8191642+03:00 0HLHOTE8S3HNU:00000003 [INF] Executed DbCommand ("5"ms) [Parameters=["@__p_1='?', @__p_0='?'"], CommandType='Text', CommandTimeout='30']"
+""SELECT \"a\".\"Id\", \"a\".\"Body\", \"a\".\"CategoryId\", \"a\".\"CreatedById\", \"a\".\"CreatedDate\", \"a\".\"Image\", \"a\".\"Slug\", \"a\".\"Title\", \"a\".\"UpdatedById\", \"a\".\"UpdatedDate\", \"a.Category\".\"Id\", \"a.Category\".\"CreatedById\", \"a.Category\".\"CreatedDate\", \"a.Category\".\"Name\", \"a.Category\".\"Slug\", \"a.Category\".\"UpdatedById\", \"a.Category\".\"UpdatedDate\", \"a.CreatedBy\".\"Id\", \"a.CreatedBy\".\"AccessFailedCount\", \"a.CreatedBy\".\"ConcurrencyStamp\", \"a.CreatedBy\".\"CreatedById\", \"a.CreatedBy\".\"CreatedDate\", \"a.CreatedBy\".\"Email\", \"a.CreatedBy\".\"EmailConfirmed\", \"a.CreatedBy\".\"FullName\", \"a.CreatedBy\".\"IsEnabled\", \"a.CreatedBy\".\"LockoutEnabled\", \"a.CreatedBy\".\"LockoutEnd\", \"a.CreatedBy\".\"NormalizedEmail\", \"a.CreatedBy\".\"NormalizedUserName\", \"a.CreatedBy\".\"PasswordHash\", \"a.CreatedBy\".\"PhoneNumber\", \"a.CreatedBy\".\"PhoneNumberConfirmed\", \"a.CreatedBy\".\"SecurityStamp\", \"a.CreatedBy\".\"TwoFactorEnabled\", \"a.CreatedBy\".\"UpdatedDate\", \"a.CreatedBy\".\"UserName\"
+FROM \"AppArticles\" AS \"a\"
+LEFT JOIN \"AppCategories\" AS \"a.Category\" ON \"a\".\"CategoryId\" = \"a.Category\".\"Id\"
+LEFT JOIN \"AspNetUsers\" AS \"a.CreatedBy\" ON \"a\".\"CreatedById\" = \"a.CreatedBy\".\"Id\"
+ORDER BY \"a\".\"Id\", \"a\".\"Title\"
+LIMIT @__p_1 OFFSET @__p_0" (0723d8ff)
+2018-10-23T16:29:55.8207446+03:00 0HLHOTE8S3HNU:00000003 [INF] Executed DbCommand ("1"ms) [Parameters=["@__p_1='?', @__p_0='?'"], CommandType='Text', CommandTimeout='30']"
+""SELECT \"a.ArticleLikes\".\"Id\", \"a.ArticleLikes\".\"ArticleId\", \"a.ArticleLikes\".\"CreatedById\", \"a.ArticleLikes\".\"CreatedDate\", \"a.ArticleLikes\".\"UpdatedById\", \"a.ArticleLikes\".\"UpdatedDate\"
+FROM \"AppArticleLikes\" AS \"a.ArticleLikes\"
+INNER JOIN (
+    SELECT DISTINCT \"t\".*
+    FROM (
+        SELECT \"a0\".\"Id\", \"a0\".\"Title\"
+        FROM \"AppArticles\" AS \"a0\"
+        LEFT JOIN \"AppCategories\" AS \"a.Category0\" ON \"a0\".\"CategoryId\" = \"a.Category0\".\"Id\"
+        LEFT JOIN \"AspNetUsers\" AS \"a.CreatedBy0\" ON \"a0\".\"CreatedById\" = \"a.CreatedBy0\".\"Id\"
+        ORDER BY \"a0\".\"Id\", \"a0\".\"Title\"
+        LIMIT @__p_1 OFFSET @__p_0
+    ) AS \"t\"
+) AS \"t0\" ON \"a.ArticleLikes\".\"ArticleId\" = \"t0\".\"Id\"
+ORDER BY \"t0\".\"Id\", \"t0\".\"Title\"" (0723d8ff)
+2018-10-23T16:29:55.8312218+03:00 0HLHOTE8S3HNU:00000003 [INF] Executed action method "DemoBlog.Controllers.ArticlesController.GetArticles (DemoBlog)", returned result "Microsoft.AspNetCore.Mvc.OkObjectResult" in 62.5706ms. (50a9e262)
+2018-10-23T16:29:55.8319595+03:00 0HLHOTE8S3HNU:00000003 [INF] Executing ObjectResult, writing value of type '"System.Collections.Generic.List`1[[DemoBlog.ViewModels.ArticleListViewModel, DemoBlog, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]"'. (8a1b66c8)
+2018-10-23T16:29:55.8339145+03:00 0HLHOTE8S3HNU:00000003 [INF] Executed action "DemoBlog.Controllers.ArticlesController.GetArticles (DemoBlog)" in 66.1837ms (afa2e885)
+2018-10-23T16:29:55.8346153+03:00 0HLHOTE8S3HNU:00000003 [INF] Request finished in 68.9011ms 200 application/json; charset=utf-8 (791a596a)
+2018-10-23T17:31:35.9378591+03:00 0HLHOUGU7O9FR:00000001 [INF] Request starting HTTP/1.1 GET http://localhost:5000/api/articles?fields=title   (ca22a1cb)
+2018-10-23T17:31:35.9745663+03:00 0HLHOUGU7O9FR:00000001 [WRN] Failed to determine the https port for redirect. (ca76cc21)
+2018-10-23T17:31:36.5723247+03:00 0HLHOUGU7O9FR:00000001 [INF] Route matched with "{action = \"GetArticles\", controller = \"Articles\"}". Executing action "DemoBlog.Controllers.ArticlesController.GetArticles (DemoBlog)" (a44c0341)
+2018-10-23T17:31:36.6781926+03:00 0HLHOUGU7O9FR:00000001 [INF] Executing action method "DemoBlog.Controllers.ArticlesController.GetArticles (DemoBlog)" with arguments (["DemoBlog.Helpers.QueryParameters"]) - Validation state: Valid (4e3479ed)
+2018-10-23T17:31:36.6963594+03:00 0HLHOUGU7O9FR:00000001 [INF] Entity Framework Core "2.2.0-preview1-35029" initialized '"ApplicationDbContext"' using provider '"Microsoft.EntityFrameworkCore.Sqlite"' with options: "MigrationsAssembly=DemoBlog " (9958f5bb)
+2018-10-23T17:31:36.8833545+03:00 0HLHOUGU7O9FR:00000001 [WRN] The Include operation for navigation '"[a].ArticleLikes"' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information. (10efaee6)
+2018-10-23T17:31:36.8889553+03:00 0HLHOUGU7O9FR:00000001 [WRN] The Include operation for navigation '"[a].CreatedBy"' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information. (10efaee6)
+2018-10-23T17:31:36.8893045+03:00 0HLHOUGU7O9FR:00000001 [WRN] The Include operation for navigation '"[a].Category"' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information. (10efaee6)
+2018-10-23T17:31:36.9274031+03:00 0HLHOUGU7O9FR:00000001 [INF] Executed DbCommand ("0"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""PRAGMA foreign_keys=ON;" (0723d8ff)
+2018-10-23T17:31:36.9333639+03:00 0HLHOUGU7O9FR:00000001 [INF] Executed DbCommand ("2"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM \"AppArticles\" AS \"a\"" (0723d8ff)
+2018-10-23T17:31:37.4747179+03:00 0HLHOUGU7O9FR:00000001 [INF] Executed DbCommand ("0"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""PRAGMA foreign_keys=ON;" (0723d8ff)
+2018-10-23T17:31:37.5269017+03:00 0HLHOUGU7O9FR:00000001 [INF] Executed DbCommand ("22"ms) [Parameters=["@__p_1='?', @__p_0='?'"], CommandType='Text', CommandTimeout='30']"
+""SELECT \"a\".\"Id\", \"a\".\"Body\", \"a\".\"CategoryId\", \"a\".\"CreatedById\", \"a\".\"CreatedDate\", \"a\".\"Image\", \"a\".\"Slug\", \"a\".\"Title\", \"a\".\"UpdatedById\", \"a\".\"UpdatedDate\", \"a.Category\".\"Id\", \"a.Category\".\"CreatedById\", \"a.Category\".\"CreatedDate\", \"a.Category\".\"Name\", \"a.Category\".\"Slug\", \"a.Category\".\"UpdatedById\", \"a.Category\".\"UpdatedDate\", \"a.CreatedBy\".\"Id\", \"a.CreatedBy\".\"AccessFailedCount\", \"a.CreatedBy\".\"ConcurrencyStamp\", \"a.CreatedBy\".\"CreatedById\", \"a.CreatedBy\".\"CreatedDate\", \"a.CreatedBy\".\"Email\", \"a.CreatedBy\".\"EmailConfirmed\", \"a.CreatedBy\".\"FullName\", \"a.CreatedBy\".\"IsEnabled\", \"a.CreatedBy\".\"LockoutEnabled\", \"a.CreatedBy\".\"LockoutEnd\", \"a.CreatedBy\".\"NormalizedEmail\", \"a.CreatedBy\".\"NormalizedUserName\", \"a.CreatedBy\".\"PasswordHash\", \"a.CreatedBy\".\"PhoneNumber\", \"a.CreatedBy\".\"PhoneNumberConfirmed\", \"a.CreatedBy\".\"SecurityStamp\", \"a.CreatedBy\".\"TwoFactorEnabled\", \"a.CreatedBy\".\"UpdatedDate\", \"a.CreatedBy\".\"UserName\"
+FROM \"AppArticles\" AS \"a\"
+LEFT JOIN \"AppCategories\" AS \"a.Category\" ON \"a\".\"CategoryId\" = \"a.Category\".\"Id\"
+LEFT JOIN \"AspNetUsers\" AS \"a.CreatedBy\" ON \"a\".\"CreatedById\" = \"a.CreatedBy\".\"Id\"
+ORDER BY \"a\".\"CreatedDate\" DESC, \"a\".\"Id\", \"a\".\"UpdatedDate\" DESC
+LIMIT @__p_1 OFFSET @__p_0" (0723d8ff)
+2018-10-23T17:31:37.8786880+03:00 0HLHOUGU7O9FR:00000001 [INF] Executed DbCommand ("1"ms) [Parameters=["@__p_1='?', @__p_0='?'"], CommandType='Text', CommandTimeout='30']"
+""SELECT \"a.ArticleLikes\".\"Id\", \"a.ArticleLikes\".\"ArticleId\", \"a.ArticleLikes\".\"CreatedById\", \"a.ArticleLikes\".\"CreatedDate\", \"a.ArticleLikes\".\"UpdatedById\", \"a.ArticleLikes\".\"UpdatedDate\"
+FROM \"AppArticleLikes\" AS \"a.ArticleLikes\"
+INNER JOIN (
+    SELECT DISTINCT \"t\".*
+    FROM (
+        SELECT \"a0\".\"Id\", \"a0\".\"UpdatedDate\", \"a0\".\"CreatedDate\"
+        FROM \"AppArticles\" AS \"a0\"
+        LEFT JOIN \"AppCategories\" AS \"a.Category0\" ON \"a0\".\"CategoryId\" = \"a.Category0\".\"Id\"
+        LEFT JOIN \"AspNetUsers\" AS \"a.CreatedBy0\" ON \"a0\".\"CreatedById\" = \"a.CreatedBy0\".\"Id\"
+        ORDER BY \"a0\".\"CreatedDate\" DESC, \"a0\".\"Id\", \"a0\".\"UpdatedDate\" DESC
+        LIMIT @__p_1 OFFSET @__p_0
+    ) AS \"t\"
+) AS \"t0\" ON \"a.ArticleLikes\".\"ArticleId\" = \"t0\".\"Id\"
+ORDER BY \"t0\".\"CreatedDate\" DESC, \"t0\".\"Id\", \"t0\".\"UpdatedDate\" DESC" (0723d8ff)
+2018-10-23T17:31:38.0973101+03:00 0HLHOUGU7O9FR:00000001 [INF] Executed action method "DemoBlog.Controllers.ArticlesController.GetArticles (DemoBlog)", returned result "Microsoft.AspNetCore.Mvc.OkObjectResult" in 1411.1426ms. (50a9e262)
+2018-10-23T17:31:38.1103958+03:00 0HLHOUGU7O9FR:00000001 [INF] Executing ObjectResult, writing value of type '"System.Collections.Generic.List`1[[System.Dynamic.ExpandoObject, System.Linq.Expressions, Version=4.2.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a]]"'. (8a1b66c8)
+2018-10-23T17:31:38.2255832+03:00 0HLHOUGU7O9FR:00000001 [INF] Executed action "DemoBlog.Controllers.ArticlesController.GetArticles (DemoBlog)" in 1643.4229ms (afa2e885)
+2018-10-23T17:31:38.2446626+03:00 0HLHOUGU7O9FR:00000001 [INF] Request finished in 2327.0677ms 200 application/json; charset=utf-8 (791a596a)
+2018-10-23T17:31:57.9308822+03:00 0HLHOUGU7O9FR:00000002 [INF] Request starting HTTP/1.1 GET http://localhost:5000/api/articles?fields=id,title   (ca22a1cb)
+2018-10-23T17:31:57.9336881+03:00 0HLHOUGU7O9FR:00000002 [INF] Route matched with "{action = \"GetArticles\", controller = \"Articles\"}". Executing action "DemoBlog.Controllers.ArticlesController.GetArticles (DemoBlog)" (a44c0341)
+2018-10-23T17:31:57.9360959+03:00 0HLHOUGU7O9FR:00000002 [INF] Executing action method "DemoBlog.Controllers.ArticlesController.GetArticles (DemoBlog)" with arguments (["DemoBlog.Helpers.QueryParameters"]) - Validation state: Valid (4e3479ed)
+2018-10-23T17:31:57.9373920+03:00 0HLHOUGU7O9FR:00000002 [INF] Entity Framework Core "2.2.0-preview1-35029" initialized '"ApplicationDbContext"' using provider '"Microsoft.EntityFrameworkCore.Sqlite"' with options: "MigrationsAssembly=DemoBlog " (9958f5bb)
+2018-10-23T17:31:57.9532352+03:00 0HLHOUGU7O9FR:00000002 [INF] Executed DbCommand ("0"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""PRAGMA foreign_keys=ON;" (0723d8ff)
+2018-10-23T17:31:57.9573178+03:00 0HLHOUGU7O9FR:00000002 [INF] Executed DbCommand ("2"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM \"AppArticles\" AS \"a\"" (0723d8ff)
+2018-10-23T17:31:57.9592238+03:00 0HLHOUGU7O9FR:00000002 [INF] Executed DbCommand ("0"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""PRAGMA foreign_keys=ON;" (0723d8ff)
+2018-10-23T17:31:57.9622983+03:00 0HLHOUGU7O9FR:00000002 [INF] Executed DbCommand ("2"ms) [Parameters=["@__p_1='?', @__p_0='?'"], CommandType='Text', CommandTimeout='30']"
+""SELECT \"a\".\"Id\", \"a\".\"Body\", \"a\".\"CategoryId\", \"a\".\"CreatedById\", \"a\".\"CreatedDate\", \"a\".\"Image\", \"a\".\"Slug\", \"a\".\"Title\", \"a\".\"UpdatedById\", \"a\".\"UpdatedDate\", \"a.Category\".\"Id\", \"a.Category\".\"CreatedById\", \"a.Category\".\"CreatedDate\", \"a.Category\".\"Name\", \"a.Category\".\"Slug\", \"a.Category\".\"UpdatedById\", \"a.Category\".\"UpdatedDate\", \"a.CreatedBy\".\"Id\", \"a.CreatedBy\".\"AccessFailedCount\", \"a.CreatedBy\".\"ConcurrencyStamp\", \"a.CreatedBy\".\"CreatedById\", \"a.CreatedBy\".\"CreatedDate\", \"a.CreatedBy\".\"Email\", \"a.CreatedBy\".\"EmailConfirmed\", \"a.CreatedBy\".\"FullName\", \"a.CreatedBy\".\"IsEnabled\", \"a.CreatedBy\".\"LockoutEnabled\", \"a.CreatedBy\".\"LockoutEnd\", \"a.CreatedBy\".\"NormalizedEmail\", \"a.CreatedBy\".\"NormalizedUserName\", \"a.CreatedBy\".\"PasswordHash\", \"a.CreatedBy\".\"PhoneNumber\", \"a.CreatedBy\".\"PhoneNumberConfirmed\", \"a.CreatedBy\".\"SecurityStamp\", \"a.CreatedBy\".\"TwoFactorEnabled\", \"a.CreatedBy\".\"UpdatedDate\", \"a.CreatedBy\".\"UserName\"
+FROM \"AppArticles\" AS \"a\"
+LEFT JOIN \"AppCategories\" AS \"a.Category\" ON \"a\".\"CategoryId\" = \"a.Category\".\"Id\"
+LEFT JOIN \"AspNetUsers\" AS \"a.CreatedBy\" ON \"a\".\"CreatedById\" = \"a.CreatedBy\".\"Id\"
+ORDER BY \"a\".\"CreatedDate\" DESC, \"a\".\"Id\", \"a\".\"UpdatedDate\" DESC
+LIMIT @__p_1 OFFSET @__p_0" (0723d8ff)
+2018-10-23T17:31:57.9673542+03:00 0HLHOUGU7O9FR:00000002 [INF] Executed DbCommand ("4"ms) [Parameters=["@__p_1='?', @__p_0='?'"], CommandType='Text', CommandTimeout='30']"
+""SELECT \"a.ArticleLikes\".\"Id\", \"a.ArticleLikes\".\"ArticleId\", \"a.ArticleLikes\".\"CreatedById\", \"a.ArticleLikes\".\"CreatedDate\", \"a.ArticleLikes\".\"UpdatedById\", \"a.ArticleLikes\".\"UpdatedDate\"
+FROM \"AppArticleLikes\" AS \"a.ArticleLikes\"
+INNER JOIN (
+    SELECT DISTINCT \"t\".*
+    FROM (
+        SELECT \"a0\".\"Id\", \"a0\".\"UpdatedDate\", \"a0\".\"CreatedDate\"
+        FROM \"AppArticles\" AS \"a0\"
+        LEFT JOIN \"AppCategories\" AS \"a.Category0\" ON \"a0\".\"CategoryId\" = \"a.Category0\".\"Id\"
+        LEFT JOIN \"AspNetUsers\" AS \"a.CreatedBy0\" ON \"a0\".\"CreatedById\" = \"a.CreatedBy0\".\"Id\"
+        ORDER BY \"a0\".\"CreatedDate\" DESC, \"a0\".\"Id\", \"a0\".\"UpdatedDate\" DESC
+        LIMIT @__p_1 OFFSET @__p_0
+    ) AS \"t\"
+) AS \"t0\" ON \"a.ArticleLikes\".\"ArticleId\" = \"t0\".\"Id\"
+ORDER BY \"t0\".\"CreatedDate\" DESC, \"t0\".\"Id\", \"t0\".\"UpdatedDate\" DESC" (0723d8ff)
+2018-10-23T17:31:57.9739276+03:00 0HLHOUGU7O9FR:00000002 [INF] Executed action method "DemoBlog.Controllers.ArticlesController.GetArticles (DemoBlog)", returned result "Microsoft.AspNetCore.Mvc.OkObjectResult" in 37.4453ms. (50a9e262)
+2018-10-23T17:31:57.9748196+03:00 0HLHOUGU7O9FR:00000002 [INF] Executing ObjectResult, writing value of type '"System.Collections.Generic.List`1[[System.Dynamic.ExpandoObject, System.Linq.Expressions, Version=4.2.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a]]"'. (8a1b66c8)
+2018-10-23T17:31:57.9778999+03:00 0HLHOUGU7O9FR:00000002 [INF] Executed action "DemoBlog.Controllers.ArticlesController.GetArticles (DemoBlog)" in 43.9826ms (afa2e885)
+2018-10-23T17:31:57.9786056+03:00 0HLHOUGU7O9FR:00000002 [INF] Request finished in 48.1434ms 200 application/json; charset=utf-8 (791a596a)
+2018-10-23T17:38:55.8668868+03:00 0HLHOUL1B8HD7:00000001 [INF] Request starting HTTP/1.1 GET http://localhost:5000/api/articles?fields=id,title   (ca22a1cb)
+2018-10-23T17:38:55.9062817+03:00 0HLHOUL1B8HD7:00000001 [WRN] Failed to determine the https port for redirect. (ca76cc21)
+2018-10-23T17:38:56.5474328+03:00 0HLHOUL1B8HD7:00000001 [INF] Route matched with "{action = \"GetArticles\", controller = \"Articles\"}". Executing action "DemoBlog.Controllers.ArticlesController.GetArticles (DemoBlog)" (a44c0341)
+2018-10-23T17:38:56.6260504+03:00 0HLHOUL1B8HD7:00000001 [INF] Executing action method "DemoBlog.Controllers.ArticlesController.GetArticles (DemoBlog)" with arguments (["DemoBlog.Helpers.QueryParameters"]) - Validation state: Valid (4e3479ed)
+2018-10-23T17:38:56.6411034+03:00 0HLHOUL1B8HD7:00000001 [INF] Entity Framework Core "2.2.0-preview1-35029" initialized '"ApplicationDbContext"' using provider '"Microsoft.EntityFrameworkCore.Sqlite"' with options: "MigrationsAssembly=DemoBlog " (9958f5bb)
+2018-10-23T17:38:56.8284688+03:00 0HLHOUL1B8HD7:00000001 [WRN] The Include operation for navigation '"[a].ArticleLikes"' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information. (10efaee6)
+2018-10-23T17:38:56.8326242+03:00 0HLHOUL1B8HD7:00000001 [WRN] The Include operation for navigation '"[a].CreatedBy"' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information. (10efaee6)
+2018-10-23T17:38:56.8327806+03:00 0HLHOUL1B8HD7:00000001 [WRN] The Include operation for navigation '"[a].Category"' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information. (10efaee6)
+2018-10-23T17:38:56.8738458+03:00 0HLHOUL1B8HD7:00000001 [INF] Executed DbCommand ("0"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""PRAGMA foreign_keys=ON;" (0723d8ff)
+2018-10-23T17:38:56.8796101+03:00 0HLHOUL1B8HD7:00000001 [INF] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM \"AppArticles\" AS \"a\"" (0723d8ff)
+2018-10-23T17:38:57.3833512+03:00 0HLHOUL1B8HD7:00000001 [INF] Executed DbCommand ("0"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""PRAGMA foreign_keys=ON;" (0723d8ff)
+2018-10-23T17:38:57.4319947+03:00 0HLHOUL1B8HD7:00000001 [INF] Executed DbCommand ("10"ms) [Parameters=["@__p_1='?', @__p_0='?'"], CommandType='Text', CommandTimeout='30']"
+""SELECT \"a\".\"Id\", \"a\".\"Body\", \"a\".\"CategoryId\", \"a\".\"CreatedById\", \"a\".\"CreatedDate\", \"a\".\"Image\", \"a\".\"Slug\", \"a\".\"Title\", \"a\".\"UpdatedById\", \"a\".\"UpdatedDate\", \"a.Category\".\"Id\", \"a.Category\".\"CreatedById\", \"a.Category\".\"CreatedDate\", \"a.Category\".\"Name\", \"a.Category\".\"Slug\", \"a.Category\".\"UpdatedById\", \"a.Category\".\"UpdatedDate\", \"a.CreatedBy\".\"Id\", \"a.CreatedBy\".\"AccessFailedCount\", \"a.CreatedBy\".\"ConcurrencyStamp\", \"a.CreatedBy\".\"CreatedById\", \"a.CreatedBy\".\"CreatedDate\", \"a.CreatedBy\".\"Email\", \"a.CreatedBy\".\"EmailConfirmed\", \"a.CreatedBy\".\"FullName\", \"a.CreatedBy\".\"IsEnabled\", \"a.CreatedBy\".\"LockoutEnabled\", \"a.CreatedBy\".\"LockoutEnd\", \"a.CreatedBy\".\"NormalizedEmail\", \"a.CreatedBy\".\"NormalizedUserName\", \"a.CreatedBy\".\"PasswordHash\", \"a.CreatedBy\".\"PhoneNumber\", \"a.CreatedBy\".\"PhoneNumberConfirmed\", \"a.CreatedBy\".\"SecurityStamp\", \"a.CreatedBy\".\"TwoFactorEnabled\", \"a.CreatedBy\".\"UpdatedDate\", \"a.CreatedBy\".\"UserName\"
+FROM \"AppArticles\" AS \"a\"
+LEFT JOIN \"AppCategories\" AS \"a.Category\" ON \"a\".\"CategoryId\" = \"a.Category\".\"Id\"
+LEFT JOIN \"AspNetUsers\" AS \"a.CreatedBy\" ON \"a\".\"CreatedById\" = \"a.CreatedBy\".\"Id\"
+ORDER BY \"a\".\"CreatedDate\" DESC, \"a\".\"Id\", \"a\".\"UpdatedDate\" DESC
+LIMIT @__p_1 OFFSET @__p_0" (0723d8ff)
+2018-10-23T17:38:57.6491090+03:00 0HLHOUL1B8HD7:00000001 [INF] Executed DbCommand ("1"ms) [Parameters=["@__p_1='?', @__p_0='?'"], CommandType='Text', CommandTimeout='30']"
+""SELECT \"a.ArticleLikes\".\"Id\", \"a.ArticleLikes\".\"ArticleId\", \"a.ArticleLikes\".\"CreatedById\", \"a.ArticleLikes\".\"CreatedDate\", \"a.ArticleLikes\".\"UpdatedById\", \"a.ArticleLikes\".\"UpdatedDate\"
+FROM \"AppArticleLikes\" AS \"a.ArticleLikes\"
+INNER JOIN (
+    SELECT DISTINCT \"t\".*
+    FROM (
+        SELECT \"a0\".\"Id\", \"a0\".\"UpdatedDate\", \"a0\".\"CreatedDate\"
+        FROM \"AppArticles\" AS \"a0\"
+        LEFT JOIN \"AppCategories\" AS \"a.Category0\" ON \"a0\".\"CategoryId\" = \"a.Category0\".\"Id\"
+        LEFT JOIN \"AspNetUsers\" AS \"a.CreatedBy0\" ON \"a0\".\"CreatedById\" = \"a.CreatedBy0\".\"Id\"
+        ORDER BY \"a0\".\"CreatedDate\" DESC, \"a0\".\"Id\", \"a0\".\"UpdatedDate\" DESC
+        LIMIT @__p_1 OFFSET @__p_0
+    ) AS \"t\"
+) AS \"t0\" ON \"a.ArticleLikes\".\"ArticleId\" = \"t0\".\"Id\"
+ORDER BY \"t0\".\"CreatedDate\" DESC, \"t0\".\"Id\", \"t0\".\"UpdatedDate\" DESC" (0723d8ff)
+2018-10-23T17:38:57.8111315+03:00 0HLHOUL1B8HD7:00000001 [INF] Executed action method "DemoBlog.Controllers.ArticlesController.GetArticles (DemoBlog)", returned result "Microsoft.AspNetCore.Mvc.OkObjectResult" in 1179.8162ms. (50a9e262)
+2018-10-23T17:38:57.8230303+03:00 0HLHOUL1B8HD7:00000001 [INF] Executing ObjectResult, writing value of type '"System.Collections.Generic.List`1[[System.Dynamic.ExpandoObject, System.Linq.Expressions, Version=4.2.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a]]"'. (8a1b66c8)
+2018-10-23T17:38:57.8763761+03:00 0HLHOUL1B8HD7:00000001 [INF] Executed action "DemoBlog.Controllers.ArticlesController.GetArticles (DemoBlog)" in 1322.3091ms (afa2e885)
+2018-10-23T17:38:57.8940886+03:00 0HLHOUL1B8HD7:00000001 [INF] Request finished in 2040.1035ms 200 application/json; charset=utf-8 (791a596a)

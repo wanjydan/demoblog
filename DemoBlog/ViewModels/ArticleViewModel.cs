@@ -13,6 +13,7 @@ namespace DemoBlog.ViewModels
         public string Slug { get; set; }
         public string Body { get; set; }
         public string Image { get; set; }
+        public int Likes { get; set; }
         public DateTime CreatedDate { get; set; }
         public DateTime UpdatedDate { get; set; }
 
