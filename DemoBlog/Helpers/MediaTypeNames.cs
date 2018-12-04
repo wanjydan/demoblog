@@ -1,14 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DemoBlog.Helpers
 {
     public static class MediaTypeNames
     {
-        ///<summary>Used to denote the encoding necessary for files containing JavaScript source code. The alternative MIME type for this file type is text/javascript.</summary>
+        /// <summary>
+        ///     Used to denote the encoding necessary for files containing JavaScript source code. The alternative MIME type
+        ///     for this file type is text/javascript.
+        /// </summary>
         public const string ApplicationXJavascript = "application/x-javascript";
 
         ///<summary>24bit Linear PCM audio at 8-48kHz, 1-N channels; Defined in RFC 3190</summary>
@@ -17,7 +16,12 @@ namespace DemoBlog.Helpers
         ///<summary>Adobe Flash files for example with the extension .swf</summary>
         public const string ApplicationXShockwaveFlash = "application/x-shockwave-flash";
 
-        ///<summary>Arbitrary binary data.[5] Generally speaking this type identifies files that are not associated with a specific application. Contrary to past assumptions by software packages such as Apache this is not a type that should be applied to unknown files. In such a case, a server or application should not indicate a content type, as it may be incorrect, but rather, should omit the type in order to allow the recipient to guess the type.[6]</summary>
+        /// <summary>
+        ///     Arbitrary binary data.[5] Generally speaking this type identifies files that are not associated with a
+        ///     specific application. Contrary to past assumptions by software packages such as Apache this is not a type that
+        ///     should be applied to unknown files. In such a case, a server or application should not indicate a content type, as
+        ///     it may be incorrect, but rather, should omit the type in order to allow the recipient to guess the type.[6]
+        /// </summary>
         public const string ApplicationOctetStream = "application/octet-stream";
 
         ///<summary>Atom feeds</summary>
@@ -53,10 +57,20 @@ namespace DemoBlog.Helpers
         ///<summary>DTD files; Defined by RFC 3023</summary>
         public const string ApplicationXmlDtd = "application/xml-dtd";
 
-        ///<summary>ECMAScript/JavaScript; Defined in RFC 4329 (equivalent to application/ecmascript but with looser processing rules) It is not accepted in IE 8 or earlier - text/javascript is accepted but it is defined as obsolete in RFC 4329. The "type" attribute of the <script> tag in HTML5 is optional and in practice omitting the media type of JavaScript programs is the most interoperable solution since all browsers have always assumed the correct default even before HTML5.</summary>
+        /// <summary>
+        ///     ECMAScript/JavaScript; Defined in RFC 4329 (equivalent to application/ecmascript but with looser processing rules)
+        ///     It is not accepted in IE 8 or earlier - text/javascript is accepted but it is defined as obsolete in RFC 4329. The
+        ///     "type" attribute of the
+        ///     <script>
+        ///         tag in HTML5 is optional and in practice omitting the media type of JavaScript programs is the most
+        ///         interoperable solution since all browsers have always assumed the correct default even before HTML5.
+        /// </summary>
         public const string ApplicationJavascript = "application/javascript";
 
-        ///<summary>ECMAScript/JavaScript; Defined in RFC 4329 (equivalent to application/javascript but with stricter processing rules)</summary>
+        /// <summary>
+        ///     ECMAScript/JavaScript; Defined in RFC 4329 (equivalent to application/javascript but with stricter processing
+        ///     rules)
+        /// </summary>
         public const string ApplicationEcmascript = "application/ecmascript";
 
         ///<summary>EDI EDIFACT data; Defined in RFC 1767</summary>
@@ -107,11 +121,20 @@ namespace DemoBlog.Helpers
         ///<summary>JavaScript Object Notation (JSON) Patch; Defined in RFC 6902</summary>
         public const string ApplicationJsonPatch = "application/json-patch+json";
 
-        ///<summary>JavaScript - Defined in and obsoleted by RFC 4329 in order to discourage its usage in favor of application/javascript. However,text/javascript is allowed in HTML 4 and 5 and, unlike application/javascript, has cross-browser support. The "type" attribute of the <script> tag in HTML5 is optional and there is no need to use it at all since all browsers have always assumed the correct default (even in HTML 4 where it was required by the specification).</summary>
-        [Obsolete]
-        public const string TextJavascript = "text/javascript";
+        /// <summary>
+        ///     JavaScript - Defined in and obsoleted by RFC 4329 in order to discourage its usage in favor of
+        ///     application/javascript. However,text/javascript is allowed in HTML 4 and 5 and, unlike application/javascript, has
+        ///     cross-browser support. The "type" attribute of the
+        ///     <script>
+        ///         tag in HTML5 is optional and there is no need to use it at all since all browsers have always assumed the
+        ///         correct default (even in HTML 4 where it was required by the specification).
+        /// </summary>
+        [Obsolete] public const string TextJavascript = "text/javascript";
 
-        ///<summary>JPEG JFIF image; Associated with Internet Explorer; Listed in ms775147(v=vs.85) - Progressive JPEG, initiated before global browser support for progressive JPEGs (Microsoft and Firefox).</summary>
+        /// <summary>
+        ///     JPEG JFIF image; Associated with Internet Explorer; Listed in ms775147(v=vs.85) - Progressive JPEG, initiated
+        ///     before global browser support for progressive JPEGs (Microsoft and Firefox).
+        /// </summary>
         public const string ImagePjpeg = "image/pjpeg";
 
         ///<summary>JPEG JFIF image; Defined in RFC 2045 and RFC 2046</summary>
@@ -130,19 +153,22 @@ namespace DemoBlog.Helpers
         public const string VideoXMatroska = "video/x-matroska";
 
         ///<summary>Microsoft Excel 2007 files</summary>
-        public const string ApplicationVndOpenxmlformatsOfficedocumentSpreadsheetmlSheet = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
+        public const string ApplicationVndOpenxmlformatsOfficedocumentSpreadsheetmlSheet =
+            "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
 
         ///<summary>Microsoft Excel files</summary>
         public const string ApplicationVndMsExcel = "application/vnd.ms-excel";
 
         ///<summary>Microsoft Powerpoint 2007 files</summary>
-        public const string ApplicationVndOpenxmlformatsOfficedocumentPresentationmlPresentation = "application/vnd.openxmlformats-officedocument.presentationml.presentation";
+        public const string ApplicationVndOpenxmlformatsOfficedocumentPresentationmlPresentation =
+            "application/vnd.openxmlformats-officedocument.presentationml.presentation";
 
         ///<summary>Microsoft Powerpoint files</summary>
         public const string ApplicationVndMsPowerpoint = "application/vnd.ms-powerpoint";
 
         ///<summary>Microsoft Word 2007 files</summary>
-        public const string ApplicationVndOpenxmlformatsOfficedocumentWordprocessingmlDocument = "application/vnd.openxmlformats-officedocument.wordprocessingml.document";
+        public const string ApplicationVndOpenxmlformatsOfficedocumentWordprocessingmlDocument =
+            "application/vnd.openxmlformats-officedocument.wordprocessingml.document";
 
         ///<summary>Microsoft Word files[15]</summary>
         public const string ApplicationMsword = "application/msword";
@@ -196,10 +222,12 @@ namespace DemoBlog.Helpers
         public const string ApplicationVndOasisOpendocumentGraphics = "application/vnd.oasis.opendocument.graphics";
 
         ///<summary>OpenDocument Presentation; Registered[13]</summary>
-        public const string ApplicationVndOasisOpendocumentPresentation = "application/vnd.oasis.opendocument.presentation";
+        public const string ApplicationVndOasisOpendocumentPresentation =
+            "application/vnd.oasis.opendocument.presentation";
 
         ///<summary>OpenDocument Spreadsheet; Registered[12]</summary>
-        public const string ApplicationVndOasisOpendocumentSpreadsheet = "application/vnd.oasis.opendocument.spreadsheet";
+        public const string ApplicationVndOasisOpendocumentSpreadsheet =
+            "application/vnd.oasis.opendocument.spreadsheet";
 
         ///<summary>OpenDocument Text; Registered[11]</summary>
         public const string ApplicationVndOasisOpendocumentText = "application/vnd.oasis.opendocument.text";
@@ -219,7 +247,10 @@ namespace DemoBlog.Helpers
         ///<summary>p7s files</summary>
         public const string ApplicationXPkcs7Signature = "application/x-pkcs7-signature";
 
-        ///<summary>Portable Document Format, PDF has been in use for document exchange on the Internet since 1993; Defined in RFC 3778</summary>
+        /// <summary>
+        ///     Portable Document Format, PDF has been in use for document exchange on the Internet since 1993; Defined in RFC
+        ///     3778
+        /// </summary>
         public const string ApplicationPdf = "application/pdf";
 
         ///<summary>Portable Network Graphics; Registered,[8] Defined in RFC 2083</summary>

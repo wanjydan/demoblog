@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using DAL.Models;
 using DAL.Repositories.Interfaces;
@@ -9,11 +8,14 @@ using Microsoft.EntityFrameworkCore;
 
 namespace DAL.Repositories
 {
-    class ArticleTagRepository: Repository<ArticleTag>, IArticleTagRepository
+    internal class ArticleTagRepository : Repository<ArticleTag>, IArticleTagRepository
     {
         public ArticleTagRepository(DbContext context) : base(context)
-        { }
+        {
+        }
 
+
+        private ApplicationDbContext _appContext => (ApplicationDbContext) _context;
 
 
         public async Task<ArticleTag> GetArticleTag(Guid articleId, Guid tagId)
@@ -47,7 +49,7 @@ namespace DAL.Repositories
             return Tuple.Create(true, string.Empty);
         }
 
-        public async Task<Tuple<bool, string>> DeleteArticleTags(ICollection<ArticleTag> articleTags)
+        public async Task<Tuple<bool, string>> DeleteArticleTags(IEnumerable<ArticleTag> articleTags)
         {
             _appContext.ArticleTags.RemoveRange(articleTags);
 
@@ -62,8 +64,5 @@ namespace DAL.Repositories
 
             return Tuple.Create(true, string.Empty);
         }
-
-
-        private ApplicationDbContext _appContext => (ApplicationDbContext)_context;
     }
 }

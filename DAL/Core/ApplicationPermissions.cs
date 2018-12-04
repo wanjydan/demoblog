@@ -1,32 +1,41 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text;
 
 namespace DAL.Core
 {
     public static class ApplicationPermissions
     {
-        public static ReadOnlyCollection<ApplicationPermission> AllPermissions;
+        private const string UsersPermissionGroupName = "User Permissions";
 
+        private const string RolesPermissionGroupName = "Role Permissions";
 
-        public const string UsersPermissionGroupName = "User Permissions";
-        public static ApplicationPermission ViewUsers = new ApplicationPermission("View Users", "users.view", UsersPermissionGroupName, "Permission to view other users account details");
-        public static ApplicationPermission ManageUsers = new ApplicationPermission("Manage Users", "users.manage", UsersPermissionGroupName, "Permission to create, delete and modify other users account details");
+        private const string ArticlePermissionGroupName = "Article Permission";
+        public static readonly ReadOnlyCollection<ApplicationPermission> AllPermissions;
 
-        public const string RolesPermissionGroupName = "Role Permissions";
-        public static ApplicationPermission ViewRoles = new ApplicationPermission("View Roles", "roles.view", RolesPermissionGroupName, "Permission to view available roles");
-        public static ApplicationPermission ManageRoles = new ApplicationPermission("Manage Roles", "roles.manage", RolesPermissionGroupName, "Permission to create, delete and modify roles");
-        public static ApplicationPermission AssignRoles = new ApplicationPermission("Assign Roles", "roles.assign", RolesPermissionGroupName, "Permission to assign roles to users");
+        public static readonly ApplicationPermission ViewUsers = new ApplicationPermission("View Users", "users.view",
+            UsersPermissionGroupName, "Permission to view other users account details");
 
-        public const string ArticlePermissionGroupName = "Article Permission";
-        public static ApplicationPermission ManageArtiles = new ApplicationPermission("Manage Artiles", "articles.manage", ArticlePermissionGroupName, "Permission to create, delete and modify articles");
+        public static readonly ApplicationPermission ManageUsers = new ApplicationPermission("Manage Users",
+            "users.manage", UsersPermissionGroupName,
+            "Permission to create, delete and modify other users account details");
+
+        public static readonly ApplicationPermission ViewRoles = new ApplicationPermission("View Roles", "roles.view",
+            RolesPermissionGroupName, "Permission to view available roles");
+
+        public static readonly ApplicationPermission ManageRoles = new ApplicationPermission("Manage Roles",
+            "roles.manage", RolesPermissionGroupName, "Permission to create, delete and modify roles");
+
+        public static readonly ApplicationPermission AssignRoles = new ApplicationPermission("Assign Roles",
+            "roles.assign", RolesPermissionGroupName, "Permission to assign roles to users");
+
+        public static readonly ApplicationPermission ManageArticles = new ApplicationPermission("Manage Articles",
+            "articles.manage", ArticlePermissionGroupName, "Permission to create, delete and modify articles");
 
 
         static ApplicationPermissions()
         {
-            List<ApplicationPermission> allPermissions = new List<ApplicationPermission>()
+            var allPermissions = new List<ApplicationPermission>
             {
                 ViewUsers,
                 ManageUsers,
@@ -35,7 +44,7 @@ namespace DAL.Core
                 ManageRoles,
                 AssignRoles,
 
-                ManageArtiles
+                ManageArticles
             };
 
             AllPermissions = allPermissions.AsReadOnly();
@@ -43,12 +52,12 @@ namespace DAL.Core
 
         public static ApplicationPermission GetPermissionByName(string permissionName)
         {
-            return AllPermissions.Where(p => p.Name == permissionName).FirstOrDefault();
+            return AllPermissions.FirstOrDefault(p => p.Name == permissionName);
         }
 
         public static ApplicationPermission GetPermissionByValue(string permissionValue)
         {
-            return AllPermissions.Where(p => p.Value == permissionValue).FirstOrDefault();
+            return AllPermissions.FirstOrDefault(p => p.Value == permissionValue);
         }
 
         public static string[] GetAllPermissionValues()
@@ -58,16 +67,16 @@ namespace DAL.Core
 
         public static string[] GetAdministrativePermissionValues()
         {
-            return new string[] { ManageUsers, ManageRoles, AssignRoles, ManageArtiles };
+            return new string[] {ManageUsers, ManageRoles, AssignRoles, ManageArticles};
         }
     }
-
 
 
     public class ApplicationPermission
     {
         public ApplicationPermission()
-        { }
+        {
+        }
 
         public ApplicationPermission(string name, string value, string groupName, string description = null)
         {
@@ -78,11 +87,10 @@ namespace DAL.Core
         }
 
 
-
         public string Name { get; set; }
         public string Value { get; set; }
-        public string GroupName { get; set; }
-        public string Description { get; set; }
+        private string GroupName { get; }
+        private string Description { get; }
 
 
         public override string ToString()

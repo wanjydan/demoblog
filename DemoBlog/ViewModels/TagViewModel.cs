@@ -1,10 +1,5 @@
-﻿using FluentValidation;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
 
 namespace DemoBlog.ViewModels
 {
@@ -14,6 +9,6 @@ namespace DemoBlog.ViewModels
         public string Name { get; set; }
         public string Slug { get; set; }
 
-        public ICollection<ArticleListViewModel> Articles { get; set; }
+        public ICollection<ArticleViewModel> Articles { get; set; }
     }
 }

@@ -25,11 +25,11 @@ namespace DemoBlog.Controllers
 
         // GET: api/Categories
         [HttpGet]
-        [ProducesResponseType(200, Type = typeof(List<CategoryListViewModel>))]
+        [ProducesResponseType(200, Type = typeof(List<CategoryViewModel>))]
         public async Task<IActionResult> GetCategories()
         {
             var categories = await _unitOfWork.Categories.GetCategories();
-            var categoryVM = Mapper.Map<IEnumerable<CategoryListViewModel>>(categories);
+            var categoryVM = Mapper.Map<IEnumerable<CategoryViewModel>>(categories);
             return Ok(categoryVM);
         }
 
@@ -83,6 +83,7 @@ namespace DemoBlog.Controllers
 
                 ModelState.AddModelError(string.Empty, result.Item2);
             }
+
             return BadRequest(ModelState);
         }
 

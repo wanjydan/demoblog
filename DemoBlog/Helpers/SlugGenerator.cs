@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 
 namespace DemoBlog.Helpers
 {
@@ -10,7 +7,7 @@ namespace DemoBlog.Helpers
     {
         public static string GenerateSlug(string phrase)
         {
-            string str = phrase.ToLower();
+            var str = phrase.ToLower();
             // invalid chars           
             str = Regex.Replace(str, @"[^a-z0-9\s-]", "");
             // convert multiple spaces into one space   
@@ -23,8 +20,8 @@ namespace DemoBlog.Helpers
 
         public static string RemoveAccent(string txt)
         {
-            byte[] bytes = System.Text.Encoding.GetEncoding("Cyrillic").GetBytes(txt);
-            return System.Text.Encoding.ASCII.GetString(bytes);
+            var bytes = Encoding.GetEncoding("Cyrillic").GetBytes(txt);
+            return Encoding.ASCII.GetString(bytes);
         }
     }
 }

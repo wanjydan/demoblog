@@ -9,7 +9,7 @@ using DAL.Models;
 using DemoBlog.Authorization;
 using DemoBlog.Extensions;
 using DemoBlog.Helpers;
-using DemoBlog.Helpers.Interfaces;
+using DemoBlog.Helpers.QueryParameters;
 using DemoBlog.Services.Interfaces;
 using DemoBlog.ViewModels;
 using Microsoft.AspNetCore.Authorization;
@@ -28,20 +28,20 @@ namespace DemoBlog.Controllers
         private const string GetArticlesActionName = "GetArticles";
         private readonly IAccountManager _accountManager;
         private readonly IAuthorizationService _authorizationService;
-        private readonly IImageHandler _imageHandler;
-        private readonly IUnitOfWork _unitOfWork;
-        private readonly IUrlHelper _urlHelper;
+        private readonly IFileHandler _fileHandler;
         private readonly IPropertyMappingService _propertyMappingService;
         private readonly ITypeHelperService _typeHelperService;
+        private readonly IUnitOfWork _unitOfWork;
+        private readonly IUrlHelper _urlHelper;
 
         public ArticlesController(IUnitOfWork unitOfWork, IAccountManager accountManager,
-            IAuthorizationService authorizationService, IImageHandler imageHandler, IUrlHelper urlHelper,
+            IAuthorizationService authorizationService, IFileHandler fileHandler, IUrlHelper urlHelper,
             IPropertyMappingService propertyMappingService, ITypeHelperService typeHelperService)
         {
             _unitOfWork = unitOfWork;
             _accountManager = accountManager;
             _authorizationService = authorizationService;
-            _imageHandler = imageHandler;
+            _fileHandler = fileHandler;
             _urlHelper = urlHelper;
             _propertyMappingService = propertyMappingService;
             _typeHelperService = typeHelperService;
@@ -50,24 +50,18 @@ namespace DemoBlog.Controllers
         // GET: api/Articles
         [HttpGet(Name = GetArticlesActionName)]
         [HttpHead]
-        [ProducesResponseType(200, Type = typeof(List<ArticleListViewModel>))]
-        [ProducesResponseType(400)]
-        public IActionResult GetArticles([FromQuery] QueryParameters queryParameters)
+        public IActionResult GetArticles([FromQuery] ArticleQueryParameters queryParameters)
         {
             var result =
-                _propertyMappingService.ValidMappingExistsFor<ArticleListViewModel, Article>(queryParameters.OrderBy);
+                _propertyMappingService.ValidMappingExistsFor<ArticleViewModel, Article>(queryParameters.OrderBy);
             if (!result.Item1)
                 foreach (var invalidField in result.Item2)
-                {
                     AddError("orderBy", $"{invalidField} is not a valid orderBy parameter");
-                }
 
-            result = _typeHelperService.TypeHasProperties<ArticleListViewModel>(queryParameters.Fields);
+            result = _typeHelperService.TypeHasProperties<ArticleViewModel>(queryParameters.Fields);
             if (!result.Item1)
                 foreach (var invalidField in result.Item2)
-                {
                     AddError("fields", $"{invalidField} is not a valid fields parameter");
-                }
 
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
@@ -75,7 +69,7 @@ namespace DemoBlog.Controllers
             var articles = _unitOfWork.Articles.GetArticles();
 
             articles = articles.ApplySort(queryParameters.OrderBy,
-                _propertyMappingService.GetPropertyMapping<ArticleListViewModel, Article>());
+                _propertyMappingService.GetPropertyMapping<ArticleViewModel, Article>());
 
             if (!string.IsNullOrWhiteSpace(queryParameters.Category))
             {
@@ -93,7 +87,7 @@ namespace DemoBlog.Controllers
             var pagedArticles =
                 PagedList<Article>.Create(articles, queryParameters.PageNumber, queryParameters.PageSize);
 
-            var previousPageLink = pagedArticles.HasPrivious
+            var previousPageLink = pagedArticles.HasPrevious
                 ? CreateResourceUri(queryParameters, ResourceUriType.PreviousPage)
                 : null;
 
@@ -113,48 +107,47 @@ namespace DemoBlog.Controllers
 
             Response.Headers.Add("X-Pagination", JsonConvert.SerializeObject(paginationMetadata));
 
-            var articleVM = Mapper.Map<IEnumerable<ArticleListViewModel>>(pagedArticles);
-            return Ok(articleVM.ShapeData(queryParameters.Fields));
+            var articleVm = Mapper.Map<IEnumerable<ArticleViewModel>>(pagedArticles);
+            return Ok(articleVm.ShapeData(queryParameters.Fields));
         }
 
         // GET: api/Articles/5
-        [HttpGet("{idOrSlug}", Name = GetArticleActionName)]
-        [ProducesResponseType(200, Type = typeof(ArticleViewModel))]
-        [ProducesResponseType(400)]
-        [ProducesResponseType(404)]
-        public async Task<IActionResult> GetArticle([FromRoute] string idOrSlug, [FromQuery] string fields)
+        [HttpGet("{id}", Name = GetArticleActionName)]
+        public async Task<IActionResult> GetArticle([FromRoute] string id, [FromQuery] string fields)
         {
-            var result = _typeHelperService.TypeHasProperties<ArticleViewModel>(fields);
-            if (!result.Item1)
-                foreach (var invalidField in result.Item2)
-                {
-                    AddError("fields", $"{invalidField} is not a valid fields parameter");
-                }
+            if (!string.IsNullOrWhiteSpace(fields))
+            {
+                var result = _typeHelperService.TypeHasProperties<ArticleViewModel>(fields);
+                if (!result.Item1)
+                    foreach (var invalidField in result.Item2)
+                        AddError("fields", $"{invalidField} is not a valid fields parameter");
+            }
+            else
+            {
+                fields = "id,title,slug,image,author";
+            }
 
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
             Article article;
 
-            if (isValidGuid(idOrSlug))
-                article = await _unitOfWork.Articles.GetArticle(Guid.Parse(idOrSlug));
+            if (IsValidGuid(id))
+                article = await _unitOfWork.Articles.GetArticle(Guid.Parse(id));
             else
-                article = await _unitOfWork.Articles.GetArticleBySlug(idOrSlug);
+                article = await _unitOfWork.Articles.GetArticleBySlug(id);
 
             if (article == null)
                 return NotFound();
 
-            var articleVM = Mapper.Map<ArticleViewModel>(article);
-            return Ok(articleVM.ShapeData(fields));
+            var articleVm = Mapper.Map<ArticleViewModel>(article);
+            return Ok(articleVm.ShapeData(fields));
         }
 
 
         // POST: api/Articles
         [HttpPost]
         [Authorize(AuthenticationSchemes = OpenIddictValidationDefaults.AuthenticationScheme)]
-        [ProducesResponseType(201, Type = typeof(ArticleViewModel))]
-        [ProducesResponseType(400)]
-        [ProducesResponseType(401)]
         public async Task<IActionResult> CreateArticle([FromBody] ArticleCreateViewModel article)
         {
             if (ModelState.IsValid)
@@ -175,7 +168,7 @@ namespace DemoBlog.Controllers
 
                 ICollection<Tag> appTags = new List<Tag>();
                 foreach (var tagId in article.TagIds)
-                    if (isValidGuid(tagId))
+                    if (IsValidGuid(tagId))
                     {
                         var appTag = await _unitOfWork.Tags.GetTag(Guid.Parse(tagId));
                         if (appTag == null)
@@ -196,8 +189,8 @@ namespace DemoBlog.Controllers
 
                 if (result.Item1)
                 {
-                    var articleVM = await GetArticleViewModelHelper(appArticle.Id);
-                    return CreatedAtAction(GetArticleActionName, new {id = articleVM.Id}, articleVM);
+                    var articleVm = await GetArticleViewModelHelper(appArticle.Id);
+                    return CreatedAtAction(GetArticleActionName, new {id = articleVm.Id}, articleVm);
                 }
 
                 AddError("error", result.Item2);
@@ -210,14 +203,9 @@ namespace DemoBlog.Controllers
         // PUT: api/Articles/5
         [HttpPut("{id}")]
         [Authorize(AuthenticationSchemes = OpenIddictValidationDefaults.AuthenticationScheme)]
-        [ProducesResponseType(204)]
-        [ProducesResponseType(400)]
-        [ProducesResponseType(401)]
-        [ProducesResponseType(403)]
-        [ProducesResponseType(404)]
         public async Task<IActionResult> UpdateArticle([FromRoute] string id, [FromBody] ArticleEditViewModel article)
         {
-            if (!isValidGuid(id))
+            if (!IsValidGuid(id))
                 return BadRequest("Id in the route is not a valid guid!");
 
             if (ModelState.IsValid)
@@ -228,10 +216,10 @@ namespace DemoBlog.Controllers
                 if (appArticle == null)
                     return NotFound(articleId);
 
-                var currentUser = await _accountManager.GetCurrentUser();
+                var currentUser = await _accountManager.GetCurrentUserAsync();
 
                 if (!(await _authorizationService.AuthorizeAsync(User, currentUser.Id, Policies.ManageAllArticlesPolicy)
-                ).Succeeded)
+                    ).Succeeded)
                     if (currentUser.Id != appArticle.CreatedBy.Id)
                         return StatusCode(403, "Permission to edit this article denied!");
 
@@ -254,7 +242,7 @@ namespace DemoBlog.Controllers
 
                 ICollection<Tag> appTags = new List<Tag>();
                 foreach (var tagId in article.TagIds)
-                    if (isValidGuid(tagId))
+                    if (IsValidGuid(tagId))
                     {
                         var appTag = await _unitOfWork.Tags.GetTag(Guid.Parse(tagId));
                         if (appTag == null)
@@ -280,6 +268,7 @@ namespace DemoBlog.Controllers
 
                 AddError("error", result.Item2);
             }
+
             return BadRequest(ModelState);
         }
 
@@ -287,15 +276,10 @@ namespace DemoBlog.Controllers
         // PATCH: api/Articles/5
         [HttpPatch("{id}")]
         [Authorize(AuthenticationSchemes = OpenIddictValidationDefaults.AuthenticationScheme)]
-        [ProducesResponseType(204)]
-        [ProducesResponseType(400)]
-        [ProducesResponseType(401)]
-        [ProducesResponseType(403)]
-        [ProducesResponseType(404)]
         public async Task<IActionResult> UpdateArticle([FromRoute] string id,
             [FromBody] JsonPatchDocument<ArticlePatchViewModel> patch)
         {
-            if (!isValidGuid(id))
+            if (!IsValidGuid(id))
                 return BadRequest("Id in the route is not a valid guid!");
 
             if (ModelState.IsValid)
@@ -306,10 +290,10 @@ namespace DemoBlog.Controllers
                 if (appArticle == null)
                     return NotFound(articleId);
 
-                var currentUser = await _accountManager.GetCurrentUser();
+                var currentUser = await _accountManager.GetCurrentUserAsync();
 
                 if (!(await _authorizationService.AuthorizeAsync(User, currentUser.Id, Policies.ManageAllArticlesPolicy)
-                ).Succeeded)
+                    ).Succeeded)
                     if (currentUser.Id != appArticle.CreatedBy.Id)
                         return StatusCode(403, "Permission to edit this article denied!");
 
@@ -338,14 +322,9 @@ namespace DemoBlog.Controllers
         // DELETE: api/Articles/5
         [HttpDelete("{id}")]
         [Authorize(AuthenticationSchemes = OpenIddictValidationDefaults.AuthenticationScheme)]
-        [ProducesResponseType(204)]
-        [ProducesResponseType(400)]
-        [ProducesResponseType(401)]
-        [ProducesResponseType(403)]
-        [ProducesResponseType(404)]
         public async Task<IActionResult> DeleteArticle([FromRoute] string id)
         {
-            if (!isValidGuid(id))
+            if (!IsValidGuid(id))
                 return BadRequest("Id in the route is not a valid guid!");
 
             var articleId = Guid.Parse(id);
@@ -354,7 +333,7 @@ namespace DemoBlog.Controllers
             if (appArticle == null)
                 return NotFound(articleId);
 
-            var currentUser = await _accountManager.GetCurrentUser();
+            var currentUser = await _accountManager.GetCurrentUserAsync();
 
             if (!(await _authorizationService.AuthorizeAsync(User, currentUser.Id, Policies.ManageAllArticlesPolicy))
                 .Succeeded)
@@ -372,13 +351,9 @@ namespace DemoBlog.Controllers
         // POST: api/Articles/5/Likes
         [HttpPost("{id}/Likes")]
         [Authorize(AuthenticationSchemes = OpenIddictValidationDefaults.AuthenticationScheme)]
-        [ProducesResponseType(201, Type = typeof(ArticleViewModel))]
-        [ProducesResponseType(400)]
-        [ProducesResponseType(401)]
-        [ProducesResponseType(404)]
         public async Task<IActionResult> LikeArticle([FromRoute] string id)
         {
-            if (!isValidGuid(id))
+            if (!IsValidGuid(id))
                 return BadRequest("Id in the route is not a valid guid!");
 
             var articleId = Guid.Parse(id);
@@ -387,7 +362,7 @@ namespace DemoBlog.Controllers
             if (appArticle == null)
                 return NotFound(articleId);
 
-            var currentUser = await _accountManager.GetCurrentUser();
+            var currentUser = await _accountManager.GetCurrentUserAsync();
 
             var articleLike = await _unitOfWork.ArticleLikes.GetArticleLike(appArticle.Id, currentUser.Id);
             if (articleLike != null)
@@ -397,8 +372,8 @@ namespace DemoBlog.Controllers
 
             if (result.Item1)
             {
-                var articleVM = await GetArticleViewModelHelper(articleId);
-                return CreatedAtAction(GetArticleActionName, new {id = articleVM.Id}, articleVM);
+                var articleVm = await GetArticleViewModelHelper(articleId);
+                return CreatedAtAction(GetArticleActionName, new {id = articleVm.Id}, articleVm);
             }
 
             AddError("error", result.Item2);
@@ -409,13 +384,9 @@ namespace DemoBlog.Controllers
         // DELETE: api/Articles/5/Likes
         [HttpDelete("{id}/Likes")]
         [Authorize(AuthenticationSchemes = OpenIddictValidationDefaults.AuthenticationScheme)]
-        [ProducesResponseType(204)]
-        [ProducesResponseType(400)]
-        [ProducesResponseType(401)]
-        [ProducesResponseType(404)]
         public async Task<IActionResult> UnlikeArticle([FromRoute] string id)
         {
-            if (!isValidGuid(id))
+            if (!IsValidGuid(id))
                 return BadRequest("Id in the route is not a valid guid!");
 
             var articleId = Guid.Parse(id);
@@ -424,7 +395,7 @@ namespace DemoBlog.Controllers
             if (appArticle == null)
                 return NotFound(articleId);
 
-            var currentUser = await _accountManager.GetCurrentUser();
+            var currentUser = await _accountManager.GetCurrentUserAsync();
 
             var articleLike = await _unitOfWork.ArticleLikes.GetArticleLike(appArticle.Id, currentUser.Id);
             if (articleLike == null)
@@ -442,14 +413,9 @@ namespace DemoBlog.Controllers
         // POST: api/Articles/5/Images
         [HttpPost("{id}/Images")]
         [Authorize(AuthenticationSchemes = OpenIddictValidationDefaults.AuthenticationScheme)]
-        [ProducesResponseType(201, Type = typeof(ArticleViewModel))]
-        [ProducesResponseType(400)]
-        [ProducesResponseType(401)]
-        [ProducesResponseType(403)]
-        [ProducesResponseType(404)]
         public async Task<IActionResult> UploadImage([FromRoute] string id, [FromForm] IFormFile image)
         {
-            if (!isValidGuid(id))
+            if (!IsValidGuid(id))
                 return BadRequest("Id in the route is not a valid guid!");
 
             var articleId = Guid.Parse(id);
@@ -458,7 +424,7 @@ namespace DemoBlog.Controllers
             if (appArticle == null)
                 return NotFound(articleId);
 
-            var currentUser = await _accountManager.GetCurrentUser();
+            var currentUser = await _accountManager.GetCurrentUserAsync();
 
             if (!(await _authorizationService.AuthorizeAsync(User, currentUser.Id, Policies.ManageAllArticlesPolicy))
                 .Succeeded)
@@ -468,7 +434,7 @@ namespace DemoBlog.Controllers
             if (image == null || image.Length == 0)
                 return BadRequest("image cannot be null");
 
-            var result = await _imageHandler.UploadImage(image, appArticle.Slug);
+            var result = await _fileHandler.UploadFile(image, appArticle.Slug);
 
             if (result.Item1)
             {
@@ -476,16 +442,13 @@ namespace DemoBlog.Controllers
                 result = await _unitOfWork.Articles.UpdateArticle(appArticle);
 
                 if (result.Item1)
-                {
-                    var articleVM = await GetArticleViewModelHelper(articleId);
-                    return CreatedAtAction(GetArticleActionName, new {id = articleVM.Id}, articleVM);
-                }
+                    return NoContent();
 
-                AddError("error", result.Item2);
+                AddError("image", result.Item2);
             }
             else
             {
-                AddError("error", result.Item2);
+                AddError("image", result.Item2);
             }
 
             return BadRequest(ModelState);
@@ -494,11 +457,8 @@ namespace DemoBlog.Controllers
         private async Task<ArticleViewModel> GetArticleViewModelHelper(Guid id)
         {
             var article = await _unitOfWork.Articles.GetArticle(id);
-            if (article != null)
-                return Mapper.Map<ArticleViewModel>(article);
 
-
-            return null;
+            return Mapper.Map<ArticleViewModel>(article);
         }
 
 
@@ -527,7 +487,7 @@ namespace DemoBlog.Controllers
             ModelState.AddModelError(key, message);
         }
 
-        private bool isValidGuid(string id)
+        private static bool IsValidGuid(string id)
         {
             try
             {
@@ -540,7 +500,7 @@ namespace DemoBlog.Controllers
             }
         }
 
-        private string CreateResourceUri(QueryParameters queryParameters, ResourceUriType type)
+        private string CreateResourceUri(ArticleQueryParameters queryParameters, ResourceUriType type)
         {
             switch (type)
             {

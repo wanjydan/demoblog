@@ -1,16 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using DAL;
 using DAL.Models;
 using DemoBlog.Authorization;
 using DemoBlog.ViewModels;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 
 namespace DemoBlog.Controllers
 {
@@ -18,8 +15,8 @@ namespace DemoBlog.Controllers
     [ApiController]
     public class TagsController : ControllerBase
     {
-        private readonly IUnitOfWork _unitOfWork;
         private const string GetTagActionName = "GetTag";
+        private readonly IUnitOfWork _unitOfWork;
 
         public TagsController(IUnitOfWork unitOfWork)
         {
@@ -28,11 +25,11 @@ namespace DemoBlog.Controllers
 
         // GET: api/Tags
         [HttpGet]
-        [ProducesResponseType(200, Type = typeof(List<TagListViewModel>))]
+        [ProducesResponseType(200, Type = typeof(List<TagViewModel>))]
         public async Task<IActionResult> GetTags()
         {
             var tags = await _unitOfWork.Tags.GetTags();
-            var tagVM = Mapper.Map<IEnumerable<TagListViewModel>>(tags);
+            var tagVM = Mapper.Map<IEnumerable<TagViewModel>>(tags);
             return Ok(tagVM);
         }
 
@@ -43,17 +40,11 @@ namespace DemoBlog.Controllers
         [ProducesResponseType(404)]
         public async Task<IActionResult> GetTag([FromRoute] Guid id)
         {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
+            if (!ModelState.IsValid) return BadRequest(ModelState);
 
             var tag = await _unitOfWork.Tags.GetTag(id);
 
-            if (tag == null)
-            {
-                return NotFound();
-            }
+            if (tag == null) return NotFound();
 
             var tagVM = Mapper.Map<TagViewModel>(tag);
             return Ok(tagVM);
@@ -76,7 +67,7 @@ namespace DemoBlog.Controllers
                 if (id != tag.Id)
                     return BadRequest("Conflicting tag id in parameter and model data");
 
-                Tag appTag = await _unitOfWork.Tags.GetTag(id);
+                var appTag = await _unitOfWork.Tags.GetTag(id);
 
                 if (appTag == null)
                     return NotFound(id);
@@ -90,6 +81,7 @@ namespace DemoBlog.Controllers
 
                 ModelState.AddModelError(string.Empty, result.Item2);
             }
+
             return BadRequest(ModelState);
         }
 
@@ -107,14 +99,14 @@ namespace DemoBlog.Controllers
                     return BadRequest($"{nameof(tag)} cannot be null");
 
 
-                Tag appTag = Mapper.Map<Tag>(tag);
+                var appTag = Mapper.Map<Tag>(tag);
 
                 var result = await _unitOfWork.Tags.CreateTag(appTag);
 
                 if (result.Item1)
                 {
-                    TagViewModel tagVM = await GetTagViewModelHelper(appTag.Id);
-                    return CreatedAtAction(GetTagActionName, new { id = tagVM.Id }, tagVM);
+                    var tagVM = await GetTagViewModelHelper(appTag.Id);
+                    return CreatedAtAction(GetTagActionName, new {id = tagVM.Id}, tagVM);
                 }
 
                 ModelState.AddModelError(string.Empty, result.Item2);
@@ -133,7 +125,7 @@ namespace DemoBlog.Controllers
         public async Task<IActionResult> DeleteTag([FromRoute] Guid id)
         {
             TagViewModel tagVM = null;
-            Tag appTag = await _unitOfWork.Tags.GetTag(id);
+            var appTag = await _unitOfWork.Tags.GetTag(id);
 
             if (appTag != null)
                 tagVM = await GetTagViewModelHelper(id);

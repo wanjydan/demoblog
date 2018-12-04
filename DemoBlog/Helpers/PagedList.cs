@@ -20,7 +20,7 @@ namespace DemoBlog.Helpers
         public int PageSize { get; }
         public int TotalCount { get; }
 
-        public bool HasPrivious => CurrentPage > 1;
+        public bool HasPrevious => CurrentPage > 1;
 
         public bool HasNext => CurrentPage < TotalPages;
 

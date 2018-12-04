@@ -1,12 +1,8 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using System.Collections.Generic;
+using System.Linq;
+using Microsoft.AspNetCore.Authorization;
 using Swashbuckle.AspNetCore.Swagger;
 using Swashbuckle.AspNetCore.SwaggerGen;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DemoBlog
 {
@@ -24,13 +20,13 @@ namespace DemoBlog
 
             if (hasAuthorize)
             {
-                operation.Responses.Add("401", new Response { Description = "Unauthorized" });
+                operation.Responses.Add("401", new Response {Description = "Unauthorized"});
 
                 operation.Security = new List<IDictionary<string, IEnumerable<string>>>
                 {
                     new Dictionary<string, IEnumerable<string>>
                     {
-                        { "oauth2", new string [] { } }
+                        {"oauth2", new string[] { }}
                     }
                 };
             }

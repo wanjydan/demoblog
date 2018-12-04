@@ -2,17 +2,16 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Identity;
-using DemoBlog.ViewModels;
 using AutoMapper;
-using DAL.Models;
+using DAL.Core;
 using DAL.Core.Interfaces;
+using DAL.Models;
 using DemoBlog.Authorization;
 using DemoBlog.Helpers;
+using DemoBlog.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.JsonPatch;
-using DAL.Core;
+using Microsoft.AspNetCore.Mvc;
 using OpenIddict.Validation;
 
 namespace DemoBlog.Controllers
@@ -21,10 +20,10 @@ namespace DemoBlog.Controllers
     [Route("api/[controller]")]
     public class AccountController : Controller
     {
-        private readonly IAccountManager _accountManager;
-        private readonly IAuthorizationService _authorizationService;
         private const string GetUserByIdActionName = "GetUserById";
         private const string GetRoleByIdActionName = "GetRoleById";
+        private readonly IAccountManager _accountManager;
+        private readonly IAuthorizationService _authorizationService;
 
         public AccountController(IAccountManager accountManager, IAuthorizationService authorizationService)
         {
@@ -37,7 +36,7 @@ namespace DemoBlog.Controllers
         [ProducesResponseType(200, Type = typeof(UserViewModel))]
         public async Task<IActionResult> GetCurrentUser()
         {
-            return await GetUserByUserName(this.User.Identity.Name);
+            return await GetUserByUserName(User.Identity.Name);
         }
 
 
@@ -47,16 +46,15 @@ namespace DemoBlog.Controllers
         [ProducesResponseType(404)]
         public async Task<IActionResult> GetUserById(string id)
         {
-            if (!(await _authorizationService.AuthorizeAsync(this.User, id, AccountManagementOperations.Read)).Succeeded)
+            if (!(await _authorizationService.AuthorizeAsync(User, id, AccountManagementOperations.Read)).Succeeded)
                 return new ChallengeResult();
 
 
-            UserViewModel userVM = await GetUserViewModelHelper(id);
+            var userVM = await GetUserViewModelHelper(id);
 
             if (userVM != null)
                 return Ok(userVM);
-            else
-                return NotFound(id);
+            return NotFound(id);
         }
 
 
@@ -66,9 +64,10 @@ namespace DemoBlog.Controllers
         [ProducesResponseType(404)]
         public async Task<IActionResult> GetUserByUserName(string userName)
         {
-            ApplicationUser appUser = await _accountManager.GetUserByUserNameAsync(userName);
+            var appUser = await _accountManager.GetUserByUserNameAsync(userName);
 
-            if (!(await _authorizationService.AuthorizeAsync(this.User, appUser?.Id ?? "", AccountManagementOperations.Read)).Succeeded)
+            if (!(await _authorizationService.AuthorizeAsync(User, appUser?.Id ?? "", AccountManagementOperations.Read))
+                .Succeeded)
                 return new ChallengeResult();
 
             if (appUser == null)
@@ -79,7 +78,7 @@ namespace DemoBlog.Controllers
 
 
         [HttpGet("users")]
-        [Authorize(Authorization.Policies.ViewAllUsersPolicy)]
+        [Authorize(Policies.ViewAllUsersPolicy)]
         [ProducesResponseType(200, Type = typeof(List<UserViewModel>))]
         public async Task<IActionResult> GetUsers()
         {
@@ -88,13 +87,13 @@ namespace DemoBlog.Controllers
 
 
         [HttpGet("users/{pageNumber:int}/{pageSize:int}")]
-        [Authorize(Authorization.Policies.ViewAllUsersPolicy)]
+        [Authorize(Policies.ViewAllUsersPolicy)]
         [ProducesResponseType(200, Type = typeof(List<UserViewModel>))]
         public async Task<IActionResult> GetUsers(int pageNumber, int pageSize)
         {
             var usersAndRoles = await _accountManager.GetUsersAndRolesAsync(pageNumber, pageSize);
 
-            List<UserViewModel> usersVM = new List<UserViewModel>();
+            var usersVM = new List<UserViewModel>();
 
             foreach (var item in usersAndRoles)
             {
@@ -114,7 +113,7 @@ namespace DemoBlog.Controllers
         [ProducesResponseType(403)]
         public async Task<IActionResult> UpdateCurrentUser([FromBody] UserEditViewModel user)
         {
-            return await UpdateUser(Utilities.GetUserId(this.User), user);
+            return await UpdateUser(Utilities.GetUserId(User), user);
         }
 
 
@@ -125,11 +124,12 @@ namespace DemoBlog.Controllers
         [ProducesResponseType(404)]
         public async Task<IActionResult> UpdateUser(string id, [FromBody] UserEditViewModel user)
         {
-            ApplicationUser appUser = await _accountManager.GetUserByIdAsync(id);
-            string[] currentRoles = appUser != null ? (await _accountManager.GetUserRolesAsync(appUser)).ToArray() : null;
+            var appUser = await _accountManager.GetUserByIdAsync(id);
+            var currentRoles = appUser != null ? (await _accountManager.GetUserRolesAsync(appUser)).ToArray() : null;
 
-            var manageUsersPolicy = _authorizationService.AuthorizeAsync(this.User, id, AccountManagementOperations.Update);
-            var assignRolePolicy = _authorizationService.AuthorizeAsync(this.User, Tuple.Create(user.Roles, currentRoles), Authorization.Policies.AssignAllowedRolesPolicy);
+            var manageUsersPolicy = _authorizationService.AuthorizeAsync(User, id, AccountManagementOperations.Update);
+            var assignRolePolicy = _authorizationService.AuthorizeAsync(User, Tuple.Create(user.Roles, currentRoles),
+                Policies.AssignAllowedRolesPolicy);
 
 
             if ((await Task.WhenAll(manageUsersPolicy, assignRolePolicy)).Any(r => !r.Succeeded))
@@ -148,7 +148,7 @@ namespace DemoBlog.Controllers
                     return NotFound(id);
 
 
-                if (Utilities.GetUserId(this.User) == id && string.IsNullOrWhiteSpace(user.CurrentPassword))
+                if (Utilities.GetUserId(User) == id && string.IsNullOrWhiteSpace(user.CurrentPassword))
                 {
                     if (!string.IsNullOrWhiteSpace(user.NewPassword))
                         return BadRequest("Current password is required when changing your own password");
@@ -158,16 +158,15 @@ namespace DemoBlog.Controllers
                 }
 
 
-                bool isValid = true;
+                var isValid = true;
 
-                if (Utilities.GetUserId(this.User) == id && (appUser.UserName != user.UserName || !string.IsNullOrWhiteSpace(user.NewPassword)))
-                {
+                if (Utilities.GetUserId(User) == id &&
+                    (appUser.UserName != user.UserName || !string.IsNullOrWhiteSpace(user.NewPassword)))
                     if (!await _accountManager.CheckPasswordAsync(appUser, user.CurrentPassword))
                     {
                         isValid = false;
-                        AddErrors(new string[] { "The username/password couple is invalid." });
+                        AddErrors(new[] {"The username/password couple is invalid."});
                     }
-                }
 
                 if (isValid)
                 {
@@ -179,7 +178,8 @@ namespace DemoBlog.Controllers
                         if (!string.IsNullOrWhiteSpace(user.NewPassword))
                         {
                             if (!string.IsNullOrWhiteSpace(user.CurrentPassword))
-                                result = await _accountManager.UpdatePasswordAsync(appUser, user.CurrentPassword, user.NewPassword);
+                                result = await _accountManager.UpdatePasswordAsync(appUser, user.CurrentPassword,
+                                    user.NewPassword);
                             else
                                 result = await _accountManager.ResetPasswordAsync(appUser, user.NewPassword);
                         }
@@ -201,7 +201,7 @@ namespace DemoBlog.Controllers
         [ProducesResponseType(400)]
         public async Task<IActionResult> UpdateCurrentUser([FromBody] JsonPatchDocument<UserPatchViewModel> patch)
         {
-            return await UpdateUser(Utilities.GetUserId(this.User), patch);
+            return await UpdateUser(Utilities.GetUserId(User), patch);
         }
 
 
@@ -212,7 +212,7 @@ namespace DemoBlog.Controllers
         [ProducesResponseType(404)]
         public async Task<IActionResult> UpdateUser(string id, [FromBody] JsonPatchDocument<UserPatchViewModel> patch)
         {
-            if (!(await _authorizationService.AuthorizeAsync(this.User, id, AccountManagementOperations.Update)).Succeeded)
+            if (!(await _authorizationService.AuthorizeAsync(User, id, AccountManagementOperations.Update)).Succeeded)
                 return new ChallengeResult();
 
 
@@ -222,19 +222,19 @@ namespace DemoBlog.Controllers
                     return BadRequest($"{nameof(patch)} cannot be null");
 
 
-                ApplicationUser appUser = await _accountManager.GetUserByIdAsync(id);
+                var appUser = await _accountManager.GetUserByIdAsync(id);
 
                 if (appUser == null)
                     return NotFound(id);
 
 
-                UserPatchViewModel userPVM = Mapper.Map<UserPatchViewModel>(appUser);
+                var userPVM = Mapper.Map<UserPatchViewModel>(appUser);
                 patch.ApplyTo(userPVM, ModelState);
 
 
                 if (ModelState.IsValid)
                 {
-                    Mapper.Map<UserPatchViewModel, ApplicationUser>(userPVM, appUser);
+                    Mapper.Map(userPVM, appUser);
 
                     var result = await _accountManager.UpdateUserAsync(appUser);
                     if (result.Item1)
@@ -250,13 +250,14 @@ namespace DemoBlog.Controllers
 
 
         [HttpPost("users")]
-        [Authorize(Authorization.Policies.ManageAllUsersPolicy)]
+        [Authorize(Policies.ManageAllUsersPolicy)]
         [ProducesResponseType(201, Type = typeof(UserViewModel))]
         [ProducesResponseType(400)]
         [ProducesResponseType(403)]
         public async Task<IActionResult> Register([FromBody] UserEditViewModel user)
         {
-            if (!(await _authorizationService.AuthorizeAsync(this.User, Tuple.Create(user.Roles, new string[] { }), Authorization.Policies.AssignAllowedRolesPolicy)).Succeeded)
+            if (!(await _authorizationService.AuthorizeAsync(User, Tuple.Create(user.Roles, new string[] { }),
+                Policies.AssignAllowedRolesPolicy)).Succeeded)
                 return new ChallengeResult();
 
 
@@ -266,13 +267,13 @@ namespace DemoBlog.Controllers
                     return BadRequest($"{nameof(user)} cannot be null");
 
 
-                ApplicationUser appUser = Mapper.Map<ApplicationUser>(user);
+                var appUser = Mapper.Map<ApplicationUser>(user);
 
                 var result = await _accountManager.CreateUserAsync(appUser, user.Roles, user.NewPassword);
                 if (result.Item1)
                 {
-                    UserViewModel userVM = await GetUserViewModelHelper(appUser.Id);
-                    return CreatedAtAction(GetUserByIdActionName, new { id = userVM.Id }, userVM);
+                    var userVM = await GetUserViewModelHelper(appUser.Id);
+                    return CreatedAtAction(GetUserByIdActionName, new {id = userVM.Id}, userVM);
                 }
 
                 AddErrors(result.Item2);
@@ -289,12 +290,12 @@ namespace DemoBlog.Controllers
         [ProducesResponseType(404)]
         public async Task<IActionResult> DeleteUser(string id)
         {
-            if (!(await _authorizationService.AuthorizeAsync(this.User, id, AccountManagementOperations.Delete)).Succeeded)
+            if (!(await _authorizationService.AuthorizeAsync(User, id, AccountManagementOperations.Delete)).Succeeded)
                 return new ChallengeResult();
-            
+
 
             UserViewModel userVM = null;
-            ApplicationUser appUser = await this._accountManager.GetUserByIdAsync(id);
+            var appUser = await _accountManager.GetUserByIdAsync(id);
 
             if (appUser != null)
                 userVM = await GetUserViewModelHelper(appUser.Id);
@@ -303,9 +304,10 @@ namespace DemoBlog.Controllers
             if (userVM == null)
                 return NotFound(id);
 
-            var result = await this._accountManager.DeleteUserAsync(appUser);
+            var result = await _accountManager.DeleteUserAsync(appUser);
             if (!result.Item1)
-                throw new Exception("The following errors occurred whilst deleting user: " + string.Join(", ", result.Item2));
+                throw new Exception("The following errors occurred whilst deleting user: " +
+                                    string.Join(", ", result.Item2));
 
 
             return Ok(userVM);
@@ -313,12 +315,12 @@ namespace DemoBlog.Controllers
 
 
         [HttpPut("users/unblock/{id}")]
-        [Authorize(Authorization.Policies.ManageAllUsersPolicy)]
+        [Authorize(Policies.ManageAllUsersPolicy)]
         [ProducesResponseType(204)]
         [ProducesResponseType(404)]
         public async Task<IActionResult> UnblockUser(string id)
         {
-            ApplicationUser appUser = await this._accountManager.GetUserByIdAsync(id);
+            var appUser = await _accountManager.GetUserByIdAsync(id);
 
             if (appUser == null)
                 return NotFound(id);
@@ -326,7 +328,8 @@ namespace DemoBlog.Controllers
             appUser.LockoutEnd = null;
             var result = await _accountManager.UpdateUserAsync(appUser);
             if (!result.Item1)
-                throw new Exception("The following errors occurred whilst unblocking user: " + string.Join(", ", result.Item2));
+                throw new Exception("The following errors occurred whilst unblocking user: " +
+                                    string.Join(", ", result.Item2));
 
 
             return NoContent();
@@ -341,7 +344,8 @@ namespace DemoBlog.Controllers
         {
             var appRole = await _accountManager.GetRoleByIdAsync(id);
 
-            if (!(await _authorizationService.AuthorizeAsync(this.User, appRole?.Name ?? "", Authorization.Policies.ViewRoleByRoleNamePolicy)).Succeeded)
+            if (!(await _authorizationService.AuthorizeAsync(User, appRole?.Name ?? "",
+                Policies.ViewRoleByRoleNamePolicy)).Succeeded)
                 return new ChallengeResult();
 
             if (appRole == null)
@@ -357,11 +361,11 @@ namespace DemoBlog.Controllers
         [ProducesResponseType(404)]
         public async Task<IActionResult> GetRoleByName(string name)
         {
-            if (!(await _authorizationService.AuthorizeAsync(this.User, name, Authorization.Policies.ViewRoleByRoleNamePolicy)).Succeeded)
+            if (!(await _authorizationService.AuthorizeAsync(User, name, Policies.ViewRoleByRoleNamePolicy)).Succeeded)
                 return new ChallengeResult();
 
 
-            RoleViewModel roleVM = await GetRoleViewModelHelper(name);
+            var roleVM = await GetRoleViewModelHelper(name);
 
             if (roleVM == null)
                 return NotFound(name);
@@ -371,7 +375,7 @@ namespace DemoBlog.Controllers
 
 
         [HttpGet("roles")]
-        [Authorize(Authorization.Policies.ViewAllRolesPolicy)]
+        [Authorize(Policies.ViewAllRolesPolicy)]
         [ProducesResponseType(200, Type = typeof(List<RoleViewModel>))]
         public async Task<IActionResult> GetRoles()
         {
@@ -380,7 +384,7 @@ namespace DemoBlog.Controllers
 
 
         [HttpGet("roles/{pageNumber:int}/{pageSize:int}")]
-        [Authorize(Authorization.Policies.ViewAllRolesPolicy)]
+        [Authorize(Policies.ViewAllRolesPolicy)]
         [ProducesResponseType(200, Type = typeof(List<RoleViewModel>))]
         public async Task<IActionResult> GetRoles(int pageNumber, int pageSize)
         {
@@ -390,7 +394,7 @@ namespace DemoBlog.Controllers
 
 
         [HttpPut("roles/{id}")]
-        [Authorize(Authorization.Policies.ManageAllRolesPolicy)]
+        [Authorize(Policies.ManageAllRolesPolicy)]
         [ProducesResponseType(204)]
         [ProducesResponseType(400)]
         [ProducesResponseType(404)]
@@ -405,21 +409,20 @@ namespace DemoBlog.Controllers
                     return BadRequest("Conflicting role id in parameter and model data");
 
 
-
-                ApplicationRole appRole = await _accountManager.GetRoleByIdAsync(id);
+                var appRole = await _accountManager.GetRoleByIdAsync(id);
 
                 if (appRole == null)
                     return NotFound(id);
 
 
-                Mapper.Map<RoleViewModel, ApplicationRole>(role, appRole);
+                Mapper.Map(role, appRole);
 
-                var result = await _accountManager.UpdateRoleAsync(appRole, role.Permissions?.Select(p => p.Value).ToArray());
+                var result =
+                    await _accountManager.UpdateRoleAsync(appRole, role.Permissions?.Select(p => p.Value).ToArray());
                 if (result.Item1)
                     return NoContent();
 
                 AddErrors(result.Item2);
-
             }
 
             return BadRequest(ModelState);
@@ -427,7 +430,7 @@ namespace DemoBlog.Controllers
 
 
         [HttpPost("roles")]
-        [Authorize(Authorization.Policies.ManageAllRolesPolicy)]
+        [Authorize(Policies.ManageAllRolesPolicy)]
         [ProducesResponseType(201, Type = typeof(RoleViewModel))]
         [ProducesResponseType(400)]
         public async Task<IActionResult> CreateRole([FromBody] RoleViewModel role)
@@ -438,13 +441,14 @@ namespace DemoBlog.Controllers
                     return BadRequest($"{nameof(role)} cannot be null");
 
 
-                ApplicationRole appRole = Mapper.Map<ApplicationRole>(role);
+                var appRole = Mapper.Map<ApplicationRole>(role);
 
-                var result = await _accountManager.CreateRoleAsync(appRole, role.Permissions?.Select(p => p.Value).ToArray());
+                var result =
+                    await _accountManager.CreateRoleAsync(appRole, role.Permissions?.Select(p => p.Value).ToArray());
                 if (result.Item1)
                 {
-                    RoleViewModel roleVM = await GetRoleViewModelHelper(appRole.Name);
-                    return CreatedAtAction(GetRoleByIdActionName, new { id = roleVM.Id }, roleVM);
+                    var roleVM = await GetRoleViewModelHelper(appRole.Name);
+                    return CreatedAtAction(GetRoleByIdActionName, new {id = roleVM.Id}, roleVM);
                 }
 
                 AddErrors(result.Item2);
@@ -455,7 +459,7 @@ namespace DemoBlog.Controllers
 
 
         [HttpDelete("roles/{id}")]
-        [Authorize(Authorization.Policies.ManageAllRolesPolicy)]
+        [Authorize(Policies.ManageAllRolesPolicy)]
         [ProducesResponseType(200, Type = typeof(RoleViewModel))]
         [ProducesResponseType(400)]
         [ProducesResponseType(404)]
@@ -466,7 +470,7 @@ namespace DemoBlog.Controllers
 
 
             RoleViewModel roleVM = null;
-            ApplicationRole appRole = await this._accountManager.GetRoleByIdAsync(id);
+            var appRole = await _accountManager.GetRoleByIdAsync(id);
 
             if (appRole != null)
                 roleVM = await GetRoleViewModelHelper(appRole.Name);
@@ -475,9 +479,10 @@ namespace DemoBlog.Controllers
             if (roleVM == null)
                 return NotFound(id);
 
-            var result = await this._accountManager.DeleteRoleAsync(appRole);
+            var result = await _accountManager.DeleteRoleAsync(appRole);
             if (!result.Item1)
-                throw new Exception("The following errors occurred whilst deleting role: " + string.Join(", ", result.Item2));
+                throw new Exception("The following errors occurred whilst deleting role: " +
+                                    string.Join(", ", result.Item2));
 
 
             return Ok(roleVM);
@@ -485,15 +490,12 @@ namespace DemoBlog.Controllers
 
 
         [HttpGet("permissions")]
-        [Authorize(Authorization.Policies.ViewAllRolesPolicy)]
+        [Authorize(Policies.ViewAllRolesPolicy)]
         [ProducesResponseType(200, Type = typeof(List<PermissionViewModel>))]
         public IActionResult GetAllPermissions()
         {
             return Ok(Mapper.Map<List<PermissionViewModel>>(ApplicationPermissions.AllPermissions));
         }
-
-
-
 
 
         private async Task<UserViewModel> GetUserViewModelHelper(string userId)
@@ -522,11 +524,7 @@ namespace DemoBlog.Controllers
 
         private void AddErrors(IEnumerable<string> errors)
         {
-            foreach (var error in errors)
-            {
-                ModelState.AddModelError(string.Empty, error);
-            }
+            foreach (var error in errors) ModelState.AddModelError(string.Empty, error);
         }
-
     }
 }

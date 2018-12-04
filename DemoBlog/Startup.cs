@@ -1,81 +1,76 @@
-﻿using AspNet.Security.OpenIdConnect.Primitives;
+﻿using System;
+using AspNet.Security.OpenIdConnect.Primitives;
 using AutoMapper;
 using DAL;
 using DAL.Core;
 using DAL.Core.Interfaces;
 using DAL.Models;
+using DemoBlog.Authorization;
+using DemoBlog.Helpers;
+using DemoBlog.Services;
+using DemoBlog.Services.Interfaces;
+using DemoBlog.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.SpaServices.AngularCli;
+using Microsoft.AspNetCore.Mvc.Infrastructure;
+using Microsoft.AspNetCore.Mvc.Routing;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using OpenIddict.Abstractions;
-using DemoBlog.Authorization;
-using DemoBlog.Helpers;
-using DemoBlog.ViewModels;
-using Swashbuckle.AspNetCore.Swagger;
-using System;
-using System.Security.Policy;
-using DemoBlog.Helpers.Interfaces;
-using DemoBlog.Services;
-using DemoBlog.Services.Interfaces;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc.Infrastructure;
-using Microsoft.AspNetCore.Mvc.Routing;
+using Microsoft.Net.Http.Headers;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
+using OpenIddict.Abstractions;
+using Swashbuckle.AspNetCore.Swagger;
 using AppPermissions = DAL.Core.ApplicationPermissions;
 
 namespace DemoBlog
 {
     public class Startup
     {
-        public IConfiguration Configuration { get; }
-
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
         }
 
+        public IConfiguration Configuration { get; }
+
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
             if (Configuration["DbConfig:useSql"].ToLower() == "true")
-            {
                 services.AddDbContext<ApplicationDbContext>(options =>
                 {
-                    options.UseSqlServer(Configuration["DbConfig:ConnectionStrings:DefaultConnection"], b => b.MigrationsAssembly("DemoBlog"));
+                    options.UseSqlServer(Configuration["DbConfig:ConnectionStrings:DefaultConnection"],
+                        b => b.MigrationsAssembly("DemoBlog"));
                     options.UseOpenIddict();
                 });
-            }
             else if (Configuration["DbConfig:usePostgres"].ToLower() == "true")
-            {
                 services.AddEntityFrameworkNpgsql().AddDbContext<ApplicationDbContext>(options =>
                 {
-                    options.UseNpgsql(Configuration["DbConfig:ConnectionStrings:PostgresConnection"], b => b.MigrationsAssembly("DemoBlog"));
+                    options.UseNpgsql(Configuration["DbConfig:ConnectionStrings:PostgresConnection"],
+                        b => b.MigrationsAssembly("DemoBlog"));
                     options.UseOpenIddict();
                 });
-            }
             else if (Configuration["DbConfig:usePostgresDocker"].ToLower() == "true")
-            {
                 services.AddEntityFrameworkNpgsql().AddDbContext<ApplicationDbContext>(options =>
                 {
-                    options.UseNpgsql(Configuration["DbConfig:ConnectionStrings:PostgresDockerConnection"], b => b.MigrationsAssembly("DemoBlog"));
+                    options.UseNpgsql(Configuration["DbConfig:ConnectionStrings:PostgresDockerConnection"],
+                        b => b.MigrationsAssembly("DemoBlog"));
                     options.UseOpenIddict();
                 });
-            }
             else
-            {
                 services.AddDbContext<ApplicationDbContext>(options =>
                 {
-                    options.UseSqlite(Configuration["DbConfig:ConnectionStrings:SqliteConnection"], b => b.MigrationsAssembly("DemoBlog"));
+                    options.UseSqlite(Configuration["DbConfig:ConnectionStrings:SqLiteConnection"],
+                        b => b.MigrationsAssembly("DemoBlog"));
                     options.UseOpenIddict();
                 });
-            }
 
 
             // add identity
@@ -106,14 +101,9 @@ namespace DemoBlog
             });
 
 
-
-
             // Register the OpenIddict services.
             services.AddOpenIddict()
-                .AddCore(options =>
-                {
-                    options.UseEntityFrameworkCore().UseDbContext<ApplicationDbContext>();
-                })
+                .AddCore(options => { options.UseEntityFrameworkCore().UseDbContext<ApplicationDbContext>(); })
                 .AddServer(options =>
                 {
                     options.UseMvc();
@@ -138,7 +128,6 @@ namespace DemoBlog
                 .AddValidation(); //Only compatible with the default token format. For JWT tokens, use the Microsoft JWT bearer handler.
 
 
-
             // Add cors
             services.AddCors();
 
@@ -147,22 +136,22 @@ namespace DemoBlog
             // Add framework services.
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1)
 
-
-
-            //Todo: ***Using DataAnnotations for validation until Swashbuckle supports FluentValidation***
-            //services.AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<Startup>());
-
-
-            .AddJsonOptions(opts =>
-            {
-                opts.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
-            });
-
+                //Todo: ***Using DataAnnotations for validation until Swashbuckle supports FluentValidation***
+                //services.AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<Startup>());
+                .AddJsonOptions(options =>
+                    {
+                        options.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
+                        options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
+                        
+//                        options.SerializerSettings.ContractResolver = new Newtonsoft.Json.Serialization.DefaultContractResolver();
+//                        options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Serialize;
+//                        options.SerializerSettings.PreserveReferencesHandling = PreserveReferencesHandling.Objects;
+                    });
 
 
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new Info { Title = "DemoBlog API", Version = "v1" });
+                c.SwaggerDoc("v1", new Info {Title = "DemoBlog API", Version = "v1"});
                 c.OperationFilter<AuthorizeCheckOperationFilter>();
                 c.AddSecurityDefinition("oauth2", new OAuth2Scheme
                 {
@@ -175,23 +164,27 @@ namespace DemoBlog
 
             services.AddAuthorization(options =>
             {
-                options.AddPolicy(Authorization.Policies.ViewAllUsersPolicy, policy => policy.RequireClaim(CustomClaimTypes.Permission, AppPermissions.ViewUsers));
-                options.AddPolicy(Authorization.Policies.ManageAllUsersPolicy, policy => policy.RequireClaim(CustomClaimTypes.Permission, AppPermissions.ManageUsers));
+                options.AddPolicy(Policies.ViewAllUsersPolicy,
+                    policy => policy.RequireClaim(CustomClaimTypes.Permission, AppPermissions.ViewUsers));
+                options.AddPolicy(Policies.ManageAllUsersPolicy,
+                    policy => policy.RequireClaim(CustomClaimTypes.Permission, AppPermissions.ManageUsers));
 
-                options.AddPolicy(Authorization.Policies.ViewAllRolesPolicy, policy => policy.RequireClaim(CustomClaimTypes.Permission, AppPermissions.ViewRoles));
-                options.AddPolicy(Authorization.Policies.ViewRoleByRoleNamePolicy, policy => policy.Requirements.Add(new ViewRoleAuthorizationRequirement()));
-                options.AddPolicy(Authorization.Policies.ManageAllRolesPolicy, policy => policy.RequireClaim(CustomClaimTypes.Permission, AppPermissions.ManageRoles));
+                options.AddPolicy(Policies.ViewAllRolesPolicy,
+                    policy => policy.RequireClaim(CustomClaimTypes.Permission, AppPermissions.ViewRoles));
+                options.AddPolicy(Policies.ViewRoleByRoleNamePolicy,
+                    policy => policy.Requirements.Add(new ViewRoleAuthorizationRequirement()));
+                options.AddPolicy(Policies.ManageAllRolesPolicy,
+                    policy => policy.RequireClaim(CustomClaimTypes.Permission, AppPermissions.ManageRoles));
 
-                options.AddPolicy(Authorization.Policies.AssignAllowedRolesPolicy, policy => policy.Requirements.Add(new AssignRolesAuthorizationRequirement()));
+                options.AddPolicy(Policies.AssignAllowedRolesPolicy,
+                    policy => policy.Requirements.Add(new AssignRolesAuthorizationRequirement()));
 
-                options.AddPolicy(Authorization.Policies.ManageAllArticlesPolicy, policy => policy.RequireClaim(CustomClaimTypes.Permission, AppPermissions.ManageArtiles));
+                options.AddPolicy(Policies.ManageAllArticlesPolicy,
+                    policy => policy.RequireClaim(CustomClaimTypes.Permission, AppPermissions.ManageArticles));
 //                options.AddPolicy(Authorization.Policies.ManageArticleByUserId, policy => policy.Requirements.Add(new ManageArticleAuthorizationRequirement()));
             });
 
-            Mapper.Initialize(cfg =>
-            {
-                cfg.AddProfile<AutoMapperProfile>();
-            });
+            Mapper.Initialize(cfg => { cfg.AddProfile<AutoMapperProfile>(); });
 
 
             // Configurations
@@ -217,7 +210,7 @@ namespace DemoBlog
             // DB Creation and Seeding
             services.AddTransient<IDatabaseInitializer, DatabaseInitializer>();
 
-            services.AddTransient<IImageHandler, ImageHandler>();
+            services.AddTransient<IFileHandler, FileHandler>();
             services.AddTransient<IImageWriter, ImageWriter>();
 
             /*services.AddAuthentication()
@@ -298,13 +291,13 @@ namespace DemoBlog
             {
                 // For GetTypedHeaders, add: using Microsoft.AspNetCore.Http;
                 context.Response.GetTypedHeaders().CacheControl =
-                    new Microsoft.Net.Http.Headers.CacheControlHeaderValue()
+                    new CacheControlHeaderValue
                     {
                         Public = true,
                         MaxAge = TimeSpan.FromSeconds(60)
                     };
-                context.Response.Headers[Microsoft.Net.Http.Headers.HeaderNames.Vary] =
-                    new string[] { "Accept-Encoding" };
+                context.Response.Headers[HeaderNames.Vary] =
+                    new[] {"Accept-Encoding"};
 
                 await next();
             });
@@ -321,8 +314,8 @@ namespace DemoBlog
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
-                    name: "default",
-                    template: "{controller}/{action=Index}/{id?}");
+                    "default",
+                    "{controller}/{action=Index}/{id?}");
             });
         }
     }

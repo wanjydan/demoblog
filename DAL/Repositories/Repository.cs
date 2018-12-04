@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
-using System.Text;
 using DAL.Repositories.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
@@ -11,9 +10,9 @@ namespace DAL.Repositories
     public class Repository<TEntity> : IRepository<TEntity> where TEntity : class
     {
         protected readonly DbContext _context;
-        protected readonly DbSet<TEntity> _entities;
+        private readonly DbSet<TEntity> _entities;
 
-        public Repository(DbContext context)
+        protected Repository(DbContext context)
         {
             _context = context;
             _entities = context.Set<TEntity>();
@@ -39,7 +38,6 @@ namespace DAL.Repositories
         {
             _entities.UpdateRange(entities);
         }
-
 
 
         public virtual void Remove(TEntity entity)

@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using DAL.Models;
 using DAL.Repositories.Interfaces;
@@ -9,10 +8,13 @@ using Microsoft.EntityFrameworkCore;
 
 namespace DAL.Repositories
 {
-    class TagRepository: Repository<Tag>, ITagRepository
+    internal class TagRepository : Repository<Tag>, ITagRepository
     {
         public TagRepository(DbContext context) : base(context)
-        { }
+        {
+        }
+
+        private ApplicationDbContext _appContext => (ApplicationDbContext) _context;
 
 
         public async Task<IEnumerable<Tag>> GetTags()
@@ -77,7 +79,5 @@ namespace DAL.Repositories
 
             return Tuple.Create(true, string.Empty);
         }
-
-        private ApplicationDbContext _appContext => (ApplicationDbContext)_context;
     }
 }

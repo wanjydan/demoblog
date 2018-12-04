@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using DAL.Models;
 using DAL.Repositories.Interfaces;
@@ -9,11 +7,14 @@ using Microsoft.EntityFrameworkCore;
 
 namespace DAL.Repositories
 {
-    class ArticleLikeRepository: Repository<ArticleLike>, IArticleLikeRepository
+    internal class ArticleLikeRepository : Repository<ArticleLike>, IArticleLikeRepository
     {
         public ArticleLikeRepository(DbContext context) : base(context)
-        { }
+        {
+        }
 
+
+        private ApplicationDbContext _appContext => (ApplicationDbContext) _context;
 
 
         public async Task<ArticleLike> GetArticleLike(Guid articleId, string userId)
@@ -23,7 +24,7 @@ namespace DAL.Repositories
                 .FirstOrDefaultAsync();
         }
 
-        
+
         public async Task<Tuple<bool, string>> DeleteArticleLike(ArticleLike articleLike)
         {
             _appContext.ArticleLikes.Remove(articleLike);
@@ -39,8 +40,5 @@ namespace DAL.Repositories
 
             return Tuple.Create(true, string.Empty);
         }
-
-
-        private ApplicationDbContext _appContext => (ApplicationDbContext)_context;
     }
 }

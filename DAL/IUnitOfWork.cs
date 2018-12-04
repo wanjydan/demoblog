@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using DAL.Models;
-using DAL.Repositories.Interfaces;
+﻿using DAL.Repositories.Interfaces;
 
 namespace DAL
 {
@@ -18,5 +14,5 @@ namespace DAL
 
 
         int SaveChanges();
-    } 
+    }
 }

@@ -1,18 +1,20 @@
-﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.Linq;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using DAL.Models;
 using DAL.Models.Interfaces;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace DAL
 {
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser, ApplicationRole, string>
     {
+        public ApplicationDbContext(DbContextOptions options) : base(options)
+        {
+        }
+
         public ApplicationUser CurrentUser { get; set; }
         public DbSet<Article> Articles { get; set; }
         public DbSet<Category> Categories { get; set; }
@@ -20,11 +22,6 @@ namespace DAL
         public DbSet<Comment> Comments { get; set; }
         public DbSet<ArticleTag> ArticleTags { get; set; }
         public DbSet<ArticleLike> ArticleLikes { get; set; }
-
-
-        public ApplicationDbContext(DbContextOptions options) : base(options)
-        {
-        }
 
 
         protected override void OnModelCreating(ModelBuilder builder)
@@ -46,26 +43,26 @@ namespace DAL
             builder.Entity<Category>().Property(c => c.Name).IsRequired().HasMaxLength(100);
 //            builder.Entity<Category>().HasOne(c => c.CreatedBy).WithMany(u => u.Categories);
 //            builder.Entity<Category>().HasOne(c => c.UpdatedBy).WithMany(u => u.Categories);
-            builder.Entity<Category>().ToTable($"App{nameof(this.Categories)}");
+            builder.Entity<Category>().ToTable($"App{nameof(Categories)}");
 
 //            builder.Entity<Tag>().HasKey(t => t.Id);
             builder.Entity<Tag>().Property(t => t.Name).IsRequired().HasMaxLength(100);
 //            builder.Entity<Tag>().HasOne(t => t.CreatedBy).WithMany(u => u.Tags);
 //            builder.Entity<Tag>().HasOne(t => t.UpdatedBy).WithMany(u => u.Tags);
-            builder.Entity<Tag>().ToTable($"App{nameof(this.Tags)}");
+            builder.Entity<Tag>().ToTable($"App{nameof(Tags)}");
 
             builder.Entity<Comment>().Property(c => c.Body).IsRequired();
 //            builder.Entity<Comment>().HasOne(c => c.Article).WithMany(a => a.Comments);
 //            builder.Entity<Comment>().HasOne(c => c.CreatedBy).WithMany(u => u.Comments);
 //            builder.Entity<Comment>().HasOne(c => c.UpdatedBy).WithMany(u => u.Comments);
-            builder.Entity<Comment>().ToTable($"App{nameof(this.Comments)}");
+            builder.Entity<Comment>().ToTable($"App{nameof(Comments)}");
 
             builder.Entity<Article>().Property(a => a.Title).IsRequired().HasMaxLength(100);
             //            builder.Entity<Article>().HasIndex(a => a.Title);
             //            builder.Entity<Article>().HasOne(a => a.Category).WithMany(c => c.Articles);
             //            builder.Entity<Article>().HasOne(a => a.CreatedBy).WithMany(u => u.Articles).HasForeignKey(a => a.CreatedById);
             //            builder.Entity<Article>().HasOne(a => a.UpdatedBy).WithMany(u => u.Articles).HasForeignKey(a => a.CreatedById);
-            builder.Entity<Article>().ToTable($"App{nameof(this.Articles)}");
+            builder.Entity<Article>().ToTable($"App{nameof(Articles)}");
 
             builder.Entity<ArticleTag>().HasKey(at => new {at.Id, at.ArticleId, at.TagId});
 //            builder.Entity<ArticleTag>().Property(at => at.Id).ValueGeneratedOnAdd();
@@ -73,7 +70,7 @@ namespace DAL
                 .HasForeignKey(at => at.ArticleId);
             builder.Entity<ArticleTag>().HasOne(at => at.Tag).WithMany(t => t.ArticleTags)
                 .HasForeignKey(at => at.TagId);
-            builder.Entity<ArticleTag>().ToTable($"App{nameof(this.ArticleTags)}");
+            builder.Entity<ArticleTag>().ToTable($"App{nameof(ArticleTags)}");
 
             builder.Entity<ArticleLike>().HasKey(al => new {al.Id, al.ArticleId, al.CreatedById});
 //            builder.Entity<ArticleLike>().Property(al => al.Id).ValueGeneratedOnAdd();
@@ -124,7 +121,7 @@ namespace DAL
             foreach (var entry in modifiedEntries)
             {
                 var entity = (IAuditableEntity) entry.Entity;
-                DateTime now = DateTime.UtcNow;
+                var now = DateTime.UtcNow;
 
                 if (entry.State == EntityState.Added)
                 {

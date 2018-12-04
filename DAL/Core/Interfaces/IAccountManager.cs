@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 using DAL.Models;
-using Microsoft.AspNetCore.Http;
 
 namespace DAL.Core.Interfaces
 {
@@ -28,10 +26,14 @@ namespace DAL.Core.Interfaces
         Task<List<Tuple<ApplicationUser, string[]>>> GetUsersAndRolesAsync(int page, int pageSize);
         Task<Tuple<bool, string[]>> ResetPasswordAsync(ApplicationUser user, string newPassword);
         Task<bool> TestCanDeleteRoleAsync(string roleId);
-        Task<Tuple<bool, string[]>> UpdatePasswordAsync(ApplicationUser user, string currentPassword, string newPassword);
+
+        Task<Tuple<bool, string[]>> UpdatePasswordAsync(ApplicationUser user, string currentPassword,
+            string newPassword);
+
         Task<Tuple<bool, string[]>> UpdateRoleAsync(ApplicationRole role, IEnumerable<string> claims);
         Task<Tuple<bool, string[]>> UpdateUserAsync(ApplicationUser user);
         Task<Tuple<bool, string[]>> UpdateUserAsync(ApplicationUser user, IEnumerable<string> roles);
-        Task<ApplicationUser> GetCurrentUser();
+        Task<ApplicationUser> GetCurrentUserAsync();
+        Task<IList<ApplicationUser>> GetAllUsersAsync();
     }
 }

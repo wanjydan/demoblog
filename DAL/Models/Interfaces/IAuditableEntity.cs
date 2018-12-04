@@ -1,10 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace DAL.Models.Interfaces
 {
-    interface IAuditableEntity
+    internal interface IAuditableEntity
     {
         ApplicationUser CreatedBy { get; set; }
         ApplicationUser UpdatedBy { get; set; }

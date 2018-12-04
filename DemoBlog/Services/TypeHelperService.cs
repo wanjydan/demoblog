@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using System.Threading.Tasks;
 using DemoBlog.Services.Interfaces;
 
 namespace DemoBlog.Services
@@ -29,7 +28,7 @@ namespace DemoBlog.Services
                     invalidFields.Add(propertyName);
             }
 
-            if(invalidFields.Any())
+            if (invalidFields.Any())
                 return Tuple.Create(false, invalidFields.ToArray());
 
             return Tuple.Create(true, Array.Empty<string>());

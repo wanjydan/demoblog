@@ -1,15 +1,14 @@
 ﻿using System;
-using Microsoft.Extensions.FileProviders;
-using Microsoft.AspNetCore.Hosting;
 using System.IO;
+using Microsoft.AspNetCore.Hosting;
 
 namespace DemoBlog.Helpers
 {
     public static class EmailTemplates
     {
-        static IHostingEnvironment _hostingEnvironment;
-        static string testEmailTemplate;
-        static string plainTextTestEmailTemplate;
+        private static IHostingEnvironment _hostingEnvironment;
+        private static string testEmailTemplate;
+        private static string plainTextTestEmailTemplate;
 
 
         public static void Initialize(IHostingEnvironment hostingEnvironment)
@@ -24,13 +23,12 @@ namespace DemoBlog.Helpers
                 testEmailTemplate = ReadPhysicalFile("Helpers/Templates/TestEmail.template");
 
 
-            string emailMessage = testEmailTemplate
+            var emailMessage = testEmailTemplate
                 .Replace("{user}", recepientName)
                 .Replace("{testDate}", testDate.ToString());
 
             return emailMessage;
         }
-
 
 
         public static string GetPlainTextTestEmail(DateTime date)
@@ -39,13 +37,11 @@ namespace DemoBlog.Helpers
                 plainTextTestEmailTemplate = ReadPhysicalFile("Helpers/Templates/PlainTextTestEmail.template");
 
 
-            string emailMessage = plainTextTestEmailTemplate
+            var emailMessage = plainTextTestEmailTemplate
                 .Replace("{date}", date.ToString());
 
             return emailMessage;
         }
-
-
 
 
         private static string ReadPhysicalFile(string path)
@@ -53,7 +49,7 @@ namespace DemoBlog.Helpers
             if (_hostingEnvironment == null)
                 throw new InvalidOperationException($"{nameof(EmailTemplates)} is not initialized");
 
-            IFileInfo fileInfo = _hostingEnvironment.ContentRootFileProvider.GetFileInfo(path);
+            var fileInfo = _hostingEnvironment.ContentRootFileProvider.GetFileInfo(path);
 
             if (!fileInfo.Exists)
                 throw new FileNotFoundException($"Template file located at \"{path}\" was not found");

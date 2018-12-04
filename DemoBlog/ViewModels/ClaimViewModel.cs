@@ -1,7 +1,4 @@
-﻿using System;
-using System.Linq;
-
-namespace DemoBlog.ViewModels
+﻿namespace DemoBlog.ViewModels
 {
     public class ClaimViewModel
     {

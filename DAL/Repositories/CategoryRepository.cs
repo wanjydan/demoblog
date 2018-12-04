@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using DAL.Models;
 using DAL.Repositories.Interfaces;
@@ -9,11 +8,14 @@ using Microsoft.EntityFrameworkCore;
 
 namespace DAL.Repositories
 {
-    class CategoryRepository : Repository<Category>, ICategoryRepository
+    internal class CategoryRepository : Repository<Category>, ICategoryRepository
     {
         public CategoryRepository(DbContext context) : base(context)
         {
         }
+
+
+        private ApplicationDbContext _appContext => (ApplicationDbContext) _context;
 
         public async Task<IEnumerable<Category>> GetCategories()
         {
@@ -48,7 +50,7 @@ namespace DAL.Repositories
 
         public async Task<Tuple<bool, string>> CreateCategory(Category category)
         {
-           await _appContext.Categories.AddAsync(category);
+            await _appContext.Categories.AddAsync(category);
 
             try
             {
@@ -77,8 +79,5 @@ namespace DAL.Repositories
 
             return Tuple.Create(true, string.Empty);
         }
-
-
-        private ApplicationDbContext _appContext => (ApplicationDbContext) _context;
     }
 }

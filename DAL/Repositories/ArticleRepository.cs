@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using DAL.Models;
 using DAL.Repositories.Interfaces;
@@ -9,11 +8,14 @@ using Microsoft.EntityFrameworkCore;
 
 namespace DAL.Repositories
 {
-    class ArticleRepository: Repository<Article>, IArticleRepository
+    internal class ArticleRepository : Repository<Article>, IArticleRepository
     {
         public ArticleRepository(DbContext context) : base(context)
-        { }
+        {
+        }
 
+
+        private ApplicationDbContext _appContext => (ApplicationDbContext) _context;
 
 
         public IQueryable<Article> GetArticles()
@@ -34,11 +36,6 @@ namespace DAL.Repositories
                 .Include(a => a.Comments)
                 .Where(a => a.Id == id)
                 .FirstOrDefaultAsync();
-        }
-
-        private bool Predicate(ArticleLike articleLike)
-        {
-            throw new NotImplementedException();
         }
 
         public async Task<Article> GetArticleBySlug(string slug)
@@ -65,11 +62,11 @@ namespace DAL.Repositories
             {
                 return Tuple.Create(false, e.Message);
             }
-            
+
             return Tuple.Create(true, string.Empty);
         }
 
-        public async Task<Tuple<bool, string>> UpdateArticle(Article article, ICollection<Tag> tags)
+        public async Task<Tuple<bool, string>> UpdateArticle(Article article, IEnumerable<Tag> tags)
         {
             _appContext.Articles.Update(article);
 
@@ -100,7 +97,7 @@ namespace DAL.Repositories
             return Tuple.Create(true, string.Empty);
         }
 
-        public async Task<Tuple<bool, string>> CreateArticle(Article article, ICollection<Tag> tags)
+        public async Task<Tuple<bool, string>> CreateArticle(Article article, IEnumerable<Tag> tags)
         {
             await _appContext.Articles.AddAsync(article);
 
@@ -138,7 +135,7 @@ namespace DAL.Repositories
 
         public async Task<Tuple<bool, string>> AddTag(Article article, Tag tag)
         {
-            await _appContext.ArticleTags.AddAsync(new ArticleTag()
+            await _appContext.ArticleTags.AddAsync(new ArticleTag
             {
                 Article = article,
                 Tag = tag
@@ -172,17 +169,15 @@ namespace DAL.Repositories
             return Tuple.Create(true, string.Empty);
         }
 
-        public async Task<Tuple<bool, string>> AddTags(Article article, ICollection<Tag> tags)
+        public async Task<Tuple<bool, string>> AddTags(Article article, IEnumerable<Tag> tags)
         {
             ICollection<ArticleTag> articleTags = new List<ArticleTag>();
             foreach (var tag in tags)
-            {
-                articleTags.Add(new ArticleTag()
+                articleTags.Add(new ArticleTag
                 {
                     Article = article,
                     Tag = tag
                 });
-            }
             await _appContext.ArticleTags.AddRangeAsync(articleTags);
 
             try
@@ -198,7 +193,7 @@ namespace DAL.Repositories
             return Tuple.Create(true, string.Empty);
         }
 
-        public async Task<Tuple<bool, string>> RemoveTags(ICollection<ArticleTag> articleTags)
+        public async Task<Tuple<bool, string>> RemoveTags(IEnumerable<ArticleTag> articleTags)
         {
             _appContext.ArticleTags.RemoveRange(articleTags);
 
@@ -216,7 +211,7 @@ namespace DAL.Repositories
 
         public async Task<Tuple<bool, string>> LikeArticle(Article article)
         {
-            await _appContext.ArticleLikes.AddAsync(new ArticleLike()
+            await _appContext.ArticleLikes.AddAsync(new ArticleLike
             {
                 Article = article
             });
@@ -248,9 +243,5 @@ namespace DAL.Repositories
 
             return Tuple.Create(true, string.Empty);
         }
-
-        
-
-        private ApplicationDbContext _appContext => (ApplicationDbContext)_context;
     }
 }

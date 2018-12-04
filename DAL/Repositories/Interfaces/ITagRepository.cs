@@ -1,12 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 using DAL.Models;
 
 namespace DAL.Repositories.Interfaces
 {
-    public interface ITagRepository: IRepository<Tag>
+    public interface ITagRepository : IRepository<Tag>
     {
         Task<IEnumerable<Tag>> GetTags();
         Task<Tag> GetTag(Guid id);

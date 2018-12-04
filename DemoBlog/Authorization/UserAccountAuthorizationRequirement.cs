@@ -1,10 +1,8 @@
-﻿using DAL.Core;
-using Microsoft.AspNetCore.Authorization;
-using DemoBlog.Helpers;
-using System.Collections.Generic;
-using System.Security.Claims;
-using System.Text;
+﻿using System.Security.Claims;
 using System.Threading.Tasks;
+using DAL.Core;
+using DemoBlog.Helpers;
+using Microsoft.AspNetCore.Authorization;
 
 namespace DemoBlog.Authorization
 {
@@ -12,23 +10,24 @@ namespace DemoBlog.Authorization
     {
         public UserAccountAuthorizationRequirement(string operationName)
         {
-            this.OperationName = operationName;
+            OperationName = operationName;
         }
 
 
-        public string OperationName { get; private set; }
+        public string OperationName { get; }
     }
-
 
 
     public class ViewUserAuthorizationHandler : AuthorizationHandler<UserAccountAuthorizationRequirement, string>
     {
-        protected override Task HandleRequirementAsync(AuthorizationHandlerContext context, UserAccountAuthorizationRequirement requirement, string targetUserId)
+        protected override Task HandleRequirementAsync(AuthorizationHandlerContext context,
+            UserAccountAuthorizationRequirement requirement, string targetUserId)
         {
             if (context.User == null || requirement.OperationName != AccountManagementOperations.ReadOperationName)
                 return Task.CompletedTask;
 
-            if (context.User.HasClaim(CustomClaimTypes.Permission, ApplicationPermissions.ViewUsers) || GetIsSameUser(context.User, targetUserId))
+            if (context.User.HasClaim(CustomClaimTypes.Permission, ApplicationPermissions.ViewUsers) ||
+                GetIsSameUser(context.User, targetUserId))
                 context.Succeed(requirement);
 
             return Task.CompletedTask;
@@ -45,18 +44,19 @@ namespace DemoBlog.Authorization
     }
 
 
-
     public class ManageUserAuthorizationHandler : AuthorizationHandler<UserAccountAuthorizationRequirement, string>
     {
-        protected override Task HandleRequirementAsync(AuthorizationHandlerContext context, UserAccountAuthorizationRequirement requirement, string targetUserId)
+        protected override Task HandleRequirementAsync(AuthorizationHandlerContext context,
+            UserAccountAuthorizationRequirement requirement, string targetUserId)
         {
             if (context.User == null ||
-                (requirement.OperationName != AccountManagementOperations.CreateOperationName &&
-                 requirement.OperationName != AccountManagementOperations.UpdateOperationName &&
-                 requirement.OperationName != AccountManagementOperations.DeleteOperationName))
+                requirement.OperationName != AccountManagementOperations.CreateOperationName &&
+                requirement.OperationName != AccountManagementOperations.UpdateOperationName &&
+                requirement.OperationName != AccountManagementOperations.DeleteOperationName)
                 return Task.CompletedTask;
 
-            if (context.User.HasClaim(CustomClaimTypes.Permission, ApplicationPermissions.ManageUsers) || GetIsSameUser(context.User, targetUserId))
+            if (context.User.HasClaim(CustomClaimTypes.Permission, ApplicationPermissions.ManageUsers) ||
+                GetIsSameUser(context.User, targetUserId))
                 context.Succeed(requirement);
 
             return Task.CompletedTask;

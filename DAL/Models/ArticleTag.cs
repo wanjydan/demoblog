@@ -1,10 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace DAL.Models
 {
-    public class ArticleTag: AuditableEntity
+    public class ArticleTag : AuditableEntity
     {
         public Guid Id { get; set; }
 

@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using FluentValidation;
-
 
 namespace DemoBlog.ViewModels
 {
@@ -17,11 +15,15 @@ namespace DemoBlog.ViewModels
         public DateTime CreatedDate { get; set; }
         public DateTime UpdatedDate { get; set; }
 
-        public ArticleUserViewModel Author { get; set; }
+        public Guid AuthorId { get; set; }
+        public string AuthorName { get; set; }
+        public UserViewModel Author { get; set; }
 
-        public ArticleCategoryViewModel Category { get; set; }
-        
-        public ICollection<ArticleTagViewModel> Tags { get; set; }
+        public string CategoryName { get; set; }
+        public string CategorySlug { get; set; }
+        public CategoryViewModel Category { get; set; }
+
+        public ICollection<TagViewModel> Tags { get; set; }
 
         public ICollection<CommentViewModel> Comments { get; set; }
     }

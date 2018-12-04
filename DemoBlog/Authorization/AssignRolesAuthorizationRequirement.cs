@@ -1,22 +1,23 @@
-﻿using DAL.Core;
-using Microsoft.AspNetCore.Authorization;
-using System;
+﻿using System;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using DAL.Core;
+using Microsoft.AspNetCore.Authorization;
 
 namespace DemoBlog.Authorization
 {
     public class AssignRolesAuthorizationRequirement : IAuthorizationRequirement
     {
-
     }
 
 
-
-    public class AssignRolesAuthorizationHandler : AuthorizationHandler<AssignRolesAuthorizationRequirement, Tuple<string[], string[]>>
+    public class
+        AssignRolesAuthorizationHandler : AuthorizationHandler<AssignRolesAuthorizationRequirement,
+            Tuple<string[], string[]>>
     {
-        protected override Task HandleRequirementAsync(AuthorizationHandlerContext context, AssignRolesAuthorizationRequirement requirement, Tuple<string[], string[]> newAndCurrentRoles)
+        protected override Task HandleRequirementAsync(AuthorizationHandlerContext context,
+            AssignRolesAuthorizationRequirement requirement, Tuple<string[], string[]> newAndCurrentRoles)
         {
             if (!GetIsRolesChanged(newAndCurrentRoles.Item1, newAndCurrentRoles.Item2))
             {
@@ -24,10 +25,12 @@ namespace DemoBlog.Authorization
             }
             else if (context.User.HasClaim(CustomClaimTypes.Permission, ApplicationPermissions.AssignRoles))
             {
-                if (context.User.HasClaim(CustomClaimTypes.Permission, ApplicationPermissions.ViewRoles)) // If user has ViewRoles permission, then he can assign any roles
+                if (context.User.HasClaim(CustomClaimTypes.Permission, ApplicationPermissions.ViewRoles)
+                ) // If user has ViewRoles permission, then he can assign any roles
                     context.Succeed(requirement);
 
-                else if (GetIsUserInAllAddedRoles(context.User, newAndCurrentRoles.Item1, newAndCurrentRoles.Item2)) // Else user can only assign roles they're part of
+                else if (GetIsUserInAllAddedRoles(context.User, newAndCurrentRoles.Item1, newAndCurrentRoles.Item2)
+                ) // Else user can only assign roles they're part of
                     context.Succeed(requirement);
             }
 
@@ -45,8 +48,8 @@ namespace DemoBlog.Authorization
                 currentRoles = new string[] { };
 
 
-            bool roleAdded = newRoles.Except(currentRoles).Any();
-            bool roleRemoved = currentRoles.Except(newRoles).Any();
+            var roleAdded = newRoles.Except(currentRoles).Any();
+            var roleRemoved = currentRoles.Except(newRoles).Any();
 
             return roleAdded || roleRemoved;
         }

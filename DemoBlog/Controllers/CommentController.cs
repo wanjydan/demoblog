@@ -2,11 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using DAL;
 using DAL.Models;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace DemoBlog.Controllers
 {
@@ -32,17 +31,11 @@ namespace DemoBlog.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> GetComment([FromRoute] Guid id)
         {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
+            if (!ModelState.IsValid) return BadRequest(ModelState);
 
             var comment = await _context.Comments.FindAsync(id);
 
-            if (comment == null)
-            {
-                return NotFound();
-            }
+            if (comment == null) return NotFound();
 
             return Ok(comment);
         }
@@ -51,15 +44,9 @@ namespace DemoBlog.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> PutComment([FromRoute] Guid id, [FromBody] Comment comment)
         {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
+            if (!ModelState.IsValid) return BadRequest(ModelState);
 
-            if (id != comment.Id)
-            {
-                return BadRequest();
-            }
+            if (id != comment.Id) return BadRequest();
 
             _context.Entry(comment).State = EntityState.Modified;
 
@@ -70,13 +57,8 @@ namespace DemoBlog.Controllers
             catch (DbUpdateConcurrencyException)
             {
                 if (!CommentExists(id))
-                {
                     return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
+                throw;
             }
 
             return NoContent();
@@ -86,31 +68,22 @@ namespace DemoBlog.Controllers
         [HttpPost]
         public async Task<IActionResult> PostComment([FromBody] Comment comment)
         {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
+            if (!ModelState.IsValid) return BadRequest(ModelState);
 
             _context.Comments.Add(comment);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetComment", new { id = comment.Id }, comment);
+            return CreatedAtAction("GetComment", new {id = comment.Id}, comment);
         }
 
         // DELETE: api/Comment/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteComment([FromRoute] Guid id)
         {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
+            if (!ModelState.IsValid) return BadRequest(ModelState);
 
             var comment = await _context.Comments.FindAsync(id);
-            if (comment == null)
-            {
-                return NotFound();
-            }
+            if (comment == null) return NotFound();
 
             _context.Comments.Remove(comment);
             await _context.SaveChangesAsync();

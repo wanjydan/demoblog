@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Dynamic;
-using System.Linq;
 using System.Reflection;
-using System.Threading.Tasks;
 
 namespace DemoBlog.Extensions
 {
@@ -11,22 +9,21 @@ namespace DemoBlog.Extensions
     {
         public static ExpandoObject ShapeData<TSource>(this TSource source, string fields)
         {
-            if (source == null)
-            {
-                throw new ArgumentNullException(nameof(source));
-            }
+            if (source == null) throw new ArgumentNullException(nameof(source));
 
             var dataShapedObject = new ExpandoObject();
 
             if (string.IsNullOrWhiteSpace(fields))
             {
-                var propertyInfos = typeof(TSource).GetProperties(BindingFlags.IgnoreCase | BindingFlags.Public | BindingFlags.Instance);
+                var propertyInfos =
+                    typeof(TSource).GetProperties(BindingFlags.IgnoreCase | BindingFlags.Public |
+                                                  BindingFlags.Instance);
 
                 foreach (var propertyInfo in propertyInfos)
                 {
                     var propertyValue = propertyInfo.GetValue(source);
 
-                    ((IDictionary<string, object>)dataShapedObject).Add(propertyInfo.Name, propertyValue);
+                    ((IDictionary<string, object>) dataShapedObject).Add(propertyInfo.Name, propertyValue);
                 }
 
                 return dataShapedObject;
@@ -41,12 +38,12 @@ namespace DemoBlog.Extensions
                 var propertyInfo = typeof(TSource).GetProperty(propertyName,
                     BindingFlags.IgnoreCase | BindingFlags.Public | BindingFlags.Instance);
 
-                if(propertyInfo == null)
+                if (propertyInfo == null)
                     throw new Exception($"Property {propertyName} was not found on {typeof(TSource)}");
 
                 var propertyValue = propertyInfo.GetValue(source);
 
-                ((IDictionary<string, object>)dataShapedObject).Add(propertyInfo.Name, propertyValue);
+                ((IDictionary<string, object>) dataShapedObject).Add(propertyInfo.Name, propertyValue);
             }
 
             return dataShapedObject;
