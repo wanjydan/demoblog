@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace DemoBlog.ViewModels
+namespace DemoBlog.ViewModels.UserViewModels
 {
     public class UserEditViewModel : UserViewModel
     {

@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace DemoBlog.ViewModels
+namespace DemoBlog.ViewModels.ArticleViewModels
 {
     public class ArticleCreateViewModel
     {

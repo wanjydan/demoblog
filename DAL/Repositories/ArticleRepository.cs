@@ -171,13 +171,9 @@ namespace DAL.Repositories
 
         public async Task<Tuple<bool, string>> AddTags(Article article, IEnumerable<Tag> tags)
         {
-            ICollection<ArticleTag> articleTags = new List<ArticleTag>();
-            foreach (var tag in tags)
-                articleTags.Add(new ArticleTag
-                {
-                    Article = article,
-                    Tag = tag
-                });
+            ICollection<ArticleTag> articleTags =
+                tags.Select(tag => new ArticleTag {Article = article, Tag = tag}).ToList();
+
             await _appContext.ArticleTags.AddRangeAsync(articleTags);
 
             try

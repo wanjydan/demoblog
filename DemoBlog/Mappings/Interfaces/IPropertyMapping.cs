@@ -1,5 +1,6 @@
-﻿namespace DemoBlog.Services.Interfaces
+﻿namespace DemoBlog.Mappings.Interfaces
 {
+    
     public interface IPropertyMapping
     {
     }

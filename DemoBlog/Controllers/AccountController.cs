@@ -9,6 +9,7 @@ using DAL.Models;
 using DemoBlog.Authorization;
 using DemoBlog.Helpers;
 using DemoBlog.ViewModels;
+using DemoBlog.ViewModels.UserViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;

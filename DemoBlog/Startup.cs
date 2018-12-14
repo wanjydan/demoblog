@@ -7,6 +7,8 @@ using DAL.Core.Interfaces;
 using DAL.Models;
 using DemoBlog.Authorization;
 using DemoBlog.Helpers;
+using DemoBlog.Mappings;
+using DemoBlog.Mappings.Interfaces;
 using DemoBlog.Services;
 using DemoBlog.Services.Interfaces;
 using DemoBlog.ViewModels;
@@ -139,14 +141,14 @@ namespace DemoBlog
                 //Todo: ***Using DataAnnotations for validation until Swashbuckle supports FluentValidation***
                 //services.AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<Startup>());
                 .AddJsonOptions(options =>
-                    {
-                        options.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
-                        options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
-                        
+                {
+                    options.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
+                    options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
+
 //                        options.SerializerSettings.ContractResolver = new Newtonsoft.Json.Serialization.DefaultContractResolver();
 //                        options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Serialize;
 //                        options.SerializerSettings.PreserveReferencesHandling = PreserveReferencesHandling.Objects;
-                    });
+                });
 
 
             services.AddSwaggerGen(c =>

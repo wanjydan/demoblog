@@ -2,6 +2,8 @@
 using AutoMapper;
 using DAL.Core;
 using DAL.Models;
+using DemoBlog.ViewModels.ArticleViewModels;
+using DemoBlog.ViewModels.UserViewModels;
 using Microsoft.AspNetCore.Identity;
 
 namespace DemoBlog.ViewModels
@@ -55,8 +57,11 @@ namespace DemoBlog.ViewModels
             CreateMap<ArticleEditViewModel, Article>()
                 .ReverseMap();
 
-            CreateMap<Tag, TagViewModel>()
-                .ForMember(d => d.Articles, map => map.MapFrom(s => s.ArticleTags.Select(at => at.Article)));
+            /*CreateMap<Tag, TagViewModel>()
+                .ForMember(d => d.Articles, map => map.MapFrom(s => s.ArticleTags.Select(at => at.Article)));*/
+
+            CreateMap<Comment, CommentViewModel>()
+                .ForMember(d => d.Author, map => map.MapFrom(s => s.CreatedBy));
         }
     }
 }

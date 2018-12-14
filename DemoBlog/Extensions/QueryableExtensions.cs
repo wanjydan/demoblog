@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Dynamic.Core;
-using DemoBlog.Services;
+using DemoBlog.Mappings;
 
 namespace DemoBlog.Extensions
 {

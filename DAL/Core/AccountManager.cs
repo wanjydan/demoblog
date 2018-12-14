@@ -368,7 +368,7 @@ namespace DAL.Core
             var result = await _roleManager.DeleteAsync(role);
             return Tuple.Create(result.Succeeded, result.Errors.Select(e => e.Description).ToArray());
         }
-        
+
         public async Task<IList<ApplicationUser>> GetAllUsersAsync()
         {
             return await _context.Users.ToListAsync();

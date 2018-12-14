@@ -1,4 +1,4 @@
-﻿namespace DemoBlog.ViewModels
+﻿namespace DemoBlog.ViewModels.UserViewModels
 {
     public class UserPatchViewModel
     {

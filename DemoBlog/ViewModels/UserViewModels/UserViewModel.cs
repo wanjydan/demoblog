@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using DemoBlog.Helpers;
 
-namespace DemoBlog.ViewModels
+namespace DemoBlog.ViewModels.UserViewModels
 {
     public class UserViewModel
     {
@@ -31,17 +31,4 @@ namespace DemoBlog.ViewModels
         [MinimumCount(1, ErrorMessage = "Roles cannot be empty")]
         public string[] Roles { get; set; }
     }
-
-
-    ////Todo: ***Using DataAnnotations for validations until Swashbuckle supports FluentValidation***
-    //public class UserViewModelValidator : AbstractValidator<UserViewModel>
-    //{
-    //    public UserViewModelValidator()
-    //    {
-    //        //Validation logic here
-    //        RuleFor(user => user.UserName).NotEmpty().WithMessage("Username cannot be empty");
-    //        RuleFor(user => user.Email).EmailAddress().NotEmpty();
-    //        RuleFor(user => user.Password).NotEmpty().WithMessage("Password cannot be empty").Length(4, 20);
-    //    }
-    //}
 }
