@@ -17,9 +17,9 @@ namespace DemoBlog.ViewModels.ArticleViewModels
 
         public AuthorViewModel Author { get; set; }
 
-        public CategoryViewModel Category { get; set; }
+        public ArticleCategoryViewModel Category { get; set; }
 
-        public ICollection<TagViewModel> Tags { get; set; }
+        public ICollection<ArticleTagViewModel> Tags { get; set; }
 
         public ICollection<CommentViewModel> Comments { get; set; }
     }

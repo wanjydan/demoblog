@@ -2,14 +2,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using DAL.Models;
-using DemoBlog.Mappings.Interfaces;
+using DemoBlog.PropertyMappings.Interfaces;
 using DemoBlog.ViewModels.ArticleViewModels;
 
-namespace DemoBlog.Mappings
+namespace DemoBlog.PropertyMappings
 {
-    public class PropertyMappingService : IPropertyMappingService
+    public class ArticlePropertyMapping : IArticlePropertyMapping
     {
-        private readonly Dictionary<string, PropertyMappingValue> _articlePropertyMapping =
+        private Dictionary<string, PropertyMappingValue> _productPropertyMapping =
             new Dictionary<string, PropertyMappingValue>(StringComparer.OrdinalIgnoreCase)
             {
                 {"Id", new PropertyMappingValue(new List<string> {"Id"})},
@@ -18,18 +18,21 @@ namespace DemoBlog.Mappings
                 {"Likes", new PropertyMappingValue(new List<string> {"Likes"})}
             };
 
-        private readonly IList<IPropertyMapping> propertyMappings = new List<IPropertyMapping>();
+        private IList<IPropertyMapping> propertyMappings = new List<IPropertyMapping>();
 
-        public PropertyMappingService()
+        public ArticlePropertyMapping()
         {
-            propertyMappings.Add(new PropertyMapping<ArticleViewModel, Article>(_articlePropertyMapping));
+            propertyMappings.Add(new PropertyMapping<ArticleListViewModel, Article>(_productPropertyMapping));
         }
 
         public Dictionary<string, PropertyMappingValue> GetPropertyMapping<TSource, TDestination>()
         {
             var matchingMapping = propertyMappings.OfType<PropertyMapping<TSource, TDestination>>();
 
-            if (matchingMapping.Count() == 1) return matchingMapping.First()._mappingDictionary;
+            if (matchingMapping.Count() == 1)
+            {
+                return matchingMapping.First()._mappingDictionary;
+            }
 
             throw new Exception($"Cannot find exact property mapping instance for {typeof(TSource)}");
         }
@@ -38,7 +41,10 @@ namespace DemoBlog.Mappings
         {
             var propertyMapping = GetPropertyMapping<TSource, TDestination>();
 
-            if (string.IsNullOrWhiteSpace(fields)) return Tuple.Create(true, Array.Empty<string>());
+            if (string.IsNullOrWhiteSpace(fields))
+            {
+                return Tuple.Create(true, Array.Empty<string>());
+            }
 
             var fieldAfterSplit = fields.Split(",");
 
@@ -55,8 +61,8 @@ namespace DemoBlog.Mappings
                 if (!propertyMapping.ContainsKey(propertyName))
                     invalidFields.Add(trimmedField);
             }
-
-            if (invalidFields.Any())
+            
+            if(invalidFields.Any())
                 return Tuple.Create(false, invalidFields.ToArray());
 
             return Tuple.Create(true, Array.Empty<string>());

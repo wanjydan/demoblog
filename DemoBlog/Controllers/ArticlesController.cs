@@ -10,7 +10,7 @@ using DemoBlog.Authorization;
 using DemoBlog.Extensions;
 using DemoBlog.Helpers;
 using DemoBlog.Helpers.QueryParameters;
-using DemoBlog.Mappings.Interfaces;
+using DemoBlog.PropertyMappings.Interfaces;
 using DemoBlog.Services.Interfaces;
 using DemoBlog.ViewModels;
 using DemoBlog.ViewModels.ArticleViewModels;
@@ -31,22 +31,22 @@ namespace DemoBlog.Controllers
         private readonly IAccountManager _accountManager;
         private readonly IAuthorizationService _authorizationService;
         private readonly IFileHandler _fileHandler;
-        private readonly IPropertyMappingService _propertyMappingService;
-        private readonly ITypeHelperService _typeHelperService;
+        private readonly IArticlePropertyMapping _articlePropertyMapping;
+        private readonly ITypeMappingHelper _typeMappingHelper;
         private readonly IUnitOfWork _unitOfWork;
         private readonly IUrlHelper _urlHelper;
 
         public ArticlesController(IUnitOfWork unitOfWork, IAccountManager accountManager,
             IAuthorizationService authorizationService, IFileHandler fileHandler, IUrlHelper urlHelper,
-            IPropertyMappingService propertyMappingService, ITypeHelperService typeHelperService)
+            IArticlePropertyMapping propertyMappingService, ITypeMappingHelper typeMappingHelper)
         {
             _unitOfWork = unitOfWork;
             _accountManager = accountManager;
             _authorizationService = authorizationService;
             _fileHandler = fileHandler;
             _urlHelper = urlHelper;
-            _propertyMappingService = propertyMappingService;
-            _typeHelperService = typeHelperService;
+            _articlePropertyMapping = propertyMappingService;
+            _typeMappingHelper = typeMappingHelper;
         }
 
         // GET: api/Articles
@@ -55,12 +55,12 @@ namespace DemoBlog.Controllers
         public IActionResult GetArticles([FromQuery] ArticleQueryParameters queryParameters)
         {
             var result =
-                _propertyMappingService.ValidMappingExistsFor<ArticleViewModel, Article>(queryParameters.OrderBy);
+                _articlePropertyMapping.ValidMappingExistsFor<ArticleListViewModel, Article>(queryParameters.OrderBy);
             if (!result.Item1)
                 foreach (var invalidField in result.Item2)
                     AddError("orderBy", $"{invalidField} is not a valid orderBy parameter");
 
-            result = _typeHelperService.TypeHasProperties<ArticleViewModel>(queryParameters.Fields);
+            result = _typeMappingHelper.TypeHasProperties<ArticleListViewModel>(queryParameters.Fields);
             if (!result.Item1)
                 foreach (var invalidField in result.Item2)
                     AddError("fields", $"{invalidField} is not a valid fields parameter");
@@ -71,7 +71,7 @@ namespace DemoBlog.Controllers
             var articles = _unitOfWork.Articles.GetArticles();
 
             articles = articles.ApplySort(queryParameters.OrderBy,
-                _propertyMappingService.GetPropertyMapping<ArticleViewModel, Article>());
+                _articlePropertyMapping.GetPropertyMapping<ArticleListViewModel, Article>());
 
             if (!string.IsNullOrWhiteSpace(queryParameters.Category))
             {
@@ -109,7 +109,7 @@ namespace DemoBlog.Controllers
 
             Response.Headers.Add("X-Pagination", JsonConvert.SerializeObject(paginationMetadata));
 
-            var articleVm = Mapper.Map<IEnumerable<ArticleViewModel>>(pagedArticles);
+            var articleVm = Mapper.Map<IEnumerable<ArticleListViewModel>>(pagedArticles);
             return Ok(articleVm.ShapeData(queryParameters.Fields));
         }
 
@@ -119,14 +119,14 @@ namespace DemoBlog.Controllers
         {
             if (!string.IsNullOrWhiteSpace(fields))
             {
-                var result = _typeHelperService.TypeHasProperties<ArticleViewModel>(fields);
+                var result = _typeMappingHelper.TypeHasProperties<ArticleViewModel>(fields);
                 if (!result.Item1)
                     foreach (var invalidField in result.Item2)
                         AddError("fields", $"{invalidField} is not a valid fields parameter");
             }
             else
             {
-                fields = "id,title,slug,image,author";
+                fields = "id,title,slug,body,image,author";
             }
 
             if (!ModelState.IsValid)

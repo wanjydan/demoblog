@@ -43,11 +43,23 @@ namespace DemoBlog.ViewModels
                 .ConvertUsing(s =>
                     Mapper.Map<PermissionViewModel>(ApplicationPermissions.GetPermissionByValue(s.ClaimValue)));
 
+            CreateMap<Article, ArticleListViewModel>()
+                .ForMember(d => d.Likes, map => map.MapFrom(s => s.ArticleLikes.Count))
+                .ForMember(d => d.Tags, map => map.MapFrom(s => s.ArticleTags.Select(at => at.Tag)))
+                .ReverseMap();
+
             CreateMap<Article, ArticleViewModel>()
                 .ForMember(d => d.Likes, map => map.MapFrom(s => s.ArticleLikes.Count))
                 .ForMember(d => d.Author, map => map.MapFrom(s => s.CreatedBy))
-                .ForMember(d => d.Tags, map => map.MapFrom(s => s.ArticleTags.Select(at => at.Tag)));
+                .ForMember(d => d.Tags, map => map.MapFrom(s => s.ArticleTags.Select(at => at.Tag)))
+                .ReverseMap();
 
+            CreateMap<Category, ArticleCategoryViewModel>()
+                .ReverseMap();
+            
+            CreateMap<Tag, ArticleTagViewModel>()
+                .ReverseMap();
+            
             CreateMap<Article, ArticlePatchViewModel>()
                 .ReverseMap();
 

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace DemoBlog.ViewModels.ArticleViewModels
 {
-    public class ArticleListVewModel
+    public class ArticleListViewModel
     {
         public Guid Id { get; set; }
         public string Title { get; set; }
@@ -19,7 +19,5 @@ namespace DemoBlog.ViewModels.ArticleViewModels
         public CategoryViewModel Category { get; set; }
 
         public ICollection<TagViewModel> Tags { get; set; }
-
-        public ICollection<CommentViewModel> Comments { get; set; }
     }
 }

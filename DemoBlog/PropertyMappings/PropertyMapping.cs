@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
-using DemoBlog.Mappings.Interfaces;
+using DemoBlog.PropertyMappings.Interfaces;
 
-namespace DemoBlog.Mappings
+namespace DemoBlog.PropertyMappings
 {
     public class PropertyMapping<TSourse, TDestination> : IPropertyMapping
     {

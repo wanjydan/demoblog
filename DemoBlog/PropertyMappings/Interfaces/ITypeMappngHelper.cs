@@ -1,8 +1,8 @@
 ﻿using System;
 
-namespace DemoBlog.Mappings.Interfaces
+namespace DemoBlog.PropertyMappings.Interfaces
 {
-    public interface ITypeHelperService
+    public interface ITypeMappingHelper
     {
         Tuple<bool, string[]> TypeHasProperties<T>(string fields);
     }

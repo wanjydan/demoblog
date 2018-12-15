@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using DemoBlog.Mappings.Interfaces;
+using DemoBlog.PropertyMappings.Interfaces;
 
-namespace DemoBlog.Mappings
+namespace DemoBlog.PropertyMappings
 {
-    public class TypeHelperService : ITypeHelperService
+    public class TypeMappingHelper : ITypeMappingHelper
     {
         public Tuple<bool, string[]> TypeHasProperties<T>(string fields)
         {

@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace DemoBlog.Mappings
+namespace DemoBlog.PropertyMappings
 {
     public class PropertyMappingValue
     {

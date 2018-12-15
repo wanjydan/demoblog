@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
-namespace DemoBlog.Mappings.Interfaces
+namespace DemoBlog.PropertyMappings.Interfaces
 {
-    public interface IPropertyMappingService
+    public interface IArticlePropertyMapping
     {
         Dictionary<string, PropertyMappingValue> GetPropertyMapping<TSource, TDestination>();
 

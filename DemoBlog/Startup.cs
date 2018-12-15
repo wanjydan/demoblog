@@ -7,8 +7,8 @@ using DAL.Core.Interfaces;
 using DAL.Models;
 using DemoBlog.Authorization;
 using DemoBlog.Helpers;
-using DemoBlog.Mappings;
-using DemoBlog.Mappings.Interfaces;
+using DemoBlog.PropertyMappings;
+using DemoBlog.PropertyMappings.Interfaces;
 using DemoBlog.Services;
 using DemoBlog.Services.Interfaces;
 using DemoBlog.ViewModels;
@@ -249,9 +249,9 @@ namespace DemoBlog
                 return new UrlHelper(actionContext);
             });
 
-            services.AddTransient<IPropertyMappingService, PropertyMappingService>();
+            services.AddTransient<IArticlePropertyMapping, ArticlePropertyMapping>();
 
-            services.AddTransient<ITypeHelperService, TypeHelperService>();
+            services.AddTransient<ITypeMappingHelper, TypeMappingHelper>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
