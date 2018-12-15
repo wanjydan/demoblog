@@ -1,0 +1,117 @@
+﻿{
+  "version": "1.0.0",
+  "restore": {
+    "projectUniqueName": "D:\\Proj\\Visual Studio\\DemoBlog\\DemoBlog\\DemoBlog.csproj",
+    "projectName": "DemoBlog",
+    "projectPath": "D:\\Proj\\Visual Studio\\DemoBlog\\DemoBlog\\DemoBlog.csproj",
+    "outputPath": "D:\\Proj\\Visual Studio\\DemoBlog\\DemoBlog\\obj\\",
+    "projectStyle": "PackageReference",
+    "fallbackFolders": [
+      "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+    ],
+    "originalTargetFrameworks": [
+      "netcoreapp2.1"
+    ],
+    "frameworks": {
+      "netcoreapp2.1": {
+        "projectReferences": {
+          "D:\\Proj\\Visual Studio\\DemoBlog\\DAL\\DAL.csproj": {
+            "projectPath": "D:\\Proj\\Visual Studio\\DemoBlog\\DAL\\DAL.csproj"
+          }
+        }
+      }
+    },
+    "warningProperties": {
+      "warnAsError": [
+        "NU1605"
+      ]
+    }
+  },
+  "frameworks": {
+    "netcoreapp2.1": {
+      "dependencies": {
+        "AutoMapper": {
+          "target": "Package",
+          "version": "[7.0.1, )"
+        },
+        "CoreCompat.System.Drawing": {
+          "target": "Package",
+          "version": "[1.0.0-beta006, )"
+        },
+        "FluentValidation": {
+          "target": "Package",
+          "version": "[8.0.100, )"
+        },
+        "MailKit": {
+          "target": "Package",
+          "version": "[2.0.6, )"
+        },
+        "Microsoft.AspNetCore.App": {
+          "suppressParent": "All",
+          "target": "Package",
+          "version": "[2.1.1, )",
+          "autoReferenced": true
+        },
+        "Microsoft.AspNetCore.ResponseCaching": {
+          "target": "Package",
+          "version": "[2.2.0-preview3-35497, )"
+        },
+        "Microsoft.EntityFrameworkCore.Sqlite": {
+          "target": "Package",
+          "version": "[2.1.4, )"
+        },
+        "Microsoft.NETCore.App": {
+          "suppressParent": "All",
+          "target": "Package",
+          "version": "[2.1.0, )",
+          "autoReferenced": true
+        },
+        "Microsoft.VisualStudio.Azure.Containers.Tools.Targets": {
+          "target": "Package",
+          "version": "[1.0.1916590, )"
+        },
+        "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
+          "target": "Package",
+          "version": "[2.1.1, )"
+        },
+        "Npgsql.EntityFrameworkCore.PostgreSQL": {
+          "target": "Package",
+          "version": "[2.1.2, )"
+        },
+        "OpenIddict": {
+          "target": "Package",
+          "version": "[2.0.0-rc3-final, )"
+        },
+        "OpenIddict.EntityFrameworkCore": {
+          "target": "Package",
+          "version": "[2.0.0-rc3-final, )"
+        },
+        "SendGrid": {
+          "target": "Package",
+          "version": "[9.10.0, )"
+        },
+        "Serilog.Extensions.Logging.File": {
+          "target": "Package",
+          "version": "[2.0.0-dev-00024, )"
+        },
+        "SixLabors.ImageSharp": {
+          "target": "Package",
+          "version": "[1.0.0-beta0005, )"
+        },
+        "Swashbuckle.AspNetCore": {
+          "target": "Package",
+          "version": "[3.0.0, )"
+        },
+        "System.Linq.Dynamic.Core": {
+          "target": "Package",
+          "version": "[1.0.9, )"
+        }
+      },
+      "imports": [
+        "net461"
+      ],
+      "assetTargetFallback": true,
+      "warn": true
+    }
+  }
+}
